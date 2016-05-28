@@ -6,19 +6,27 @@
 
 ## Minimum Viable Product
 
-FresherNote is a web application inspired by Evernote that will be build using Ruby on Rails and React.js.  By the end of Week 9, this app will, at a minimum, satisfy the following criteria:
+[project name here] will be a full-stack web app clone of dating platform OKcupid. Its backend will sit on a reliable Ruby on Rails, with a PostgreSQL database, and a dynamic frontend, frameworked via React.js using Flux architecture.
+
+By the end of app/Academy week 9, this app will meet the following criteria for minimum viable functionality:
 
 - [ ] New account creation, login, and guest/demo login
 - [ ] Smooth, bug-free navigation
 - [ ] Adequate seed data to demonstrate the site's features
-- [ ] The minimally necessary features for an Evernote-inspired site: note creation and saving, note editing, and notes organized into notebooks
+- [ ] Question answering
+- [ ] Editable user profile with pictures and personal information
+- [ ] Ability to view and 'like' other profiles
+- [ ] Dynamic notifications of profile views and likes
+- [ ] A match percentage between each user, algorithmically determined
+- [ ] A user search feature, allowing filtration based on certain qualities
+- [ ] A websocket based messenger platform, for users to communicate
 - [ ] Hosting on Heroku
-- [ ] CSS styling that is satisfactorily visually appealing
-- [ ] A production README, replacing this README (**NB**: check out the [sample production README](https://github.com/appacademy/sample-project-proposal/blob/master/docs/production_readme.md) -- you'll write this later)
+- [ ] CSS styling that looks exactly like okCupid, except with a shittier logo, and a barely visible superimposition of Richard Stallman's face haunting the background.
+- [ ] A production README, replacing this dogshit README
 
 ## Product Goals and Priorities
 
-FresherNote will allow users to do the following:
+[project name here] will allow users to do the following:
 
 <!-- This is a Markdown checklist. Use it to keep track of your
 progress. Put an x between the brackets for a checkmark: [x] -->
