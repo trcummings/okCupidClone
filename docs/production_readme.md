@@ -51,7 +51,7 @@ render: function () {
   }
   <ExpandedNotebook notebook={this.state.selectedNotebook} />)
 }
-```
+ ```
 
 ### Tags
 
