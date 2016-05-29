@@ -20,9 +20,19 @@
 
 ## JSON API
 
+
+
+
+
+
+
+
+
+
+
 ### Notes
 
-- `GET /api/notes`
+- `GET /api/users`
   - Notes index/search
   - accepts `tag_name` query param to list notes by tag
   - accepts pagination params (if I get there)
