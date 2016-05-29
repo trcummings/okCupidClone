@@ -16,21 +16,36 @@ what you'll need to do.
 ### Users API Request Actions
 
 * `fetchAllUsers`
+  0. invoked from `MatchesIndex`, `onClick`
+  0. `GET /users` is called
+  0. `getAllUsers` is set as the callback
 
 * `fetchSingleUser`
+  0. invoked from `ProfileIndex` and `MatchesDetail`, `onClick`
+  0. `GET /users/:id` is called
+  0. `getThisUser` is set as the callback
 
 * `updateUser`
+  0. invoked from `AboutDetailItemForm` and `AccountSettingForm` and `DescriptionItemForm`, `onClick`
+  0. `PATCH /users/:id` is called
+  0. `getThisUser` is set as the callback
 
 ### Users API Response Actions
 
 * `recieveAllUsers`
+  0. invoked from an API callback.
+  0. `User` store resets `_users` and emits change.
 
 * `recieveSingleUser`
+  0. invoked from an API callback.
+  0. `User` store resets `_users` and emits change.
 
 ### User Store Listeners
 
-* `NotesIndex` component listens to `Note` store.
-* `NoteDetail` component listens to `Note` store.
+* `MatchesIndex` component listens to `Note` store.
+* `MatchesDetail` component listens to `Note` store.
+* `AboutDetailItem` component listens to `Note` store.
+* `AccountDetail` component listens to `Note` store.
 
 
 ## Likes Cycle
@@ -38,35 +53,51 @@ what you'll need to do.
 ### Likes API Request Actions
 
 * `fetchAllLikes`
+  0. invoked from `LikesIndex`, `onClick`
+  0. `GET /api/likes` is called.
+  0. `getAllLikes` is set as the callback.
 
-* `createVisit`
+* `createLike`
+  0. invoked from `LikeToggle`, `onClick`
+  0. `POST /api/likes` is called with a `likee_id` param.
+  0. `getOneLike` is set as the callback.
 
-* `removeVisit`
+* `removeLike`
+  0. invoked from `LikeToggle`, `onClick`
+  0. `DELETE /api/likes/:id` is called.
+  0. `getOneLike` is set as the callback.
 
 ### Likes API Response Actions
 
+* `recieveAllLikes`
+  0. invoked from API callback.
+  0. `Like` store updates `_likes` and emits change.
+
+* `recieveCreatedLike`
+  0. invoked from API callback.
+  0. `Like` store updates `_likes` and emits change.
+
 ### Like Store Listeners
-
-
-
-
-
+  * `LikeToggle` component listens to `Like` store
+  * `LikesIndex` component listens to `Like` store
 
 ## Questions Cycle
 
 ### Questions API Request Actions
 
 * `fetchSingleQuestion`
-  0. invoked from `QuestionsDetail` and `Feed`, `componentDidMount`
-  0. `GET /api/questions/id` is called
-  0. `getCurrentQuestion` is set as the callback
+  0. invoked from `QuestionsDetail` and `Feed`, `componentDidMount`.
+  0. `GET /api/questions/id` is called.
+  0. `getCurrentQuestion` is set as the callback.
 
+### Questions API Response Actions
 
+* `recieveSingleQuestion`
+  0. invoked from an API callback.
+  0. `Question` store resets `_questions` and emits change.
 
-
-
-
-
+### Question Store Listeners
+  * `QuestionsDetail` and `Feed` components listen to `Question` store.
 
 
 ## Answers Cycle
@@ -74,51 +105,43 @@ what you'll need to do.
 ### Answers API Request Actions
 
 * `fetchAnsweredQuestions`
-  0. invoked from `QuestionsDetail`, `componentDidMount`
-  0. `GET /api/answers/` is called with a `user_id` and a `question_id`
-  0. `getAllAnswers` is set as the callback
+  0. invoked from `QuestionsDetail`, `componentDidMount`.
+  0. `GET /api/answers/` is called with a `user_id` and a `question_id`.
+  0. `getAllAnswers` is set as the callback.
 
 * `fetchSharedAnswers`
-  0. invoked from `MatchesDetailQuestions`, `onClick`
-  0. `GET /api/answers/` is called with two `user_id` params
-  0. `getAllAnswers` is set as the callback
+  0. invoked from `MatchesDetailQuestions`, `onClick`.
+  0. `GET /api/answers/` is called with two `user_id` params.
+  0. `getAllAnswers` is set as the callback.
 
 * `createAnswer`
-  0. invoked from `QuestionsForm`, `onSubmit`
-  0. `POST /api/answers/` is called with a `user_id` and a `question_id`
+  0. invoked from `QuestionsForm`, `onSubmit`.
+  0. `POST /api/answers/` is called with a `user_id` and a `question_id`.
   0. `getAllAnswers` is set as the callback.
 
 * `updateAnswer`
-  0. invoked from `QuestionsForm`, `onSubmit`
-  0. `PATCH /api/answers/:id` is called
+  0. invoked from `QuestionsForm`, `onSubmit`.
+  0. `PATCH /api/answers/:id` is called.
   0. `updateAnswer` is set as the callback.
 
 * `destroyAllAnswers`
-  0. invoked from `QuestionsDetail` delete all answers button, `onClick`
-  0. `DELETE /api/answers/` is called with a `user_id`
-  0. `getAllAnswers` is set as the callback
+  0. invoked from `QuestionsDetail` delete all answers button, `onClick`.
+  0. `DELETE /api/answers/` is called with a `user_id`.
+  0. `getAllAnswers` is set as the callback.
 
 ### Answers API Response Actions
 
 * `recieveAnsweredQuestions`
   0. invoked from an API callback.
-  0. `Answer` store updates `_answers` and emits change
+  0. `Answer` store updates `_answers` and emits change.
 
 * `recieveSharedAnswers`
   0. invoked from an API callback.
-  0. `Answer` store updates `_answers` and emits change
-
-* `receiveCreatedAnswer`
-  0. invoked from an API callback.
   0. `Answer` store updates `_answers` and emits change.
 
 * `receiveCreatedAnswer`
   0. invoked from an API callback.
   0. `Answer` store updates `_answers` and emits change.
-
-* `receiveCreatedAnswer`
-  0. invoked from an API callback.
-  0. `Answer` store resets `_answers` and emits change.
 
 ### Answer Store Listeners
 
@@ -127,159 +150,30 @@ what you'll need to do.
 * `QuestionsForm` component listens to `Answer` store.
 
 
-
-
-
 ## Visits Cycle
 
 ### Visits API Request Actions
 
-* `fetchAllVisits`
+* `fetchAllVists`
+  0. invoked from `VisitorsIndex`, `onClick`
+  0. `GET /api/visits` is called.
+  0. `getAllVisits` is set as the callback.
 
 * `createVisit`
-
-* `removeVisit`
+  0. invoked from `MatchesDetail`, `onClick`
+  0. `POST /api/visits` is called with a `visitee_id` param.
+  0. `getAllVisits` is set as the callback.
 
 ### Visits API Response Actions
 
+* `recieveAllLikes`
+  0. invoked from API callback.
+  0. `Like` store updates `_visits` and emits change.
+
+* `recieveCreatedLike`
+  0. invoked from API callback.
+  0. `Like` store updates `_visits` and emits change.
+
 ### Visit Store Listeners
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Note Cycles
-
-### Matches API Request Actions
-
-* `fetchAllUsers`
-  0. invoked from `MatchesIndex` `didMount`/`willReceiveProps`
-  0. `GET /api/matches` is called.
-  0. `receiveAllUsers` is set as the callback.
-<!--
-* `createNote`
-  0. invoked from new note button `onClick`
-  0. `POST /api/notes` is called.
-  0. `receiveSingleNote` is set as the callback. -->
-
-* `fetchSingleUser`
-  0. invoked from `MatchDetail` `didMount`/`willReceiveProps`
-  0. `GET /api/users/:id` is called.
-  0. `receiveSingleNote` is set as the callback.
-
-* `updateUserAbout`
-  0. invoked from `AboutDetailItemForm` `onSubmit`
-  0. `POST /api/users` is called.
-  0. `receiveSingleNote` is set as the callback.
-
-* `updateUserDescription`
-  0. invoked from `DescriptionDetailItemForm` `onSubmit`
-  0. `POST /api/notes` is called.
-  0. `receiveSingleNote` is set as the callback.
-
-* `destroyUser`
-  0. invoked from delete profile button `onClick`
-  0. `DELETE /api/notes/:id` is called.
-  0. `removeNote` is set as the callback.
-
-
-
-
-
-
-
-
-### Notes API Response Actions
-
-* `receiveAllNotes`
-  0. invoked from an API callback.
-  0. `Note` store updates `_notes` and emits change.
-
-* `receiveSingleNote`
-  0. invoked from an API callback.
-  0. `Note` store updates `_notes[id]` and emits change.
-
-* `removeNote`
-  0. invoked from an API callback.
-  0. `Note` store removes `_notes[id]` and emits change.
-
-### Store Listeners
-
-* `NotesIndex` component listens to `Note` store.
-* `NoteDetail` component listens to `Note` store.
-
-
-## Question Cycles
-
-### Question API Request Actions
-
-* `fetchAllQuestions`
-  0. invoked from `NotebooksIndex` `didMount`/`willReceiveProps`
-  0. `GET /api/notebooks` is called.
-  0. `receiveAllNotebooks` is set as the callback.
-
-* `createNotebook`
-  0. invoked from new notebook button `onClick`
-  0. `POST /api/notebooks` is called.
-  0. `receiveSingleNotebook` is set as the callback.
-
-* `fetchSingleNotebook`
-  0. invoked from `NotebookDetail` `didMount`/`willReceiveProps`
-  0. `GET /api/notebooks/:id` is called.
-  0. `receiveSingleNotebook` is set as the callback.
-
-* `updateNotebook`
-  0. invoked from `NotebookForm` `onSubmit`
-  0. `POST /api/notebooks` is called.
-  0. `receiveSingleNotebook` is set as the callback.
-
-* `destroyNotebook`
-  0. invoked from delete notebook button `onClick`
-  0. `DELETE /api/notebooks/:id` is called.
-  0. `removeNotebook` is set as the callback.
-
-### Notebooks API Response Actions
-
-* `receiveAllNotebooks`
-  0. invoked from an API callback.
-  0. `Notebook` store updates `_notebooks` and emits change.
-
-* `receiveSingleNotebook`
-  0. invoked from an API callback.
-  0. `Notebook` store updates `_notebooks[id]` and emits change.
-
-* `removeNotebook`
-  0. invoked from an API callback.
-  0. `Notebook` store removes `_notebooks[id]` and emits change.
-
-### Store Listeners
-
-* `NotebooksIndex` component listens to `Notebook` store.
-
-
-## SearchSuggestion Cycles
-
-* `fetchSearchSuggestions`
-  0. invoked from `NoteSearchBar` `onChange` when there is text
-  0. `GET /api/notes` is called with `text` param.
-  0. `receiveSearchSuggestions` is set as the callback.
-
-* `receiveSearchSuggestions`
-  0. invoked from an API callback.
-  0. `SearchSuggestion` store updates `_suggestions` and emits change.
-
-* `removeSearchSuggestions`
-  0. invoked from `NoteSearchBar` `onChange` when empty
-  0. `SearchSuggestion` store resets `_suggestions` and emits change.
-
-### Store Listeners
-
-* `SearchBarSuggestions` component listens to `SearchSuggestion` store.
+  * `VisitorsIndex` component listens to `Visit` store
+  * `MatchesDetail` component listens to `Visit` store

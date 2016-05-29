@@ -11,7 +11,6 @@ country         | string    | not null, indexed, unique
 zip_code        | string    | not null, indexed, unique
 password_digest | string    | not null
 session_token   | string    | not null, indexed, unique
-last_online     | datetime  | not null, indexed, unique (possibly redundant w/timestamps)
 
 ## visits_table
 column name     | data type | details
@@ -62,7 +61,7 @@ gender          | text      | not null
 age_range       | text      | not null, between 18 and 99
 distance        | text      | not null, minimum 5mi
 status          | text      | not null
-dating_type     | text      | not null, limited to: [short term, long term, new friends, casual sex]
+dating_type     | text      | not null, limited to: [short term, long term, new friends, casual sex, smelly hog crew, three children in a trench coat trying to buy a ticket to an r rated movie]
 
 ## profile_about_details
 column name       | data type | details
@@ -89,8 +88,9 @@ speaks            | string    |
 column name       | data type | details
 ------------------|-----------|-----------------------
 id                | integer   | not null, primary key
-user_id           | integer   | not null, foreign key, unique [other_user_id]
-other_user_id     | string    | not null, foreign key, unique [user_id]
+liker_id          | integer   | not null, foreign key, unique [other_user_id]
+likee_id          | string    | not null, foreign key, unique [user_id]
+likee_saw         | boolean   | not null, default: false
 
 ## user_photos
 column name       | data type | details

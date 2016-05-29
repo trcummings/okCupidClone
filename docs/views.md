@@ -3,20 +3,12 @@
 ## New User
 ![new-user]
 
-## New Session
-![new-session]
+## Header Nav Bar
+![header-nav]
 
-## NotesIndex / NoteIndexItem / NoteForm
-![notes]
-
-## NotebooksIndex / NotebookIndexItem
-![notebooks]
-
-## NotebookForm
-![notebook-form]
+## FeedIndex / FeaturedMatches / UpdateIndexItem
+![feed-index]
 
 [new-user]: ./wireframes/new_user.png
-[new-session]: ./wireframes/new_session.png
-[notes]: ./wireframes/root_notes.png
-[notebooks]: ./wireframes/root_notebooks.png
-[notebook-form]: ./wireframes/notebook_form.png
+[new-session]: ./wireframes/header_nav.png
+[feed-index]: ./wireframes/feed_index.png
