@@ -7,6 +7,21 @@
 
   * `HeaderNav`
 
+    * `Feed` (/home, update stream, recently visited, random question)
+      * `FeaturedMatches`
+      * `UpdateIndexItem`
+
+    * `MatchesIndex` (browse matches)
+      * `MatchesFilter`
+      * `MatchesIndexItem`
+        * `LikeToggle`
+        * `MatchesDetail` (Basically a profile page)
+          * `MatchesDetailQuestions`
+          * `MatchesDetailPhotos`
+          * `LikeToggle`
+
+    * `Quickmatch`
+
     * `VisitorsIndex`
       * `YouVisitedDetail`
       * `VisitedYouDetail`
@@ -24,6 +39,9 @@
 
     * `ProfileIndex`
       * `AboutDetail`
+        * `AboutDetailItem` ('six things')
+          * `AboutDetailItemForm`
+        * `DescriptionItem` (age, height, ethnicity, etc)
       * `PhotoDetail`
       * `QuestionsDetail`
         * `QuestionForm`
@@ -32,15 +50,4 @@
 
     * `SettingsIndex`
       * `AccountDetail`
-
-
-  * `Feed` (/home, update stream, recently visited, random question)
-    * `FeaturedMatches`
-    * `UpdateIndexItem`
-
-  * `MatchesIndex` (browse matches)
-    * `MatchesFilter`
-    * `MatchesIndexItem`
-    *   `MatchesDetail` (Basically a profile page)
-
-  * `Quickmatch`
+        * `AccountSettingForm`

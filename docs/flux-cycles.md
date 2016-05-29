@@ -11,28 +11,177 @@ finally to the **components** that update as a result. This is important
 because once you start implementing your flux loops, that's precisely
 what you'll need to do.
 
+## Users Cycles
+
+### Users API Request Actions
+
+* `fetchAllUsers`
+
+* `fetchSingleUser`
+
+* `updateUser`
+
+### Users API Response Actions
+
+* `recieveAllUsers`
+
+* `recieveSingleUser`
+
+### User Store Listeners
+
+* `NotesIndex` component listens to `Note` store.
+* `NoteDetail` component listens to `Note` store.
+
+
+## Likes Cycle
+
+### Likes API Request Actions
+
+* `fetchAllLikes`
+
+* `createVisit`
+
+* `removeVisit`
+
+### Likes API Response Actions
+
+### Like Store Listeners
+
+
+
+
+
+
+## Questions Cycle
+
+### Questions API Request Actions
+
+* `fetchSingleQuestion`
+  0. invoked from `QuestionsDetail` and `Feed`, `componentDidMount`
+  0. `GET /api/questions/id` is called
+  0. `getCurrentQuestion` is set as the callback
+
+
+
+
+
+
+
+
+
+## Answers Cycle
+
+### Answers API Request Actions
+
+* `fetchAnsweredQuestions`
+  0. invoked from `QuestionsDetail`, `componentDidMount`
+  0. `GET /api/answers/` is called with a `user_id` and a `question_id`
+  0. `getAllAnswers` is set as the callback
+
+* `fetchSharedAnswers`
+  0. invoked from `MatchesDetailQuestions`, `onClick`
+  0. `GET /api/answers/` is called with two `user_id` params
+  0. `getAllAnswers` is set as the callback
+
+* `createAnswer`
+  0. invoked from `QuestionsForm`, `onSubmit`
+  0. `POST /api/answers/` is called with a `user_id` and a `question_id`
+  0. `getAllAnswers` is set as the callback.
+
+* `updateAnswer`
+  0. invoked from `QuestionsForm`, `onSubmit`
+  0. `PATCH /api/answers/:id` is called
+  0. `updateAnswer` is set as the callback.
+
+* `destroyAllAnswers`
+  0. invoked from `QuestionsDetail` delete all answers button, `onClick`
+  0. `DELETE /api/answers/` is called with a `user_id`
+  0. `getAllAnswers` is set as the callback
+
+### Answers API Response Actions
+
+* `recieveAnsweredQuestions`
+  0. invoked from an API callback.
+  0. `Answer` store updates `_answers` and emits change
+
+* `recieveSharedAnswers`
+  0. invoked from an API callback.
+  0. `Answer` store updates `_answers` and emits change
+
+* `receiveCreatedAnswer`
+  0. invoked from an API callback.
+  0. `Answer` store updates `_answers` and emits change.
+
+* `receiveCreatedAnswer`
+  0. invoked from an API callback.
+  0. `Answer` store updates `_answers` and emits change.
+
+* `receiveCreatedAnswer`
+  0. invoked from an API callback.
+  0. `Answer` store resets `_answers` and emits change.
+
+### Answer Store Listeners
+
+* `MatchesDetailQuestions` component listens to `Answer` store.
+* `QuestionsDetail` component listens to `Answer` store.
+* `QuestionsForm` component listens to `Answer` store.
+
+
+
+
+
+## Visits Cycle
+
+### Visits API Request Actions
+
+* `fetchAllVisits`
+
+* `createVisit`
+
+* `removeVisit`
+
+### Visits API Response Actions
+
+### Visit Store Listeners
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Note Cycles
 
 ### Matches API Request Actions
 
 * `fetchAllUsers`
-  0. invoked from `NotesIndex` `didMount`/`willReceiveProps`
-  0. `GET /api/notes` is called.
-  0. `receiveAllNotes` is set as the callback.
-
+  0. invoked from `MatchesIndex` `didMount`/`willReceiveProps`
+  0. `GET /api/matches` is called.
+  0. `receiveAllUsers` is set as the callback.
+<!--
 * `createNote`
   0. invoked from new note button `onClick`
   0. `POST /api/notes` is called.
-  0. `receiveSingleNote` is set as the callback.
+  0. `receiveSingleNote` is set as the callback. -->
 
 * `fetchSingleUser`
   0. invoked from `MatchDetail` `didMount`/`willReceiveProps`
-  0. `GET /api/notes/:id` is called.
+  0. `GET /api/users/:id` is called.
   0. `receiveSingleNote` is set as the callback.
 
-* `updateNote`
-  0. invoked from `NoteForm` `onSubmit`
+* `updateUserAbout`
+  0. invoked from `AboutDetailItemForm` `onSubmit`
+  0. `POST /api/users` is called.
+  0. `receiveSingleNote` is set as the callback.
+
+* `updateUserDescription`
+  0. invoked from `DescriptionDetailItemForm` `onSubmit`
   0. `POST /api/notes` is called.
   0. `receiveSingleNote` is set as the callback.
 
@@ -40,6 +189,13 @@ what you'll need to do.
   0. invoked from delete profile button `onClick`
   0. `DELETE /api/notes/:id` is called.
   0. `removeNote` is set as the callback.
+
+
+
+
+
+
+
 
 ### Notes API Response Actions
 
@@ -61,11 +217,11 @@ what you'll need to do.
 * `NoteDetail` component listens to `Note` store.
 
 
-## Notebook Cycles
+## Question Cycles
 
-### Notebooks API Request Actions
+### Question API Request Actions
 
-* `fetchAllNotebooks`
+* `fetchAllQuestions`
   0. invoked from `NotebooksIndex` `didMount`/`willReceiveProps`
   0. `GET /api/notebooks` is called.
   0. `receiveAllNotebooks` is set as the callback.

@@ -8,7 +8,7 @@
 
 Are you a singleton and ready to mingle a ton?
 
-[project name here] will be a full-stack web app clone of dating platform OKcupid. Its backend will sit on a reliable Ruby on Rails, with a PostgreSQL database, and a dynamic frontend, frameworked via React.js using Flux architecture.
+[project name here] will be a full-stack web app clone of dating platform OKcupid. Its backend will sit on Ruby on Rails, with a PostgreSQL database, and a dynamic frontend, frameworked via React.js using Flux architecture.
 
 By the end of app/Academy week 9, this app will meet the following criteria for minimum viable functionality:
 
@@ -36,11 +36,13 @@ progress. Put an x between the brackets for a checkmark: [x] -->
 - [ ] Create an account (MVP)
 - [ ] Log in / Log out, including as a Guest/Demo User (MVP)
 - [ ] Edit Profile About, Profile Description (MVP)
+- [ ] View Other Profiles (MVP)
+- [ ] Recieve Notifications Upon Other Users Viewing Their Profiles (MVP)
 - [ ] Answer Questions (MVP)
-- [ ] Compute Match Percentages Between Users (MVP)
+- [ ] View Match Percentages Between Users (MVP)
 - [ ] Add and Remove Profile Pictures (MVP)
 - [ ] Message Between Users (MVP)
-- [ ] Filter Users By Looking For, Description (expected feature, but not MVP)
+- [ ] Filter Users by 'Looking For' and 'Description' (expected feature, but not MVP)
 - [ ] User Search, Filtering (expected feature, but not MVP)
 - [ ] Quickmatch Game (expected feature, but not MVP)
 - [x] Fail to Get Me Any Dates (expected feature)

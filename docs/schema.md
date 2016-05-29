@@ -13,7 +13,15 @@ password_digest | string    | not null
 session_token   | string    | not null, indexed, unique
 last_online     | datetime  | not null, indexed, unique (possibly redundant w/timestamps)
 
-## user_questions
+## visits_table
+column name     | data type | details
+----------------|-----------|-----------------------
+id              | integer   | not null, primary key
+visitor_id      | string    | not null, foreign_key, indexed, unique
+visitee_id      | string    | not null, foreign_key, indexed, unique
+visitee_saw     | boolean   | not null, default: false  
+
+## answers
 column name     | data type | details
 ----------------|-----------|-----------------------
 id              | integer   | not null, primary key
@@ -77,7 +85,7 @@ offspring         | string    |
 pets              | string    |
 speaks            | string    |
 
-## matches
+## likes
 column name       | data type | details
 ------------------|-----------|-----------------------
 id                | integer   | not null, primary key
@@ -90,3 +98,7 @@ column name       | data type | details
 id                | integer   | not null, primary key
 user_id           | integer   | not null, foreign key
 photo_url         | string    | not null, foreign key
+
+
+## Messages
+I HJAVE NO IDEA WHAT DO TO DO HERE
