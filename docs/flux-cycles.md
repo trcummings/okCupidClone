@@ -14,9 +14,9 @@ what you'll need to do.
 
 ## Note Cycles
 
-### Notes API Request Actions
+### Matches API Request Actions
 
-* `fetchAllNotes`
+* `fetchAllUsers`
   0. invoked from `NotesIndex` `didMount`/`willReceiveProps`
   0. `GET /api/notes` is called.
   0. `receiveAllNotes` is set as the callback.
@@ -26,8 +26,8 @@ what you'll need to do.
   0. `POST /api/notes` is called.
   0. `receiveSingleNote` is set as the callback.
 
-* `fetchSingleNote`
-  0. invoked from `NoteDetail` `didMount`/`willReceiveProps`
+* `fetchSingleUser`
+  0. invoked from `MatchDetail` `didMount`/`willReceiveProps`
   0. `GET /api/notes/:id` is called.
   0. `receiveSingleNote` is set as the callback.
 
@@ -36,8 +36,8 @@ what you'll need to do.
   0. `POST /api/notes` is called.
   0. `receiveSingleNote` is set as the callback.
 
-* `destroyNote`
-  0. invoked from delete note button `onClick`
+* `destroyUser`
+  0. invoked from delete profile button `onClick`
   0. `DELETE /api/notes/:id` is called.
   0. `removeNote` is set as the callback.
 
