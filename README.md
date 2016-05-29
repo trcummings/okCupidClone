@@ -44,7 +44,6 @@ progress. Put an x between the brackets for a checkmark: [x] -->
 - [ ] Message Between Users (MVP)
 - [ ] Filter Users by 'Looking For' and 'Description' (expected feature, but not MVP)
 - [ ] User Search, Filtering (expected feature, but not MVP)
-- [ ] Quickmatch Game (expected feature, but not MVP)
 - [x] Fail to Get Me Any Dates (expected feature)
 
 ## Design Docs

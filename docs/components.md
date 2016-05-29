@@ -20,8 +20,6 @@
           * `MatchesDetailPhotos`
           * `LikeToggle`
 
-    * `Quickmatch`
-
     * `VisitorsIndex`
       * `YouVisitedDetail`
       * `VisitedYouDetail`
@@ -42,6 +40,7 @@
         * `AboutDetailItem` ('six things')
           * `AboutDetailItemForm`
         * `DescriptionItem` (age, height, ethnicity, etc)
+          * `DescriptionItemForm`
       * `PhotoDetail`
       * `QuestionsDetail`
         * `QuestionForm`
