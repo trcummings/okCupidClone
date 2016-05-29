@@ -9,6 +9,10 @@
 ## FeedIndex / FeaturedMatches / UpdateIndexItem
 ![feed-index]
 
-[new-user]: ./wireframes/new_user.png
-[new-session]: ./wireframes/header_nav.png
+## MatchesIndex / MatchesIndexItem / MatchesFilter
+![matches-index]
+
+[new-user]: ./wireframes/new_user_auth_form.png
+[header-nav]: ./wireframes/header_nav.png
 [feed-index]: ./wireframes/feed_index.png
+[matches-index]: ./wireframes/feed_index.png
