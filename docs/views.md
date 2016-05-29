@@ -16,6 +16,7 @@
 ![matches-detail]
 
 ## ProfileIndex //
+![profile-index]
 
 [new-user]: ./wireframes/new_user_auth_form.png
 [header-nav]: ./wireframes/header_nav.png
