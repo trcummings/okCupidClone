@@ -99,9 +99,6 @@ user interface.
 - [ ] setup the flux loop with skeleton files
 - [ ] setup React Router
 - implement each note component, building out the flux loop as needed.
-  - [ ] `NotesIndex`
-  - [ ] `NoteIndexItem`
-  - [ ] `NoteForm`
 - [ ] create `LikeToggle` button with CRUD and API interaction
 
 ### Phase 4: MatchesIndex and MatchDetails (1 Day)
@@ -132,34 +129,26 @@ user interface.
 
 **Objective:** User can navigate to a feed index, and see the most current updates, as well as view a selection of matches, and answer a random question on the Feed page
 
-
+- [ ] make `Feed` and all its components
 
 ### Phase 8: Messages (2 days)
 
 **Objective:** Users can send messages to one-another
 
-- [ ] create `Notebook` model
+- [ ] create `ChatLog` model
 - build out API, Flux loop, and components for:
-  - [ ] Notebook CRUD
-  - [ ] adding notes requires a notebook
-  - [ ] moving notes to a different notebook
-  - [ ] viewing notes by notebook
 - Use CSS to style new views
-
-Phase 3 adds organization to the Notes. Notes belong to a Notebook,
-which has its own `Index` view.
 
 ### Phase 9: Advanced Styling (1 day)
 
 **Objective:** Make all this shit look gooooooood
 
-
 ### Bonus Features (TBD)
-- [ ] Search through notes for blocks of text
-- [ ] Pagination / infinite scroll for Notes Index
-- [ ] Set reminders on notes
-- [ ] Changelogs for Notes
-- [ ] Multiple sessions
+- [ ] User Search Feature
+- [ ] Block Users
+- [ ] Delete Conversations
+- [ ] Quickmatch Page
+- [x] Crippling Depression
 
 [phase-one]: ./docs/phases/phase1.md
 [phase-two]: ./docs/phases/phase2.md

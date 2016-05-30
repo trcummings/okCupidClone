@@ -19,7 +19,6 @@
 ### Views (React Components)
 
 ### Stores
-Profile
 
 ### Actions
 
