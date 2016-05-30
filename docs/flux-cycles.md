@@ -1,16 +1,3 @@
-# Flux Cycles
-
-Flux loops are organized by data type. Under each data type, there may
-be sub-categories, and each action is listed with the sequence of events
-that result from its invocation, ending with the API or store. Finally,
-store listeners are listed at the end.
-
-You should be able to use this document trace an **action** starting
-with where it was invoked, through the **API**/**store** involved, and
-finally to the **components** that update as a result. This is important
-because once you start implementing your flux loops, that's precisely
-what you'll need to do.
-
 ## Users Cycles
 
 ### Users API Request Actions
@@ -26,7 +13,7 @@ what you'll need to do.
   0. `getThisUser` is set as the callback
 
 * `updateUser`
-  0. invoked from `AboutDetailItemForm` and `AccountSettingForm` and `DescriptionItemForm`, `onClick`
+  0. invoked from `DetailForm` and `AccountSettingForm` and `DescriptionItemForm`, `onClick`
   0. `PATCH /users/:id` is called
   0. `getThisUser` is set as the callback
 
@@ -44,7 +31,7 @@ what you'll need to do.
 
 * `MatchesIndex` component listens to `Note` store.
 * `MatchesDetail` component listens to `Note` store.
-* `AboutDetailItem` component listens to `Note` store.
+* `AboutItem` component listens to `Note` store.
 * `AccountDetail` component listens to `Note` store.
 
 
@@ -177,3 +164,71 @@ what you'll need to do.
 ### Visit Store Listeners
   * `VisitorsIndex` component listens to `Visit` store
   * `MatchesDetail` component listens to `Visit` store
+
+
+## Messages Cycle
+
+### Messages API Request Actions
+
+  * `fetchAllMessages`
+    0. invoked from `MessagesIndex`, `onClick`
+    0. `GET /api/messages` is called.
+    0. `getAllMessages` is set as the callback
+
+  * `creatChatlog`
+    0. invoked from `MessagesItemDetail`, `onHitEnter`
+    0. `POST /api/messages` is called with a `reciever_id` param.
+    0. `getConversation` is set as the callback
+
+  * `fetchChatlog`
+    0. invoked from `MessagesItem`, `onClick`
+    0. `GET /api/messages/:id`
+    0. `getConversation` is set as the callback.
+
+  * `appendChatlog`
+    0. invoked from `MessagesItemDetail`, `onHitEnter`
+    0. `PATCH /api/messages/`
+    0. `getConversation` is set as the callback.
+
+### Messages API Response Actions
+
+  * `recieveAllMessages`
+    0. invoked from API callback.
+    0. `Message` store updates `_messages` and emits change.
+
+  * `recieveChatlog`
+    0. invoked from API callback.
+    0. `Message` store updates `_messages` and emits change.
+
+### Message Store Listeners
+  * `MessagesIndex` component listens to `Messages` store.
+  * `MessagesItem` component listens to `Messages` store.
+  * `MessagesItemDetail` component listens to `Messages` store.
+
+## Pictures Cycle
+
+### Pictures API Request Actions
+
+  * `getAllPictures`
+    0. invoked from `MatchesDetail` and `Profile`, `onClick`
+    0. `GET /api/pictures`
+    0. `getAllPictures` is set as the callback.
+
+  * `deletePicture`
+    0. invoked from `PhotoForm`, `onSubmit`
+    0. `DELETE /api/pictures`
+    0. `getAllPictures` is set as the callback.
+
+### Pictures API Response Actions
+
+  * `recieveAllPictures`
+    0. invoked from API callback.
+    0. `Picture` store updates `_pictures` and emits change.
+
+  * `recieveAllPictures`
+    0. invoked from API callback.
+    0. `Picture` store updates `_pictures` and emits change.
+
+### Picture Store Listeners
+  * `MatchesDetail` component listens to `Pictures` store.
+  * `Profile` component listens to `Pictures` store.
