@@ -43,3 +43,16 @@
 - `GET /api/visits`
 - `POST /api/vists`
 - `DELETE /api/visits/:id`
+
+### Messages
+
+- `GET /api/messages`
+- `POST /api/messages`
+- `PATCH /api/messages/:id`
+
+### Pictures
+
+- `GET /api/pictures`
+- `GET /api/pictures/:id`
+- `POST /api/pictures`
+- `DELETE /api/pictures/:id`

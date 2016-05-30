@@ -3,23 +3,23 @@
 ## Rails
 ### Models
 * User
-* Note
 
 ### Controllers
-* UsersController (create, new)
+* UsersController (create, new, destroy)
 * SessionsController (create, new, destroy)
-* Api::NotesController (create, destroy, index, show, update)
+* Api::ProfilesController (index, create, show, update, destroy)
 
 ### Views
 * users/new.html.erb
 * session/new.html.erb
-* notes/index.json.jbuilder
-* notes/show.json.jbuilder
+* profiles/index.json.jbuilder
+* profiles/show.json.jbuilder
 
 ## Flux
 ### Views (React Components)
 
 ### Stores
+Profile
 
 ### Actions
 

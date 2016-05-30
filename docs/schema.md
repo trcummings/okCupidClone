@@ -98,7 +98,14 @@ column name       | data type | details
 id                | integer   | not null, primary key
 user_id           | integer   | not null, foreign key
 photo_url         | string    | not null, foreign key
+description       | string    |
+is_default        | boolean   | default: true, indexed
 
 
 ## Messages
-I HJAVE NO IDEA WHAT DO TO DO HERE
+column name       | data type | details
+------------------|-----------|------------------------
+id                | integer   | not null, primary key
+sender_id         | integer   | not null, foreign key, indexed
+reciever_id       | integer   | not null, foreign key, indexed
+chatlog_file_url  | string    | not null, indexed

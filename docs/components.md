@@ -9,44 +9,50 @@
 
     * `Feed` (/home, update stream, recently visited, random question)
       * `FeaturedMatches`
+        * `MatchesIndexItem`
       * `UpdateIndexItem`
+      * `QuestionItem`
+      * `VisitorsIndex`
+        * `YouVisitedItem`
 
-    * `MatchesIndex` (browse matches)
+    * `MatchesIndex`
       * `MatchesFilter`
       * `MatchesIndexItem`
         * `LikeToggle`
+        * `MessageButton`
         * `MatchesDetail` (Basically a profile page)
           * `MatchesDetailQuestions`
           * `MatchesDetailPhotos`
+          * `MessageButton`
           * `LikeToggle`
 
     * `VisitorsIndex`
-      * `YouVisitedDetail`
-      * `VisitedYouDetail`
+      * `YouVisitedItem`
+      * `VisitedYouItem`
 
     * `LikesIndex`
-      * `WhoLikesYouDetail`
-      * `MutualLikesDetail`
-      * `WhoYouLikeDetail`
+      * `WhoLikesYou`
+      * `WhoYouLike`
+      * `MutualLikes`
 
     * `MessagesIndex`
-      * `MessageRecievedDetail`
-      * `MessageSentDetail`
-      * `MessageFilteredDetail`
-      * `FilterSettingsModal`
+      * `MessageItem`
+        * `MessageItemDetail`
 
-    * `ProfileIndex`
-      * `AboutDetail`
-        * `AboutDetailItem` ('six things')
-          * `AboutDetailItemForm`
-        * `DescriptionItem` (age, height, ethnicity, etc)
-          * `DescriptionItemForm`
-      * `PhotoDetail`
-      * `QuestionsDetail`
+    * `Profile`
+      * `About`
+        * `AboutItem` ('six things')
+          * `AboutItemForm`
+        * `Description` (age, height, ethnicity, etc)
+          * `DescriptionForm`
+      * `PhotoIndex`
+        * `PhotoIndexItem`
+          * `PhotoForm`
+      * `Questions`
+        * `AnswersIndex`
+          * `AnswerIndexItem`
         * `QuestionForm`
 
-    * `FindUser`
-
-    * `SettingsIndex`
+    * `SettingsModal`
       * `AccountDetail`
         * `AccountSettingForm`
