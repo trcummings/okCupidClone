@@ -1,4 +1,4 @@
-# [project name here]
+# PerfectPair
 
 [Heroku link][heroku] **NB:** This should be a link to your production site
 
@@ -8,7 +8,7 @@
 
 Are you a singleton and ready to mingle a ton?
 
-[project name here] will be a full-stack web app clone of dating platform OKcupid. Its backend will sit on Ruby on Rails, with a PostgreSQL database, and a dynamic frontend, frameworked via React.js using Flux architecture.
+PerfectPair will be a full-stack web app clone of dating platform OKcupid, with the cutesy gimmick of being code-language and programmer culture-centric. Its backend will sit on Ruby on Rails, with a PostgreSQL database, and a dynamic frontend, frameworked via React.js using Flux architecture.
 
 By the end of app/Academy week 9, this app will meet the following criteria for minimum viable functionality:
 
@@ -28,7 +28,7 @@ By the end of app/Academy week 9, this app will meet the following criteria for 
 
 ## Product Goals and Priorities
 
-[project name here] will allow users to do the following:
+PerfectPair will allow users to do the following:
 
 <!-- This is a Markdown checklist. Use it to keep track of your
 progress. Put an x between the brackets for a checkmark: [x] -->
@@ -46,6 +46,7 @@ progress. Put an x between the brackets for a checkmark: [x] -->
 - [ ] User Search (bonus feature)
 - [ ] Block/Hide Users (bonus feature)
 - [ ] Delete Message Logs (bonus feature)
+- [ ] "Enemy" percentages available on profiles
 - [x] Fail to Get Me Any Dates (100% expected feature)
 
 ## Design Docs
