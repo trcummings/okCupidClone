@@ -24,9 +24,7 @@ class Api::SessionsController < ApplicationController
   end
 
   def destroy
-    # logout
     log_out!
     render json: {}
-    # redirect_to root_path
   end
 end

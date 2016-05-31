@@ -1,26 +1,36 @@
-var React = require('react');
+var React = require('react'),
+    ClientActions = require('../../actions/clientActions'),
+    HelperUtil = require('../../util/helperUtil');
 
 var SignInForm = React.createClass({
+  contextTypes: {
+    router: React.PropTypes.object.isRequired
+  },
+
   getInitialState: function () {
     return {
       nameField: 'Your Username or Password',
-      password: 'Your Password' 
+      password: 'Your Password'
     };
   },
 
   handleSubmit: function () {
     var loginType = HelperUtil.parseNameField(this.state.nameField);
+    var callback = function () {
+      this.props.modal();
+      this.context.router.push("/");
+    }.bind(this);
 
     if (loginType === 'username') {
-      ClientActions.loginViaUsername({
+      ClientActions.loginWithUsername({
         username: this.state.nameField,
         password: this.state.password
-      });
+      }, callback);
     } else if (loginType === 'email') {
-      ClientActions.loginViaEmail({
+      ClientActions.loginWithEmail({
         email: this.state.nameField,
         password: this.state.password
-      });
+      }, callback);
     }
   },
 
@@ -48,6 +58,8 @@ var SignInForm = React.createClass({
            onChange={this.handlePasswordChange}
            value={this.state.password}
           />
+
+        <button type='submit'>Sign in</button>
       </form>
     );
   }
