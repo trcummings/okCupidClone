@@ -6,21 +6,21 @@
 
 - `GET /` - loads React web app
 
+## JSON API
+
 ### Users
 
-- `GET /users` -match index/feed
-- `GET /users/new`
-- `GET /users/:id` -gets a specific user (current user's profile/match detail)
-- `POST /users`
-- `PATCH /users` - update user info
+- `GET /api/users` -match index/feed
+- `GET /api/users/new`
+- `GET /api/users/:id` -gets a specific user (current user's profile/match detail)
+- `POST /api/users`
+- `PATCH /api/users` - update user info
 
 ### Session
 
-- `GET /session/new`
-- `POST /session`
-- `DELETE /session`
-
-## JSON API
+- `GET /api/session/new`
+- `POST /api/session`
+- `DELETE /api/session`
 
 ### Likes
 
