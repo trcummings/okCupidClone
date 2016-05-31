@@ -13,4 +13,5 @@ User.create!(
   birth_date: Date.new(1992, 05, 14),
   country: 'murica',
   zip_code: 19027,
+  location: 'Elkins Park'
 )

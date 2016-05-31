@@ -8,6 +8,7 @@ class CreateUsers < ActiveRecord::Migration
       t.integer :zip_code, null: false
       t.string :password_digest, null: false
       t.string :session_token, null: false
+      t.string :location, null: false
     end
 
     add_index :users, :username
