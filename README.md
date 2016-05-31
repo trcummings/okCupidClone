@@ -43,6 +43,7 @@ progress. Put an x between the brackets for a checkmark: [x] -->
 - [ ] Message Between Users (MVP)
 - [ ] Receive Notifications Upon Other Users Viewing Their Profiles (expected feature, but not MVP)
 - [ ] Filter Users by 'Looking For' and 'Description' (expected feature, but not MVP)
+- [ ] OAuth connection
 - [ ] User Search (bonus feature)
 - [ ] Block/Hide Users (bonus feature)
 - [ ] Delete Message Logs (bonus feature)
