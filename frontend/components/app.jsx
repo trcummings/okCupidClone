@@ -1,12 +1,10 @@
 var React = require('react');
+var Auth = require('./auth');
 
 var App = React.createClass({
   render: function () {
     return (
-      <div>
-      app academok
-      {this.props.children}
-      </div>
+      <Auth />
     );
   }
 });

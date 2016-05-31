@@ -1,5 +1,10 @@
 var React = require('react'),
-    ReactDOM = require('react-dom');
+    ReactDOM = require('react-dom'),
+    Router = require('react-router').Router,
+    Route = require('react-router').Route,
+    IndexRoute = require('react-router').IndexRoute,
+    hashHistory = require('react-router').hashHistory,
+    App = require('./components/app');
 
 // document.addEventListener('DOMContentLoaded', function () {
 //   ReactDOM.render(
@@ -10,8 +15,7 @@ var React = require('react'),
 
 var Router = (
   <Router history={hashHistory}>
-    <Route path="/" component={App}>
-    </Route>
+    <Route path="/" component={App}></Route>
   </Router>
 );
 
