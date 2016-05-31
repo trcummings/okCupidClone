@@ -5,6 +5,7 @@ var React = require('react'),
     IndexRoute = require('react-router').IndexRoute,
     hashHistory = require('react-router').hashHistory,
     App = require('./components/app');
+    Header = require('./components/header');
 
 // document.addEventListener('DOMContentLoaded', function () {
 //   ReactDOM.render(
@@ -15,18 +16,38 @@ var React = require('react'),
 
 var Router = (
   <Router history={hashHistory}>
-    <Route path="/" component={App}></Route>
+    <Route path='/' component={App}>
+      <Route component={Header} onEnter={ _ensureLoggedIn }></Route>
+    </Route>
   </Router>
 );
 
+function _ensureLoggedIn(nextState, replace, asyncDoneCallback) {
+  if (SessionStore.currentUserHasBeenFetched()) {
+    redirectIfNotLoggedIn();
+  } else {
+    SessionApiUtil.fetchCurrentUser(redirectIfNotLoggedIn);
+  }
+
+  function redirectIfNotLoggedIn() {
+    if (!SessionStore.isUserLoggedIn()) {
+      replace('/');
+    }
+    asyncDoneCallback();
+  }
+}
+
 // var Router = (
 //   <Router history={hashHistory}>
-//     <Route path="/" component={App}>
-//       <IndexRoute component={Feed}/>
-//       <Route path="matches" component={MatchIndex}>
-//         <Route path="matches/:user_id" component={MatchDetail}/>
+//     <Route path='/' component={App}>
+//       <Route component={Header} onEnter={ _ensureLoggedIn }>
+//         <IndexRoute component={Feed} />
+//         <Route path='/feed' component={Feed} />
+//         <Route path='/matches' component={MatchesIndex} >
+//           <Route path="matches/:user_id" component={MatchDetail}/>
+//         </Route>
+//         <Route path='/profile' component={Profile} />
 //       </Route>
-//       <Route path="profile" component={Profile}></Route>
 //     </Route>
 //   </Router>
 // );
