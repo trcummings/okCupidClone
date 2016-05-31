@@ -6,11 +6,11 @@ column name     | data type | details
 id              | integer   | not null, primary key
 username        | string    | not null, indexed, unique
 email           | string    | not null, indexed, unique
-birth_date      | integer   | not null, indexed, unique
-country         | string    | not null, indexed, unique
-zip_code        | string    | not null, indexed, unique
+birth_date      | integer   | not null
+country         | string    | not null
+zip_code        | string    | not null
 password_digest | string    | not null
-session_token   | string    | not null, indexed, unique
+session_token   | string    | not null
 
 ## visits_table
 column name     | data type | details
@@ -30,7 +30,7 @@ answer          | integer   | not null
 acceptable      | integer   | not null
 importance      | integer   | not null, is either: (0, 1, 10, 250)
 explanation     | text      |
-private         | boolean   | not null, indexed, unique
+private         | boolean   | not null, default: false
 
 ## questions
 column name     | data type | details
@@ -96,8 +96,8 @@ likee_saw         | boolean   | not null, default: false
 column name       | data type | details
 ------------------|-----------|-----------------------
 id                | integer   | not null, primary key
-user_id           | integer   | not null, foreign key
-photo_url         | string    | not null, foreign key
+user_id           | integer   | not null, foreign key, indexed
+photo_url         | string    | not null, foreign key, indexed
 description       | string    |
 is_default        | boolean   | default: true, indexed
 

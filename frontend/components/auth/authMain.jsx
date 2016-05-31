@@ -1,7 +1,8 @@
 var React = require('react');
 var Modal = require("react-modal");
+var SignInForm = require('./signInForm');
 
-var Auth = React.createClass({
+var AuthMain = React.createClass({
   getInitialState: function(){
     Modal.setAppElement(document.body);
     return({ modalOpen: false });
@@ -46,4 +47,4 @@ var Auth = React.createClass({
 
 
 
-module.exports = Auth;
+module.exports = AuthMain;

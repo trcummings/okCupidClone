@@ -1,10 +1,13 @@
 var React = require('react');
-var Auth = require('./auth');
+var AuthMain = require('./auth/authMain');
 
 var App = React.createClass({
   render: function () {
     return (
-      <Auth />
+      <div>
+        <AuthMain />
+        {this.props.children}
+      </div>
     );
   }
 });
