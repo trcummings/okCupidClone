@@ -1,6 +1,7 @@
 var React = require('react');
 var Modal = require("react-modal");
 var SignInForm = require('./signInForm');
+var SignUpForm = require('./signUpForm');
 
 var AuthMain = React.createClass({
   getInitialState: function(){
@@ -38,8 +39,11 @@ var AuthMain = React.createClass({
           X
           </button>
 
-          <SignInForm onSubmit={this.closeModal}/>
+          <SignInForm modal={this.closeModal}/>
         </Modal>
+
+        <SignUpForm />
+
       </div>
     );
   }
