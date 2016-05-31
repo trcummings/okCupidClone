@@ -4,6 +4,7 @@ var AuthInfoConstants = require('../constants/authInfoConstants');
 
 var _tentativeProfile = {};
 var _zipLocation = "";
+var _authState = 'first';
 
 var AuthInfoStore = new Store(AppDispatcher);
 
@@ -47,6 +48,18 @@ AuthInfoStore.birthdateIsValid = function(birth_date) {
   return returnString;
 };
 
+AuthInfoStore.currentAuthState = function () {
+  return _authState;
+};
+
+AuthInfoStore.nextAuthState = function () {
+  if (_authState === 'first') {
+    _authState = 'second';
+  } else if (_authState === 'second') {
+    _authState = 'final';
+  }
+};
+
 AuthInfoStore.__onDispatch = function (payload) {
   switch(payload.actionType) {
     case AuthInfoConstants.ADD_INFO:
@@ -57,6 +70,10 @@ AuthInfoStore.__onDispatch = function (payload) {
       this.addInfoPiece('zip_code', payload.locationData['post code']);
       this.addInfoPiece('location', payload.locationData.places[0]['place name']);
       _zipLocation = payload.locationData.places[0]['place name'];
+      this.__emitChange();
+      break;
+    case AuthInfoConstants.NEXT_AUTH_STATE:
+      this.nextAuthState();
       this.__emitChange();
       break;
     }

@@ -1,20 +1,53 @@
 var React = require('react');
 var Modal = require("react-modal");
 var SignInForm = require('./signInForm');
-var SignUpForm = require('./signUpForm');
+var FirstSignUpForm = require('./firstSignUpForm');
+var SecondSignUpForm = require('./secondSignUpForm');
+var FinalSignUpForm = require('./finalSignUpForm');
+var AuthInfoStore = require('../../stores/authInfoStore');
+var ClientActions = require('../../actions/clientActions');
 
 var AuthMain = React.createClass({
   getInitialState: function(){
     Modal.setAppElement(document.body);
-    return({ modalOpen: false });
+    return({
+      modalOpen: false,
+      formNumber: 'first'
+     });
   },
 
-  closeModal: function(){
+  componentDidMount: function () {
+    this.listener = AuthInfoStore.addListener(function () {
+      this.setState({ formNumber: AuthInfoStore.currentAuthState() });
+    }.bind(this));
+  },
+
+  closeModal: function() {
     this.setState({ modalOpen: false });
   },
 
   openModal: function(){
     this.setState({ modalOpen: true });
+  },
+
+  currentForm: function () {
+    if (this.state.formNumber === 'first') {
+      return (
+        <FirstSignUpForm />
+      );
+    } else if (this.state.formNumber === 'second') {
+      return (
+        <SecondSignUpForm />
+      );
+    } else if (this.state.formNumber === 'final') {
+      return (
+        <FinalSignUpForm />
+      );
+    }
+  },
+
+  hamgleClimp: function () {
+    ClientActions.incrementAuthState();
   },
 
   render: function () {
@@ -42,8 +75,7 @@ var AuthMain = React.createClass({
           <SignInForm modal={this.closeModal}/>
         </Modal>
 
-        <SignUpForm />
-
+        {this.currentForm()}
       </div>
     );
   }

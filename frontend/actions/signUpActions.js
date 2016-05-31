@@ -9,6 +9,12 @@ var SignUpActions = {
       actionType: AuthInfoConstants.ADD_ZIP,
       locationData: locationData
     });
+  },
+
+  incrementAuthState: function () {
+    AppDispatcher.dispatch({
+      actionType: AuthInfoConstants.NEXT_AUTH_STATE
+    });
   }
 };
 
