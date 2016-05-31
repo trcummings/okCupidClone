@@ -1,6 +1,7 @@
 var React = require('react');
-var SignUpActions = require('../../actions/signUpActions');
+var ClientActions = require('../../actions/clientActions');
 var HelperUtil = require('../../util/helperUtil');
+var AuthInfoStore = require('../../stores/authInfoStore');
 
 var SignUpForm = React.createClass({
   getInitialState: function () {
@@ -9,12 +10,17 @@ var SignUpForm = React.createClass({
         mm: "",
         dd: "",
         yyyy: ""
-      }
+      },
+      country: "America"
     });
   },
 
   componentDidMount: function () {
-    // window.__myapp_container.addEventListener('click', this.handleDocumentClick);
+
+  },
+
+  componentWillUnmount: function () {
+    this.listener.remove();
   },
 
   handleDateChange: function (type, event) {
@@ -35,26 +41,72 @@ var SignUpForm = React.createClass({
     this.setState(this.state);
   },
 
-  // handleDocumentClick: function (event) {
-  //   var area = ReactDOM.findDOMNode(this.refs.area);
-  //
-  //   if (!area.contains(evt.target)) {
-  //     this.props.onClickOutside(evt);
-  //   }
-  // },
-
   handleSubmit: function () {
     ReactDOM.findDOMNode(this.refs.birthdate_label);
   },
 
   birthdateValidation: function (event) {
-    event.stopPropagation();
-    
-    debugger;
+
+    var birth_date = this.state.birth_date;
+
+    if (
+      birth_date.mm.length > 0 &&
+      birth_date.dd.length > 0 &&
+      birth_date.yyyy.length > 0
+    ) {
+      if (AuthInfoStore.birthdateIsValid(birth_date) === 'tooYoung') {
+        this.setState({ bdayValidityMsg: "Too young to use this site! Go play a nintendo or beep boop on the Google" });
+      } else if (AuthInfoStore.birthdateIsValid(birth_date) === 'tooOld') {
+        this.setState({ bdayValidityMsg: "This seems...off" });
+      } else if (AuthInfoStore.birthdateIsValid(birth_date) === 'indecipherable') {
+        this.setState({ bdayValidityMsg: "Uh, are those ...numbers?" });
+      }
+    } else {
+      this.setState({ bdayValidityMsg: "" });
+      AuthInfoStore.addInfoPiece('birth_date', birth_date);
+    }
   },
 
   zipCodeValidation: function (event) {
+    var zip = parseInt(event.target.value);
+    var location = "";
 
+    if (isNaN(zip)) {
+      this.setState({ zipCodeValidityMsg: "That aint no zip code I've ever heard of." });
+    } else if (event.target.value.length === 5) {
+      ClientActions.lookUpZipCode(zip);
+      this.listener = AuthInfoStore.addListener(function () {
+        this.setState({ zipCodeValidityMsg: "aah, "  + AuthInfoStore.zipLocation() });
+        // zip code match success
+      }.bind(this));
+    } else {
+      this.setState({ zipCodeValidityMsg: "..." });
+    }
+  },
+
+  handleCountryChange: function (event) {
+    AuthInfoStore.addInfoPiece('country', event.target.value);
+    this.setState({ country: event.target.value });
+  },
+
+  handleEmailChange: function (event) {
+    this.setState({ email: event.target.value });
+  },
+
+  handleDupEmailChange: function (event) {
+    this.setState({ dupEmail: event.target.value });
+  },
+
+  emailValidation: function () {
+    if (this.state.email && this.state.dupEmail) {
+      if (this.state.email === this.state.dupEmail) {
+        AuthInfoStore.addInfoPiece('email', this.state.email);
+        this.setState({ emailValidityMsg: "" });
+        // email match success
+      } else {
+        this.setState({ emailValidityMsg: "Emails don't match!" });
+      }
+    }
   },
 
   render: function () {
@@ -66,14 +118,29 @@ var SignUpForm = React.createClass({
           onBlur={this.birthdateValidation}
           >
           Birthdate
-          <input type='text' onChange={this.handleDateChange.bind(this, 'mm')}/>
-          <input type='text' onChange={this.handleDateChange.bind(this, 'dd')}/>
-          <input type='text' onChange={this.handleDateChange.bind(this, 'yyyy')}/>
-        </label><br />
+          <input
+            type='text'
+            onChange={this.handleDateChange.bind(this, 'mm')}
+          />
 
-        <label className="country">
+          <input
+            type='text'
+            onChange={this.handleDateChange.bind(this, 'dd')}
+          />
+
+          <input
+            type='text'
+            onChange={this.handleDateChange.bind(this, 'yyyy')}
+          />
+
+        </label><br />
+        <span className="birthday-validity-msg">
+          {this.state.bdayValidityMsg}
+        </span><br />
+
+        <label className="country" onBlur={this.handleCountryChange}>
           Country
-          <select name="cat[coat_color]" id="cat_coat_color">
+          <select onChange={this.handleCountryChange}>
             <option value="America">America</option>
             <option value="Who Cares">Somewhere Else</option>
           </select>
@@ -82,13 +149,20 @@ var SignUpForm = React.createClass({
         <label className="zip_code_label" onBlur={this.zipCodeValidation}>
           Zip Code
           <input type="text" onChange={this.handleZipCodeChange} />
-        </label><br />
 
-        <label>
-          Email
-          <input type="text" />
-          <input type="text" />
         </label><br />
+        <span className="zip-code-validity-msg">
+          {this.state.zipCodeValidityMsg}
+        </span><br />
+
+        <label onBlur={this.emailValidation}>
+          Email
+          <input type="text" onChange={this.handleEmailChange}/>
+          <input type="text" onChange={this.handleDupEmailChange}/>
+        </label><br />
+        <span className="email-validity-msg">
+          {this.state.emailValidityMsg}
+        </span><br />
       </form>
     );
   }

@@ -1,4 +1,5 @@
 var SessionApiUtil = require('../util/sessionApiUtil');
+var UserAuthApiUtil = require('../util/userAuthApiUtil');
 // var UsersApiUtil = require('../util/usersApiUtil');
 
 var ClientActions = {
@@ -12,6 +13,10 @@ var ClientActions = {
 
   logout: function (callback) {
     SessionApiUtil.logout(callback);
+  },
+
+  lookUpZipCode: function (zipCode) {
+    UserAuthApiUtil.getLocationByZip(zipCode);
   }
 
   // signup: function (user, callback) {

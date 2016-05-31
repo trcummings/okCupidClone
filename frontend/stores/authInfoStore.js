@@ -1,32 +1,65 @@
 var Store = require('flux/utils').Store;
 var AppDispatcher = require('../dispatcher/dispatcher');
+var AuthInfoConstants = require('../constants/authInfoConstants');
 
 var _tentativeProfile = {};
-var _potentialEmail = "";
-var _confirmedEmail = "";
+var _zipLocation = "";
 
 var AuthInfoStore = new Store(AppDispatcher);
-var AuthInfoConstants = require('../constants/sessionConstants');
 
-SessionStore.addInfoPiece = function (type, info) {
+AuthInfoStore.addInfoPiece = function (type, info) {
   _tentativeProfile[type] = info;
 };
 
-SessionStore.confirmSameEmail = function () {
-  if (_potentialEmail === _confirmationEmail) {
-    return true;
-  } else {
-    return false;
-  }
+AuthInfoStore.zipLocation = function () {
+  return _zipLocation;
 };
 
-SessionStore.__onDispatch = function (payload) {
+AuthInfoStore.returnFinalizedProfile = function () {
+  return _tentativeProfile;
+};
+
+AuthInfoStore.birthdateIsValid = function(birth_date) {
+  var returnString = '';
+  var dateArray = [
+    parseInt(birth_date.yyyy),
+    parseInt(birth_date.mm),
+    parseInt(birth_date.dd)
+  ];
+
+  dateArray.forEach(function (date) {
+    if (isNaN(date)) {
+      returnString = 'indecipherable';
+    }
+  });
+
+  userDate = new Date(dateArray);
+  var dateToday = new Date();
+
+  var ageDiff = dateToday.getFullYear() - userDate.getFullYear();
+
+  if (ageDiff < 18) {
+    returnString = 'tooYoung';
+  } else if (ageDiff > 99){
+    returnString = 'tooOld';
+  }
+
+  return returnString;
+};
+
+AuthInfoStore.__onDispatch = function (payload) {
   switch(payload.actionType) {
     case AuthInfoConstants.ADD_INFO:
       this.addInfoPiece(payload.type, payload.info);
       this.__emitChange();
       break;
-  }
+    case AuthInfoConstants.ADD_ZIP:
+      this.addInfoPiece('zip_code', payload.locationData['post code']);
+      this.addInfoPiece('location', payload.locationData.places[0]['place name']);
+      _zipLocation = payload.locationData.places[0]['place name'];
+      this.__emitChange();
+      break;
+    }
 };
 
 module.exports = AuthInfoStore;

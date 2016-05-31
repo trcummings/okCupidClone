@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20160531161810) do
     t.integer "zip_code",        null: false
     t.string  "password_digest", null: false
     t.string  "session_token",   null: false
+    t.string  "location",        null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree

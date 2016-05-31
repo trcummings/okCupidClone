@@ -10,12 +10,13 @@
 #  zip_code        :integer          not null
 #  password_digest :string           not null
 #  session_token   :string           not null
+#  location        :string           not null
 #
 
 class User < ActiveRecord::Base
   attr_reader :password
 
-  validates :username, :email, :birth_date, :country, :zip_code, :password_digest, :session_token, presence: true
+  validates :username, :email, :birth_date, :country, :zip_code, :password_digest, :session_token, :location, presence: true
   validates :username, :email, uniqueness: true
   validates :password, length: { minimum: 6 }
 
