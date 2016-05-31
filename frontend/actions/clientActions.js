@@ -17,6 +17,10 @@ var ClientActions = {
 
   lookUpZipCode: function (zipCode) {
     UserAuthApiUtil.getLocationByZip(zipCode);
+  },
+
+  incrementAuthState: function () {
+    UserAuthApiUtil.incrementAuthState();
   }
 
   // signup: function (user, callback) {

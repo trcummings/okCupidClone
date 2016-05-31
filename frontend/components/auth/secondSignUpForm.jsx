@@ -3,7 +3,7 @@ var ClientActions = require('../../actions/clientActions');
 var HelperUtil = require('../../util/helperUtil');
 var AuthInfoStore = require('../../stores/authInfoStore');
 
-var SignUpForm = React.createClass({
+var SecondSignUpForm = React.createClass({
   getInitialState: function () {
     return ({
       birth_date: {
@@ -13,10 +13,6 @@ var SignUpForm = React.createClass({
       },
       country: "America"
     });
-  },
-
-  componentDidMount: function () {
-
   },
 
   componentWillUnmount: function () {
@@ -42,11 +38,14 @@ var SignUpForm = React.createClass({
   },
 
   handleSubmit: function () {
-    ReactDOM.findDOMNode(this.refs.birthdate_label);
+    if (this.emailValid && this.bdayValid && this.zipCodeValid) {
+      ClientActions.incrementAuthState();
+    } else {
+      alert("fuck you");
+    }
   },
 
   birthdateValidation: function (event) {
-
     var birth_date = this.state.birth_date;
 
     if (
@@ -63,6 +62,7 @@ var SignUpForm = React.createClass({
       }
     } else {
       this.setState({ bdayValidityMsg: "" });
+      this.bdayValid = true;
       AuthInfoStore.addInfoPiece('birth_date', birth_date);
     }
   },
@@ -76,6 +76,7 @@ var SignUpForm = React.createClass({
     } else if (event.target.value.length === 5) {
       ClientActions.lookUpZipCode(zip);
       this.listener = AuthInfoStore.addListener(function () {
+        this.zipCodeValid = true;
         this.setState({ zipCodeValidityMsg: "aah, "  + AuthInfoStore.zipLocation() });
         // zip code match success
       }.bind(this));
@@ -102,6 +103,7 @@ var SignUpForm = React.createClass({
       if (this.state.email === this.state.dupEmail) {
         AuthInfoStore.addInfoPiece('email', this.state.email);
         this.setState({ emailValidityMsg: "" });
+        this.emailValid = true;
         // email match success
       } else {
         this.setState({ emailValidityMsg: "Emails don't match!" });
@@ -163,9 +165,11 @@ var SignUpForm = React.createClass({
         <span className="email-validity-msg">
           {this.state.emailValidityMsg}
         </span><br />
+
+        <button type="submit" className='next-button'>Next</button>
       </form>
     );
   }
 });
 
-module.exports = SignUpForm;
+module.exports = SecondSignUpForm;

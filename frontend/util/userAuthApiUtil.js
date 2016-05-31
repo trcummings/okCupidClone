@@ -11,6 +11,10 @@ UserAuthApiUtil = {
     };
 
     client.send();
+  },
+
+  incrementAuthState: function () {
+    SignUpActions.incrementAuthState();
   }
 };
 
