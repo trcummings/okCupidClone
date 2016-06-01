@@ -1,10 +1,20 @@
 class Api::SessionsController < ApplicationController
   def create
     # actual login
-    @user = User.find_by_credentials(
-      params[:username],
-      params[:password]
-    )
+
+    if params[:username]
+      @user = User.find_by_credentials(
+        params[:username],
+        params[:password],
+        'username'
+      )
+    elsif params[:email]
+      @user = User.find_by_credentials(
+        params[:email],
+        params[:password],
+        'email'
+      )
+    end
 
     unless @user.nil?
       log_in!(@user)
@@ -17,7 +27,7 @@ class Api::SessionsController < ApplicationController
   def show
     if current_user
       @user = current_user
-      render json: @user
+      render "/api/users/show"
     else
       render json: {}
     end

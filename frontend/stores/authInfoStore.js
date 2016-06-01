@@ -34,10 +34,14 @@ AuthInfoStore.birthdateIsValid = function(birth_date) {
     }
   });
 
-  userDate = new Date(dateArray);
+  if (returnString === 'indecipherable') {
+    return returnString;
+  }
+
+  var userDate = new Date(dateArray);
   var dateToday = new Date();
 
-  var ageDiff = dateToday.getFullYear() - userDate.getFullYear();
+  var ageDiff = Math.abs(dateToday.getFullYear() - userDate.getFullYear());
 
   if (ageDiff < 18) {
     returnString = 'tooYoung';

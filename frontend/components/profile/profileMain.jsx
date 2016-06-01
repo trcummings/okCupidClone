@@ -1,16 +1,14 @@
 var React = require('react');
-var AuthMain = require('./auth/authMain');
-var SessionStore = require('../stores/sessionStore');
-var ClientActions = require('../actions/clientActions');
-var Header = require('./header');
+var ClientActions = require('../../actions/clientActions');
+var SessionStore = require('../../stores/sessionStore');
 
-var App = React.createClass({
+var ProfileMain = React.createClass({
   contextTypes: {
     router: React.PropTypes.object.isRequired
   },
 
   getInitialState: function () {
-    return { currentUser: SessionStore.currentUser() };
+    return { currentUser: SessionStore.currentUser()};
   },
 
   componentDidMount: function () {
@@ -31,21 +29,6 @@ var App = React.createClass({
     }
   },
 
-  welcome: function () {
-    if (SessionStore.isUserLoggedIn()) {
-      return (
-        <div>
-          <Header />
-          {this.props.children}
-        </div>
-      );
-    } else {
-      return (
-        <AuthMain />
-      );
-    }
-  },
-
   handleClick: function (event) {
     event.preventDefault();
 
@@ -55,12 +38,24 @@ var App = React.createClass({
   },
 
   render: function () {
-    return (
-      <div>
-        {this.welcome()}
-      </div>
-    );
+    var currentUser = this.state.currentUser;
+
+    if (currentUser) {
+      return (
+        <div>
+          o shit waddup {this.state.currentUser.username}!
+          <button onClick={this.handleClick} type='submit'>Log Out!~</button>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          scoobert doobert!
+          you shouldn't be here!
+        </div>
+      );
+    }
   }
 });
 
-module.exports = App;
+module.exports = ProfileMain;

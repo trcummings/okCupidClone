@@ -23,13 +23,21 @@ var FinalSignUpForm = React.createClass({
   },
 
   handleUsernameChange: function (event) {
-    AuthInfoStore.addInfoPiece('username', event.target.value);
-    this.setState({ username: event.target.value });
+    if (event.target.value !== "") {
+      AuthInfoStore.addInfoPiece('username', event.target.value);
+      this.setState({ username: event.target.value });
+    } else {
+      this.setState({ usernameValidityMsg: "You need a username!"});
+    }
   },
 
   handlePasswordChange: function (event) {
-    AuthInfoStore.addInfoPiece('password', event.target.value);
-    this.setState({ password: event.target.value });
+    if (event.target.value !== "") {
+      AuthInfoStore.addInfoPiece('password', event.target.value);
+      this.setState({ password: event.target.value });
+    } else {
+      this.setState({ passwordValidityMsg: "You need a password!"});
+    }
   },
 
   render: function () {
@@ -37,24 +45,44 @@ var FinalSignUpForm = React.createClass({
       <div className='authForm'>
         <h1> Last Step! </h1>
         <form onSubmit={this.handleSubmit}>
+          <div className="row group">
+            <label className="username text_box_item form_three_item" onBlur={this.handleUsernameChange}>
+              Username
+              <input
+                type="text"
+                onChange={this.handleUsernameChange}
+                placeholder="This will be public"
+                />
+            </label>
 
-          <label className="username" onBlur={this.handleUsernameChange}>
-            Username
-            <input
-              type="text"
-              onChange={this.handleUsernameChange}
-              />
-          </label><br />
+            <span className="username-validity-msg">
+              {this.state.usernameValidityMsg}
+            </span>
+          </div>
 
-          <label className="password" onBlur={this.handlePasswordChange}>
-            Password
-            <input
-              type="password"
-              onChange={this.handlePasswordChange}
-              />
-          </label><br />
+          <div className="row group">
+            <label className="password text_box_item form_three_item" onBlur={this.handlePasswordChange}>
+              Password
+              <input
+                type="password"
+                onChange={this.handlePasswordChange}
+                />
+            </label>
 
-          <button type='submit'>Done!</button>
+            <span className="password-validity-msg">
+              {this.state.passwordValidityMsg}
+            </span>
+          </div>
+
+          <div className="row group">
+            <button
+              id="continue_button"
+              className="flatbutton green form_three_item"
+              type='submit'
+            >
+              Done!
+            </button>
+          </div>
         </form>
       </div>
     );

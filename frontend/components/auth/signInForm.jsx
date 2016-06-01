@@ -18,7 +18,7 @@ var SignInForm = React.createClass({
     var loginType = HelperUtil.parseNameField(this.state.nameField);
     var callback = function () {
       this.props.modal();
-      this.context.router.push("/");
+      this.context.router.push("/home");
     }.bind(this);
 
     if (loginType === 'username') {
@@ -44,10 +44,12 @@ var SignInForm = React.createClass({
 
   render: function () {
     return (
-      <form className='sign-in-form' onSubmit={this.handleSubmit}>
+      <form className='sign-in-form authForm' onSubmit={this.handleSubmit}>
         <input
           id='nameField'
           type='text'
+          className="text_box_item"
+          placeholder="Your email or username"
           onChange={this.handleNameFieldChange}
           value={this.state.nameField}
          />
@@ -55,6 +57,8 @@ var SignInForm = React.createClass({
          <input
            id='password'
            type='password'
+           className="text_box_item"
+           placeholder="Your password"
            onChange={this.handlePasswordChange}
            value={this.state.password}
           />

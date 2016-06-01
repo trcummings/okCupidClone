@@ -1,0 +1,15 @@
+.form_three_item {
+  float: left;
+}
+
+.username-validity-msg {
+  position: absolute;
+}
+
+.password-validity-msg {
+  position: absolute;
+}
+
+.row {
+  margin-bottom: 20px;
+}
