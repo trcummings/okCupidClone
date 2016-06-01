@@ -11,19 +11,30 @@
 #  password_digest :string           not null
 #  session_token   :string           not null
 #  location        :string           not null
+#  gender          :string           not null
+#  orientation     :string           not null
 #
 
 class User < ActiveRecord::Base
   attr_reader :password
 
-  validates :username, :email, :birth_date, :country, :zip_code, :password_digest, :session_token, :location, presence: true
+  validates :username, :email, :birth_date,
+            :country, :zip_code, :password_digest,
+            :session_token, :location, :gender,
+            :orientation,
+            presence: true
+
   validates :username, :email, uniqueness: true
-  validates :password, length: { minimum: 6 }
+  validates :password, length: { minimum: 6, allow_nil: true }
 
   after_initialize :ensure_session_token
 
-  def self.find_by_credentials(username, password)
-    user = User.find_by(username: username)
+  def self.find_by_credentials(name_field, password, type)
+    if type == 'username'
+      user = User.find_by(username: name_field)
+    elsif type == 'email'
+      user = User.find_by(email: name_field)
+    end
 
     return nil if user.nil?
 
@@ -45,5 +56,6 @@ class User < ActiveRecord::Base
 
   def reset_session_token!
     self.session_token = SecureRandom::urlsafe_base64
+    self.save!
   end
 end

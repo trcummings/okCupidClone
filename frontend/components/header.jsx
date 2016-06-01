@@ -1,11 +1,14 @@
 var React = require('react');
+var Link = require('react-router').Link;
 
 var Header = React.createClass({
   render: function () {
     return (
-      <div>
-        poo poo poo im the header bar
-      </div>
+      <header className="header_nav">
+        <div>
+          poo poo poo im the header bar
+        </div>
+      </header>
     );
   }
 });

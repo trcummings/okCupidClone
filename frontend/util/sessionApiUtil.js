@@ -56,7 +56,7 @@ var SessionApiUtil = {
     });
   },
 
-  fetchCurrentUser: function () {
+  fetchCurrentUser: function (callback) {
     $.ajax({
       url: '/api/session',
       method: 'GET',
@@ -65,7 +65,11 @@ var SessionApiUtil = {
         SessionActions.receiveCurrentUser(currentUser);
       },
       error: function () {
-        console.log("somethin wrong");
+        // errors = errors.responseJSON.base;
+        // ErrorActions.setErrors(errors);
+      },
+      complete: function () {
+        callback && callback();
       }
     });
   }

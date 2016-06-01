@@ -1,0 +1,111 @@
+#signup_bg {
+  background: #104da1;
+  min-width: 1140px;
+  margin: auto;
+  color: #fff;
+  font-size: 15px;
+  font-family: 'Open Sans',sans-serif;
+}
+
+.signup_header {
+  position: relative;
+  height: 201px;
+  padding-top: 20px;
+  margin-bottom: 30px;
+  width: 1140px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header_login {
+  float: right;
+  margin-top: 20px;
+  margin-right: 8px;
+  text-align: right;
+}
+
+#open_sign_in_button {
+  background-color: transparent;
+  border: 1px solid #4879c1;
+  width: 120px;
+  height: 42px;
+  line-height: 41px;
+  white-space: nowrap;
+  text-align: center;
+  text-transform: none;
+  overflow: hidden;
+  border-radius: 2px;
+  -webkit-transition-property: background-color,color,border;
+  -moz-transition-property: background-color,color,border;
+  transition-property: background-color,color,border;
+  -webkit-transition-duration: 75ms;
+  -moz-transition-duration: 75ms;
+  transition-duration: 75ms;
+  -webkit-transition-timing-function: ease;
+  -moz-transition-timing-function: ease;
+  transition-timing-function: ease;
+  cursor: pointer;
+}
+
+#open_sign_in_button:hover {
+  background-color: #9dbaf2;
+}
+
+#continue_button {
+  width: 120px;
+  height: 42px;
+  line-height: 41px;
+  font-size: 15px;
+  white-space: nowrap;
+  color: #fff;
+  text-align: center;
+  text-transform: none;
+  overflow: hidden;
+  border: 1px solid #4879c1;
+}
+
+.signup_form {
+  margin-left: 80px;
+  margin-right: 80px;
+  padding-bottom: 130px;
+  width: 1140px;
+  margin: auto;
+}
+
+h1 {
+  text-align: center;
+  font-size: 32px;
+}
+
+.authForm {
+  margin: auto;
+  margin-bottom: 15px;
+  font-size: 18px;
+  line-height: 58px;
+  display: block;
+}
+
+.authForm > form {
+  width: 640px;
+  margin: auto;
+}
+
+.text_box_item > input {
+  padding: 9px;
+  padding-right: 16px;
+  background: #FFF;
+  border: 1px solid #ccd0d9;
+  color: #5e6573;
+  margin: 0 10px 10px 0;
+  border-radius: 2px;
+  font-size: 15px;
+  line-height: 22px;
+  box-shadow: none !important;
+  -webkit-transition: border-color 75ms ease-in;
+  -moz-transition: border-color 75ms ease-in;
+  transition: border-color 75ms ease-in;
+}
+
+
+
+/*color: #5e6573;*/

@@ -10,10 +10,10 @@ var UsersApiUtil = {
       data: { user: user },
       success: function (currentUser) {
         SessionActions.receiveCurrentUser(currentUser);
-        debugger;
         callback();
       },
       error: function (xhr) {
+        debugger;
         // console.log('UserApiUtil#createAccount error');
         // var errors = xhr.responseJSON;
         // ErrorActions.setErrors("signup", errors);

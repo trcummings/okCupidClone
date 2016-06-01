@@ -22,6 +22,10 @@ var AuthMain = React.createClass({
     }.bind(this));
   },
 
+  componentWillUnmount: function () {
+    this.listener.remove();
+  },
+
   closeModal: function() {
     this.setState({ modalOpen: false });
   },
@@ -48,30 +52,36 @@ var AuthMain = React.createClass({
 
   render: function () {
     return (
-      <div class="header_login">
-        <span> Have an account? </span>
-        <button
-          id="open_sign_in_button"
-          class="flatbutton clear dark-bg"
-          onClick={this.openModal}
-          >
-          Sign in
-        </button>
+      <div id='signup_bg'>
+        <header className='signup_header'>
+          <div className="header_login">
+            <span> Have an account? </span>
+            <button
+              id="open_sign_in_button"
+              class="flatbutton clear dark-bg"
+              onClick={this.openModal}
+              >
+              Sign in
+            </button>
 
-        <Modal
-          isOpen={this.state.modalOpen}
-          onRequestClose={this.openModal}>
+            <Modal
+              isOpen={this.state.modalOpen}
+              onRequestClose={this.openModal}>
 
-          <button
-            className='close_modal_button'
-            onClick={this.closeModal}>
-          X
-          </button>
+              <button
+                className='close_modal_button'
+                onClick={this.closeModal}>
+              X
+              </button>
 
-          <SignInForm modal={this.closeModal}/>
-        </Modal>
+              <SignInForm modal={this.closeModal}/>
+            </Modal>
+          </div>
+        </header>
 
-        {this.currentForm()}
+        <div className='signup_form'>
+          {this.currentForm()}
+        </div>
       </div>
     );
   }

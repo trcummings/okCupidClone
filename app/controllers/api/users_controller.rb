@@ -28,7 +28,9 @@ class Api::UsersController < ApplicationController
       :birth_date,
       :country,
       :zip_code,
-      :location
+      :location,
+      :orientation,
+      :gender
     )
   end
 end

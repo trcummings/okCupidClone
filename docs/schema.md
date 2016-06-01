@@ -1,16 +1,32 @@
 # Schema Information
 
 ## users
-column name     | data type | details
-----------------|-----------|-----------------------
-id              | integer   | not null, primary key
-username        | string    | not null, indexed, unique
-email           | string    | not null, indexed, unique
-birth_date      | datetime  | not null
-country         | string    | not null
-zip_code        | string    | not null
-password_digest | string    | not null
-session_token   | string    | not null
+column name       | data type | details
+------------------|-----------|-----------------------
+id                | integer   | not null, primary key
+username          | string    | not null, indexed, unique
+email             | string    | not null, indexed, unique
+birth_date        | datetime  | not null
+country           | string    | not null
+zip_code          | string    | not null
+password_digest   | string    | not null
+session_token     | string    | not null
+gender            | string    | not null /// DETAILS START HERE
+orientation       | string    | not null
+ethnicity         | string    |
+status            | string    |
+relationship_type | string    |
+height            | string    |
+body_type         | string    |
+diet              | string    |
+smoking           | string    |
+drinking          | string    |
+drugs             | string    |
+sign              | string    |
+education         | string    |
+offspring         | string    |
+pets              | string    |
+speaks            | string    |
 
 ## visits_table
 column name     | data type | details
@@ -63,26 +79,6 @@ distance        | text      | not null, minimum 5mi
 status          | text      | not null
 dating_type     | text      | not null, limited to: [short term, long term, new friends, casual sex, smelly hog crew, three children in a trench coat trying to buy a ticket to an r rated movie]
 
-## profile_about_details
-column name       | data type | details
-------------------|-----------|-----------------------
-id                | integer   | not null, primary key
-user_id           | integer   | not null, foreign key, unique
-orientation       | string    |
-ethnicity         | string    |
-status            | string    |
-relationship_type | string    |
-height            | string    |
-body_type         | string    |
-diet              | string    |
-smoking           | string    |
-drinking          | string    |
-drugs             | string    |
-sign              | string    |
-education         | string    |
-offspring         | string    |
-pets              | string    |
-speaks            | string    |
 
 ## likes
 column name       | data type | details

@@ -5,6 +5,8 @@ var AuthInfoStore = require('../../stores/authInfoStore');
 
 var SecondSignUpForm = React.createClass({
   getInitialState: function () {
+    this.submitStateDisabled = false;
+
     return ({
       birth_date: {
         mm: "",
@@ -30,6 +32,12 @@ var SecondSignUpForm = React.createClass({
     });
   },
 
+  onStateChange: function () {
+    if (this.emailValid && this.bdayValid && this.zipCodeValid) {
+      this.submitStateDisabled = false;
+    }
+  },
+
   handleZipCodeChange: function (event) {
     event.preventDefault();
 
@@ -40,38 +48,50 @@ var SecondSignUpForm = React.createClass({
   handleSubmit: function () {
     if (this.emailValid && this.bdayValid && this.zipCodeValid) {
       ClientActions.incrementAuthState();
-    } else {
-      alert("fuck you");
     }
   },
 
-  birthdateValidation: function (event) {
+  birthdateValidation: function () {
     var birth_date = this.state.birth_date;
 
     if (
+      birth_date.mm.length === 0 ||
+      birth_date.dd.length === 0 ||
+      birth_date.yyyy.length === 0
+    ) {
+      this.setState({ bdayValidityMsg: "You need to enter a birth date!" });
+      this.bdayValid = false;
+    } else if (
       birth_date.mm.length > 0 &&
       birth_date.dd.length > 0 &&
       birth_date.yyyy.length > 0
     ) {
       if (AuthInfoStore.birthdateIsValid(birth_date) === 'tooYoung') {
         this.setState({ bdayValidityMsg: "Too young to use this site! Go play a nintendo or beep boop on the Google" });
+        this.bdayValid = false;
       } else if (AuthInfoStore.birthdateIsValid(birth_date) === 'tooOld') {
         this.setState({ bdayValidityMsg: "This seems...off" });
+        this.bdayValid = false;
       } else if (AuthInfoStore.birthdateIsValid(birth_date) === 'indecipherable') {
         this.setState({ bdayValidityMsg: "Uh, are those ...numbers?" });
+        this.bdayValid = false;
+      } else {
+        this.setState({ bdayValidityMsg: "" });
+        this.bdayValid = true;
+        AuthInfoStore.addInfoPiece('birth_date', birth_date);
       }
-    } else {
-      this.setState({ bdayValidityMsg: "" });
-      this.bdayValid = true;
-      AuthInfoStore.addInfoPiece('birth_date', birth_date);
     }
   },
 
+// } else if {
+//   this.setState({ bdayValidityMsg: "You need to enter a birth date!" });
+// }
   zipCodeValidation: function (event) {
     var zip = parseInt(event.target.value);
     var location = "";
-
-    if (isNaN(zip)) {
+    if (event.target.value === "") {
+      this.setState({ zipCodeValidityMsg: "You need a zip code!" });
+    } else if (isNaN(zip)) {
       this.setState({ zipCodeValidityMsg: "That aint no zip code I've ever heard of." });
     } else if (event.target.value.length === 5) {
       ClientActions.lookUpZipCode(zip);
@@ -108,6 +128,20 @@ var SecondSignUpForm = React.createClass({
       } else {
         this.setState({ emailValidityMsg: "Emails don't match!" });
       }
+    } else {
+      this.setState({ emailValidityMsg: "You need an email!" });
+    }
+  },
+
+  handlePrematureClick: function (event) {
+    event.preventDefault();
+
+    if (!(this.emailValid && this.bdayValid && this.zipCodeValid)) {
+      this.zipCodeValidation(event);
+      this.emailValidation(event);
+      this.birthdateValidation(event);
+    } else {
+      this.handleSubmit();
     }
   },
 
@@ -116,59 +150,89 @@ var SecondSignUpForm = React.createClass({
       <div className='authForm'>
         <h1> Almost There! </h1>
         <form onSubmit={this.handleSubmit}>
-          <label
-            className="birthdate_label"
-            ref='birthdate_label'
-            onBlur={this.birthdateValidation}
+          <div className="row group">
+            <label
+              className="birthdate_label text_box_item form_two_item"
+              ref='birthdate_label'
+              onBlur={this.birthdateValidation}
             >
-            Birthdate
-            <input
-              type='text'
-              onChange={this.handleDateChange.bind(this, 'mm')}
-            />
+              Birthdate
 
-            <input
-              type='text'
-              onChange={this.handleDateChange.bind(this, 'dd')}
-            />
+              <input
+                type='text'
+                onChange={this.handleDateChange.bind(this, 'mm')}
+                placeholder="MM"
+              />
 
-            <input
-              type='text'
-              onChange={this.handleDateChange.bind(this, 'yyyy')}
-            />
+              <input
+                type='text'
+                onChange={this.handleDateChange.bind(this, 'dd')}
+                placeholder="DD"
+              />
 
-          </label><br />
-          <span className="birthday-validity-msg">
-            {this.state.bdayValidityMsg}
-          </span><br />
+              <input
+                type='text'
+                onChange={this.handleDateChange.bind(this, 'yyyy')}
+                placeholder="YYYY"
+              />
 
-          <label className="country" onBlur={this.handleCountryChange}>
-            Country
-            <select onChange={this.handleCountryChange}>
-              <option value="America">America</option>
-              <option value="Who Cares">Somewhere Else</option>
-            </select>
-          </label><br />
+            </label>
 
-          <label className="zip_code_label" onBlur={this.zipCodeValidation}>
-            Zip Code
-            <input type="text" onChange={this.handleZipCodeChange} />
+            <span className="birthday-validity-msg">
+              {this.state.bdayValidityMsg}
+            </span>
+          </div>
 
-          </label><br />
-          <span className="zip-code-validity-msg">
-            {this.state.zipCodeValidityMsg}
-          </span><br />
+          <div className="row group">
+            <label
+              className="country form_two_item"
+              onBlur={this.handleCountryChange}
+            >
+              Country
+              <select onChange={this.handleCountryChange}>
+                <option value="America">America</option>
+                <option value="Who Cares">Somewhere Else</option>
+              </select>
+            </label>
+          </div>
 
-          <label onBlur={this.emailValidation}>
-            Email
-            <input type="text" onChange={this.handleEmailChange}/>
-            <input type="text" onChange={this.handleDupEmailChange}/>
-          </label><br />
-          <span className="email-validity-msg">
-            {this.state.emailValidityMsg}
-          </span><br />
+          <div className="row group">
+            <label className="zip_code_label text_box_item form_two_item" onBlur={this.zipCodeValidation}>
+              Zip Code
+              <input
+                type="text"
+                onChange={this.handleZipCodeChange}
+                placeholder="eg. 10001"
+              />
+            </label>
 
-          <button type="submit" className='next-button'>Next</button>
+            <span className="zip-code-validity-msg">
+              {this.state.zipCodeValidityMsg}
+            </span>
+          </div>
+
+          <div className="row group">
+            <label className="text_box_item form_two_item" onBlur={this.emailValidation}>
+              Email
+              <input type="text" onChange={this.handleEmailChange} placeholder="eg. example@url.com"/>
+              <input type="text" onChange={this.handleDupEmailChange} placeholder="Confirmation email"/>
+            </label>
+            <span className="email-validity-msg">
+              {this.state.emailValidityMsg}
+            </span>
+          </div>
+
+          <div className="row group">
+            <button
+              id="continue_button"
+              type="submit"
+              className="flatbutton green form_two_item"
+              disabled={this.submitStateDisabled}
+              onClick={this.handlePrematureClick}
+            >
+              Next
+            </button>
+          </div>
         </form>
       </div>
     );

@@ -5,8 +5,12 @@ var _currentUserHasBeenFetched = false;
 var SessionStore = new Store(AppDispatcher);
 var SessionConstants = require('../constants/sessionConstants');
 
+SessionStore.currentUserHasBeenFetched = function () {
+  return _currentUserHasBeenFetched;
+};
+
 SessionStore.isUserLoggedIn = function () {
-  return _current_user.id;
+  return !!_current_user.id;
 };
 
 SessionStore.currentUser = function () {
