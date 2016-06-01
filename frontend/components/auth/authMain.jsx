@@ -1,4 +1,5 @@
 var React = require('react'),
+    ReactDOM = require('react-dom'),
     Modal = require("react-modal"),
     SignInForm = require('./signInForm'),
     FirstSignUpForm = require('./firstSignUpForm'),
@@ -36,8 +37,6 @@ var modalStyle = {
     outline                    : 'none',
   }
 };
-
-// 315 by 450
 
 var AuthMain = React.createClass({
   getInitialState: function(){
@@ -95,22 +94,17 @@ var AuthMain = React.createClass({
               >
               Sign in
             </button>
-
-            <Modal
-              isOpen={this.state.modalOpen}
-              onRequestClose={this.openModal}
-              style={modalStyle}
-            >
-
-              <button
-                className='close_modal_button'
-                onClick={this.closeModal}>
-              X
-              </button>
-
-              <SignInForm modal={this.closeModal}/>
-            </Modal>
           </div>
+
+          <Modal
+            isOpen={this.state.modalOpen}
+            onRequestClose={this.closeModal}
+            style={modalStyle}
+            ref='popup'
+          >
+
+            <SignInForm closeModal={this.closeModal}/>
+          </Modal>
         </header>
 
         <div className='signup_form'>

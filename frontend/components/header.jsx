@@ -1,26 +1,34 @@
 var React = require('react');
 var HeaderProfileDropDown = require('./headerProfileDropDown');
+var HeaderMessagesDropDown = require('./headerMessagesDropDown');
 
 var Header = React.createClass({
   getInitialState: function () {
-    return ({ dropDown: false });
+    return ({
+      profileDropDown: false,
+      messagesDropDown: false
+     });
   },
 
-  renderDropDown: function () {
-    if (this.state.dropDown) {
-      return (<HeaderProfileDropDown />);
+  renderDropDown: function (type) {
+    if (this.state[type]) {
+      if (type === 'profileDropDown') {
+        return (<HeaderProfileDropDown />);
+      } else if (type === 'messagesDropDown') {
+        return (<HeaderMessagesDropDown />);
+      }
     } else {
       return (<div />);
     }
   },
 
-  toggleDropDown: function (event) {
-    event.preventDefault();
-    if (this.state.dropDown) {
-      this.setState({ dropDown: false });
+  toggleDropDown: function (type) {
+    if (this.state[type]) {
+      this.state[type] = false;
     } else {
-      this.setState({ dropDown: true });
+      this.state[type] = true;
     }
+    this.setState(this.state);
   },
 
   render: function () {
@@ -32,7 +40,7 @@ var Header = React.createClass({
           </h1>
 
           <h1 className='header-logo'>
-            <a href="#/home">Matches</a>
+            <a href="#/matches">Browse Matches</a>
           </h1>
 
           <ul className='header-list group'>
@@ -45,16 +53,21 @@ var Header = React.createClass({
             </li>
 
             <li>
-              Messages
+              <button
+                onClick={this.toggleDropDown.bind(this, 'messagesDropDown')}
+              >
+                Messages
+              </button>
+              {this.renderDropDown('messagesDropDown')}
             </li>
 
             <li>
               <button
-                onClick={this.toggleDropDown}
+                onClick={this.toggleDropDown.bind(this, 'profileDropDown')}
               >
                 Profile
               </button>
-              {this.renderDropDown()}
+              {this.renderDropDown('profileDropDown')}
             </li>
           </ul>
         </nav>
