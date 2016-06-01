@@ -5,15 +5,15 @@ var React = require('react'),
     IndexRoute = require('react-router').IndexRoute,
     hashHistory = require('react-router').hashHistory,
     App = require('./components/app');
-    Header = require('./components/header');
+    // Header = require('./components/header');
 
 var Router = (
   <Router history={hashHistory}>
     <Route path='/' component={App}>
-      <Route component={Header} onEnter={ _ensureLoggedIn }></Route>
     </Route>
   </Router>
 );
+// <Route component={Header} onEnter={ _ensureLoggedIn }></Route>
 
 function _ensureLoggedIn(nextState, replace, asyncDoneCallback) {
   if (SessionStore.currentUserHasBeenFetched()) {

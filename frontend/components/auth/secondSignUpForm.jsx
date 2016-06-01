@@ -113,61 +113,64 @@ var SecondSignUpForm = React.createClass({
 
   render: function () {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label
-          className="birthdate_label"
-          ref='birthdate_label'
-          onBlur={this.birthdateValidation}
-          >
-          Birthdate
-          <input
-            type='text'
-            onChange={this.handleDateChange.bind(this, 'mm')}
-          />
+      <div className='authForm'>
+        <h1> Almost There! </h1>
+        <form onSubmit={this.handleSubmit}>
+          <label
+            className="birthdate_label"
+            ref='birthdate_label'
+            onBlur={this.birthdateValidation}
+            >
+            Birthdate
+            <input
+              type='text'
+              onChange={this.handleDateChange.bind(this, 'mm')}
+            />
 
-          <input
-            type='text'
-            onChange={this.handleDateChange.bind(this, 'dd')}
-          />
+            <input
+              type='text'
+              onChange={this.handleDateChange.bind(this, 'dd')}
+            />
 
-          <input
-            type='text'
-            onChange={this.handleDateChange.bind(this, 'yyyy')}
-          />
+            <input
+              type='text'
+              onChange={this.handleDateChange.bind(this, 'yyyy')}
+            />
 
-        </label><br />
-        <span className="birthday-validity-msg">
-          {this.state.bdayValidityMsg}
-        </span><br />
+          </label><br />
+          <span className="birthday-validity-msg">
+            {this.state.bdayValidityMsg}
+          </span><br />
 
-        <label className="country" onBlur={this.handleCountryChange}>
-          Country
-          <select onChange={this.handleCountryChange}>
-            <option value="America">America</option>
-            <option value="Who Cares">Somewhere Else</option>
-          </select>
-        </label><br />
+          <label className="country" onBlur={this.handleCountryChange}>
+            Country
+            <select onChange={this.handleCountryChange}>
+              <option value="America">America</option>
+              <option value="Who Cares">Somewhere Else</option>
+            </select>
+          </label><br />
 
-        <label className="zip_code_label" onBlur={this.zipCodeValidation}>
-          Zip Code
-          <input type="text" onChange={this.handleZipCodeChange} />
+          <label className="zip_code_label" onBlur={this.zipCodeValidation}>
+            Zip Code
+            <input type="text" onChange={this.handleZipCodeChange} />
 
-        </label><br />
-        <span className="zip-code-validity-msg">
-          {this.state.zipCodeValidityMsg}
-        </span><br />
+          </label><br />
+          <span className="zip-code-validity-msg">
+            {this.state.zipCodeValidityMsg}
+          </span><br />
 
-        <label onBlur={this.emailValidation}>
-          Email
-          <input type="text" onChange={this.handleEmailChange}/>
-          <input type="text" onChange={this.handleDupEmailChange}/>
-        </label><br />
-        <span className="email-validity-msg">
-          {this.state.emailValidityMsg}
-        </span><br />
+          <label onBlur={this.emailValidation}>
+            Email
+            <input type="text" onChange={this.handleEmailChange}/>
+            <input type="text" onChange={this.handleDupEmailChange}/>
+          </label><br />
+          <span className="email-validity-msg">
+            {this.state.emailValidityMsg}
+          </span><br />
 
-        <button type="submit" className='next-button'>Next</button>
-      </form>
+          <button type="submit" className='next-button'>Next</button>
+        </form>
+      </div>
     );
   }
 });
