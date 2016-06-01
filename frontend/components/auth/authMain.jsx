@@ -1,19 +1,19 @@
-var React = require('react');
-var Modal = require("react-modal");
-var SignInForm = require('./signInForm');
-var FirstSignUpForm = require('./firstSignUpForm');
-var SecondSignUpForm = require('./secondSignUpForm');
-var FinalSignUpForm = require('./finalSignUpForm');
-var AuthInfoStore = require('../../stores/authInfoStore');
-var ClientActions = require('../../actions/clientActions');
+var React = require('react'),
+    Modal = require("react-modal"),
+    SignInForm = require('./signInForm'),
+    FirstSignUpForm = require('./firstSignUpForm'),
+    SecondSignUpForm = require('./secondSignUpForm'),
+    FinalSignUpForm = require('./finalSignUpForm'),
+    AuthInfoStore = require('../../stores/authInfoStore'),
+    ClientActions = require('../../actions/clientActions');
 
 var AuthMain = React.createClass({
   getInitialState: function(){
     Modal.setAppElement(document.body);
     return({
       modalOpen: false,
-      formNumber: 'first'
-     });
+      formNumber: AuthInfoStore.currentAuthState()
+    });
   },
 
   componentDidMount: function () {
@@ -46,10 +46,6 @@ var AuthMain = React.createClass({
     }
   },
 
-  hamgleClimp: function () {
-    ClientActions.incrementAuthState();
-  },
-
   render: function () {
     return (
       <div class="header_login">
@@ -80,7 +76,5 @@ var AuthMain = React.createClass({
     );
   }
 });
-
-
 
 module.exports = AuthMain;

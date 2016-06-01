@@ -1,6 +1,6 @@
 var SessionApiUtil = require('../util/sessionApiUtil');
 var UserAuthApiUtil = require('../util/userAuthApiUtil');
-// var UsersApiUtil = require('../util/usersApiUtil');
+var UsersApiUtil = require('../util/usersApiUtil');
 
 var ClientActions = {
   loginWithUsername: function (user, callback) {
@@ -21,11 +21,11 @@ var ClientActions = {
 
   incrementAuthState: function () {
     UserAuthApiUtil.incrementAuthState();
-  }
+  },
 
-  // signup: function (user, callback) {
-  //   UserApiUtil.signup(user, callback);
-  // },
+  signup: function (user, callback) {
+    UsersApiUtil.signup(user, callback);
+  },
 };
 
 module.exports = ClientActions;
