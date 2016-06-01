@@ -9,8 +9,8 @@ var SignInForm = React.createClass({
 
   getInitialState: function () {
     return {
-      nameField: 'Your Username or Password',
-      password: 'Your Password'
+      nameField: '',
+      password: ''
     };
   },
 
@@ -45,6 +45,8 @@ var SignInForm = React.createClass({
   render: function () {
     return (
       <form className='sign-in-form authForm' onSubmit={this.handleSubmit}>
+        <h1>Sign In</h1>
+        
         <input
           id='nameField'
           type='text'
@@ -63,7 +65,7 @@ var SignInForm = React.createClass({
            value={this.state.password}
           />
 
-        <button type='submit'>Sign in</button>
+        <button id='continue_button' type='submit'>Sign in</button>
       </form>
     );
   }

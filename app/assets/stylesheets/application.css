@@ -16,5 +16,6 @@
  *= require ./auth/formOne
  *= require ./auth/formTwo
  *= require ./auth/formThree
+ *= require ./auth/modal
  *= require header
  */
