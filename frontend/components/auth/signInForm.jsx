@@ -17,7 +17,7 @@ var SignInForm = React.createClass({
   handleSubmit: function () {
     var loginType = HelperUtil.parseNameField(this.state.nameField);
     var callback = function () {
-      this.props.modal();
+      this.props.closeModal();
       this.context.router.push("/home");
     }.bind(this);
 
@@ -46,7 +46,7 @@ var SignInForm = React.createClass({
     return (
       <form className='sign-in-form authForm' onSubmit={this.handleSubmit}>
         <h1>Sign In</h1>
-        
+
         <input
           id='nameField'
           type='text'

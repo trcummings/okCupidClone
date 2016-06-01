@@ -1,6 +1,8 @@
 var React = require('react');
 var ClientActions = require('../../actions/clientActions');
 var SessionStore = require('../../stores/sessionStore');
+var HelperUtil = require('../../util/helperUtil');
+var BasicInfoEditModal = require('./modals/basicInfoEditModal');
 
 var ProfileMain = React.createClass({
   contextTypes: {
@@ -8,43 +10,30 @@ var ProfileMain = React.createClass({
   },
 
   getInitialState: function () {
-    return { currentUser: SessionStore.currentUser()};
+    return {
+      selectedPane: 0
+    };
   },
 
-  componentDidMount: function () {
-    this.listener = SessionStore.addListener(function () {
-      this.checkForCurrentUser();
-    }.bind(this));
-  },
-
-  componentWillUnmount: function () {
-    this.listener.remove();
-  },
-
-  checkForCurrentUser: function () {
-    var currentUser = SessionStore.currentUser();
-
-    if (currentUser) {
-      this.setState({ currentUser: currentUser });
-    }
-  },
-
-  handleClick: function (event) {
-    event.preventDefault();
-
-    ClientActions.logout(function () {
-      this.context.router.push("/");
-    }.bind(this));
+  selectTab: function (num) {
+    this.setState({selectedPane: num});
   },
 
   render: function () {
-    var currentUser = this.state.currentUser;
+    var currentUser = SessionStore.currentUser();
+    // var pane = this.props.panes[this.state.selectedPane];
 
     if (currentUser) {
       return (
-        <div>
-          o shit waddup {this.state.currentUser.username}!
-          <button onClick={this.handleClick} type='submit'>Log Out!~</button>
+        <div className='profile-basic-information'>
+          <h1 className='profile-user-name'>{currentUser.username}</h1>
+          <ul>
+            <li>{currentUser.location}</li>
+            <li>{HelperUtil.returnAge(currentUser.birth_date)}</li>
+            <li>{currentUser.gender}</li>
+            
+            <BasicInfoEditModal />
+          </ul>
         </div>
       );
     } else {
