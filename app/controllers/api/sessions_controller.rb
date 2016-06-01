@@ -20,7 +20,7 @@ class Api::SessionsController < ApplicationController
       log_in!(@user)
       render "/api/users/show"
     else
-      render json: { base: ["Invalid login creds"] }, status: 401
+      render json: { base: ["Your info was incorrect. Try again."] }, status: 401
     end
   end
 

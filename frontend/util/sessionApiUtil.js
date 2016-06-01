@@ -1,4 +1,5 @@
-var SessionActions = require('../actions/sessionActions');
+var SessionActions = require('../actions/sessionActions'),
+    ErrorActions = require('../actions/errorActions');
 
 var SessionApiUtil = {
   loginWithEmail: function (user, callback) {
@@ -15,8 +16,8 @@ var SessionApiUtil = {
         callback();
       },
       error: function (errors) {
-        // errors = errors.responseJSON.base;
-        // ErrorActions.setErrors(errors);
+        errors = errors.responseJSON.base;
+        ErrorActions.setErrors(errors);
       }
     });
   },
@@ -35,8 +36,8 @@ var SessionApiUtil = {
         callback();
       },
       error: function (errors) {
-        // errors = errors.responseJSON.base;
-        // ErrorActions.setErrors(errors);
+        errors = errors.responseJSON.base;
+        ErrorActions.setErrors(errors);
       }
     });
   },
@@ -50,9 +51,6 @@ var SessionApiUtil = {
         SessionActions.removeCurrentUser();
         callback();
       },
-      error: function () {
-        console.log("somethin wrong");
-      }
     });
   },
 
