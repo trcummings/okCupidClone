@@ -15,9 +15,10 @@ var SessionApiUtil = {
         SessionActions.receiveCurrentUser(currentUser);
         callback();
       },
-      error: function (errors) {
-        errors = errors.responseJSON.base;
-        ErrorActions.setErrors(errors);
+      error: function (xhr) {
+        console.log("Login error in SessionApiUtil#loginWithEmail");
+        var errors = xhr.responseJSON;
+	      ErrorActions.setErrors("login", errors);
       }
     });
   },
@@ -35,9 +36,10 @@ var SessionApiUtil = {
         SessionActions.receiveCurrentUser(currentUser);
         callback();
       },
-      error: function (errors) {
-        errors = errors.responseJSON.base;
-        ErrorActions.setErrors(errors);
+      error: function (xhr) {
+        console.log("Login error in SessionApiUtil#loginWithUsername");
+        var errors = xhr.responseJSON;
+	      ErrorActions.setErrors("login", errors);
       }
     });
   },
@@ -51,6 +53,9 @@ var SessionApiUtil = {
         SessionActions.removeCurrentUser();
         callback();
       },
+      error: function (xhr) {
+			  console.log("Error in SessionApiUtil#logout");
+			},
     });
   },
 
@@ -63,9 +68,8 @@ var SessionApiUtil = {
         SessionActions.receiveCurrentUser(currentUser);
       },
       error: function () {
-        // errors = errors.responseJSON.base;
-        // ErrorActions.setErrors(errors);
-      },
+  			console.log("Logout error in SessionApiUtil#fetchCurrentUser");
+  		},
       complete: function () {
         callback && callback();
       }
