@@ -12,7 +12,8 @@ PerfectPair will be a full-stack web app clone of dating platform OKcupid, with 
 
 By the end of app/Academy week 9, this app will meet the following criteria for minimum viable functionality:
 
-- [ ] New account creation, login, and guest/demo login
+- [x] New account creation, login, and
+- [ ] guest/demo login
 - [ ] Smooth, bug-free navigation
 - [ ] Adequate seed data to demonstrate the site's features
 - [ ] Question answering
@@ -33,8 +34,9 @@ PerfectPair will allow users to do the following:
 <!-- This is a Markdown checklist. Use it to keep track of your
 progress. Put an x between the brackets for a checkmark: [x] -->
 
-- [ ] Create an account (MVP)
-- [ ] Log in / Log out, including as a Guest/Demo User (MVP)
+- [x] Create an account (MVP)
+- [x] Log in / Log out (MVP)
+- [ ] including as a Guest/Demo User (MVP)
 - [ ] Edit Profile About, Profile Description (MVP)
 - [ ] View Other Profiles (MVP)
 - [ ] Answer Questions (MVP)
@@ -69,11 +71,11 @@ progress. Put an x between the brackets for a checkmark: [x] -->
 
 **Objective:** Functioning rails project with Authentication
 
-- [ ] create new project
-- [ ] create `User` model
-- [ ] authentication
-- [ ] user signup/signin pages
-- [ ] blank landing page after signin
+- [x] create new project
+- [x] create `User` model
+- [x] authentication
+- [x] user signup/signin pages
+- [x] blank landing page after signin
 
 ### Phase 2: Profiles, API, and basic APIUtil (1.5 days)
 
@@ -86,20 +88,20 @@ the API.
 - [ ] create `Like` model
 - [ ] create `Visit` model
 - [ ] create `UserPhoto` model
-- [ ] seed the database with a small amount of test data
+- [x] seed the database with a small amount of test data
 - [ ] CRUD API for Profile, Like, Visit (`ProfilesController`, `LikesController` , `VisitsController`)
 - [ ] jBuilder views for profiles
-- [ ] setup Webpack & Flux scaffold
-- [ ] setup `APIUtil` to interact with the API
-- [ ] test out API interaction in the console.
+- [x] setup Webpack & Flux scaffold
+- [x] setup `APIUtil` to interact with the API
+- [x] test out API interaction in the console.
 
 ### Phase 3: Flux Architecture and Router (1.5 days)
 
 **Objective:** Likes and Visits can be created, and destroyed with the
 user interface.
 
-- [ ] setup the flux loop with skeleton files
-- [ ] setup React Router
+- [x] setup the flux loop with skeleton files
+- [x] setup React Router
 - implement each note component, building out the flux loop as needed.
 - [ ] create `LikeToggle` button with CRUD and API interaction
 
@@ -124,8 +126,8 @@ user interface.
 **Objective:** Existing pages (including singup/signin) will look good.
 
 - [ ] create a basic style guide
-- [ ] position elements on the page
-- [ ] add basic colors & styles
+- [x] position elements on the page
+- [x] add basic colors & styles
 
 ### Phase 7: Feed (1 Day)
 
