@@ -31,7 +31,6 @@ var MatchesIndexItem = React.createClass({
             likee={user}
           />
         </div>
-
       </div>
     );
   }

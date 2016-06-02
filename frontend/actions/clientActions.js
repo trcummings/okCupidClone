@@ -1,6 +1,7 @@
 var SessionApiUtil = require('../util/sessionApiUtil');
 var UserAuthApiUtil = require('../util/userAuthApiUtil');
 var UsersApiUtil = require('../util/usersApiUtil');
+var PhotosApiUtil = require('../util/photosApiUtil');
 
 var ClientActions = {
   loginWithUsername: function (user, callback) {
@@ -29,6 +30,14 @@ var ClientActions = {
 
   fetchAllPossibleMatches: function () {
     UsersApiUtil.fetchAllPossibleMatches();
+  },
+
+  uploadImage: function (photo_url) {
+    PhotosApiUtil.uploadImage(photo_url);
+  },
+
+  getCurrentUserPhotos: function () {
+    PhotosApiUtil.getCurrentUserPhotos();
   }
 };
 

@@ -55,6 +55,13 @@ class User < ActiveRecord::Base
     source: :liker
   )
 
+  has_many(
+    :photos,
+    class_name: "UserPhoto",
+    foreign_key: :user_id,
+    primary_key: :id
+  )
+
   def self.find_by_credentials(name_field, password, type)
     if type == 'username'
       user = User.find_by(username: name_field)
