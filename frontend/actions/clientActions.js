@@ -26,6 +26,10 @@ var ClientActions = {
   signup: function (user, callback) {
     UsersApiUtil.signup(user, callback);
   },
+
+  fetchAllPossibleMatches: function () {
+    UsersApiUtil.fetchAllPossibleMatches();
+  }
 };
 
 module.exports = ClientActions;

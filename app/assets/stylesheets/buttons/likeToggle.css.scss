@@ -1,0 +1,33 @@
+#like-toggle {
+  background: #ffb640;
+  border-color: #ffb640;
+  color: white;
+
+  text-align: center;
+  line-height: 34px;
+
+  z-index: 3;
+  top: 73px;
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  width: 128px;
+  margin-left: -64px;
+
+  font-size: 15px;
+  white-space: nowrap;
+  cursor: pointer;
+
+  padding: 0;
+  vertical-align: top;
+  height: 42px;
+  text-transform: none;
+  overflow: hidden;
+  border-radius: 2px;
+  font-size: 15px;
+}
+
+// border: 1px solid #ccd0d9;
+// color: #5e6573;
+// line-height: 39px;
+// background-color: rgba(174,180,191,0.1);
