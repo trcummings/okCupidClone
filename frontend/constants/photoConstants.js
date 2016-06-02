@@ -1,0 +1,4 @@
+module.exports = {
+  NEW_PHOTO: 'NEW_PHOTO',
+  CURRENT_USER_PHOTOS: 'CURRENT_USER_PHOTOS'
+};

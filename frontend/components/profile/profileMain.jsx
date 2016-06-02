@@ -4,6 +4,7 @@ var SessionStore = require('../../stores/sessionStore');
 var HelperUtil = require('../../util/helperUtil');
 var BasicInfoEditModal = require('./modals/basicInfoEditModal');
 var ProfileAboutTab = require('./profileAboutTab');
+var PhotoStore = require('../../stores/photoStore');
 
 var Tabs = ({
   0: function () {
@@ -26,8 +27,21 @@ var ProfileMain = React.createClass({
 
   getInitialState: function () {
     return {
-      selectedTab: 0
+      selectedTab: 0,
+      userPhotos: PhotoStore.returnCurrentUserPhotos()
     };
+  },
+
+  componentDidMount: function () {
+    this.photoListener = PhotoStore.addListener(function () {
+      this.setState({ userPhotos: PhotoStore.returnCurrentUserPhotos() });
+    }.bind(this));
+
+    ClientActions.getCurrentUserPhotos();
+  },
+
+  componentWillUnmount: function () {
+    this.photoListener.remove();
   },
 
   selectTab: function (event) {
@@ -40,8 +54,19 @@ var ProfileMain = React.createClass({
     return Tabs[this.state.selectedTab]();
   },
 
+  handlePhotoAddClick: function (event) {
+    event.preventDefault();
+
+    cloudinary.openUploadWidget(
+      window.cloudinary_options,
+      function (error, images) {
+        ClientActions.uploadImage(images[0].secure_url);
+    });
+  },
+
   render: function () {
     var currentUser = SessionStore.currentUser();
+    var currentUserPhotos = PhotoStore.returnCurrentUserPhotos();
     // var pane = this.props.panes[this.state.selectedTab];
 
     // photo is 215x200
@@ -51,7 +76,19 @@ var ProfileMain = React.createClass({
         <div id='profile-main'>
           <div id='tabbed-heading'>
             <div id='profile-thumbs' className='group'>
-
+              {
+                currentUserPhotos.map(function (photo, index) {
+                  return (
+                    <img
+                      key={index}
+                      className={'user-photo'}
+                      src={photo.photo_url}
+                      alt={'Photo of ' + currentUser.username }
+                    />
+                  );
+                })
+              }
+              <button onClick={this.handlePhotoAddClick}>Add Photo</button>
             </div>
 
             <ul className='page-tabs'>
