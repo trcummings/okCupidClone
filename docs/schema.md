@@ -28,6 +28,40 @@ offspring         | string    |
 pets              | string    |
 speaks            | string    |
 
+## profile_abouts
+column name     | data type | details
+----------------|-----------|-----------------------
+id              | integer   | not null, primary key
+user_id         | integer   | not null, foreign key, unique
+self_summary    | text      |
+doing_with_life | text      |
+really_good_at  | text      |
+favorite_things | text      |
+six_things      | text      |
+thinking_about  | text      |
+typical_friday  | text      |
+message_me_if   | text      |
+
+## profile_looking_fors
+column name     | data type | details
+----------------|-----------|-----------------------
+id              | integer   | not null, primary key
+user_id         | integer   | not null, foreign key, unique
+gender          | text      | not null
+age_range       | text      | not null, between 18 and 99
+distance        | text      | not null, minimum 5mi
+status          | text      | not null
+dating_type     | text      | not null, limited to: [short term, long term, new friends, casual sex, smelly hog crew, three children in a trench coat trying to buy a ticket to an r rated movie]
+
+## user_photos
+column name       | data type | details
+------------------|-----------|-----------------------
+id                | integer   | not null, primary key
+user_id           | integer   | not null, foreign key, indexed
+photo_url         | string    | not null, foreign key, indexed
+description       | string    |
+is_default        | boolean   | default: true, indexed
+
 ## visits_table
 column name     | data type | details
 ----------------|-----------|-----------------------
@@ -56,30 +90,6 @@ description     | string    | not null
 answer_choices  | string    | not null
 multi_select    | boolean   | not null, default: false
 
-## profile_abouts
-column name     | data type | details
-----------------|-----------|-----------------------
-id              | integer   | not null, primary key
-user_id         | integer   | not null, foreign key, unique
-self_summary    | text      |
-doing_with_life | text      |
-six_things      | text      |
-thinking_about  | text      |
-typical_friday  | text      |
-message_me_if   | text      |
-
-## profile_looking_fors
-column name     | data type | details
-----------------|-----------|-----------------------
-id              | integer   | not null, primary key
-user_id         | integer   | not null, foreign key, unique
-gender          | text      | not null
-age_range       | text      | not null, between 18 and 99
-distance        | text      | not null, minimum 5mi
-status          | text      | not null
-dating_type     | text      | not null, limited to: [short term, long term, new friends, casual sex, smelly hog crew, three children in a trench coat trying to buy a ticket to an r rated movie]
-
-
 ## likes
 column name       | data type | details
 ------------------|-----------|-----------------------
@@ -87,16 +97,6 @@ id                | integer   | not null, primary key
 liker_id          | integer   | not null, foreign key, unique [other_user_id]
 likee_id          | string    | not null, foreign key, unique [user_id]
 likee_saw         | boolean   | not null, default: false
-
-## user_photos
-column name       | data type | details
-------------------|-----------|-----------------------
-id                | integer   | not null, primary key
-user_id           | integer   | not null, foreign key, indexed
-photo_url         | string    | not null, foreign key, indexed
-description       | string    |
-is_default        | boolean   | default: true, indexed
-
 
 ## Messages
 column name       | data type | details

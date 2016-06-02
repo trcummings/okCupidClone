@@ -33,45 +33,52 @@ var Header = React.createClass({
 
   render: function () {
     return (
-      <header>
-        <nav className='header-nav group'>
-          <h1 className='header-logo'>
+      <nav id='navigation'>
+        <div id='nav-left'>
+          <h1 className='nav-logo'>
             <a href="#/home">PerfectPair</a>
           </h1>
 
-          <h1 className='header-logo'>
-            <a href="#/matches">Browse Matches</a>
-          </h1>
-
-          <ul className='header-list group'>
+          <ul className='nav-links nav-item'>
             <li>
-              Visitors
+              <a href="#/matches">Browse Matches</a>
+            </li>
+          </ul>
+        </div>
+
+        <div id='nav-right'>
+          <ul className='nav-links nav-item group'>
+            <li id='glyph'>
+              [V]
+              <p>Visitors</p>
             </li>
 
-            <li>
-              Likes
+            <li id='glyph'>
+              [L]
+              <p>Likes</p>
             </li>
 
-            <li>
+            <li id='messages-drop-down'>
               <button
                 onClick={this.toggleDropDown.bind(this, 'messagesDropDown')}
-              >
+                >
                 Messages
               </button>
               {this.renderDropDown('messagesDropDown')}
             </li>
 
-            <li>
+            <li id='profile-drop-down'>
               <button
                 onClick={this.toggleDropDown.bind(this, 'profileDropDown')}
-              >
+                >
                 Profile
               </button>
               {this.renderDropDown('profileDropDown')}
             </li>
           </ul>
-        </nav>
-      </header>
+        </div>
+
+      </nav>
     );
   }
 });

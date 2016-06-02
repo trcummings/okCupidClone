@@ -3,11 +3,27 @@ var React = require('react'),
 
 var BasicInfoEditForm = React.createClass({
   getInitialState: function () {
-    return ({ });
+    return ({});
   },
 
   handleUsernameChange: function (event) {
     this.setState({ username: event.target.value });
+  },
+
+  handleGenderChange: function (event) {
+    this.setState({ gender: event.target.value });
+  },
+
+  handleSubmit: function (event) {
+    event.preventDefault();
+
+    console.log("tried to submipbt");
+  },
+
+  handleCancel: function (event) {
+    event.preventDefault();
+
+    console.log("tried to cancel");
   },
 
   render: function() {
@@ -28,6 +44,57 @@ var BasicInfoEditForm = React.createClass({
             placeholder={currentUser.username}
           />
         </label>
+
+        <label onBlur={this.handleGenderChange}>
+          I am a
+          <select className="dropdown gender" onChange={this.handleGenderChange}>
+            <option value="Anime Enthusiast">Anime Enthusiast</option>
+            <option value="Woman">Woman</option>
+            <option value="Man">Man</option>
+          </select>
+        </label>
+
+        <label>
+          My Birthday
+          <select className='dropdown'>
+            <option value="Anime Enthusiast">Anime Enthusiast</option>
+            <option value="Woman">Woman</option>
+            <option value="Man">Man</option>
+          </select>
+
+          <select className='dropdown'>
+            <option value="Anime Enthusiast">Anime Enthusiast</option>
+            <option value="Woman">Woman</option>
+            <option value="Man">Man</option>
+          </select>
+
+          <select className='dropdown'>
+            <option value="Anime Enthusiast">Anime Enthusiast</option>
+            <option value="Woman">Woman</option>
+            <option value="Man">Man</option>
+          </select>
+        </label>
+
+        Country
+
+        location edit (zip code)
+
+
+        <button
+          id='continue_button'
+          className='save-button'
+          onClick={this.handleSubmit}
+          >
+          Save
+        </button>
+
+        <button
+          id='continue_button'
+          className='save-button'
+          onClick={this.handleCancel}
+          >
+          Cancel
+        </button>
       </form>
     );
   }
