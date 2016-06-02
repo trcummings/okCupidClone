@@ -2,6 +2,7 @@ var React = require('react');
 var ClientActions = require('../../actions/clientActions');
 var HelperUtil = require('../../util/helperUtil');
 var AuthInfoStore = require('../../stores/authInfoStore');
+var ErrorStore = require('../../stores/errorStore');
 
 var SecondSignUpForm = React.createClass({
   getInitialState: function () {
@@ -13,7 +14,13 @@ var SecondSignUpForm = React.createClass({
         dd: "",
         yyyy: ""
       },
-      country: "America"
+      country: "America",
+      zipErrored: "",
+      bdErrored: "",
+      emailErrored: "",
+      zipStatus: "",
+      bdStatus: "",
+      emailStatus: ""
     });
   },
 
@@ -59,7 +66,11 @@ var SecondSignUpForm = React.createClass({
       birth_date.dd.length === 0 ||
       birth_date.yyyy.length === 0
     ) {
-      this.setState({ bdayValidityMsg: "You need to enter a birth date!" });
+      this.setState({
+        bdayValidityMsg: "You need to enter a birth date!",
+        bdStatus: 'error-field',
+        bdErrored: 'error-statement'
+       });
       this.bdayValid = false;
     } else if (
       birth_date.mm.length > 0 &&
@@ -67,16 +78,32 @@ var SecondSignUpForm = React.createClass({
       birth_date.yyyy.length > 0
     ) {
       if (AuthInfoStore.birthdateIsValid(birth_date) === 'tooYoung') {
-        this.setState({ bdayValidityMsg: "Too young to use this site! Go play a nintendo or beep boop on the Google" });
+        this.setState({
+          bdayValidityMsg: "Too young to use this site! Go play a nintendo or beep boop on the Google",
+          bdStatus: 'error-field',
+          bdErrored: 'error-statement'
+         });
         this.bdayValid = false;
       } else if (AuthInfoStore.birthdateIsValid(birth_date) === 'tooOld') {
-        this.setState({ bdayValidityMsg: "This seems...off" });
+        this.setState({
+          bdayValidityMsg: "This seems...off",
+          bdStatus: 'error-field',
+          bdErrored: 'error-statement'
+         });
         this.bdayValid = false;
       } else if (AuthInfoStore.birthdateIsValid(birth_date) === 'indecipherable') {
-        this.setState({ bdayValidityMsg: "Uh, are those ...numbers?" });
+        this.setState({
+          bdayValidityMsg: "Uh, are those ...numbers?",
+          bdStatus: 'error-field',
+          bdErrored: 'error-statement'
+         });
         this.bdayValid = false;
       } else {
-        this.setState({ bdayValidityMsg: "" });
+        this.setState({
+          bdayValidityMsg: "",
+          bdStatus: 'all-clear-field',
+          bdErrored: 'all-clear-statement'
+         });
         this.bdayValid = true;
         AuthInfoStore.addInfoPiece('birth_date', birth_date);
       }
@@ -90,18 +117,34 @@ var SecondSignUpForm = React.createClass({
     var zip = parseInt(event.target.value);
     var location = "";
     if (event.target.value === "") {
-      this.setState({ zipCodeValidityMsg: "You need a zip code!" });
+      this.setState({
+        zipCodeValidityMsg: "You need a zip code!",
+        zipStatus: 'error-field',
+        zipErrored: 'error-statement'
+      });
     } else if (isNaN(zip)) {
-      this.setState({ zipCodeValidityMsg: "That aint no zip code I've ever heard of." });
+      this.setState({
+        zipCodeValidityMsg: "That aint no zip code I've ever heard of.",
+        zipStatus: 'error-field',
+        zipErrored: 'error-statement'
+       });
     } else if (event.target.value.length === 5) {
       ClientActions.lookUpZipCode(zip);
       this.listener = AuthInfoStore.addListener(function () {
         this.zipCodeValid = true;
-        this.setState({ zipCodeValidityMsg: "aah, "  + AuthInfoStore.zipLocation() });
+        this.setState({
+          zipCodeValidityMsg: "aah, "  + AuthInfoStore.zipLocation(),
+          zipStatus: 'all-clear-field',
+          zipErrored: 'all-clear-statement'
+         });
         // zip code match success
       }.bind(this));
     } else {
-      this.setState({ zipCodeValidityMsg: "..." });
+      this.setState({
+        zipCodeValidityMsg: "...",
+        zipStatus: 'all-clear-field',
+        zipErrored: 'all-clear-statement'
+       });
     }
   },
 
@@ -122,14 +165,25 @@ var SecondSignUpForm = React.createClass({
     if (this.state.email && this.state.dupEmail) {
       if (this.state.email === this.state.dupEmail) {
         AuthInfoStore.addInfoPiece('email', this.state.email);
-        this.setState({ emailValidityMsg: "" });
+        this.setState({
+          emailValidityMsg: "",
+          emailStatus: 'all-clear-field'
+        });
         this.emailValid = true;
         // email match success
       } else {
-        this.setState({ emailValidityMsg: "Emails don't match!" });
+        this.setState({
+          emailValidityMsg: "Emails don't match!",
+          emailStatus: 'error-field',
+          emailErrored: 'error-statement'
+         });
       }
     } else {
-      this.setState({ emailValidityMsg: "You need an email!" });
+      this.setState({
+        emailValidityMsg: "You need an email!",
+        emailStatus: 'error-field',
+        emailErrored: 'error-statement'
+       });
     }
   },
 
@@ -159,18 +213,21 @@ var SecondSignUpForm = React.createClass({
               Birthdate
 
               <input
+                className={this.state.bdStatus}
                 type='text'
                 onChange={this.handleDateChange.bind(this, 'mm')}
                 placeholder="MM"
               />
 
               <input
+                className={this.state.bdStatus}
                 type='text'
                 onChange={this.handleDateChange.bind(this, 'dd')}
                 placeholder="DD"
               />
 
               <input
+                className={this.state.bdStatus}
                 type='text'
                 onChange={this.handleDateChange.bind(this, 'yyyy')}
                 placeholder="YYYY"
@@ -178,7 +235,7 @@ var SecondSignUpForm = React.createClass({
 
             </label>
 
-            <span className="birthday-validity-msg">
+            <span className={"birthday-validity-msg " + this.state.bdErrored}>
               {this.state.bdayValidityMsg}
             </span>
           </div>
@@ -200,13 +257,14 @@ var SecondSignUpForm = React.createClass({
             <label className="zip_code_label text_box_item form_two_item" onBlur={this.zipCodeValidation}>
               Zip Code
               <input
+                className={this.state.zipStatus}
                 type="text"
                 onChange={this.handleZipCodeChange}
                 placeholder="eg. 10001"
               />
             </label>
 
-            <span className="zip-code-validity-msg">
+            <span className={'zip-code-validity-msg ' + this.state.zipErrored}>
               {this.state.zipCodeValidityMsg}
             </span>
           </div>
@@ -214,10 +272,19 @@ var SecondSignUpForm = React.createClass({
           <div className="row group">
             <label className="text_box_item form_two_item" onBlur={this.emailValidation}>
               Email
-              <input type="text" onChange={this.handleEmailChange} placeholder="eg. example@url.com"/>
-              <input type="text" onChange={this.handleDupEmailChange} placeholder="Confirmation email"/>
+              <input
+                className={this.state.emailStatus}
+                type="text" onChange={this.handleEmailChange}
+                placeholder="eg. example@url.com"
+              />
+              <input
+                className={this.state.emailStatus}
+                type="text"
+                onChange={this.handleDupEmailChange}
+                placeholder="Confirmation email"
+                />
             </label>
-            <span className="email-validity-msg">
+            <span className={"email-validity-msg " + this.state.emailErrored}>
               {this.state.emailValidityMsg}
             </span>
           </div>
