@@ -11,9 +11,21 @@ User.create!(
   password: 'password',
   email: 'gemp@denp.com',
   birth_date: Date.new(1992, 05, 14),
-  country: 'murica',
+  country: 'America',
   zip_code: 19027,
   location: 'Elkins Park',
   gender: 'Anime Enthusiast',
   orientation: 'Sapiosexual'
+)
+
+User.create!(
+  username: "dimp",
+  password: 'password',
+  email: "dimp@demp.com",
+  birth_date: Date.new(1990, 11, 13),
+  country: "America",
+  zip_code: 19119,
+  location: "Philadelphia",
+  gender: "Woman",
+  orientation: "Gay">
 )

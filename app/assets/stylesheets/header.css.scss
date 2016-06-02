@@ -1,0 +1,130 @@
+#navigation {
+  background: #104da1;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 90000;
+  height: 66px;
+  transition-property: padding-right,min-width;
+
+  font-family: 'Open Sans',sans-serif;
+  font-weight: normal;
+  color: #5e6573;
+  font-size: 15px;
+
+  min-width: 940px;
+  margin: auto;
+
+  .nav-item {
+    float: left;
+    color: #d6e1f9;
+  }
+
+  .nav-links {
+    margin: 0 10px;
+    display: inline-block;
+  }
+
+  #nav-left {
+    float: left;
+    margin-left: 15px;
+
+    a {
+      padding: 4px 23px 0;
+      font-size: 16px;
+      line-height: 61px;
+    }
+
+    .nav-logo {
+      float: left;
+    }
+
+    .nav-links {
+      float: left;
+    }
+
+    .nav-item {
+      a {
+        position: relative;
+        display: block;
+        color: #d6e1f9;
+      }
+    }
+  }
+
+  #nav-right {
+    float: right;
+    margin-right: 15px;
+
+    .nav-links > li {
+      float: left;
+      padding: 4px 23px 0;
+      font-size: 16px;
+      line-height: 61px;
+    }
+
+    #glyph p {
+      display: none;
+    }
+
+    #glyph:hover {
+      p {
+        display: block;
+        padding: 20px;
+        border: 1px solid black;
+      }
+
+    }
+
+    #profile-drop-down {
+      position: relative;
+    }
+
+    #messages-drop-down {
+      position: relative;
+    }
+
+
+    .header-profile-options {
+      position: absolute;
+      left: -1px;
+      font-size: 14px;
+      white-space: nowrap;
+      background: #fff;
+      border-left: 1px solid #ccc;
+      border-right: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      overflow: hidden;
+      border-top: 1px solid #ccc;
+      color: #000;
+      display: block;
+
+      ul {
+        position: relative;
+        display: none;
+      }
+
+      ul:hover {
+        display: block;
+
+        li {
+          position: relative;
+          display: block;
+        }
+      }
+
+      li:hover {
+        display: block;
+        background: #ccc;
+      }
+    }
+  }
+
+
+
+
+}

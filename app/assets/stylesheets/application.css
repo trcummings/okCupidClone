@@ -19,4 +19,6 @@
  *= require ./auth/modal
  *= require header
  *= require errorMessages
+ *= require ./profile/profileMain
+ *= require main
  */

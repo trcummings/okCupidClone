@@ -1,4 +1,152 @@
-.profile-user-name {
+#profile-main {
+  position: relative;
+  margin: auto;
+  display:  block;
+  width: 940px;
+  background-color: white;
+  border-radius: 5px;
+  border-top: 1px solid white;
+  top: 20px;
+
   font-size: 15px;
-  font-family: 'Open Sans',sans-serif;
+  font-family: 'Open Sans', sans-serif;
+
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 60px;
+
+
+  #tabbed-heading {
+    padding-top: 40px;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: 40px;
+    height: 270px;
+    line-height: 22px;
+    border-bottom: 1px solid #ccc;
+
+
+    #basic-information {
+      top: 100px;
+      left: 270px;
+      bottom: auto;
+      position: absolute;
+      float: right;
+      border-radius: 3px;
+      // height: 70px;
+      // width: 210px;
+
+      display: inline-block;
+      float: left;
+      overflow: visible;
+      line-height: 22px;
+
+      padding: 0 40px 0 0;
+      cursor: pointer;
+
+      #user-name {
+        text-align: left;
+        color: #474d59;
+        line-height: 44px;
+        font-size: 28px;
+        font-weight: 300;
+      }
+
+      ul {
+        color: #949aa6;
+        font-size: 15px;
+        float: left;
+
+        li {
+          float: left;
+        }
+
+        li:after {
+          white-space: pre;
+          content: ' • ';
+        }
+      }
+
+      ul:before {
+        content: #128393;
+      }
+
+      .profile-edit-button {
+
+      }
+    }
+
+    #profile-thumbs {
+      position: absolute;
+      float: left;
+      width: 210px;
+      height: 195px;
+      border: 1px solid black;
+      border-radius: 5px;
+    }
+
+  }
+
+  #basic-information:hover {
+    background-color: lightgrey;
+  }
+
+  .page-tabs {
+    display: block;
+    float: left;
+    position: absolute;
+    margin-top: 9px;
+    padding-left: 0;
+    height: 30px;
+    bottom: 100px;
+    line-height: 22px;
+    color: #5e6573;
+
+    li {
+      float: left;
+      margin-right: 30px;
+      height: 31px;
+      color: #474d59;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+      font-size: 18px;
+      line-height: 25px;
+    }
+
+    li:active {
+      color: #4c7bd9;
+      border-bottom: 3px solid #4c7bd9;
+    }
+
+  }
+
+  .profile-monolith {
+    display: block;
+    float: left;
+    margin-left: 30px;
+    margin-right: 30px;
+
+    #main-column {
+      float: left;
+      width: 550px;
+      margin: auto;
+    }
+
+    #right-column {
+      float: right;
+      width: 300px;
+      margin: auto;
+
+      #looking-for {
+
+      }
+
+      #details {
+
+      }
+
+    }
+
+  }
+
 }

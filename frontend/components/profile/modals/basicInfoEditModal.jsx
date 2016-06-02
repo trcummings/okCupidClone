@@ -1,6 +1,7 @@
 var React = require('react'),
     Modal = require("react-modal"),
-    BasicInfoEditForm = require('../forms/basicInfoEditForm');
+    BasicInfoEditForm = require('../forms/basicInfoEditForm'),
+    HelperUtil = require('../../../util/helperUtil');
 
 var modalStyle = {
   overlay : {
@@ -50,8 +51,20 @@ var BasicInfoEditModal = React.createClass({
 
 
   render: function() {
+    var currentUser = this.props.user;
+
     return (
-      <div>
+      <div onClick={this.openModal}>
+        <ul>
+          <li>{currentUser.location}</li>
+
+          <li>{HelperUtil.returnAge(currentUser.birth_date)} </li>
+
+          <li>{currentUser.gender}</li>
+
+          <i className="fa fa-pencil" aria-hidden="true"></i>
+        </ul>
+
         <Modal
           isOpen={this.state.modalOpen}
           onRequestClose={this.closeModal}
@@ -60,13 +73,6 @@ var BasicInfoEditModal = React.createClass({
         >
           <BasicInfoEditForm />
         </Modal>
-
-        <button
-          onClick={this.openModal}
-          className='profile-edit-button'
-        >
-          Edit Details
-        </button>
       </div>
     );
   }

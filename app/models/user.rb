@@ -29,6 +29,32 @@ class User < ActiveRecord::Base
 
   after_initialize :ensure_session_token
 
+  has_many(
+    :people_this_user_liked,
+    class_name: "Like",
+    foreign_key: :liker_id,
+    primary_key: :id
+  )
+
+  has_many(
+    :people_who_liked_this_user,
+    class_name: "Like",
+    foreign_key: :likee_id,
+    primary_key: :id
+  )
+
+  has_many(
+    :likees,
+    through: :people_this_user_liked,
+    source: :likee
+  )
+
+  has_many(
+    :likers,
+    through: :people_who_liked_this_user,
+    source: :liker
+  )
+
   def self.find_by_credentials(name_field, password, type)
     if type == 'username'
       user = User.find_by(username: name_field)
