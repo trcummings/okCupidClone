@@ -18,4 +18,5 @@
  *= require ./auth/formThree
  *= require ./auth/modal
  *= require header
+ *= require errorMessages
  */

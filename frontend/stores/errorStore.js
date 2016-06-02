@@ -26,6 +26,16 @@ ErrorStore.form = function () {
   return _form.slice();
 };
 
+ErrorStore.errorsArray = function () {
+  var result = [];
+
+  Object.keys(_errors).forEach(function (field) {
+    result.push(_errors[field]);
+  });
+
+  return result;
+};
+
 
 ErrorStore.__onDispatch = function (payload) {
   switch (payload.actionType) {

@@ -2,10 +2,11 @@ var AppDispatcher = require('../dispatcher/dispatcher');
 var ErrorConstants = require('../constants/errorConstants');
 
 ErrorActions = {
-  setErrors: function (errors) {
+  setErrors: function (form, errors) {
     AppDispatcher.dispatch({
       actionType: ErrorConstants.SET_ERRORS,
-      errors: errors
+      errors: errors,
+      form: form
     });
   },
 
