@@ -167,7 +167,8 @@ var SecondSignUpForm = React.createClass({
         AuthInfoStore.addInfoPiece('email', this.state.email);
         this.setState({
           emailValidityMsg: "",
-          emailStatus: 'all-clear-field'
+          emailStatus: 'all-clear-field',
+          emailErrored: 'all-clear-statement'
         });
         this.emailValid = true;
         // email match success
