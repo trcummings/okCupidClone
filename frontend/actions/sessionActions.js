@@ -16,8 +16,7 @@ var SessionActions = {
     AppDispatcher.dispatch({
       actionType: SessionConstants.LOG_OUT
     });
-  }
-
+  },
 };
 
 module.exports = SessionActions;

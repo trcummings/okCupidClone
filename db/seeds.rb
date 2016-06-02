@@ -27,5 +27,5 @@ User.create!(
   zip_code: 19119,
   location: "Philadelphia",
   gender: "Woman",
-  orientation: "Gay">
+  orientation: "Gay"
 )

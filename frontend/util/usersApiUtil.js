@@ -1,4 +1,5 @@
 var SessionActions = require('./../actions/sessionActions');
+var ServerActions = require('./../actions/serverActions');
 
 var UsersApiUtil = {
   signup: function (user, callback) {
@@ -11,6 +12,23 @@ var UsersApiUtil = {
       success: function (currentUser) {
         SessionActions.receiveCurrentUser(currentUser);
         callback();
+      },
+      error: function (xhr) {
+        debugger;
+        // console.log('UserApiUtil#createAccount error');
+        // var errors = xhr.responseJSON;
+        // ErrorActions.setErrors("signup", errors);
+      }
+    });
+  },
+
+  fetchAllPossibleMatches: function () {
+    $.ajax({
+      url: '/api/users',
+      type: 'GET',
+      dataType: 'json',
+      success: function (users) {
+        ServerActions.receiveAllPossibleMatches(users);
       },
       error: function (xhr) {
         debugger;

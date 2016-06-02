@@ -1,0 +1,46 @@
+#match-card {
+  display: block;
+  position: relative;
+  background-color: white;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 385px;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  opacity: 1;
+  visibility: visible;
+
+  #match-username {
+    position: relative;
+    width: 100%;
+    color: #474d59;
+    font-size: 22px;
+    vertical-align: top;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  #match-info {
+    position: relative;
+    width: 100%;
+    padding: 0 25px;
+    margin-top: -1px;
+    text-align: center;
+    font-size: 15px;
+    line-height: 22px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+}
+  #match-card > #like-toggle {
+    display: none;
+  }
+
+  #match-card:hover > #like-toggle {
+    display: block;
+  }
+
+// transform 150ms ease;
