@@ -1,11 +1,33 @@
 .authForm {
   .error-field {
-    border: 1px solid red;
+    border: 1px solid #f95133;
+  }
+
+  .all-clear-field {
+    border: 1px solid #1fc174;
+  }
+
+  .all-clear-statement:before {
+    float: right;
+    content: '\2713';
   }
 
   .error-statement {
     font-family: sans-serif;
     font-size: 14px;
-    color: red;
+    color: #f95133;
   }
+
+  .error-statement:before {
+    float: left;
+    content: "\2717";
+  }
+
+  .all-clear-statement {
+    font-family: sans-serif;
+    font-size: 14px;
+    color: #1fc174;
+  }
+
+
 }
