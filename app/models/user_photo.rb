@@ -8,6 +8,7 @@
 #  description :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  is_default  :boolean          default(TRUE)
 #
 
 class UserPhoto < ActiveRecord::Base
@@ -19,4 +20,13 @@ class UserPhoto < ActiveRecord::Base
     foreign_key: :user_id,
     primary_key: :id
   )
+
+  def to_param
+    user_id
+  end
+
+  def set_is_default_to_false
+    self.is_default = false
+  end
+
 end

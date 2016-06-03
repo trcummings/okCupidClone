@@ -26,13 +26,9 @@ var MatchesIndex = React.createClass({
     // don't even do shit yet
   },
 
-  matchDetailClick: function () {
-    // don't even do shit at all, b
-  },
-
   render: function () {
     var matches = this.state.allMatches;
-
+    // console.log("INDEX RENDER");
     return (
       <div id='match-index'>
         <div id='match-monolith'>
@@ -55,7 +51,6 @@ var MatchesIndex = React.createClass({
                   id='match-index-item'
                   key={index}
                   user={match}
-                  onClick={this.matchDetailClick}
                 />
               );
             })

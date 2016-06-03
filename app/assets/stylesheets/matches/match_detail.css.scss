@@ -19,6 +19,12 @@
       background-color: white;
       border-radius: 100%;
       cursor: pointer;
+      overflow: hidden;
+
+      img {
+        min-height: 180px;
+        min-width: auto;
+      }
     }
 
     #basic-information {

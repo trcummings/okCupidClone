@@ -3,17 +3,57 @@ var PropTypes = React.PropTypes;
 var HelperUtil = require('../../util/helperUtil');
 var SessionStore = require('../../stores/sessionStore');
 var LikeToggle = require('../widgetButtons/likeToggle');
+var ClientActions = require('../../actions/clientActions');
+var PhotoStore = require('../../stores/photoStore');
 
 var MatchesIndexItem = React.createClass({
   contextTypes: {
     router: React.PropTypes.object.isRequired
   },
 
+  getInitialState: function () {
+    return {
+      profilePhoto: PhotoStore.otherUserDefaultProfilePic()
+    };
+  },
+
+  componentDidMount: function () {
+    this.photoListener = PhotoStore.addListener(function () {
+      this.setState({
+        profilePhoto: PhotoStore.otherUserDefaultProfilePic()
+    });
+    }.bind(this));
+
+    ClientActions.getOtherUserPics(this.props.user.id);
+  },
+
+  componentWillUnmount: function () {
+    this.photoListener.remove();
+  },
+
   renderMatchDetail: function () {
     this.context.router.push('/profile/' + this.props.user.username);
   },
 
+  renderProfilePhoto: function () {
+    var user = this.props.user;
+    var profilePhoto = this.state.profilePhoto;
+
+    if (profilePhoto.photo_url) {
+      return (
+        <img
+          src={profilePhoto.photo_url}
+          alt={'Photo of ' + user.username}
+          />
+      );
+    } else {
+      return (<div />);
+    }
+
+  },
+
   render: function() {
+
     var user = this.props.user;
 
     return (
@@ -22,7 +62,7 @@ var MatchesIndexItem = React.createClass({
         className='group'
         onClick={this.renderMatchDetail}>
         <div id='match-pic'>
-
+          {this.renderProfilePhoto()}
         </div>
 
         <div id='match-info-container' className= 'group'>
