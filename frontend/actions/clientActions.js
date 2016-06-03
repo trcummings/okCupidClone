@@ -2,6 +2,7 @@ var SessionApiUtil = require('../util/sessionApiUtil');
 var UserAuthApiUtil = require('../util/userAuthApiUtil');
 var UsersApiUtil = require('../util/usersApiUtil');
 var PhotosApiUtil = require('../util/photosApiUtil');
+var MessageApiUtil = require('../util/messageApiUtil');
 
 var ClientActions = {
   loginWithUsername: function (user, callback) {
@@ -38,6 +39,10 @@ var ClientActions = {
 
   getCurrentUserPhotos: function () {
     PhotosApiUtil.getCurrentUserPhotos();
+  },
+
+  sendMessage: function () {
+    MessageApiUtil.sendMessage();
   }
 };
 
