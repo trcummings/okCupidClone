@@ -2,7 +2,8 @@ var React = require('react'),
     UserStore = require('../../stores/userStore'),
     ClientActions = require('../../actions/clientActions'),
     MatchesIndexItem = require('./matchesIndexItem'),
-    SessionStore = require('../../stores/sessionStore');
+    SessionStore = require('../../stores/sessionStore'),
+    MessageBox = require('../messages/messageBox');
 
 var MatchesIndex = React.createClass({
   getInitialState: function () {

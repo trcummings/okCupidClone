@@ -62,6 +62,10 @@ class User < ActiveRecord::Base
     primary_key: :id
   )
 
+  def to_param
+    username
+  end
+
   # has_many(
   #   :people_this_user_sent_a_message_to
   #

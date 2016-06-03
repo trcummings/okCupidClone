@@ -24,4 +24,6 @@
  *= require ./matches/match_card
  *= require ./matches/match_index
  *= require ./buttons/likeToggle
+ *= require ./messages/messageBox
+ *= require ./matches/match_detail
  */

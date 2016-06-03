@@ -5,6 +5,13 @@ var SessionStore = require('../../stores/sessionStore');
 var LikeToggle = require('../widgetButtons/likeToggle');
 
 var MatchesIndexItem = React.createClass({
+  contextTypes: {
+    router: React.PropTypes.object.isRequired
+  },
+
+  renderMatchDetail: function () {
+    this.context.router.push('/profile/' + this.props.user.username);
+  },
 
   render: function() {
     var user = this.props.user;
@@ -14,6 +21,12 @@ var MatchesIndexItem = React.createClass({
         <div id='match-pic'>
 
         </div>
+
+        <button
+          onClick={this.renderMatchDetail}
+          >
+          VIEW
+        </button>
 
         <h1 id='match-username'>{user.username}</h1>
         <ul id='match-info'>

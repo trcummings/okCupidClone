@@ -105,3 +105,9 @@ id                | integer   | not null, primary key
 sender_id         | integer   | not null, foreign key, indexed
 reciever_id       | integer   | not null, foreign key, indexed
 chatlog_file_url  | string    | not null, indexed
+
+## Conversation
+column name       | data type | details
+------------------|-----------|------------------------
+id                | integer   | not null, primary key
+channel_name      | string    | not null, indexed
