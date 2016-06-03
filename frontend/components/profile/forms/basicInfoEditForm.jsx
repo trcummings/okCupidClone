@@ -23,7 +23,7 @@ var BasicInfoEditForm = React.createClass({
   handleCancel: function (event) {
     event.preventDefault();
 
-    console.log("tried to cancel");
+    this.props.closeModal();
   },
 
   render: function() {

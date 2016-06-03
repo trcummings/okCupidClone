@@ -26,7 +26,7 @@ var HelperUtil = {
     birthMonth = dateArray[0];
     birthDay = dateArray[1];
 
-    age = todayYear - birthYear; 
+    age = todayYear - birthYear;
 
     if (todayMonth < birthMonth - 1)
     {
@@ -38,6 +38,22 @@ var HelperUtil = {
       age--;
     }
     return age;
+  },
+
+  birthdayList: {
+    months: {
+      january: {},
+      february: {},
+      march: {},
+      april: {},
+      may: {},
+      june: {},
+      july: {},
+      september: {},
+      october: {},
+      november: {},
+      december: {}
+    }
   }
 };
 
