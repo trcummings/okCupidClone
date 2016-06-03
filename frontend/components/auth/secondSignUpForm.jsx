@@ -115,6 +115,8 @@ var SecondSignUpForm = React.createClass({
 // }
   zipCodeValidation: function (event) {
     var zip = parseInt(event.target.value);
+    var zipArray = (event.target.value).split("");
+
     var location = "";
     if (event.target.value === "") {
       this.setState({
@@ -128,8 +130,8 @@ var SecondSignUpForm = React.createClass({
         zipStatus: 'error-field',
         zipErrored: 'error-statement'
        });
-    } else if (event.target.value.length === 5) {
-      ClientActions.lookUpZipCode(zip);
+    } else if (zipArray.length === 5) {
+      ClientActions.lookUpZipCode(event.target.value);
       this.listener = AuthInfoStore.addListener(function () {
         this.zipCodeValid = true;
         this.setState({

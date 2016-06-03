@@ -55,6 +55,7 @@ var BasicInfoEditModal = React.createClass({
 
     return (
       <div onClick={this.openModal}>
+        <h1 id='user-name'>{currentUser.username}</h1>
         <ul>
           <li>{currentUser.location}</li>
 

@@ -83,8 +83,22 @@
       height: 195px;
       border: 1px solid black;
       border-radius: 5px;
+      overflow: hidden;
+
+      -webkit-transition: opacity .25s ease;
+      -moz-transition: opacity .25s ease;
+      -o-transition: opacity .25s ease;
+      -ms-transition: opacity .25s ease;
+      transition: opacity .25s ease;
+
+      > img {
+        width: auto;
+        margin: -50% 0 0 -100%;
+        opacity: 0;
+      }
 
       .first-user-photo {
+        opacity: 1;
         display: block;
         position: relative;
       }
@@ -94,6 +108,13 @@
       }
 
       #add-photo-button {
+        -webkit-transition: opacity .25s ease;
+        -moz-transition: opacity .25s ease;
+        -o-transition: opacity .25s ease;
+        -ms-transition: opacity .25s ease;
+        transition: opacity .25s ease;
+        opacity: 0;
+        
         bottom: 5px;
         left: 39px;
         position: absolute;
@@ -119,13 +140,20 @@
     }
 
     #profile-thumbs:hover {
+
       .other-user-photo {
         float: left;
         top: 0px;
         left: 210px;
         display: block;
       }
+
+      #add-photo-button {
+        display: block;
+        opacity: 1;
+      }
     }
+
   }
 
   #basic-information:hover {

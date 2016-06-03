@@ -124,7 +124,6 @@ var ProfileMain = React.createClass({
             </ul>
 
             <div id='basic-information'>
-              <h1 id='user-name'>{currentUser.username}</h1>
 
                 <BasicInfoEditModal user={currentUser}/>
             </div>
