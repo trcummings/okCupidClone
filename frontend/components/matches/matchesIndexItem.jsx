@@ -17,32 +17,32 @@ var MatchesIndexItem = React.createClass({
     var user = this.props.user;
 
     return (
-      <div id='match-card'>
+      <div
+        id='match-card'
+        className='group'
+        onClick={this.renderMatchDetail}>
         <div id='match-pic'>
 
         </div>
 
-        <button
-          onClick={this.renderMatchDetail}
-          >
-          VIEW
-        </button>
+        <div id='match-info-container' className= 'group'>
 
-        <h1 id='match-username'>{user.username}</h1>
-        <ul id='match-info'>
-          <li>
-            {HelperUtil.returnAge(user.birth_date)}
-          </li>
-          <li>
-            {user.location}
-          </li>
-        </ul>
+          <h1 id='match-username'>{user.username}</h1>
+          <ul id='match-info'>
+            <li>
+              {HelperUtil.returnAge(user.birth_date)}
+            </li>
+            <li>
+              {user.location}
+            </li>
+          </ul>
 
-        <div id='toggle-button'>
-          <LikeToggle
-            liker={SessionStore.currentUser()}
-            likee={user}
-          />
+          <div id='toggle-button'>
+            <LikeToggle
+              liker={SessionStore.currentUser()}
+              likee={user}
+            />
+          </div>
         </div>
       </div>
     );
