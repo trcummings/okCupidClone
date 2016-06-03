@@ -13,7 +13,7 @@
   float: left;
   margin: 5% 2% 5% 2%;
   background-color: grey;
-
+  cursor: pointer;
 
 
   #match-pic {
@@ -32,8 +32,6 @@
     -webkit-transition-timing-function: ease;
     transition-duration: .25s;
     transition-timing-function: ease;
-
-    cursor: pointer;
 
     #match-username {
       position: relative;

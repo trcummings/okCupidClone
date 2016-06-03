@@ -3,12 +3,12 @@ var ServerActions = require('./../actions/serverActions');
 
 var UsersApiUtil = {
   signup: function (user, callback) {
-    user.birth_date = JSON.stringify(user.birth_date);
     $.ajax({
       url: '/api/users',
       type: 'POST',
       dataType: 'json',
-      data: { user: user },
+      contentType: 'application/json',
+      data: JSON.stringify({ user: user }),
       success: function (currentUser) {
         SessionActions.receiveCurrentUser(currentUser);
         callback();
