@@ -80,17 +80,25 @@ var ProfileMain = React.createClass({
             <div id='profile-thumbs' className='group'>
               {
                 currentUserPhotos.map(function (photo, index) {
+                  var className;
+                  if (index === 0) {
+                    className = 'first-user-photo';
+                  } else {
+                    className = 'other-user-photo';
+                  }
                   return (
                     <img
                       key={index}
-                      className={'user-photo'}
+                      className={className}
                       src={photo.photo_url}
                       alt={'Photo of ' + currentUser.username }
                     />
                   );
                 })
               }
-              <button onClick={this.handlePhotoAddClick}>Add Photo</button>
+              <button
+                id='add-photo-button'
+                onClick={this.handlePhotoAddClick}>Add Photo</button>
             </div>
 
             <ul className='page-tabs'>

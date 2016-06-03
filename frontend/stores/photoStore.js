@@ -18,7 +18,7 @@ PhotoStore.addPhotoToCurrentUserPhotos = function (image) {
 PhotoStore.__onDispatch = function (payload) {
   switch(payload.actionType) {
     case PhotoConstants.NEW_PHOTO:
-      this.addPhotoCurrentToUserPhotos(payload.image);
+      this.addPhotoToCurrentUserPhotos(payload.image);
       break;
     case PhotoConstants.CURRENT_USER_PHOTOS:
       _currentUserPhotos = payload.images;

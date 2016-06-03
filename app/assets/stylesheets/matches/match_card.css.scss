@@ -7,40 +7,84 @@
   width: 280px;
   height: 385px;
   border-radius: 6px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.4);
   opacity: 1;
   visibility: visible;
+  float: left;
+  margin: 5% 2% 5% 2%;
+  background-color: grey;
 
-  #match-username {
-    position: relative;
-    width: 100%;
-    color: #474d59;
-    font-size: 22px;
-    vertical-align: top;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+
+
+  #match-pic {
+
   }
 
-  #match-info {
-    position: relative;
+  #match-info-container {
+    display: block;
+    top: 60%;
+    bottom: 0;
     width: 100%;
-    padding: 0 25px;
-    margin-top: -1px;
-    text-align: center;
-    font-size: 15px;
-    line-height: 22px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    position: absolute;
+    background: white;
+
+    -webkit-transition-duration: .25s;
+    -webkit-transition-timing-function: ease;
+    transition-duration: .25s;
+    transition-timing-function: ease;
+
+    cursor: pointer;
+
+    #match-username {
+      position: relative;
+      width: 100%;
+      color: #474d59;
+      font-size: 22px;
+      vertical-align: top;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      margin-top: 5%;
+    }
+
+    #match-info {
+      position: relative;
+      display: block;
+      padding: 0 25px;
+      margin-top: -1px;
+      text-align: center;
+      font-size: 15px;
+      line-height: 22px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+  }
+
+  #like-toggle {
+    margin-top: 25px;
+
+    -webkit-transition: opacity .25s ease;
+    -moz-transition: opacity .25s ease;
+    -o-transition: opacity .25s ease;
+    -ms-transition: opacity .25s ease;
+    transition: opacity .25s ease;
+
+    opacity: 0;
   }
 
 }
-  #match-card > #like-toggle {
-    display: none;
+
+
+
+#match-card:hover {
+  #like-toggle {
+    opacity: 1;
   }
 
-  #match-card:hover > #like-toggle {
-    display: block;
+  #match-info-container {
+    top: 55%;
   }
+}
 
 // transform 150ms ease;

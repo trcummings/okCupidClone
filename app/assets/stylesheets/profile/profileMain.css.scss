@@ -83,8 +83,49 @@
       height: 195px;
       border: 1px solid black;
       border-radius: 5px;
+
+      .first-user-photo {
+        display: block;
+        position: relative;
+      }
+
+      .other-user-photo {
+        display: none;
+      }
+
+      #add-photo-button {
+        bottom: 5px;
+        left: 39px;
+        position: absolute;
+        color: white;
+        border: none;
+        padding: 0;
+        text-align: center;
+        vertical-align: top;
+        float: right;
+        cursor: pointer;
+        height: 46px;
+        margin-right: 8px;
+        margin-right: 0;
+        background: #4c7bd9;
+        width: 132px;
+        font-size: 16px;
+        line-height: 44px;
+        border-radius: 4px;
+        box-shadow: 0 0 0 transparent;
+      }
+
+
     }
 
+    #profile-thumbs:hover {
+      .other-user-photo {
+        float: left;
+        top: 0px;
+        left: 210px;
+        display: block;
+      }
+    }
   }
 
   #basic-information:hover {
