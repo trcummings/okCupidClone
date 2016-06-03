@@ -71,7 +71,7 @@ var BasicInfoEditModal = React.createClass({
           style={modalStyle}
           ref='popup'
         >
-          <BasicInfoEditForm />
+          <BasicInfoEditForm closeModal={this.closeModal} />
         </Modal>
       </div>
     );
