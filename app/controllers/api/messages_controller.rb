@@ -13,11 +13,12 @@ class Api::MessagesController < ApplicationController
       )
       render json: message
     else
-      
+
     end
   end
 
   private
   def message_params
-    params.require(:message).permit(:receiver_id, :content, )
+    params.require(:message).permit(:receiver_id, :content)
+  end
 end

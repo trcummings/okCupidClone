@@ -1,5 +1,8 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
+// should have the other user passed in as a prop
+// this.props.otheruser
+//channel is going to be what the two users get on to
 
 var MessageBox = React.createClass({
   componentDidMount: function () {
@@ -35,18 +38,17 @@ var MessageBox = React.createClass({
     });
   },
 
-  render: function() {
-
-
+  render: function () {
     return (
-      <div>
+      <div id='chat-window'>
         <ul id='chatlog-box'>
           {this.buildChatLog()}
         </ul>
         <input
           type='text'
+          className='new-message-box'
         />
-
+      <button id='send-message-button'> Send </button>
       </div>
     );
   }
