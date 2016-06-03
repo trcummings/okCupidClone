@@ -67,11 +67,10 @@ var ProfileMain = React.createClass({
   },
 
   render: function () {
-    var currentUser = SessionStore.currentUser();
     var currentUserPhotos = PhotoStore.returnCurrentUserPhotos();
-    // var pane = this.props.panes[this.state.selectedTab];
+    var currentUser = SessionStore.currentUser();
 
-    // photo is 215x200
+    // var pane = this.props.panes[this.state.selectedTab];
 
     if (currentUser) {
       return (
@@ -92,7 +91,7 @@ var ProfileMain = React.createClass({
                       className={className}
                       src={photo.photo_url}
                       alt={'Photo of ' + currentUser.username }
-                    />
+                      />
                   );
                 })
               }

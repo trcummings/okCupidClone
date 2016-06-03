@@ -10,17 +10,17 @@ MessageStore.returnChatlog = function (otherUser) {
 };
 
 MessageStore.__onDispatch = function (payload) {
-  switch(payload.actionType) {
-    case MessageConstants.GET_CHATLOG:
-    _chatlog[payload.channel] = [];
-      payload.messages.forEach(function (message) {
-        _chatlog[payload.channel].push(message);
-      });
-      break;
-    case MessageConstants.NEW_MESSAGE:
-      break;
-  }
-  this.__emitChange();
+  // switch(payload.actionType) {
+  //   case MessageConstants.GET_CHATLOG:
+  //     _chatlog[payload.channel] = [];
+  //     payload.messages.forEach(function (message) {
+  //       _chatlog[payload.channel].push(message);
+  //     });
+  //     break;
+  //   case MessageConstants.NEW_MESSAGE:
+  //     break;
+  // }
+  // this.__emitChange();
 };
 
 module.exports = MessageStore;

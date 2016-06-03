@@ -47,6 +47,10 @@ var ClientActions = {
 
   fetchSingleUser: function (username) {
     UsersApiUtil.fetchSingleUser(username);
+  },
+
+  getOtherUserPics: function (userId) {
+    PhotosApiUtil.getOtherUserPics(userId);
   }
 };
 

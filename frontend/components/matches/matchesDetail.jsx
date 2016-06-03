@@ -8,7 +8,10 @@ var PhotoStore = require('../../stores/photoStore');
 
 var MatchDetail = React.createClass({
   getInitialState: function () {
-    return { viewedUser: UserStore.viewedUser() };
+    return {
+      viewedUser: UserStore.viewedUser(),
+      theirPhotos: PhotoStore.otherUserAllPhotos()
+    };
   },
 
   componentDidMount: function () {
@@ -16,23 +19,35 @@ var MatchDetail = React.createClass({
 
     this.userListener = UserStore.addListener(function () {
       this.setState({ viewedUser: UserStore.viewedUser( )});
+      ClientActions.getOtherUserPics(this.state.viewedUser.id);
+
     }.bind(this));
+
+    this.photoListener = PhotoStore.addListener(function () {
+      this.setState({ theirPhotos: PhotoStore.otherUserAllPhotos() });
+    }.bind(this));
+
     ClientActions.fetchSingleUser(thisUserUsername);
   },
 
   componentWillUnmount: function () {
     this.userListener.remove();
+    this.photoListener.remove();
   },
 
   render: function() {
     var thisUser = this.state.viewedUser;
+    var profilePhoto = PhotoStore.otherUserDefaultProfilePic();
 
     if (thisUser.username) {
       return (
         <div id='viewed-user-profile-main' className='group'>
           <article id='viewed-user-header' className='group'>
             <div id='viewed-user-thumbs'>
-
+              <img
+                src={profilePhoto.photo_url}
+                alt={'A picture of' + thisUser.username}
+              />
             </div>
 
             <div id='basic-information'>
@@ -73,5 +88,6 @@ var MatchDetail = React.createClass({
 //     );
 //   })
 // }
+
 
 module.exports = MatchDetail;

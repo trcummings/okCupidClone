@@ -1,1 +1,1 @@
-json.array! @photos, :image_url, :description
+json.array! @photos, :is_default, :photo_url, :description

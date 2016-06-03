@@ -145,8 +145,8 @@ var SecondSignUpForm = React.createClass({
     } else {
       this.setState({
         zipCodeValidityMsg: "...",
-        zipStatus: 'all-clear-field',
-        zipErrored: 'all-clear-statement'
+        zipStatus: 'error-field',
+        zipErrored: 'error-statement'
        });
     }
   },

@@ -37,6 +37,22 @@ var PhotosApiUtil = {
 	      ErrorActions.setErrors("photo_get", errors);
       }
     });
+  },
+
+  getOtherUserPics: function (userId) {
+    $.ajax({
+      url: '/api/user_photos/' + userId,
+      method: 'GET',
+      dataType: 'json',
+      success: function (images) {
+        ServerActions.receiveOtherUserPics(images);
+      },
+      error: function (xhr) {
+        console.log("Photo error in PhotosApiUtil#getOtherUserPics");
+        var errors = xhr.responseJSON;
+        ErrorActions.setErrors("photo_get", errors);
+      }
+    });
   }
 };
 

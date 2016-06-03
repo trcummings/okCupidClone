@@ -66,6 +66,14 @@ class User < ActiveRecord::Base
     username
   end
 
+  def undefault_other_photos(photo_id)
+    self.photos.each do |photo|
+      unless photo.id == photo_id
+        photo.set_is_default_to_false
+      end
+    end
+  end
+
   # has_many(
   #   :people_this_user_sent_a_message_to
   #

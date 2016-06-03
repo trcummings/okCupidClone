@@ -31,12 +31,13 @@ UserStore.__onDispatch = function (payload) {
   switch(payload.actionType) {
     case UserConstants.GET_ALL_POSSIBLE_MATCHES:
       this.addUsersToStore(payload.users);
+      this.__emitChange();
       break;
     case UserConstants.RECEIVE_SINGLE_USER:
       _viewedUser = payload.user;
+      this.__emitChange();
       break;
     }
-    this.__emitChange();
 };
 
 module.exports = UserStore;
