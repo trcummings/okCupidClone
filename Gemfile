@@ -26,7 +26,7 @@ gem 'bcrypt'
 
 gem 'figaro'
 
-
+gem 'pusher'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -52,5 +52,4 @@ end
 
 group :production do
   gem 'rails_12factor'
-  gem 'pusher'
 end
