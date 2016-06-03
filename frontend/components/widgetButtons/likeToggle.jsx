@@ -6,7 +6,7 @@ var LikeToggle = React.createClass({
   render: function () {
     return (
       <button id='like-toggle'>
-        LIKE (likeimg goes here)
+        Like
       </button>
     );
   }

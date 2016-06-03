@@ -22,6 +22,13 @@ var ServerActions = {
       actionType: PhotoConstants.CURRENT_USER_PHOTOS,
       images: images
     });
+  },
+
+  receiveSingleUser: function (user) {
+    AppDispatcher.dispatch({
+      actionType: UserConstants.RECEIVE_SINGLE_USER,
+      user: user
+    });
   }
 };
 

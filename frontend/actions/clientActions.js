@@ -43,6 +43,10 @@ var ClientActions = {
 
   sendMessage: function () {
     MessageApiUtil.sendMessage();
+  },
+
+  fetchSingleUser: function (username) {
+    UsersApiUtil.fetchSingleUser(username);
   }
 };
 

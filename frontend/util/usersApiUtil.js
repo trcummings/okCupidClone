@@ -37,6 +37,23 @@ var UsersApiUtil = {
         // ErrorActions.setErrors("signup", errors);
       }
     });
+  },
+
+  fetchSingleUser: function (username) {
+    $.ajax({
+      url: '/api/users/' + username,
+      type: 'GET',
+      dataType: 'json',
+      success: function (user) {
+        ServerActions.receiveSingleUser(user);
+      },
+      error: function (xhr) {
+        debugger;
+        // console.log('UserApiUtil#createAccount error');
+        // var errors = xhr.responseJSON;
+        // ErrorActions.setErrors("signup", errors);
+      }
+    });
   }
 };
 

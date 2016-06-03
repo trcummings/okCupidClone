@@ -1,0 +1,65 @@
+#chat-window {
+  left: 0px;
+  position: absolute;
+  bottom: 0;
+  overflow: hidden;
+  float: right;
+  width: 440px;
+  height: 430px;
+  background: #fff;
+  box-shadow: 0 0 0 1px rgba(0,17,53,0.16),0 0 5px 0 rgba(0,17,53,0.16);
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  font-family: 'Open Sans',sans-serif;
+  opacity: 1;
+  z-index: 5;
+
+
+  #chatlog-box {
+    height: 219px;
+    box-sizing: content-box;
+    position: absolute;
+    z-index: 6;
+    width: 440px;
+    height: 207px;
+    top: 63px;
+    overflow-y: auto;
+    display: block;
+  }
+
+  #new-message-box {
+    min-height: 60px;
+    max-height: 126px;
+    padding: 11px 8px 8px 13px;
+    font-size: 14px;
+    line-height: 21px;
+    width: 100%;
+    margin: 0;
+    background: #FFF;
+    border: 1px solid #ccd0d9;
+    color: #5e6573;
+    margin: 0 10px 10px 0;
+    border-radius: 2px;
+
+
+  }
+
+  #send-message-button {
+    background: #FFF;
+    border: 1px solid #ccd0d9;
+    color: #5e6573;
+    margin: 0 10px 10px 0;
+    border-radius: 2px;
+    background-color: #3260c7;
+    white-space: nowrap;
+    color: #fff;
+    text-align: center;
+    text-transform: none;
+    overflow: hidden;
+    border-radius: 2px;
+    border: none;
+    padding: 0;
+    vertical-align: top;
+  }
+
+}

@@ -60,7 +60,9 @@ var ProfileMain = React.createClass({
     cloudinary.openUploadWidget(
       window.cloudinary_options,
       function (error, images) {
-        ClientActions.uploadImage(images[0].secure_url);
+        if (images) {
+          ClientActions.uploadImage(images[0].secure_url);
+        }
     });
   },
 

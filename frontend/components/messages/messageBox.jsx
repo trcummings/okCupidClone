@@ -1,5 +1,7 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
+var MessageStore = require('../../stores/messageStore');
+var SessionStore = require('../../stores/sessionStore');
 // should have the other user passed in as a prop
 // this.props.otheruser
 //channel is going to be what the two users get on to
@@ -22,8 +24,8 @@ var MessageBox = React.createClass({
   },
 
   buildChatLog: function () {
-    var messageHistory = MessageStore.returnChatlog(this.props.receiver.id),
-        currentUser = UserStore.currentUser();
+    var messageHistory = MessageStore.returnChatlog(this.props.receiver),
+        currentUser = SessionStore.currentUser();
 
     messageHistory.map(function (message, index) {
       if (message.sender_id === currentUser.id) {

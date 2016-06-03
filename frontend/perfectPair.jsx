@@ -9,15 +9,16 @@ var React = require('react'),
     SessionApiUtil = require('./util/sessionApiUtil'),
     ProfileMain = require('./components/profile/profileMain'),
     FeedIndex = require('./components/feed/feedIndex'),
-    MatchesIndex = require('./components/matches/matchesIndex');
+    MatchesIndex = require('./components/matches/matchesIndex'),
+    MatchesDetail = require('./components/matches/matchesDetail');
 
 var Router = (
   <Router history={hashHistory}>
     <Route path='/' component={App}>
       <Route path='/profile' component={ProfileMain} onEnter={ _ensureLoggedIn }/>
       <Route path='/home' component={FeedIndex} onEnter={ _ensureLoggedIn }/>
-      <Route path='/matches' component={MatchesIndex} onEnter={ _ensureLoggedIn }>
-      </Route>
+      <Route path='/matches' component={MatchesIndex} onEnter={ _ensureLoggedIn } />
+      <Route path='/profile/:username' component={MatchesDetail} onEnter={ _ensureLoggedIn }/>
     </Route>
   </Router>
 );
@@ -36,21 +37,6 @@ function _ensureLoggedIn(nextState, replace, asyncDoneCallback) {
     asyncDoneCallback();
   }
 }
-
-// var Router = (
-//   <Router history={hashHistory}>
-//     <Route path='/' component={App}>
-//       <Route component={Header} onEnter={ _ensureLoggedIn }>
-//         <IndexRoute component={Feed} />
-//         <Route path='/feed' component={Feed} />
-//         <Route path='/matches' component={MatchesIndex} >
-//           <Route path="matches/:user_id" component={MatchDetail}/>
-//         </Route>
-//         <Route path='/profile' component={Profile} />
-//       </Route>
-//     </Route>
-//   </Router>
-// );
 
 document.addEventListener('DOMContentLoaded', function(){
   var root = document.getElementById('content');
