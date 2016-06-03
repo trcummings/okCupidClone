@@ -54,6 +54,7 @@ var SecondSignUpForm = React.createClass({
 
   handleSubmit: function () {
     if (this.emailValid && this.bdayValid && this.zipCodeValid) {
+      AuthInfoStore.addInfoPiece('country', this.state.country);
       ClientActions.incrementAuthState();
     }
   },
