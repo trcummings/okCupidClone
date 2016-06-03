@@ -62,6 +62,15 @@ class User < ActiveRecord::Base
     primary_key: :id
   )
 
+  # has_many(
+  #   :people_this_user_sent_a_message_to
+  #
+  # )
+  #
+  # has_many(
+  #   :people_who_have_sent_this_user_a_message
+  # )
+
   def self.find_by_credentials(name_field, password, type)
     if type == 'username'
       user = User.find_by(username: name_field)
