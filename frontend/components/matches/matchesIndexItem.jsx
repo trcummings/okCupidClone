@@ -11,25 +11,25 @@ var MatchesIndexItem = React.createClass({
     router: React.PropTypes.object.isRequired
   },
 
-  getInitialState: function () {
-    return {
-      profilePhoto: PhotoStore.otherUserDefaultProfilePic()
-    };
-  },
+  // getInitialState: function () {
+  //   return {
+  //     profilePhoto: PhotoStore.otherUserDefaultProfilePic()
+  //   };
+  // },
 
-  componentDidMount: function () {
-    this.photoListener = PhotoStore.addListener(function () {
-      this.setState({
-        profilePhoto: PhotoStore.otherUserDefaultProfilePic()
-    });
-    }.bind(this));
+  // componentDidMount: function () {
+  //   this.photoListener = PhotoStore.addListener(function () {
+  //     this.setState({
+  //       profilePhoto: PhotoStore.otherUserDefaultProfilePic()
+  //   });
+  //   }.bind(this));
+  //
+  //   ClientActions.getOtherUserPics(this.props.user.id);
+  // },
 
-    ClientActions.getOtherUserPics(this.props.user.id);
-  },
-
-  componentWillUnmount: function () {
-    this.photoListener.remove();
-  },
+  // componentWillUnmount: function () {
+  //   this.photoListener.remove();
+  // },
 
   renderMatchDetail: function () {
     this.context.router.push('/profile/' + this.props.user.username);
@@ -37,12 +37,12 @@ var MatchesIndexItem = React.createClass({
 
   renderProfilePhoto: function () {
     var user = this.props.user;
-    var profilePhoto = this.state.profilePhoto;
+    // var profilePhoto = this.state.profilePhoto;
 
-    if (profilePhoto.photo_url) {
+    if (user.default_photo_url) {
       return (
         <img
-          src={profilePhoto.photo_url}
+          src={user.default_photo_url}
           alt={'Photo of ' + user.username}
           />
       );
@@ -53,7 +53,7 @@ var MatchesIndexItem = React.createClass({
   },
 
   render: function() {
-
+    // debugger;
     var user = this.props.user;
 
     return (

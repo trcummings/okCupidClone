@@ -5,6 +5,7 @@ var UserStore = require('../../stores/userStore');
 var LikeToggle = require('../widgetButtons/likeToggle');
 var HelperUtil = require('../../util/helperUtil');
 var PhotoStore = require('../../stores/photoStore');
+var SessionStore = require('../../stores/sessionStore');
 
 var MatchDetail = React.createClass({
   getInitialState: function () {
@@ -63,7 +64,7 @@ var MatchDetail = React.createClass({
             </div>
 
             <article id='widget-buttons' className='group'>
-              <LikeToggle />
+              <LikeToggle targetUser={thisUser} />
               <button id='message-button'>Message</button>
             </article>
         </article>
