@@ -74,6 +74,20 @@ class User < ActiveRecord::Base
     end
   end
 
+  def default_photo_url
+    def_photo_url = ''
+
+    if self.photos.length > 0
+      self.photos.each do |photo|
+        if photo.is_default
+          def_photo_url = photo.photo_url
+        end
+      end
+    end
+
+    def_photo_url
+  end
+
   # has_many(
   #   :people_this_user_sent_a_message_to
   #

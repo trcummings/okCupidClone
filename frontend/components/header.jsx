@@ -36,7 +36,9 @@ var Header = React.createClass({
       <nav id='navigation'>
         <div id='nav-left'>
           <h1 className='nav-logo'>
-            <a href="#/home">PerfectPair</a>
+            <a href="#/home">
+              <img id='logo' src={window.logo} />
+            </a>
           </h1>
 
           <ul className='nav-links nav-item'>

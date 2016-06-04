@@ -45,6 +45,7 @@ var UsersApiUtil = {
       type: 'GET',
       dataType: 'json',
       success: function (user) {
+        // debugger;
         ServerActions.receiveSingleUser(user);
       },
       error: function (xhr) {
