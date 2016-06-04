@@ -107,6 +107,11 @@ var AuthMain = React.createClass({
           </Modal>
         </header>
 
+        <a href='/'>
+          <img id='perfectPair' src={window.perfectPair} />
+        </a>
+
+
         <div className='signup_form'>
           {this.currentForm()}
         </div>
