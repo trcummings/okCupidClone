@@ -38,7 +38,7 @@ var MatchDetail = React.createClass({
 
   render: function() {
     var thisUser = this.state.viewedUser;
-    var profilePhoto = PhotoStore.otherUserDefaultProfilePic();
+    var profilePhoto = thisUser.default_photo_url;
 
     if (thisUser.username) {
       return (
@@ -46,7 +46,7 @@ var MatchDetail = React.createClass({
           <article id='viewed-user-header' className='group'>
             <div id='viewed-user-thumbs'>
               <img
-                src={profilePhoto.photo_url}
+                src={profilePhoto}
                 alt={'A picture of' + thisUser.username}
               />
             </div>
