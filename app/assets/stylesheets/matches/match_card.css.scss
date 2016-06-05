@@ -33,6 +33,10 @@
     transition-duration: .25s;
     transition-timing-function: ease;
 
+    > h1 {
+      text-align: center;
+    }
+
     #match-username {
       position: relative;
       width: 100%;
