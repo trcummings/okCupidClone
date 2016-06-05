@@ -8,25 +8,13 @@
 User.destroy_all
 
 User.create!(
-  username: 'gemp',
+  username: 'trcummings',
   password: 'password',
-  email: 'gemp@denp.com',
-  birth_date: Date.new(1992, 05, 14),
+  email: 'thomsencummings@gmail.com',
+  birth_date: Date.new(1992, 10, 14),
   country: 'America',
-  zip_code: 19027,
-  location: 'Elkins Park',
+  zip_code: 11221,
+  location: 'Brooklyn, NY',
   gender: 'Anime Enthusiast',
   orientation: 'Sapiosexual'
-)
-
-User.create!(
-  username: "dimp",
-  password: 'password',
-  email: "dimp@demp.com",
-  birth_date: Date.new(1990, 11, 13),
-  country: "America",
-  zip_code: 19119,
-  location: "Philadelphia",
-  gender: "Woman",
-  orientation: "Gay"
 )

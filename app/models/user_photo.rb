@@ -9,10 +9,11 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  is_default  :boolean          default(TRUE)
+#  public_id   :string           not null
 #
 
 class UserPhoto < ActiveRecord::Base
-  validates :user_id, :photo_url, presence: true
+  validates :user_id, :photo_url, :public_id, presence: true
 
   belongs_to(
     :user,

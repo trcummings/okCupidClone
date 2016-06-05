@@ -2,14 +2,15 @@ var ServerActions = require('../actions/serverActions'),
     ErrorActions = require('../actions/errorActions');
 
 var PhotosApiUtil = {
-  uploadImage: function (photo_url) {
+  uploadImage: function (photo) {
     $.ajax({
       url: '/api/user_photos',
       method: 'POST',
       dataType: 'json',
       data: {
         user_photo: {
-          photo_url: photo_url
+          photo_url: photo.url,
+          public_id: photo.public_id
         }
       },
       success: function (image) {

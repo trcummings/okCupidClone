@@ -9,7 +9,8 @@ class Api::UserPhotosController < ApplicationController
   def create
     @photo = UserPhoto.new(
       user_id: current_user.id,
-      photo_url: photo_params[:photo_url]
+      photo_url: photo_params[:photo_url],
+      public_id: photo_params[:public_id]
     )
 
     @user = User.find(current_user.id)
@@ -35,7 +36,7 @@ class Api::UserPhotosController < ApplicationController
 
   private
   def photo_params
-    params.require(:user_photo).permit(:photo_url, :description)
+    params.require(:user_photo).permit(:photo_url, :description, :public_id)
   end
 
   def other_user_photo_params
