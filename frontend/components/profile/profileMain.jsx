@@ -124,10 +124,7 @@ var ProfileMain = React.createClass({
               </li>
             </ul>
 
-            <div id='basic-information'>
-
-                <BasicInfoEditModal user={currentUser}/>
-            </div>
+            <BasicInfoEditModal user={currentUser}/>
           </div>
 
 
