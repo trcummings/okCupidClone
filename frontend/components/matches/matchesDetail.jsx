@@ -38,7 +38,7 @@ var MatchDetail = React.createClass({
 
   render: function() {
     var thisUser = this.state.viewedUser;
-    var profilePhoto = thisUser.default_photo_url;
+    var profilePhoto = thisUser.photo_url;
 
     if (thisUser.username) {
       return (

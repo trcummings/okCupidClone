@@ -14,10 +14,19 @@
   margin: 5% 2% 5% 2%;
   background-color: grey;
   cursor: pointer;
+  overflow: hidden;
 
+  img {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    top: -20px;
 
-  #match-pic {
-
+    -webkit-transition: top .25s ease;
+    -moz-transition: top .25s ease;
+    -o-transition: top .25s ease;
+    -ms-transition: top .25s ease;
+    transition: top .25s ease;
   }
 
   #match-info-container {
@@ -82,6 +91,12 @@
 #match-card:hover {
   #like-toggle {
     opacity: 1;
+  }
+
+  img {
+    top: 0px;
+    height: inherit;
+    width: inherit;
   }
 
   #match-info-container {

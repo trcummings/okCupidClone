@@ -33,8 +33,8 @@ var ClientActions = {
     UsersApiUtil.fetchAllPossibleMatches();
   },
 
-  uploadImage: function (photo_url) {
-    PhotosApiUtil.uploadImage(photo_url);
+  uploadImage: function (photo) {
+    PhotosApiUtil.uploadImage(photo);
   },
 
   getCurrentUserPhotos: function () {

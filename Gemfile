@@ -28,6 +28,8 @@ gem 'figaro'
 
 gem 'pusher'
 
+gem 'cloudinary'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

@@ -61,7 +61,7 @@ var ProfileMain = React.createClass({
       window.cloudinary_options,
       function (error, images) {
         if (images) {
-          ClientActions.uploadImage(images[0].secure_url);
+          ClientActions.uploadImage(images[0]);
         }
     });
   },
@@ -73,6 +73,7 @@ var ProfileMain = React.createClass({
     // var pane = this.props.panes[this.state.selectedTab];
 
     if (currentUser) {
+
       return (
         <div id='profile-main'>
           <div id='tabbed-heading'>
@@ -80,6 +81,7 @@ var ProfileMain = React.createClass({
               {
                 currentUserPhotos.map(function (photo, index) {
                   var className;
+                  var imgSrc;
                   if (index === 0) {
                     className = 'first-user-photo';
                   } else {
