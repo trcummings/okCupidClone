@@ -27,7 +27,7 @@ var BasicInfoEditForm = React.createClass({
     this.props.closeModal();
   },
 
-  renderBirthdayList: function () {
+  renderMonthList: function () {
     var months = HelperUtil.birthdayList.months;
     var result = [];
     var i = 0;
@@ -45,7 +45,11 @@ var BasicInfoEditForm = React.createClass({
   },
 
   render: function() {
-    var currentUser = SessionStore.currentUser();
+    var currentUser = SessionStore.currentUser(),
+        bdArray = currentUser.birth_date.split('-'),
+        bMonth = bdArray[1];
+        bDay = bdArray[2];
+        bYear = bdArray[0];
 
     return (
       <form className=''>
@@ -74,8 +78,11 @@ var BasicInfoEditForm = React.createClass({
 
         <label>
           My Birthday
-          <select className='dropdown'>
-            {this.renderBirthdayList()}
+          <select
+            className='dropdown'
+            defaultValue={HelperUtil.monthConvert[bMonth]}
+          >
+            {this.renderMonthList()}
           </select>
 
           <select className='dropdown'>
