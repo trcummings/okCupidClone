@@ -42,19 +42,21 @@ var HelperUtil = {
 
   birthdayList: {
     months: {
-      january: {},
-      february: {},
-      march: {},
-      april: {},
-      may: {},
-      june: {},
-      july: {},
-      september: {},
-      october: {},
-      november: {},
-      december: {}
+      January: {},
+      February: {},
+      March: {},
+      April: {},
+      May: {},
+      June: {},
+      July: {},
+      September: {},
+      October: {},
+      November: {},
+      December: {}
     }
   }
 };
+
+// <option value="Anime Enthusiast">Anime Enthusiast</option>
 
 module.exports = HelperUtil;
