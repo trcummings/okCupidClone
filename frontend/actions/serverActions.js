@@ -1,6 +1,7 @@
 var UserConstants = require('../constants/userConstants');
 var AppDispatcher = require('../dispatcher/dispatcher');
 var PhotoConstants = require('../constants/photoConstants');
+var AboutConstants = require('../constants/aboutConstants');
 
 var ServerActions = {
   receiveAllPossibleMatches: function (users) {
@@ -35,6 +36,13 @@ var ServerActions = {
     AppDispatcher.dispatch({
       actionType: PhotoConstants.OTHER_USER_PHOTOS,
       images: images
+    });
+  },
+
+  receiveCurrentUserAbout: function (userAbout) {
+    AppDispatcher.dispatch({
+      actionType: AboutConstants.CURRENT_USER_ABOUT,
+      userAbout: userAbout
     });
   }
 };

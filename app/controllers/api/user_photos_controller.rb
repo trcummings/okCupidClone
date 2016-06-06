@@ -13,10 +13,8 @@ class Api::UserPhotosController < ApplicationController
       public_id: photo_params[:public_id]
     )
 
-    @user = User.find(current_user.id)
-
     if @photo.save
-      @user.undefault_other_photos(@photo.id)
+      current_user.undefault_other_photos(@photo.id)
 
       render json: @photo
     else

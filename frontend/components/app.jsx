@@ -43,7 +43,12 @@ var App = React.createClass({
       );
     } else {
       return (
-        <AuthMain />
+        <div>
+          <AuthMain />
+          <footer id='auth-main-footer'>
+
+          </footer>
+        </div>
       );
     }
   },
