@@ -36,6 +36,40 @@ var MatchDetail = React.createClass({
     this.photoListener.remove();
   },
 
+  renderEachSection: function () {
+    var aboutDetail = this.state.viewedUser.about;
+    var fieldList = [
+      'My Self Summary',
+      'What I’m doing with my life',
+      'I’m really good at',
+      'Favorite books, movies, shows, music, and food',
+      'The six things I could never do without',
+      'I spend a lot of time thinking about',
+      'On a typical Friday night I am',
+      'You should message me if'
+     ];
+     var result = [];
+     var i = 0;
+
+    if (this.state.viewedUser.about) {
+      for (var property in aboutDetail) {
+        if (aboutDetail.hasOwnProperty(property) && property !== 'id') {
+            result.push(
+              <li key={i} className='group'>
+                <p className='about-title'>{fieldList[i]}</p>
+                <p className='info-box'>{aboutDetail[property]}</p>
+              </li>
+            );
+            i++;
+          }
+        }
+
+      return result;
+    } else {
+      return (<div />);
+    }
+  },
+
   render: function() {
     var thisUser = this.state.viewedUser;
     var profilePhoto = thisUser.photo_url;
@@ -44,35 +78,38 @@ var MatchDetail = React.createClass({
       return (
         <div id='viewed-user-profile-main' className='group'>
           <article id='viewed-user-header' className='group'>
-            <div id='viewed-user-thumbs'>
-              <img
-                src={profilePhoto}
-                alt={'A picture of' + thisUser.username}
-              />
+            <div id='viewed-user-content' className='group'>
+              <div id='viewed-user-thumbs'>
+                <img
+                  src={profilePhoto}
+                  alt={'A picture of' + thisUser.username}
+                />
+              </div>
+
+              <div id='basic-information'>
+                <h1 id='user-name'>{thisUser.username}</h1>
+                <ul id='basic-information'>
+                  <li>
+                    {HelperUtil.returnAge(thisUser.birth_date)}
+                  </li>
+                  <li>
+                    {thisUser.location}
+                  </li>
+                </ul>
+              </div>
+
+              <article id='widget-buttons' className='group'>
+                <LikeToggle targetUser={thisUser} />
+                <button id='message-button'>Message</button>
+              </article>
             </div>
+          </article>
 
-            <div id='basic-information'>
-              <h1 id='user-name'>{thisUser.username}</h1>
-              <ul id='basic-information'>
-                <li>
-                  {HelperUtil.returnAge(thisUser.birth_date)}
-                </li>
-                <li>
-                  {thisUser.location}
-                </li>
-              </ul>
-            </div>
-
-            <article id='widget-buttons' className='group'>
-              <LikeToggle targetUser={thisUser} />
-              <button id='message-button'>Message</button>
-            </article>
-        </article>
-
-        <div id='rest-of-match-detail'>
+        <div id='rest-of-match-detail' className='group'>
+          {this.renderEachSection()}
         </div>
+      </div>
 
-        </div>
       );
     } else {
       return (<div />);

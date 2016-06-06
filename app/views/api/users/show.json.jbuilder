@@ -3,3 +3,7 @@ json.extract! @user,
 if @user.photos.length > 0
   json.photo_url @user.default_photo_url
 end
+
+if @user.about
+  json.about @user.about.return_safe_data
+end

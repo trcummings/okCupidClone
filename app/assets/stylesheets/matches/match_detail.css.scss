@@ -1,11 +1,19 @@
 #viewed-user-profile-main {
-  background: #104da1;
-  margin: auto;
-  width: 850px;
+  // background: #104da1;
+  // margin: auto;
+  // width: 850px;
   position: relative;
+  background: white;
 
   #viewed-user-header {
-    padding-top: 0px;
+    background: #104da1;
+
+
+    #viewed-user-content {
+      margin: auto;
+      width: 850px;
+      padding-top: 0px;
+    }
 
     #viewed-user-thumbs {
       float: left;
@@ -107,7 +115,14 @@
       }
 
     }
+  }
 
+
+  #rest-of-match-detail {
+    margin: auto;
+    width: 850px;
+    min-height: 800px;
+    background: white;
   }
 
 }
