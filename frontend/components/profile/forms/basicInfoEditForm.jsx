@@ -4,7 +4,15 @@ var React = require('react'),
 
 var BasicInfoEditForm = React.createClass({
   getInitialState: function () {
-    return ({});
+    var currentUser = SessionStore.currentUser();
+    return ({
+      username: currentUser.username,
+      birth_date: currentUser.birth_date,
+      country: currentUser.country,
+      gender: currentUser.gender,
+      location: currentUser.location,
+      renderZipForm: false
+    });
   },
 
   handleUsernameChange: function (event) {
@@ -15,10 +23,15 @@ var BasicInfoEditForm = React.createClass({
     this.setState({ gender: event.target.value });
   },
 
+  handleZipChange: function (event) {
+    //
+  },
+
   handleSubmit: function (event) {
     event.preventDefault();
 
     console.log("tried to submipbt");
+    // ClientActions.updateUser(this.state);
   },
 
   handleCancel: function (event) {
@@ -42,6 +55,78 @@ var BasicInfoEditForm = React.createClass({
     }
 
     return result;
+  },
+
+  renderGenderList: function () {
+    var genders = HelperUtil.possibleGenders.genders;
+    var result = [];
+
+    genders.map(function (gender, index) {
+      result.push (
+        <option value={gender} key={index}>{gender}</option>
+      )
+    });
+
+    return result;
+  },
+
+  renderDayRange: function (month) {
+    var days = HelperUtil.birthdayList.months[HelperUtil.monthConvert[month]];
+    var result = [];
+
+    for (var i = 1; i < days; i++) {
+      result.push (
+        <option value={i} key={i-1}>{i}</option>
+      );
+    }
+
+    return result;
+  },
+
+  renderYearRange: function () {
+    var thisYear = new Date();
+    thisYear = thisYear.getFullYear();
+    var minYear = thisYear - 18;
+    var maxYear = thisYear - 99;
+    var result = [];
+
+
+    for (var i = minYear; i > maxYear; i--) {
+      result.push (
+        <option value={i} key={i-1}>{i}</option>
+      );
+    }
+
+    return result;
+  },
+
+  zipFormRender: function () {
+
+    if (this.state.renderZipForm) {
+      return (
+        <input
+          type='text'
+          placeholder='Zip code'
+          onChange={this.handleZipChange}
+          >
+        </input>
+      );
+    } else {
+      return (
+        <span>
+          {this.state.location}
+          <button onClick={this.toggleZipFormRender}>edit</button>
+        </span>
+      );
+    }
+  },
+
+  toggleZipFormRender: function () {
+    if (this.state.renderZipForm) {
+      this.setState({ renderZipForm: false });
+    } else {
+      this.setState({ renderZipForm: true });
+    }
   },
 
   render: function() {
@@ -69,10 +154,12 @@ var BasicInfoEditForm = React.createClass({
 
         <label onBlur={this.handleGenderChange}>
           I am a
-          <select className="dropdown gender" onChange={this.handleGenderChange}>
-            <option value="Anime Enthusiast">Anime Enthusiast</option>
-            <option value="Woman">Woman</option>
-            <option value="Man">Man</option>
+          <select
+            className="dropdown gender"
+            onChange={this.handleGenderChange}
+            defaultValue={currentUser.gender}
+          >
+            {this.renderGenderList()}
           </select>
         </label>
 
@@ -82,25 +169,33 @@ var BasicInfoEditForm = React.createClass({
             className='dropdown'
             defaultValue={HelperUtil.monthConvert[bMonth]}
           >
-            {this.renderMonthList()}
+            {this.renderMonthList(bMonth)}
           </select>
 
-          <select className='dropdown'>
-            <option value="Anime Enthusiast">Anime Enthusiast</option>
-            <option value="Woman">Woman</option>
-            <option value="Man">Man</option>
+          <select
+            className='dropdown'
+            defaultValue={parseInt(bDay)}
+          >
+            {this.renderDayRange(bMonth)}
           </select>
 
-          <select className='dropdown'>
-            <option value="Anime Enthusiast">Anime Enthusiast</option>
-            <option value="Woman">Woman</option>
-            <option value="Man">Man</option>
+          <select
+            className='dropdown'
+            defaultValue={parseInt(bYear)}
+          >
+            {this.renderYearRange()}
           </select>
         </label>
 
-        Country
+        <label>
+          Country
+          <select className='dropdown'>
+            <option value="America">America</option>
+            <option value="Somewhere Else">Somewhere Else</option>
+          </select>
+        </label>
 
-        location edit (zip code)
+        {this.zipFormRender()}
 
 
         <button

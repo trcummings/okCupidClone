@@ -42,18 +42,28 @@ var HelperUtil = {
 
   birthdayList: {
     months: {
-      January: {},
-      February: {},
-      March: {},
-      April: {},
-      May: {},
-      June: {},
-      July: {},
-      September: {},
-      October: {},
-      November: {},
-      December: {}
+      January: 31,
+      February: 29,
+      March: 31,
+      April: 30,
+      May: 31,
+      June: 30,
+      July: 31,
+      September: 30,
+      October: 31,
+      November: 30,
+      December: 31
     }
+  },
+
+  dateRange: function (endNum) {
+    var result = [];
+
+    for (var i = 1; i < endNum; i++) {
+      result.push(i);
+    }
+
+    return result;
   },
 
   monthConvert: {
@@ -69,7 +79,16 @@ var HelperUtil = {
     10: 'October',
     11: 'November',
     12: 'December'
+  },
+
+  possibleGenders: {
+    genders: [
+    'Anime Enthusiast',
+    'Man',
+    'Woman'
+    ]
   }
+
 };
 
 // <option value="Anime Enthusiast">Anime Enthusiast</option>
