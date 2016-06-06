@@ -51,6 +51,10 @@ var ClientActions = {
 
   getOtherUserPics: function (userId) {
     PhotosApiUtil.getOtherUserPics(userId);
+  },
+
+  updateUser: function (user) {
+    UsersApiUtil.updateUser(user);
   }
 };
 

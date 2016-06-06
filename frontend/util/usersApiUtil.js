@@ -55,6 +55,23 @@ var UsersApiUtil = {
         // ErrorActions.setErrors("signup", errors);
       }
     });
+  },
+
+  updateUser: function (user) {
+    $.ajax({
+      url: '/api/users/' + id,
+      type: 'PATCH',
+      dataType: 'json',
+      success: function (user) {
+        ServerActions.receiveSingleUser(user);
+      },
+      error: function (xhr) {
+        debugger;
+        // console.log('UserApiUtil#createAccount error');
+        // var errors = xhr.responseJSON;
+        // ErrorActions.setErrors("signup", errors);
+      }
+    });
   }
 };
 
