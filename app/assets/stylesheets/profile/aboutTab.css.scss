@@ -69,7 +69,7 @@
 
       .info-box {
         float: left;
-        width: 525px;
+        width: 500px;
         display: block;
         line-height: 22px;
         word-wrap: break-word;
@@ -79,11 +79,58 @@
         margin-bottom: 40px;
       }
 
+      #about-detail-edit-form {
+        width: 500px;
+        display: block;
+        word-wrap: break-word;
+        font-family: 'Open Sans',sans-serif;
+        font-weight: normal;
+        max-width: 500px;
+        padding: 9px;
+        padding-right: 16px;
+        background: #FFF;
+        border: 1px solid #ccd0d9;
+        color: #5e6573;
+        min-height: 110px;
+        max-height: 460px;
+        resize: none;
+        overflow: auto;
+        margin: 0 10px 10px 0;
+        border-radius: 2px;
+        font-size: 15px;
+        line-height: 22px;
+      }
+
+      .submit-button {
+        width: 120px;
+        height: 42px;
+        line-height: 41px;
+        font-size: 15px;
+        white-space: nowrap;
+        color: #fff;
+        text-align: center;
+        text-transform: none;
+        overflow: hidden;
+        border-radius: 2px;
+        background-color: #3260c7;
+      }
+
+      .cancel-button {
+        margin-left: 10px;
+        width: 120px;
+        height: 42px;
+        line-height: 41px;
+        font-size: 15px;
+        white-space: nowrap;
+        color: #5e6573;
+        text-align: center;
+        text-transform: none;
+        overflow: hidden;
+        border-radius: 2px;
+        border: 1px solid #ccd0d9;;
+      }
     }
 
   }
-
-
-
 
 }
