@@ -1,0 +1,89 @@
+#about-tab {
+  margin: auto;
+
+  #right-column {
+    position: absolute;
+    width: 300px;
+    right: 30px;
+    margin: auto;
+
+    > div {
+      font-family: 'Open Sans',sans-serif;
+      font-weight: normal;
+      color: #5e6573;
+      font-size: 15px;
+      line-height: 22px;
+      margin: -15px;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 35px;
+      position: relative;
+
+      h1 {
+        color: #474d59;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 14px;
+        font-weight: 600;
+        display: block;
+        padding-bottom: 8px;
+        border-bottom: 1px solid #ccd0d9;
+      }
+    }
+
+    > div:hover {
+      background: #fff;
+      cursor: pointer;
+    }
+
+  }
+
+  #about-list {
+    width: 525px;
+    margin: auto;
+
+    li {
+      margin-bottom: 40px;
+      display: block;
+      position: relative;
+
+      .fa.fa-pencil {
+        float: left;
+        line-height: 40px;
+        cursor: pointer;
+      }
+
+      .about-title {
+        float: left;
+        color: #474d59;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 40px;
+        font-weight: 600;
+      }
+
+      .about-title:after {
+        white-space: pre;
+        content: '  '
+      }
+
+      .info-box {
+        float: left;
+        width: 525px;
+        display: block;
+        line-height: 22px;
+        word-wrap: break-word;
+        font-family: 'Open Sans',sans-serif;
+        font-weight: normal;
+        color: #5e6573;
+        margin-bottom: 40px;
+      }
+
+    }
+
+  }
+
+
+
+
+}

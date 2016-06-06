@@ -22,6 +22,7 @@
  *= require errorMessages
  *= require ./profile/profileMain
  *= require ./profile/questionTab
+ *= require ./profile/aboutTab
  *= require main
  *= require ./matches/match_card
  *= require ./matches/match_index

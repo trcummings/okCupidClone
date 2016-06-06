@@ -55,7 +55,15 @@ var ClientActions = {
 
   updateUser: function (user) {
     UsersApiUtil.updateUser(user);
-  }
+  },
+
+  getCurrentUserAbout: function (currentUser) {
+    UsersApiUtil.getCurrentUserAbout(currentUser);
+  },
+
+  updateCurrentUserAbout: function (currentUser, aboutData) {
+    UsersApiUtil.getCurrentUserAbout(currentUser, aboutData);
+  },
 };
 
 module.exports = ClientActions;

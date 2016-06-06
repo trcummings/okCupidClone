@@ -72,6 +72,41 @@ var UsersApiUtil = {
         // ErrorActions.setErrors("signup", errors);
       }
     });
+  },
+
+  getCurrentUserAbout: function (currentUser) {
+    $.ajax({
+      url: '/api/user_abouts/' + currentUser.id,
+      type: 'GET',
+      dataType: 'json',
+      success: function (userAbout) {
+        ServerActions.receiveCurrentUserAbout(userAbout);
+      },
+      error: function (xhr) {
+        debugger;
+        // console.log('UserApiUtil#createAccount error');
+        // var errors = xhr.responseJSON;
+        // ErrorActions.setErrors("signup", errors);
+      }
+    });
+  },
+
+  updateCurrentUserAbout: function (currentUser, aboutData) {
+    $.ajax({
+      url: '/api/user_abouts/' + currentUser.id,
+      type: 'PATCH',
+      dataType: 'json',
+      data: aboutData,
+      success: function (userAbout) {
+        ServerActions.receiveCurrentUserAbout(userAbout);
+      },
+      error: function (xhr) {
+        debugger;
+        // console.log('UserApiUtil#createAccount error');
+        // var errors = xhr.responseJSON;
+        // ErrorActions.setErrors("signup", errors);
+      }
+    });
   }
 };
 

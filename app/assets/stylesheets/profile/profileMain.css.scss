@@ -157,6 +157,10 @@
 
   #basic-information:hover {
     background-color: lightgrey;
+
+    .fa.fa-pencil {
+      color: #00d280;
+    }
   }
 
   .page-tabs {
@@ -210,20 +214,6 @@
       margin: auto;
     }
 
-  }
-
-  #right-column {
-    float: right;
-    width: 300px;
-    margin: auto;
-
-    #looking-for {
-
-    }
-
-    #details {
-
-    }
   }
 
 }
