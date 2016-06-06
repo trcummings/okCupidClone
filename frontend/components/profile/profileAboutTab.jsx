@@ -6,6 +6,16 @@ var ProfileAboutTab = React.createClass({
   render: function() {
     return (
       <div>
+        <div id='right-column'>
+          <div id='looking-for'>
+            looking for
+          </div>
+
+          <div id='details'>
+            my details
+          </div>
+        </div>
+
         <label>
           <p className='about-title'>My Self Summary</p>
           <i

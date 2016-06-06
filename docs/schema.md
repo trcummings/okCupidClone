@@ -87,7 +87,14 @@ column name     | data type | details
 ----------------|-----------|-----------------------
 id              | integer   | not null, primary key
 description     | string    | not null
-answer_choices  | string    | not null
+multi_select    | boolean   | not null, default: false
+
+## question_choices
+column name     | data type | details
+----------------|-----------|-----------------------
+id              | integer   | not null, primary key
+question_id     | integer   | not null, 
+description     | string    | not null
 multi_select    | boolean   | not null, default: false
 
 ## likes

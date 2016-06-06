@@ -3,6 +3,7 @@ var AuthMain = require('./auth/authMain');
 var SessionStore = require('../stores/sessionStore');
 var ClientActions = require('../actions/clientActions');
 var Header = require('./header');
+var Footer = require('./footer');
 
 var App = React.createClass({
   contextTypes: {
@@ -37,6 +38,7 @@ var App = React.createClass({
         <div>
           <Header />
           {this.props.children}
+          <Footer />
         </div>
       );
     } else {
