@@ -29,4 +29,17 @@ class UserAbout < ActiveRecord::Base
   def to_param
     user_id
   end
+
+  def return_safe_data
+    {
+      self_summary: self.self_summary,
+      doing_with_life:  self.doing_with_life,
+      really_good_at: self.really_good_at,
+      favorite_things: self.favorite_things,
+      six_things: self.six_things,
+      thinking_about: self.thinking_about,
+      typical_friday: self.typical_friday,
+      message_me_if:  self.message_me_if
+    }
+  end
 end
