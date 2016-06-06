@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160605181909) do
+ActiveRecord::Schema.define(version: 20160606143707) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,16 +50,30 @@ ActiveRecord::Schema.define(version: 20160605181909) do
   add_index "user_photos", ["user_id"], name: "index_user_photos_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string  "username",        null: false
-    t.string  "email",           null: false
-    t.date    "birth_date",      null: false
-    t.string  "country",         null: false
-    t.integer "zip_code",        null: false
-    t.string  "password_digest", null: false
-    t.string  "session_token",   null: false
-    t.string  "location",        null: false
-    t.string  "gender",          null: false
-    t.string  "orientation",     null: false
+    t.string  "username",          null: false
+    t.string  "email",             null: false
+    t.date    "birth_date",        null: false
+    t.string  "country",           null: false
+    t.integer "zip_code",          null: false
+    t.string  "password_digest",   null: false
+    t.string  "session_token",     null: false
+    t.string  "location",          null: false
+    t.string  "gender",            null: false
+    t.string  "orientation",       null: false
+    t.string  "ethnicity"
+    t.string  "status"
+    t.string  "relationship_type"
+    t.string  "height"
+    t.string  "body_type"
+    t.string  "diet"
+    t.string  "smoking"
+    t.string  "drinking"
+    t.string  "drugs"
+    t.string  "sign"
+    t.string  "education"
+    t.string  "offspring"
+    t.string  "pets"
+    t.string  "speaks"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree

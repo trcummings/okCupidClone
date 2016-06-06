@@ -18,8 +18,10 @@
  *= require ./auth/formThree
  *= require ./auth/modal
  *= require header
+ *= require footer
  *= require errorMessages
  *= require ./profile/profileMain
+ *= require ./profile/questionForm
  *= require main
  *= require ./matches/match_card
  *= require ./matches/match_index

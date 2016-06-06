@@ -4,6 +4,8 @@ var SessionStore = require('../../stores/sessionStore');
 var HelperUtil = require('../../util/helperUtil');
 var BasicInfoEditModal = require('./modals/basicInfoEditModal');
 var ProfileAboutTab = require('./profileAboutTab');
+var ProfileQuestionsTab = require('./profileQuestionsTab');
+var ProfilePicturesTab = require('./profilePicturesTab');
 var PhotoStore = require('../../stores/photoStore');
 
 var Tabs = ({
@@ -11,12 +13,10 @@ var Tabs = ({
     return (<ProfileAboutTab />);
   },
   1:function () {
-    // return (<ProfilePicturesTab />);
-    return (<div />);
+    return (<ProfilePicturesTab />);
   },
   2:function () {
-    // return (<ProfileQuestionsTab />);
-    return (<div />);
+    return (<ProfileQuestionsTab />);
   },
 });
 
@@ -28,7 +28,10 @@ var ProfileMain = React.createClass({
   getInitialState: function () {
     return {
       selectedTab: 0,
-      userPhotos: PhotoStore.returnCurrentUserPhotos()
+      userPhotos: PhotoStore.returnCurrentUserPhotos(),
+      tabOneSelected: 'selectedTab',
+      tabTwoSelected: '',
+      tabThreeSelected: ''
     };
   },
 
@@ -47,7 +50,35 @@ var ProfileMain = React.createClass({
   selectTab: function (event) {
     event.preventDefault();
 
-    this.setState({selectedTab: event.target.value});
+    if (event.target.value === 0) {
+      this.setState(
+        {
+          selectedTab: event.target.value,
+          tabOneSelected: 'selectedTab',
+          tabTwoSelected: '',
+          tabThreeSelected: ''
+        }
+      );
+    } else if (event.target.value === 1) {
+      this.setState(
+        {
+          selectedTab: event.target.value,
+          tabOneSelected: '',
+          tabTwoSelected: 'selectedTab',
+          tabThreeSelected: ''
+        }
+      );
+    } else if (event.target.value === 2) {
+      this.setState(
+        {
+          selectedTab: event.target.value,
+          tabOneSelected: '',
+          tabTwoSelected: '',
+          tabThreeSelected: 'selectedTab'
+        }
+      );
+    }
+
   },
 
   renderTab: function () {
@@ -75,7 +106,7 @@ var ProfileMain = React.createClass({
     if (currentUser) {
 
       return (
-        <div id='profile-main'>
+        <div id='profile-main' className='group'>
           <div id='tabbed-heading'>
             <div id='profile-thumbs' className='group'>
               {
@@ -106,6 +137,7 @@ var ProfileMain = React.createClass({
               <li
                 value={0}
                 onClick={this.selectTab}
+                id={this.state.tabOneSelected}
                 >
                 About
               </li>
@@ -113,12 +145,14 @@ var ProfileMain = React.createClass({
               <li
                 value={1}
                 onClick={this.selectTab}
+                id={this.state.tabTwoSelected}
                 >
                 Photos
               </li>
               <li
                 value={2}
                 onClick={this.selectTab}
+                id={this.state.tabThreeSelected}
                 >
                 Questions
               </li>
@@ -131,16 +165,6 @@ var ProfileMain = React.createClass({
           <div className='profile-monolith'>
             <div id='main-column'>
               {this.renderTab()}
-            </div>
-
-            <div id='right-column'>
-              <div id='looking-for'>
-                looking for
-              </div>
-
-              <div id='details'>
-                my details
-              </div>
             </div>
           </div>
         </div>
