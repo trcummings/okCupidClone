@@ -9,5 +9,7 @@ Rails.application.routes.draw do
     resources :user_photos, only: [:create, :index, :destroy]
     resources :user_photos, only: :show, param: :user_id
     resources :messages, only: [:create, :chat_history]
+
+    resources :user_abouts, only: [:show, :update], param: :user_id
   end
 end

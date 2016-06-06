@@ -2,31 +2,17 @@
 #
 # Table name: users
 #
-#  id                :integer          not null, primary key
-#  username          :string           not null
-#  email             :string           not null
-#  birth_date        :date             not null
-#  country           :string           not null
-#  zip_code          :integer          not null
-#  password_digest   :string           not null
-#  session_token     :string           not null
-#  location          :string           not null
-#  gender            :string           not null
-#  orientation       :string           not null
-#  ethnicity         :string
-#  status            :string
-#  relationship_type :string
-#  height            :string
-#  body_type         :string
-#  diet              :string
-#  smoking           :string
-#  drinking          :string
-#  drugs             :string
-#  sign              :string
-#  education         :string
-#  offspring         :string
-#  pets              :string
-#  speaks            :string
+#  id              :integer          not null, primary key
+#  username        :string           not null
+#  email           :string           not null
+#  birth_date      :date             not null
+#  country         :string           not null
+#  zip_code        :integer          not null
+#  password_digest :string           not null
+#  session_token   :string           not null
+#  location        :string           not null
+#  gender          :string           not null
+#  orientation     :string           not null
 #
 
 class User < ActiveRecord::Base
@@ -73,7 +59,16 @@ class User < ActiveRecord::Base
     :photos,
     class_name: "UserPhoto",
     foreign_key: :user_id,
-    primary_key: :id
+    primary_key: :id,
+    dependent: :destroy
+  )
+
+  has_one(
+    :about,
+    class_name: "UserAbout",
+    foreign_key: :user_id,
+    primary_key: :id,
+    dependent: :destroy
   )
 
   def to_param

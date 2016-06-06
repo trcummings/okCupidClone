@@ -21,7 +21,7 @@
  *= require footer
  *= require errorMessages
  *= require ./profile/profileMain
- *= require ./profile/questionForm
+ *= require ./profile/questionTab
  *= require main
  *= require ./matches/match_card
  *= require ./matches/match_index
