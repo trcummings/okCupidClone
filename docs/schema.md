@@ -13,6 +13,9 @@ password_digest   | string    | not null
 session_token     | string    | not null
 gender            | string    | not null /// DETAILS START HERE
 orientation       | string    | not null
+
+##user-details
+user_id
 ethnicity         | string    |
 status            | string    |
 relationship_type | string    |
@@ -93,7 +96,7 @@ multi_select    | boolean   | not null, default: false
 column name     | data type | details
 ----------------|-----------|-----------------------
 id              | integer   | not null, primary key
-question_id     | integer   | not null, 
+question_id     | integer   | not null,
 description     | string    | not null
 multi_select    | boolean   | not null, default: false
 

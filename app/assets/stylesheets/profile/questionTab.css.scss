@@ -1,0 +1,144 @@
+#questions-tab {
+
+  #question-item {
+    position: relative;
+    width: auto;
+    border-bottom: 1px solid #ccd0d9;
+    margin-bottom: 10px;
+    padding: 0;
+    overflow: hidden;
+    opacity: 1;
+    border-radius: 3px;
+    background: #fff;
+    padding-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 60px;
+
+    h1 {
+      font-family: 'Open Sans',sans-serif;
+      font-weight: normal;
+      color: #5e6573;
+      font-size: 15px;
+      line-height: 22px;
+      margin-bottom: 15px;
+    }
+
+    .question-footer {
+      position: absolute;
+      bottom: 15px;
+      display: block;
+
+      -webkit-transition: opacity .25s ease;
+      -moz-transition: opacity .25s ease;
+      -o-transition: opacity .25s ease;
+      -ms-transition: opacity .25s ease;
+      transition: opacity .25s ease;
+
+      opacity: 0;
+      color: #949aa6;
+
+      .fa.fa-pencil {
+        color: #949aa6;
+
+
+      }
+
+      .fa.fa-pencil:after {
+
+      }
+
+      .explain-button {
+        float: left;
+      }
+
+      .explain-button:hover {
+        color: #3260c7;
+
+        .fa.fa-pencil {
+          color: #3260c7;
+        }
+      }
+
+      .explain-button:before {
+        .fa.fa-pencil {
+          color: grey;
+        }
+      }
+
+      .fa.fa-pencil:after {
+        white-space: pre;
+        content: ' '
+      }
+
+      .re-answer-button {
+        float: right;
+        padding-left: 285px;
+      }
+
+      .re-answer-button:hover {
+        color: #3260c7;
+      }
+
+    }
+
+
+
+    #answer-item {
+
+      .answered {
+        color: #00d280;
+      }
+
+      .answered:before {
+        white-space: pre;
+        content: '  \2713 ';
+      }
+
+      .acceptable:before {
+        white-space: pre;
+        content: ' • ';
+      }
+
+      .unacceptable {
+        text-decoration: line-through;
+        color: grey;
+      }
+
+      .unacceptable:before {
+        white-space: pre;
+        content: ' • ';
+      }
+
+      .indifferent {
+        color: #00d280;
+      }
+
+      .indifferent:before {
+        color: grey;
+        white-space: pre;
+        content: ' • ';
+      }
+
+      li {
+        padding: 10px;
+      }
+
+    }
+
+  }
+
+  #question-item:hover {
+    .question-footer {
+      opacity: 1;
+    }
+  }
+
+  h2 {
+    font-size: 22px;
+    line-height: 36px;
+    font-weight: 400;
+    color: #5e6573;
+    padding: 0;
+  }
+}

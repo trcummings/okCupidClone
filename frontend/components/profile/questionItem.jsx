@@ -46,7 +46,7 @@ var QuestionItem = React.createClass({
       );
     } else {
       return (
-        <section id='questionItemForm'>
+        <section id='question-item'>
           <h1> Question Title </h1>
           <p> Question Body </p>
           <button onClick={this.handleAnswerClick}> Answer </button>

@@ -11,6 +11,7 @@ class Api::UsersController < ApplicationController
     @user.birth_date = Date.new(*date_params)
 
     if @user.save
+      UserAbout.create(user_id: @user.id)
       log_in!(@user)
       render '/api/users/show'
     else
