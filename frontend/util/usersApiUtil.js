@@ -96,7 +96,7 @@ var UsersApiUtil = {
       url: '/api/user_abouts/' + currentUser.id,
       type: 'PATCH',
       dataType: 'json',
-      data: aboutData,
+      data: { about: aboutData },
       success: function (userAbout) {
         ServerActions.receiveCurrentUserAbout(userAbout);
       },

@@ -62,7 +62,7 @@ var ClientActions = {
   },
 
   updateCurrentUserAbout: function (currentUser, aboutData) {
-    UsersApiUtil.getCurrentUserAbout(currentUser, aboutData);
+    UsersApiUtil.updateCurrentUserAbout(currentUser, aboutData);
   },
 };
 

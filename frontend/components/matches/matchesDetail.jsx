@@ -68,6 +68,10 @@ var MatchDetail = React.createClass({
               <button id='message-button'>Message</button>
             </article>
         </article>
+
+        <div id='rest-of-match-detail'>
+        </div>
+
         </div>
       );
     } else {

@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 User.destroy_all
 
-User.create!(
+thomsen = User.create!(
   username: 'trcummings',
   password: 'password',
   email: 'thomsencummings@gmail.com',
@@ -17,4 +17,8 @@ User.create!(
   location: 'Brooklyn, NY',
   gender: 'Anime Enthusiast',
   orientation: 'Sapiosexual'
+)
+
+UserAbout.create!(
+  user_id: thomsen.id
 )
