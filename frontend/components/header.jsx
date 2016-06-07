@@ -1,8 +1,13 @@
 var React = require('react');
 var HeaderProfileDropDown = require('./headerProfileDropDown');
 var HeaderMessagesDropDown = require('./headerMessagesDropDown');
+var SessionStore = require('../stores/sessionStore');
 
 var Header = React.createClass({
+  contextTypes: {
+    router: React.PropTypes.object.isRequired
+  },
+
   getInitialState: function () {
     return ({
       profileDropDown: false,
@@ -22,6 +27,10 @@ var Header = React.createClass({
     }
   },
 
+  handleLikesClick: function () {
+    this.context.router.push("/likes");
+  },
+
   toggleDropDown: function (type) {
     if (this.state[type]) {
       this.state[type] = false;
@@ -32,6 +41,8 @@ var Header = React.createClass({
   },
 
   render: function () {
+    var currentUser = SessionStore.currentUser();
+
     return (
       <nav id='navigation'>
         <div id='nav-left'>
@@ -50,21 +61,25 @@ var Header = React.createClass({
 
         <div id='nav-right'>
           <ul className='nav-links nav-item group'>
-            <li id='glyph'>
-              [V]
-              <p>Visitors</p>
+            <li id='glyph' >
+              <i className="fa fa-users fa-2" aria-hidden="true"></i>
+              <p id='visitors-glyph'>Visitors</p>
             </li>
 
-            <li id='glyph'>
-              [L]
-              <p>Likes</p>
+            <li id='glyph' onClick={this.handleLikesClick}>
+              <i className='fa fa-star fa-2' aria-hidden='true'></i>
+              <p id='likes-glyph'>
+                <i className="fa fa-caret-up" aria-hidden="true"></i>
+                Likes
+              </p>
             </li>
 
             <li id='messages-drop-down'>
               <button
                 onClick={this.toggleDropDown.bind(this, 'messagesDropDown')}
                 >
-                Messages
+
+                <i className="fa fa-comment fa-2" aria-hidden="true"></i>
               </button>
               {this.renderDropDown('messagesDropDown')}
             </li>
@@ -73,7 +88,10 @@ var Header = React.createClass({
               <button
                 onClick={this.toggleDropDown.bind(this, 'profileDropDown')}
                 >
-                Profile
+                <img
+                  id='user-thumbnail'
+                  src={currentUser.photo_url}
+                />
               </button>
               {this.renderDropDown('profileDropDown')}
             </li>
