@@ -135,41 +135,184 @@
   }
 
   h2 {
-    font-size: 22px;
+    font-size: 16px;
     line-height: 36px;
-    font-weight: 400;
+    font-weight: 600;
     color: #5e6573;
-    padding: 0;
+    padding-bottom: 20px;
   }
 
-  #questionForm {
-    .answer-button {
-      width: 120px;
-      height: 42px;
-      line-height: 41px;
-      font-size: 15px;
-      white-space: nowrap;
-      color: #fff;
-      text-align: center;
-      text-transform: none;
-      overflow: hidden;
-      border-radius: 2px;
-      background-color: #3260c7;
-    }
+  .answer-button {
+    width: 120px;
+    height: 42px;
+    line-height: 41px;
+    font-size: 15px;
+    white-space: nowrap;
+    color: #fff;
+    text-align: center;
+    text-transform: none;
+    overflow: hidden;
+    border-radius: 2px;
+    background-color: #3260c7;
+  }
 
-    .skip-button {
-      margin-left: 10px;
-      width: 120px;
-      height: 42px;
-      line-height: 41px;
-      font-size: 15px;
-      white-space: nowrap;
+  .skip-button {
+    margin-left: 10px;
+    width: 120px;
+    height: 42px;
+    line-height: 41px;
+    font-size: 15px;
+    white-space: nowrap;
+    color: #5e6573;
+    text-align: center;
+    text-transform: none;
+    overflow: hidden;
+    // border-radius: 2px;
+    // border: 1px solid #ccd0d9;
+  }
+
+  .cancel-button {
+    margin-left: 10px;
+    width: 120px;
+    height: 42px;
+    line-height: 41px;
+    font-size: 15px;
+    white-space: nowrap;
+    color: #5e6573;
+    text-align: center;
+    text-transform: none;
+    overflow: hidden;
+    border-radius: 2px;
+    border: 1px solid #ccd0d9;
+  }
+
+  .skip-button:hover {
+    color: #4c7bd9;
+  }
+
+  textarea {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 400px;
+    min-height: 70px;
+    border: 1px solid #ccd0d9;
+    border-radius: 2px;
+    padding: 20px;
+  }
+
+  ul {
+
+    padding-bottom: 30px;
+
+    .choice-button {
+
       color: #5e6573;
-      text-align: center;
-      text-transform: none;
-      overflow: hidden;
-      border-radius: 2px;
-      border: 1px solid #ccd0d9;;
+      display: block;
+
+      i {
+        color: #ccd0d9;
+        font-size: 1.5em;
+        padding-left: 5px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+      }
+
+      i:after {
+        white-space: pre;
+        content: " ";
+      }
+
+      span {
+        font-size: 15px;
+        padding: 5px;
+      }
+
+      .fa-check-circle-o {
+        color: #4c7bd9;
+      }
+
+      .fa-check-square-o {
+        color: #4c7bd9;
+      }
+
+    }
+
+    .choice-button:hover {
+
+      i {
+        color: #5e6573;
+      }
+
+      .fa-check-circle-o {
+        color: #4c7bd9;
+      }
+
+      .fa-check-square-o {
+        color: #4c7bd9;
+      }
+
+      span {
+        cursor: default;
+      }
     }
   }
+
+  .importanceButtons {
+    display: block;
+    margin-bottom: 30px;
+
+    p {
+      color: #5e6573;
+    }
+
+    div {
+      color: #ccd0d9;
+      font-size: 15px;
+      padding: 10px;
+    }
+
+    label {
+      width: 145px;
+      float: left;
+
+      p {
+        text-align: center;
+        color: #5e6573;
+        font-size: 15px;
+        padding: 10px;
+      }
+
+      .importance-button {
+        width: 143px;
+        height: 18px;
+        margin-bottom: 5px;
+        margin-top: 5px;
+        border-radius: 2px;
+      }
+
+      .hovered {
+        background: #5e6573;
+      }
+
+      .not-hovered {
+        background: #ebedf2;
+      }
+
+      .not-hovered:hover {
+        background: #9DA3AF;
+      }
+
+      .selected {
+        background: #4c7bd9;
+      }
+
+      .selected:hover {
+        background: #618EE8;
+      }
+    }
+  }
+
+
+
 }
