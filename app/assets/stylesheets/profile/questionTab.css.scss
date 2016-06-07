@@ -141,4 +141,35 @@
     color: #5e6573;
     padding: 0;
   }
+
+  #questionForm {
+    .answer-button {
+      width: 120px;
+      height: 42px;
+      line-height: 41px;
+      font-size: 15px;
+      white-space: nowrap;
+      color: #fff;
+      text-align: center;
+      text-transform: none;
+      overflow: hidden;
+      border-radius: 2px;
+      background-color: #3260c7;
+    }
+
+    .skip-button {
+      margin-left: 10px;
+      width: 120px;
+      height: 42px;
+      line-height: 41px;
+      font-size: 15px;
+      white-space: nowrap;
+      color: #5e6573;
+      text-align: center;
+      text-transform: none;
+      overflow: hidden;
+      border-radius: 2px;
+      border: 1px solid #ccd0d9;;
+    }
+  }
 }

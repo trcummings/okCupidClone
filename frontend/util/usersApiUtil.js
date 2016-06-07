@@ -116,7 +116,8 @@ var UsersApiUtil = {
       type: 'POST',
       dataType: 'json',
       data: { user_id: otherUser.id },
-      success: function () {
+      success: function (like) {
+        ServerActions.addUserToLikes(otherUser);
         callback();
       },
       error: function (xhr) {
@@ -134,7 +135,8 @@ var UsersApiUtil = {
       url: '/api/likes/' + otherUser.id,
       type: 'DELETE',
       dataType: 'json',
-      success: function () {
+      success: function (like) {
+        ServerActions.removeUserFromLikes(otherUser);
         callback();
       },
       error: function (xhr) {

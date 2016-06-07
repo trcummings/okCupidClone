@@ -17,8 +17,8 @@ By the end of app/Academy week 9, this app will meet the following criteria for 
 - [ ] Smooth, bug-free navigation
 - [ ] Adequate seed data to demonstrate the site's features
 - [ ] Question answering
-- [ ] Editable user profile with pictures and personal information
-- [ ] Ability to view and 'like' other profiles
+- [x] Editable user profile with pictures and personal information
+- [x] Ability to view and 'like' other profiles
 - [ ] Dynamic notifications of profile views and likes
 - [ ] A match percentage between each user, algorithmically determined
 - [ ] A websocket based messenger platform, for users to communicate
@@ -37,8 +37,8 @@ progress. Put an x between the brackets for a checkmark: [x] -->
 - [x] Create an account (MVP)
 - [x] Log in / Log out (MVP)
 - [ ] including as a Guest/Demo User (MVP)
-- [ ] Edit Profile About, Profile Description (MVP)
-- [ ] View Other Profiles (MVP)
+- [x] Edit Profile About, Profile Description (MVP)
+- [x] View Other Profiles (MVP)
 - [ ] Answer Questions (MVP)
 - [ ] View Match Percentages Between Users (MVP)
 - [ ] Add and Remove Profile Pictures (MVP)
@@ -82,15 +82,15 @@ progress. Put an x between the brackets for a checkmark: [x] -->
 **Objective:** Profiles can be read, edited and destroyed through
 the API.
 
-- [ ] create `ProfileAbout` model
+- [x] create `ProfileAbout` model
 - [ ] create `ProfileDetails` model
 - [ ] create `ProfileLookingFor` model
-- [ ] create `Like` model
+- [x] create `Like` model
 - [ ] create `Visit` model
-- [ ] create `UserPhoto` model
+- [x] create `UserPhoto` model
 - [x] seed the database with a small amount of test data
 - [ ] CRUD API for Profile, Like, Visit (`ProfilesController`, `LikesController` , `VisitsController`)
-- [ ] jBuilder views for profiles
+- [x] jBuilder views for profiles
 - [x] setup Webpack & Flux scaffold
 - [x] setup `APIUtil` to interact with the API
 - [x] test out API interaction in the console.
@@ -103,13 +103,13 @@ user interface.
 - [x] setup the flux loop with skeleton files
 - [x] setup React Router
 - implement each note component, building out the flux loop as needed.
-- [ ] create `LikeToggle` button with CRUD and API interaction
+- [x] create `LikeToggle` button with CRUD and API interaction
 
 ### Phase 4: MatchesIndex and MatchDetails (1 Day)
 
 **Objective:** User can view other profiles, by navigating through the `HeaderNav`
 
-- [ ] setup the MatchesIndex component, and flesh out each profile view
+- [x] setup the MatchesIndex component, and flesh out each profile view
 - [ ] create mutual like modal, pops up on `LikeToggle` when two users like each-other
 
 ### Phase 5: Questions, Answers, Match Percentages (2 Days)

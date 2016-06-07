@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160606171928) do
+ActiveRecord::Schema.define(version: 20160607152500) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,22 @@ ActiveRecord::Schema.define(version: 20160606171928) do
 
   add_index "messages", ["receiver_id"], name: "index_messages_on_receiver_id", using: :btree
   add_index "messages", ["sender_id"], name: "index_messages_on_sender_id", using: :btree
+
+  create_table "question_choices", force: :cascade do |t|
+    t.integer  "question_id",   null: false
+    t.string   "choice_string", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "question_choices", ["question_id"], name: "index_question_choices_on_question_id", using: :btree
+
+  create_table "questions", force: :cascade do |t|
+    t.string   "content",                      null: false
+    t.boolean  "multi_select", default: false, null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
 
   create_table "user_abouts", force: :cascade do |t|
     t.integer  "user_id",         null: false

@@ -73,7 +73,7 @@
       line-height: 61px;
     }
 
-    #glyph p {
+    .glyph p {
       position: absolute;
       display: none;
 
@@ -86,27 +86,70 @@
 
 
 
-    #glyph:hover {
-      p {
-        padding: 0px;
-        top: 50px;
-        display: block;
-        background-color: black;
-        color: white;
-      }
+    .glyph:hover {
 
       #visitors-glyph {
-        right: 275px;
-      }
+        padding: 0px;
+        top: 60px;
+        display: block;
+        color: white;
+        height: 10px;
+        right: 316px;
 
-      #likes-glyph {
-        right: 200px;
 
         i {
           top: -35px;
           position: absolute;
           color: black;
           font-size: 2em;
+        }
+
+        .poptext {
+          top: -25px;
+          padding: 10px;
+          right: -48px;
+          position: absolute;
+          z-index: 100;
+        }
+
+        .blankbox {
+          background-color: black;
+          position: absolute;
+          padding: 10px 38px 20px 40px;
+          right: -50px;
+          z-index: 99;
+        }
+      }
+
+      #likes-glyph {
+        padding: 0px;
+        top: 60px;
+        display: block;
+        color: white;
+        height: 10px;
+        right: 238px;
+
+        i {
+          top: -35px;
+          position: absolute;
+          color: black;
+          font-size: 2em;
+        }
+
+        .poptext {
+          top: -25px;
+          padding: 10px;
+          right: -38px;
+          position: absolute;
+          z-index: 100;
+        }
+
+        .blankbox {
+          background-color: black;
+          position: absolute;
+          padding: 10px 20px 20px 40px;
+          right: -40px;
+          z-index: 99;
         }
       }
     }
