@@ -71,6 +71,10 @@ var ClientActions = {
 
   unlikeUser: function (otherUser, callback) {
     UsersApiUtil.unlikeUser(otherUser, callback);
+  },
+
+  answerQuestion: function (answer, callback) {
+    UsersApiUtil.answerQuestion(answer, callback);
   }
 };
 

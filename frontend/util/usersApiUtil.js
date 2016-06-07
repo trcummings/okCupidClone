@@ -146,6 +146,31 @@ var UsersApiUtil = {
         // ErrorActions.setErrors("signup", errors);
       }
     });
+  },
+
+  answerQuestion: function (answer, callback) {
+    debugger;
+
+    callback();
+
+    debugger;
+    // put in once i have answer model & route
+    // $.ajax({
+    //   url: '/api/answers/' + otherUser.id,
+    //   type: 'POST',
+    //   dataType: 'json',
+    //   data: { answer: answer },
+    //   success: function (answer) {
+    //     ServerActions.answerQuestion(answer);
+    //     callback();
+    //   },
+    //   error: function (xhr) {
+    //     debugger;
+    //     // console.log('UserApiUtil#createAccount error');
+    //     // var errors = xhr.responseJSON;
+    //     // ErrorActions.setErrors("signup", errors);
+    //   }
+    // });
   }
 };
 
