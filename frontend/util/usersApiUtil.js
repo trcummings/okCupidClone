@@ -118,7 +118,6 @@ var UsersApiUtil = {
       data: { user_id: otherUser.id },
       success: function () {
         callback();
-        console.log('you created it!');
       },
       error: function (xhr) {
         debugger;
@@ -137,7 +136,6 @@ var UsersApiUtil = {
       dataType: 'json',
       success: function () {
         callback();
-        console.log('you deleted it!');
       },
       error: function (xhr) {
         debugger;

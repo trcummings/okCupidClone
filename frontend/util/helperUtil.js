@@ -90,12 +90,19 @@ var HelperUtil = {
   },
 
   doesCurrentUserLikeThisUser: function (currentUser, otherUser) {
-    var likedUsers = currentUser.people_this_user_liked;
+    var likedUsers = currentUser.likees;
+    var targetUser;
 
-    if (likedUsers.indexOf(otherUser) === -1) {
-      return false;
-    } else {
+    likedUsers.forEach(function (user) {
+      if (user.username === otherUser.username) {
+        targetUser = user;
+      }
+    });
+
+    if (targetUser) {
       return true;
+    } else {
+      return false;
     }
   }
 

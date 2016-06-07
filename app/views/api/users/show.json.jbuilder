@@ -8,10 +8,10 @@ if @user.about
   json.about @user.about.return_safe_data
 end
 
-if @user.people_who_liked_this_user
-  json.people_who_liked_this_user @user.people_who_liked_this_user
+if @user.likers
+  json.likers @user.likers
 end
 
-if @user.people_this_user_liked
-  json.people_this_user_liked @user.people_this_user_liked
+if @user.likees
+  json.likees @user.likees
 end
