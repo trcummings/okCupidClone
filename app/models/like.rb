@@ -28,6 +28,10 @@ class Like < ActiveRecord::Base
     primary_key: :id
   )
 
+  def to_param
+    likee_id
+  end
+
   def self.mutual_like?(id1, id2)
   end
 end

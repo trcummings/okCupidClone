@@ -87,6 +87,16 @@ var HelperUtil = {
     'Man',
     'Woman'
     ]
+  },
+
+  doesCurrentUserLikeThisUser: function (currentUser, otherUser) {
+    var likedUsers = currentUser.people_this_user_liked;
+
+    if (likedUsers.indexOf(otherUser) === -1) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
 };

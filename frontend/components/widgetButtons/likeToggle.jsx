@@ -1,21 +1,40 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
-var LikeStore = require('../../stores/likeStore');
+var HelperUtil = require('../../util/helperUtil');
+var SessionStore = require('../../stores/sessionStore');
+var ClientActions = require('../../actions/clientActions');
 
 var LikeToggle = React.createClass({
   getInitialState: function () {
     return({
-      liked: false
+      liked: HelperUtil.doesCurrentUserLikeThisUser(this.props.liker, this.props.likee),
+      buttonActive: true
     });
   },
 
   toggleLike: function (event) {
+    var liker = this.props.liker;
     event.preventDefault();
 
     if (this.state.liked) {
-      this.setState({ liked: false });
+      ClientActions.unlikeUser(this.props.likee, function () {
+          this.setState({ buttonActive: true });
+        }.bind(this)
+      );
+
+      this.setState({
+        liked: false,
+        buttonActive: false
+       });
+
     } else {
-      this.setState({ liked: true });
+      ClientActions.likeUser(this.props.likee, function () {
+        this.setState({ buttonActive: true });
+      }.bind(this));
+      this.setState({
+        liked: true,
+        buttonActive: false
+       });
     }
   },
 
