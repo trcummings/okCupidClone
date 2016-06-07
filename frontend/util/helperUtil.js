@@ -85,7 +85,8 @@ var HelperUtil = {
     genders: [
     'Anime Enthusiast',
     'Man',
-    'Woman'
+    'Woman',
+    'NonBinary'
     ]
   },
 
@@ -104,6 +105,24 @@ var HelperUtil = {
     } else {
       return false;
     }
+  },
+
+  getRandomQuestion: function (callback) {
+    $.ajax({
+      url: '/api/questions/random',
+      type: 'GET',
+      dataType: 'json',
+      contentType: 'application/json',
+      success: function (question) {
+        callback(question);
+      },
+      error: function (xhr) {
+        debugger;
+        // console.log('UserApiUtil#createAccount error');
+        // var errors = xhr.responseJSON;
+        // ErrorActions.setErrors("signup", errors);
+      }
+    });
   }
 
 };

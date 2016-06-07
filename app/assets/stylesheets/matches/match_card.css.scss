@@ -15,12 +15,17 @@
   background-color: grey;
   cursor: pointer;
   overflow: hidden;
+  z-index: 10;
 
   img {
     position: absolute;
     width: inherit;
     height: inherit;
     top: -20px;
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 
     -webkit-transition: top .25s ease;
     -moz-transition: top .25s ease;
@@ -95,8 +100,8 @@
 
   img {
     top: 0px;
-    height: inherit;
     width: inherit;
+    height: inherit;
   }
 
   #match-info-container {

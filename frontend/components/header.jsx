@@ -61,20 +61,25 @@ var Header = React.createClass({
 
         <div id='nav-right'>
           <ul className='nav-links nav-item group'>
-            <li id='glyph' >
+            <li className='glyph' >
               <i className="fa fa-users fa-2" aria-hidden="true"></i>
-              <p id='visitors-glyph'>Visitors</p>
-            </li>
-
-            <li id='glyph' onClick={this.handleLikesClick}>
-              <i className='fa fa-star fa-2' aria-hidden='true'></i>
-              <p id='likes-glyph'>
+              <p id='visitors-glyph'>
                 <i className="fa fa-caret-up" aria-hidden="true"></i>
-                Likes
+                <span className='poptext'>Visitors</span>
+                <span className='blankbox'> </span>
               </p>
             </li>
 
-            <li id='messages-drop-down'>
+            <li className='glyph' onClick={this.handleLikesClick}>
+              <i className='fa fa-star fa-2' aria-hidden='true'></i>
+              <p id='likes-glyph'>
+                <i className="fa fa-caret-up" aria-hidden="true"></i>
+                <span className='poptext'>Likes</span>
+                <span className='blankbox'> </span>
+              </p>
+            </li>
+
+            <li id='messages-drop-down glyph'>
               <button
                 onClick={this.toggleDropDown.bind(this, 'messagesDropDown')}
                 >

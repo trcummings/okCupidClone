@@ -32,12 +32,16 @@ var MatchesIndexItem = React.createClass({
   // },
 
   renderMatchDetail: function (event) {
-    if (event.target === event.currentTarget) {
+    if (event.target.id !== 'like-toggle' &&
+        event.target.id !== 'toggle-button' &&
+        event.target.className !== 'fa fa-star'
+      ) {
       this.context.router.push('/profile/' + this.props.user.username);
     }
   },
 
   renderProfilePhoto: function () {
+    // debugger;
     var user = this.props.user;
     // var profilePhoto = this.state.profilePhoto;
 

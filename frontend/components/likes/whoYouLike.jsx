@@ -3,6 +3,9 @@ var PropTypes = React.PropTypes;
 var SessionStore = require('../../stores/sessionStore');
 
 var WhoYouLike = React.createClass({
+  componentDidMount: function () {
+  },
+
   renderUserList: function () {
     var currentUser = SessionStore.currentUser();
 

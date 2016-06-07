@@ -3,6 +3,8 @@ var PropTypes = React.PropTypes;
 var WhoLikesYou = require('./whoLikesYou');
 var MutualLikes = require('./MutualLikes');
 var WhoYouLike = require('./whoYouLike');
+var SessionStore = require('../../stores/sessionStore');
+var ClientActions = require('../../actions/clientActions');
 
 var Tabs = ({
   0: function () {
