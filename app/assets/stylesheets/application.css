@@ -30,4 +30,5 @@
  *= require ./buttons/likeToggle
  *= require ./messages/messageBox
  *= require ./matches/match_detail
+ *= require ./likes/likesMain
  */

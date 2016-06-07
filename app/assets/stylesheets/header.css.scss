@@ -29,7 +29,7 @@
 
   #nav-left {
     float: left;
-    margin-left: 15px;
+    margin-left: 35px;
 
     a {
       padding: 4px 23px 0;
@@ -66,6 +66,7 @@
     margin-right: 15px;
 
     .nav-links > li {
+      cursor: pointer;
       float: left;
       padding: 4px 23px 0;
       font-size: 16px;
@@ -73,20 +74,52 @@
     }
 
     #glyph p {
+      position: absolute;
       display: none;
+
     }
+
+    .fa {
+      margin-top: 15px;
+      font-size: 2em;
+    }
+
+
 
     #glyph:hover {
       p {
+        padding: 0px;
+        top: 50px;
         display: block;
-        padding: 20px;
-        border: 1px solid black;
+        background-color: black;
+        color: white;
       }
 
+      #visitors-glyph {
+        right: 275px;
+      }
+
+      #likes-glyph {
+        right: 200px;
+
+        i {
+          top: -35px;
+          position: absolute;
+          color: black;
+          font-size: 2em;
+        }
+      }
     }
 
     #profile-drop-down {
       position: relative;
+
+      #user-thumbnail {
+        margin-top: 10px;
+        border-radius: 50%;
+        height: 42px;
+        width: 42px;
+      }
     }
 
     #messages-drop-down {

@@ -10,7 +10,8 @@ var React = require('react'),
     ProfileMain = require('./components/profile/profileMain'),
     FeedIndex = require('./components/feed/feedIndex'),
     MatchesIndex = require('./components/matches/matchesIndex'),
-    MatchesDetail = require('./components/matches/matchesDetail');
+    MatchesDetail = require('./components/matches/matchesDetail'),
+    LikesMain = require('./components/likes/likesMain');
 
 var Router = (
   <Router history={hashHistory}>
@@ -19,6 +20,7 @@ var Router = (
       <Route path='/home' component={FeedIndex} onEnter={ _ensureLoggedIn }/>
       <Route path='/matches' component={MatchesIndex} onEnter={ _ensureLoggedIn } />
       <Route path='/profile/:username' component={MatchesDetail} onEnter={ _ensureLoggedIn }/>
+      <Route path='/likes' component={LikesMain} onEnter={ _ensureLoggedIn }/>
     </Route>
   </Router>
 );
