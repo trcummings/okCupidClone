@@ -1,12 +1,9 @@
 #like-toggle {
-  background: #ffb640;
-  border-color: #ffb640;
-  color: white;
 
   text-align: center;
   line-height: 34px;
 
-  z-index: 3;
+  z-index: 6;
   top: 73px;
   margin: 0;
   position: absolute;
@@ -14,7 +11,7 @@
   width: 128px;
   margin-left: -64px;
 
-  font-size: 15px;
+  font-size: 16px;
   white-space: nowrap;
   cursor: pointer;
 
@@ -25,6 +22,72 @@
   overflow: hidden;
   border-radius: 2px;
   font-size: 15px;
+
+  i {
+    line-height: 34px;
+  }
+
+  i:after {
+    white-space: pre;
+    content: '  ';
+  }
+}
+
+.liked {
+  background: transparent;
+  border: 1px solid #ffd939;
+
+  color: #e4edfd;
+  i {
+    color: #ffd939;
+  }
+  font-size: 16px;
+}
+
+.not-liked {
+  background: transparent;
+  border: 1px solid #ccd0d9;
+
+
+  color: #ccd0d9;
+  font-size: 16px;
+
+  i {
+    color: #ccd0d9;
+  }
+}
+
+.on-match-page {
+
+  .not-liked {
+
+    color: #5e6573;
+    font-size: 16px;
+
+    i {
+      color: #5e6573;
+    }
+
+  }
+
+  .not-liked:hover {
+    background-color: #ccd0d9;
+  }
+
+  .liked {
+    background: #ffb640;
+    border: 1px solid #ffb640;
+
+    color: white;
+    i {
+      color: white;
+    }
+    font-size: 16px;
+  }
+
+  .liked:hover {
+    background-color: #ffd939;
+  }
 }
 
 // border: 1px solid #ccd0d9;

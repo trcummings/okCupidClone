@@ -55,7 +55,7 @@ var MatchDetail = React.createClass({
       for (var property in aboutDetail) {
         if (aboutDetail.hasOwnProperty(property) && property !== 'id') {
             result.push(
-              <li key={i} className='group'>
+              <li key={i} className='profile-detail-section group'>
                 <p className='about-title'>{fieldList[i]}</p>
                 <p className='info-box'>{aboutDetail[property]}</p>
               </li>
@@ -106,7 +106,11 @@ var MatchDetail = React.createClass({
           </article>
 
         <div id='rest-of-match-detail' className='group'>
-          {this.renderEachSection()}
+          <section id='left-column'>
+            <ul>
+              {this.renderEachSection()}
+            </ul>
+          </section>
         </div>
       </div>
 
