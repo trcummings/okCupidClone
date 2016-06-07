@@ -99,7 +99,9 @@ var MatchDetail = React.createClass({
               </div>
 
               <article id='widget-buttons' className='group'>
-                <LikeToggle targetUser={thisUser} />
+                <LikeToggle
+                  likee={thisUser}
+                  liker={SessionStore.currentUser()} />
                 <button id='message-button'>Message</button>
               </article>
             </div>

@@ -107,6 +107,45 @@ var UsersApiUtil = {
         // ErrorActions.setErrors("signup", errors);
       }
     });
+  },
+
+  likeUser: function (otherUser, callback) {
+
+    $.ajax({
+      url: '/api/likes/',
+      type: 'POST',
+      dataType: 'json',
+      data: { user_id: otherUser.id },
+      success: function () {
+        callback();
+        console.log('you created it!');
+      },
+      error: function (xhr) {
+        debugger;
+        // console.log('UserApiUtil#createAccount error');
+        // var errors = xhr.responseJSON;
+        // ErrorActions.setErrors("signup", errors);
+      }
+    });
+  },
+
+  unlikeUser: function (otherUser, callback) {
+
+    $.ajax({
+      url: '/api/likes/' + otherUser.id,
+      type: 'DELETE',
+      dataType: 'json',
+      success: function () {
+        callback();
+        console.log('you deleted it!');
+      },
+      error: function (xhr) {
+        debugger;
+        // console.log('UserApiUtil#createAccount error');
+        // var errors = xhr.responseJSON;
+        // ErrorActions.setErrors("signup", errors);
+      }
+    });
   }
 };
 

@@ -64,6 +64,14 @@ var ClientActions = {
   updateCurrentUserAbout: function (currentUser, aboutData) {
     UsersApiUtil.updateCurrentUserAbout(currentUser, aboutData);
   },
+
+  likeUser: function (otherUser, callback) {
+    UsersApiUtil.likeUser(otherUser, callback);
+  },
+
+  unlikeUser: function (otherUser, callback) {
+    UsersApiUtil.unlikeUser(otherUser, callback);
+  }
 };
 
 module.exports = ClientActions;
