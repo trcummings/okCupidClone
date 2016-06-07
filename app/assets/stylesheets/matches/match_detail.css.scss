@@ -13,6 +13,7 @@
       margin: auto;
       width: 850px;
       padding-top: 0px;
+      margin-bottom: 55px;
     }
 
     #viewed-user-thumbs {
@@ -123,6 +124,44 @@
     width: 850px;
     min-height: 800px;
     background: white;
+    padding-top: 30px;
+    padding-left: 60px;
+    padding-right: 60px;
+
+    #left-column {
+
+      float: left;
+      padding-right: 50px;
+      text-decoration: none;
+
+      .profile-detail-section {
+        margin-bottom: 40px;
+        min-height: 110px;
+
+        .about-title {
+          text-decoration: none;
+          margin-bottom: 15px;
+          font-weight: 600;
+          color: #474d59;
+          font-size: 18px;
+          line-height: 22px;
+          font-family: 'Open Sans',sans-serif;
+        }
+
+        .info-box {
+          color: #5e6573;
+          word-wrap: break-word;
+          font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+          font-size: 16px;
+          line-height: 24px;
+        }
+
+      }
+
+
+
+    }
+
   }
 
 }

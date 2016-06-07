@@ -31,8 +31,10 @@ var MatchesIndexItem = React.createClass({
   //   this.photoListener.remove();
   // },
 
-  renderMatchDetail: function () {
-    this.context.router.push('/profile/' + this.props.user.username);
+  renderMatchDetail: function (event) {
+    if (event.target === event.currentTarget) {
+      this.context.router.push('/profile/' + this.props.user.username);
+    }
   },
 
   renderProfilePhoto: function () {
@@ -77,8 +79,9 @@ var MatchesIndexItem = React.createClass({
             </li>
           </ul>
 
-          <div id='toggle-button'>
+          <div id='toggle-button' className='on-match-page'>
             <LikeToggle
+              ref='like-toggle'
               liker={SessionStore.currentUser()}
               likee={user}
             />

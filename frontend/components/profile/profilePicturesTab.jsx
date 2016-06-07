@@ -5,7 +5,7 @@ var ProfilePicturesTab = React.createClass({
 
   render: function() {
     return (
-      <div>GGGGHHH</div>
+      <div id='pictures-tab'>GGGGHHH</div>
     );
   }
 
