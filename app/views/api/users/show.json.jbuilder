@@ -1,6 +1,6 @@
 json.extract! @user,
-  :username, :email, :birth_date, :country, :location, :orientation, :gender
+  :username, :birth_date, :country, :location, :orientation, :gender, :default_photo_url
 
-if @user.photos.length > 0
-  json.photo_url @user.default_photo_url
-end
+# if @user.photos.length > 0
+#   json.photo_url @user.default_photo_url
+# end

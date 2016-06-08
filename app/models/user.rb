@@ -124,6 +124,67 @@ class User < ActiveRecord::Base
     def_photo_url
   end
 
+  # calculate match percentage w/current user
+  def match_percentage(other_username)
+    other_user = User.find_by(username: other_username)
+    my_total = 0
+    my_running_total = 0
+    their_total = 0
+    their_running_total = 0
+
+    if other_user
+      mutual_answers(other_user).each do |answer_pair|
+        mine = answer_pair.first
+        theirs = answer_pair.last
+
+        my_total += mine.importance
+        their_total += theirs.importance
+
+        if ids_checker(mine.acceptable_ids, their.chosen_ids)
+          my_running_total += mine.importance
+        end
+
+        if ids_checker(their.acceptable_ids, mine.chosen_ids)
+          their_running_total += their.importance
+        end
+      end
+
+      my_ratio = my_running_total.to_f / my_total
+      their_ratio = their_running_total.to_f / their_total
+
+      sqrt(my_ratio * their_ratio)
+    else
+      nil
+    end
+  end
+
+  def mutual_answers(other_user)
+    result = [];
+
+    other_user.answers.each do |their_answer|
+      self.answers.each do |my_answer|
+        if their_answer.question_id == my_answer.question_id
+          result.push([my_answer, their_answer])
+        end
+      end
+    end
+
+    result
+  end
+
+  def ids_checker(ids1, ids2)
+    mini_result = [];
+
+    ids1.each do |id1|
+      ids2.each do |id2|
+        if id1 == id2
+          mini_result.push('y')
+        end
+      end
+    end
+
+    mini_result.length > 0
+  end
 
 
   # session relevant methods

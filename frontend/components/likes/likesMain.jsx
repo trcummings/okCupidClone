@@ -1,21 +1,25 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
-var WhoLikesYou = require('./whoLikesYou');
-var MutualLikes = require('./mutualLikes');
-var WhoYouLike = require('./whoYouLike');
 var SessionStore = require('../../stores/sessionStore');
 var ClientActions = require('../../actions/clientActions');
+var HelperUtil = require('../../util/helperUtil');
 
 var Tabs = ({
-  0: function () {
-    return (<WhoLikesYou />);
+  0: {
+    aboutText: 'About Who Likes You',
+    aboutBody: `These are people who like you on PerfectPair’s site. Maybe they could like you in real life too! You don't get that kind of vulnerability every day. Imagine how messed up it would be if people just wore their insecurities on their chests. I know I wouldn't leave the house if every shirt I owned said "sensitive about the size of his hands"`,
+    group: 'likers'
   },
-  1:function () {
-    return (<MutualLikes />);
+  1: {
+    aboutText: 'About Mutual Likes',
+    aboutBody: `These people like you back but you're sitting here reading this, and NOT messaging them? Imagine the sheer vulnerability it takes to tell someone you like them. You've already both opened yourselves up to the cold, horrible world, and you're letting eachother shiver there like an exposed nerve! When I was in second grade, I told a girl I liked her, so she spilled my lemonade on my math homework and told everyone I 'peed my homework'. My family had to move because I would cry every time I got within two and a half miles of the school. My dad had a cancer scare and everything. He's fine though. He took me aside after the 'oscopy and said 'son, I'm really high on painkillers, and it's very important that you look at these pictures of the inside of my colon'`,
+    group: 'mutualLikes'
   },
-  2:function () {
-    return (<WhoYouLike />);
-  },
+  2: {
+    aboutText: 'About Who You Like',
+    aboutBody: `These are people you’ve liked on PerfectPair’s site. Be bold, send them a message, or don't and wallow. Not my problem!`,
+    group: 'likees'
+  }
 });
 
 var LikesMain = React.createClass({
@@ -24,7 +28,8 @@ var LikesMain = React.createClass({
       selectedTab: 0,
       tabOneSelected: 'selectedTab',
       tabTwoSelected: '',
-      tabThreeSelected: ''
+      tabThreeSelected: '',
+      currentUser: SessionStore.currentUser()
     };
   },
 
@@ -61,8 +66,101 @@ var LikesMain = React.createClass({
     }
   },
 
-  renderTab: function () {
-    return Tabs[this.state.selectedTab]();
+  getTabData: function () {
+    return Tabs[this.state.selectedTab];
+  },
+
+  renderUserList: function () {
+    var currentUser = SessionStore.currentUser();
+
+    return (
+      <ul>
+      {
+        currentUser.mutualLikes.map(function (user, index) {
+          return (
+            <li className='likelist-user' key={index}>
+              {this.renderUserItem(user)}
+            </li>
+          );
+        }.bind(this))
+      }
+      </ul>
+    );
+  },
+
+  renderUserItem: function (user) {
+    
+    // var likeStar;
+    // var userLikedText;
+    //
+    // debugger;
+    //
+    // if (currentUser.mutualLikes) {
+    //   likeStar = (
+    //     <div className='circle-in-star'>
+    //       <i className="fa fa-star" aria-hidden="true"></i>
+    //       <i className="fa fa-circle-thin" aria-hidden="true"></i>
+    //     </div>
+    //   );
+    // } else {
+    //   likeStar = (<div />);
+    // }
+    // <i className="fa fa-star" aria-hidden="true"></i>
+    // <span>hgghhhh</span>
+
+    debugger;
+
+    return (
+      <div>
+        <img src={user.photo_url} />
+        <span>{user.username}</span>
+        <span>{HelperUtil.returnAge(user.birth_date)}</span>
+        <span>{user.location}</span>
+      </div>
+    );
+  },
+
+  setSelectedTabToZero: function () {
+    this.setState(
+      {
+        selectedTab: 0,
+        tabOneSelected: 'selectedTab',
+        tabTwoSelected: '',
+        tabThreeSelected: ''
+      }
+    );
+  },
+
+  renderGeneralTab: function () {
+    var tabData = this.getTabData();
+    var currentUser = this.state.currentUser;
+    var personText = ' people like you';
+
+    if (currentUser[tabData.group].length === 1) {
+      personText = ' person likes you';
+    }
+
+    return (
+      <div className='user-list-box'>
+        <ul className='user-list-section-left'>
+          {this.renderUserList()}
+        </ul>
+
+        <section
+          className='user-list-like-count'
+          onClick={this.setSelectedTabToZero}
+        >
+          <i className='fa fa-star fa-2' aria-hidden='true'></i>
+          <h2>{currentUser[tabData.group].length + personText}</h2>
+          <i className="fa fa-arrow-right fa-2" aria-hidden="true"></i>
+        </section>
+
+        <section className='user-list-about'>
+          <h1>{tabData.aboutText}</h1>
+          <p>{tabData.aboutBody}</p>
+        </section>
+      </div>
+    );
   },
 
   render: function() {
@@ -99,7 +197,7 @@ var LikesMain = React.createClass({
 
         <div className='likes-monolith'>
           <div id='main-column'>
-            {this.renderTab()}
+            {this.renderGeneralTab()}
           </div>
         </div>
       </div>
