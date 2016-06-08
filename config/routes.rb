@@ -23,5 +23,7 @@ Rails.application.routes.draw do
     resources :user_abouts, only: [:show, :update], param: :user_id
 
     get '/questions/random', to: 'questions#show', as: 'random'
+
+    resources :answers, only: [:create, :update]
   end
 end

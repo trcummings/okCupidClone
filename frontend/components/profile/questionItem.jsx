@@ -39,9 +39,25 @@ var QuestionItem = React.createClass({
       this.state.selectedAnswer.length > 0 &&
       this.state.selectedDesire.length > 0
     ) {
+      var givenAnswers = this.state.selectedAnswer;
+      var desiredAnswers = this.state.selectedDesire;
+      var questionChoices = this.state.questionBundle.questionChoices;
+      var givenArray = [];
+      var desiredArray = [];
+
+      questionChoices.forEach(function (choice, index) {
+        if (givenAnswers.indexOf(choice.choice_string) !== -1) {
+          givenArray.push(choice.id);
+        }
+
+        if (desiredAnswers.indexOf(choice.choice_string) !== -1) {
+          desiredArray.push(choice.id);
+        }
+      });
+
       ClientActions.answerQuestion({
-        givenAnswers: this.state.selectedAnswer,
-        desiredAnswers: this.state.selectedDesire,
+        chosen_ids: givenArray,
+        acceptable_ids: desiredArray,
         importance: this.state.importance,
         question_id: this.state.questionBundle.question.id,
         explanation: this.state.explanation

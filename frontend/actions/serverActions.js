@@ -61,6 +61,13 @@ var ServerActions = {
       actionType: SessionConstants.REMOVE_USER_FROM_LIKES,
       otherUser: otherUser
     });
+  },
+
+  answerQuestion: function (answer) {
+    AppDispatcher.dispatch({
+      actionType: SessionConstants.ADD_NEW_ANSWER_TO_USER,
+      answer: answer
+    });
   }
 };
 

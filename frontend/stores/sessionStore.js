@@ -38,6 +38,10 @@ SessionStore.__onDispatch = function (payload) {
       _current_user.likees.splice(removalIndex, 1);
       this.__emitChange();
       break;
+    case SessionConstants.ADD_NEW_ANSWER_TO_USER:
+      _current_user.answers.push(payload.answer);
+      this.__emitChange();
+      break;
   }
 };
 
