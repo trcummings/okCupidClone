@@ -1,6 +1,7 @@
 var Store = require('flux/utils').Store;
 var AppDispatcher = require('../dispatcher/dispatcher');
 var _current_user = {};
+var _birthday = '';
 var _currentUserHasBeenFetched = false;
 var SessionStore = new Store(AppDispatcher);
 var SessionConstants = require('../constants/sessionConstants');
@@ -15,6 +16,10 @@ SessionStore.isUserLoggedIn = function () {
 
 SessionStore.currentUser = function () {
   return _current_user;
+};
+
+SessionStore.birthDay = function () {
+  return _birthday;
 };
 
 SessionStore.__onDispatch = function (payload) {
@@ -42,12 +47,15 @@ SessionStore.__onDispatch = function (payload) {
       this.__emitChange();
       break;
     case SessionConstants.ADD_NEW_ANSWER_TO_USER:
-      debugger;
       _current_user.answers.push(payload.answer);
       this.__emitChange();
       break;
     case SessionConstants.ALL_ANSWERS:
       _current_user.answers = payload.answers;
+      this.__emitChange();
+      break;
+    case SessionConstants.BIRTHDAY:
+      _birthday = payload.birth_date;
       this.__emitChange();
       break;
   }

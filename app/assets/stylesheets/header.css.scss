@@ -1,7 +1,7 @@
 #navigation {
   background: #104da1;
   border-bottom: 1px solid rgba(255,255,255,0.1);
-  position: relative;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
@@ -169,45 +169,42 @@
       position: relative;
     }
 
-
     .header-profile-options {
       position: absolute;
-      left: -1px;
-      font-size: 14px;
-      white-space: nowrap;
+      top: 71px;
+      right: 2px;
       background: #fff;
-      border-left: 1px solid #ccc;
-      border-right: 1px solid #ccc;
-      border-bottom: 1px solid #ccc;
-      border-bottom-left-radius: 5px;
-      border-bottom-right-radius: 5px;
-      overflow: hidden;
-      border-top: 1px solid #ccc;
-      color: #000;
-      display: block;
+      width: 200px;
+      border-radius: 2px;
+      z-index: 91000;
+      box-shadow: 0 0 0 1px rgba(0,17,53,0.16),0 0 5px 0 rgba(0,17,53,0.16);
 
-      ul {
-        position: relative;
-        display: none;
+      i {
+        position: absolute;
+        color: #fff;
+        font-size: 2em;
+        position: absolute;
+        top: -35px;
+        right: 32px;
       }
 
-      ul:hover {
+      li {
         display: block;
 
-        li {
-          position: relative;
-          display: block;
+        button {
+          width: 200px;
+          text-align: center;
         }
       }
 
       li:hover {
+        position: relative;
         display: block;
-        background: #ccc;
+        color: #104da1;
+
       }
+
     }
+
   }
-
-
-
-
 }

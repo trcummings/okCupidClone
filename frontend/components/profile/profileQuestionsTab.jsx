@@ -88,8 +88,61 @@ var ProfileQuestionsTab = React.createClass({
     }
   },
 
-  renderQuestionFooter: function (answer) {
+  toggleExplanationForm: function (event) {
+    event.preventDefault();
+    debugger;
+    if (this.renderExpForm) {
+      this.renderExpForm = false;
+    } else {
+      this.renderExpForm = true;
+    }
+  },
 
+  explanationForm: function (answer) {
+    var explanation;
+    if (answer.explanation) {
+      explanation = answer.explanation;
+    }
+
+    if (this.renderExpForm) {
+      return (
+        <form>
+          <textarea
+            value={explanation}
+            onChange={this.handleExplanationUpdate}
+          >
+          </textarea>
+        <button onClick={this.handleExplanationSubmit}>Submit</button>
+        <button onClick={this.handleExplanationCancel}>Cancel</button>
+        </form>
+      );
+    } else {
+      return (
+        <div />
+      );
+    }
+  },
+
+  handleExplanationUpdate: function (event) {
+    event.preventDefault();
+
+    this.setState({ explanation: event.target.value });
+  },
+
+  handleExplanationSubmit: function (event) {
+    event.preventDefault();
+
+    ///
+  },
+
+  handleExplanationCancel: function (event) {
+    event.preventDefault();
+
+    this.renderExpForm = false;
+    this.setState({ explanation: '' });
+  },
+
+  renderQuestionFooter: function (answer) {
     if (answer.explanation) {
       return (
         <div>
@@ -98,10 +151,11 @@ var ProfileQuestionsTab = React.createClass({
           <p>{answer.explanation}</p>
         </article>
         <section className='question-footer'>
-          <button className='explain-button'>
+          <button className='explain-button' onClick={this.toggleExplanationForm}>
             <i className="fa fa-pencil" aria-hidden="true">
             </i>
             Edit explanation
+            {this.explanationForm(answer)}
           </button>
           <button className='re-answer-button'>
             Re-answer
@@ -112,10 +166,11 @@ var ProfileQuestionsTab = React.createClass({
     } else {
       return (
         <section className='question-footer'>
-          <button className='explain-button'>
+          <button className='explain-button' onClick={this.toggleExplanationForm}>
             <i className="fa fa-pencil" aria-hidden="true">
             </i>
             Add an explanation
+            {this.explanationForm()}
           </button>
           <button className='re-answer-button'>
             Re-answer

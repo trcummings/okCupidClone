@@ -3,7 +3,6 @@ var PropTypes = React.PropTypes;
 var ClientActions = require('../../actions/clientActions');
 var UserStore = require('../../stores/userStore');
 var LikeToggle = require('../widgetButtons/likeToggle');
-var HelperUtil = require('../../util/helperUtil');
 var PhotoStore = require('../../stores/photoStore');
 var SessionStore = require('../../stores/sessionStore');
 
@@ -73,7 +72,7 @@ var MatchDetail = React.createClass({
 
   render: function() {
     var thisUser = this.state.viewedUser;
-    var profilePhoto = thisUser.photo_url;
+    var profilePhoto = thisUser.default_photo_url;
 
     if (thisUser.username) {
       return (
@@ -91,7 +90,7 @@ var MatchDetail = React.createClass({
                 <h1 id='user-name'>{thisUser.username}</h1>
                 <ul id='basic-information'>
                   <li>
-                    {HelperUtil.returnAge(thisUser.birth_date)}
+                    {thisUser.age}
                   </li>
                   <li>
                     {thisUser.location}

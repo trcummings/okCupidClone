@@ -1,18 +1,32 @@
 var React = require('react'),
-    SessionStore = require('../../../stores/sessionStore');
-    HelperUtil = require('../../../util/helperUtil');
+    SessionStore = require('../../../stores/sessionStore'),
+    HelperUtil = require('../../../util/helperUtil'),
+    ClientActions = require('../../../actions/clientActions');
 
 var BasicInfoEditForm = React.createClass({
   getInitialState: function () {
     var currentUser = SessionStore.currentUser();
     return ({
       username: currentUser.username,
-      birth_date: currentUser.birth_date,
+      birth_date: '',
       country: currentUser.country,
       gender: currentUser.gender,
       location: currentUser.location,
       renderZipForm: false
     });
+  },
+
+  componentDidMount: function () {
+    this.birthdayListener = SessionStore.addListener(function () {
+      var birth_date = SessionStore.birthDay();
+      this.setState({ birth_date: birth_date });
+    }.bind(this));
+
+    ClientActions.getBirthday();
+  },
+
+  componentWillUnmount: function () {
+    this.birthdayListener.remove();
   },
 
   handleUsernameChange: function (event) {
@@ -64,7 +78,7 @@ var BasicInfoEditForm = React.createClass({
     genders.map(function (gender, index) {
       result.push (
         <option value={gender} key={index}>{gender}</option>
-      )
+      );
     });
 
     return result;
@@ -130,91 +144,97 @@ var BasicInfoEditForm = React.createClass({
   },
 
   render: function() {
-    var currentUser = SessionStore.currentUser(),
-        bdArray = currentUser.birth_date.split('-'),
-        bMonth = bdArray[1];
-        bDay = bdArray[2];
-        bYear = bdArray[0];
+    var currentUser = SessionStore.currentUser();
 
-    return (
-      <form className=''>
-        <p className='edit-form-title'>
-          Your Basic Information
-        </p>
+    if (this.state.birth_date) {
 
-        <label>
-          Username
+      var bdArray = this.state.birth_date.split('-'),
+          bMonth = bdArray[1];
+          bDay = bdArray[2];
+          bYear = bdArray[0];
 
-          <input
-            type='text'
-            onChange={this.handleUsernameChange}
-            placeholder={currentUser.username}
-          />
-        </label>
+      return (
+        <form className=''>
+          <p className='edit-form-title'>
+            Your Basic Information
+          </p>
 
-        <label onBlur={this.handleGenderChange}>
-          I am a
-          <select
-            className="dropdown gender"
-            onChange={this.handleGenderChange}
-            defaultValue={currentUser.gender}
-          >
-            {this.renderGenderList()}
-          </select>
-        </label>
+          <label>
+            Username
 
-        <label>
-          My Birthday
-          <select
-            className='dropdown'
-            defaultValue={HelperUtil.monthConvert[bMonth]}
-          >
-            {this.renderMonthList(bMonth)}
-          </select>
+            <input
+              type='text'
+              onChange={this.handleUsernameChange}
+              placeholder={currentUser.username}
+            />
+          </label>
 
-          <select
-            className='dropdown'
-            defaultValue={parseInt(bDay)}
-          >
-            {this.renderDayRange(bMonth)}
-          </select>
+          <label onBlur={this.handleGenderChange}>
+            I am a
+            <select
+              className="dropdown gender"
+              onChange={this.handleGenderChange}
+              defaultValue={currentUser.gender}
+            >
+              {this.renderGenderList()}
+            </select>
+          </label>
 
-          <select
-            className='dropdown'
-            defaultValue={parseInt(bYear)}
-          >
-            {this.renderYearRange()}
-          </select>
-        </label>
+          <label>
+            My Birthday
+            <select
+              className='dropdown'
+              defaultValue={HelperUtil.monthConvert[bMonth]}
+            >
+              {this.renderMonthList(bMonth)}
+            </select>
 
-        <label>
-          Country
-          <select className='dropdown'>
-            <option value="America">America</option>
-            <option value="Somewhere Else">Somewhere Else</option>
-          </select>
-        </label>
+            <select
+              className='dropdown'
+              defaultValue={parseInt(bDay)}
+            >
+              {this.renderDayRange(bMonth)}
+            </select>
 
-        {this.zipFormRender()}
+            <select
+              className='dropdown'
+              defaultValue={parseInt(bYear)}
+            >
+              {this.renderYearRange()}
+            </select>
+          </label>
+
+          <label>
+            Country
+            <select className='dropdown'>
+              <option value="America">America</option>
+              <option value="Somewhere Else">Somewhere Else</option>
+            </select>
+          </label>
+
+          {this.zipFormRender()}
 
 
-        <button
-          id='continue_button'
-          className='save-button'
-          onClick={this.handleSubmit}
-          >
-          Save
-        </button>
+          <button
+            id='continue_button'
+            className='save-button'
+            onClick={this.handleSubmit}
+            >
+            Save
+          </button>
 
-        <button
-          id='continue_button'
-          className='save-button'
-          onClick={this.handleCancel}
-          >
-          Cancel
-        </button>
-      </form>
-    );
+          <button
+            id='continue_button'
+            className='save-button'
+            onClick={this.handleCancel}
+            >
+            Cancel
+          </button>
+        </form>
+      );
+    } else {
+      return (<div />);
+    }
   }
 
 });

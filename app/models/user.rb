@@ -71,7 +71,6 @@ class User < ActiveRecord::Base
     dependent: :destroy
   )
 
-
   has_many(
     :answers,
     class_name: 'Answer',

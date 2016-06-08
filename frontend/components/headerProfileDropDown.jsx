@@ -21,6 +21,7 @@ var HeaderProfileDropDown = React.createClass({
   render: function () {
     return (
       <ul className='header-profile-options'>
+        <i className="fa fa-caret-up" aria-hidden="true"></i>
         <li>
           <button onClick={this.redirectToProfile}>
             Profile
@@ -28,7 +29,7 @@ var HeaderProfileDropDown = React.createClass({
         </li>
 
         <li>
-          <button onClick={this.handleLogOut}>
+          <button onClick={this.handleLogOut} className='log-out-button'>
             Log Out
           </button>
         </li>

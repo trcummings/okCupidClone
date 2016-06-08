@@ -36,6 +36,7 @@ var modalStyle = {
 var BasicInfoEditModal = React.createClass({
   getInitialState: function(){
     Modal.setAppElement(document.body);
+
     return({
       modalOpen: false,
     });
@@ -45,7 +46,7 @@ var BasicInfoEditModal = React.createClass({
     this.setState({ modalOpen: false });
   },
 
-  openModal: function(){
+  openModal: function () {
     this.setState({ modalOpen: true });
   },
 
@@ -58,11 +59,8 @@ var BasicInfoEditModal = React.createClass({
         <h1 id='user-name'>{currentUser.username}</h1>
         <ul>
           <li>{currentUser.location}</li>
-
-          <li>{HelperUtil.returnAge(currentUser.birth_date)} </li>
-
+          <li>{currentUser.age} </li>
           <li>{currentUser.gender}</li>
-
           <i className="fa fa-pencil" aria-hidden="true"></i>
         </ul>
 

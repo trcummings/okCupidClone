@@ -42,9 +42,10 @@ var Header = React.createClass({
 
   render: function () {
     var currentUser = SessionStore.currentUser();
+    var thumbnailImage = currentUser.photos[0].photo_url;
 
     return (
-      <nav id='navigation'>
+      <nav id='navigation' className='main-header'>
         <div id='nav-left'>
           <h1 className='nav-logo'>
             <a href="#/home">
@@ -95,7 +96,7 @@ var Header = React.createClass({
                 >
                 <img
                   id='user-thumbnail'
-                  src={currentUser.photo_url}
+                  src={thumbnailImage}
                 />
               </button>
               {this.renderDropDown('profileDropDown')}
@@ -109,14 +110,3 @@ var Header = React.createClass({
 });
 
 module.exports = Header;
-
-
-
-//profile dropdown
-//profile
-
-//find a user
-
-//settings
-
-//log out

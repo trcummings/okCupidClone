@@ -41,6 +41,10 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def get_birthdate
+    render json: current_user.birth_date
+  end
+
   # def update_user
   #
   # end

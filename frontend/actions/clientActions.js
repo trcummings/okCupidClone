@@ -52,6 +52,10 @@ var ClientActions = {
     UsersApiUtil.getCurrentUserAbout();
   },
 
+  getBirthday: function () {
+    UsersApiUtil.getBirthday();
+  },
+
   updateCurrentUserAbout: function (aboutData) {
     UsersApiUtil.updateCurrentUserAbout(aboutData);
   },
