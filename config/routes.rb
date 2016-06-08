@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resource :user, only: [ ] do
       get '/', to: 'users#get_user' ####
       post '/', to: 'users#create_user' ####
-      # patch :update, to: 'user#update_user' #### #not yet
+      patch '/', to: 'users#update_user'
       # delete to: 'user#destroy_user'
 
       get '/birthdate', to: 'users#get_birthdate'

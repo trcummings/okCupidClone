@@ -24,6 +24,10 @@ var ClientActions = {
     UserAuthApiUtil.getLocationByZip(zipCode);
   },
 
+  lookUpZipCodeForModal: function (zipCode, callback) {
+    UserAuthApiUtil.getLocationByZipForModal(zipCode, callback);
+  },
+
   incrementAuthState: function () {
     UserAuthApiUtil.incrementAuthState();
   },
@@ -44,8 +48,8 @@ var ClientActions = {
     UsersApiUtil.fetchSingleUser(username);
   },
 
-  updateUser: function (user) {
-    UsersApiUtil.updateUser(user);
+  updateUser: function (user, callback) {
+    UsersApiUtil.updateUser(user, callback);
   },
 
   getCurrentUserAbout: function () {
