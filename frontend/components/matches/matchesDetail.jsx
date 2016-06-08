@@ -16,19 +16,19 @@ var MatchDetail = React.createClass({
   },
 
   componentDidMount: function () {
-    var thisUserUsername = this.props.routeParams.username;
-
     this.userListener = UserStore.addListener(function () {
-      this.setState({ viewedUser: UserStore.viewedUser( )});
-      ClientActions.getOtherUserPics(this.state.viewedUser.id);
-
+      this.setState({ viewedUser: UserStore.viewedUser() });
     }.bind(this));
 
     this.photoListener = PhotoStore.addListener(function () {
       this.setState({ theirPhotos: PhotoStore.otherUserAllPhotos() });
     }.bind(this));
 
+    var thisUserUsername = this.props.routeParams.username;
+
     ClientActions.fetchSingleUser(thisUserUsername);
+    ClientActions.getOtherUserPics(thisUserUsername);
+    ClientActions.getOtherUserAbout(thisUserUsername);
   },
 
   componentWillUnmount: function () {
@@ -38,6 +38,7 @@ var MatchDetail = React.createClass({
 
   renderEachSection: function () {
     var aboutDetail = this.state.viewedUser.about;
+
     var fieldList = [
       'My Self Summary',
       'What I’m doing with my life',
@@ -48,12 +49,12 @@ var MatchDetail = React.createClass({
       'On a typical Friday night I am',
       'You should message me if'
      ];
-     var result = [];
-     var i = 0;
+    var result = [];
+    var i = 0;
 
-    if (this.state.viewedUser.about) {
+    if (aboutDetail) {
       for (var property in aboutDetail) {
-        if (aboutDetail.hasOwnProperty(property) && property !== 'id') {
+        if (aboutDetail.hasOwnProperty(property)) {
             result.push(
               <li key={i} className='profile-detail-section group'>
                 <p className='about-title'>{fieldList[i]}</p>

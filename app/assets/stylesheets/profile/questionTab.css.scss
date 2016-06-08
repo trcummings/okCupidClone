@@ -24,6 +24,29 @@
       margin-bottom: 15px;
     }
 
+    .explanation {
+
+      h3 {
+        opacity: 1;
+        text-align: left;
+        font-size: 16px;
+        font-weight: bold;
+        line-height: 16px;
+        padding-left: 20px;
+        padding-top: 20px;
+        color: #5e6573;
+      }
+
+      p {
+        opacity: 1;
+        text-align: left;
+        font-size: 16px;
+        line-height: 16px;
+        padding-left: 20px;
+        color: #949aa6; 
+      }
+    }
+
     .question-footer {
       position: absolute;
       bottom: 15px;
@@ -37,6 +60,7 @@
 
       opacity: 0;
       color: #949aa6;
+
 
       .fa.fa-pencil {
         color: #949aa6;

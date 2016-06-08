@@ -7,6 +7,7 @@ var SessionStore = require('../../stores/sessionStore');
 var ProfileAboutTab = React.createClass({
   getInitialState: function () {
     var currentUserAbout = AboutStore.currentUserAbout();
+
     return ({
       currentUserAbout: currentUserAbout,
       editArray: [],
@@ -23,7 +24,7 @@ var ProfileAboutTab = React.createClass({
       });
     }.bind(this));
 
-    ClientActions.getCurrentUserAbout(SessionStore.currentUser());
+    ClientActions.getCurrentUserAbout();
   },
 
   componentWillUnmount: function () {
@@ -50,10 +51,7 @@ var ProfileAboutTab = React.createClass({
   submitForm: function (propertyName, i, event) {
     event.preventDefault();
 
-    ClientActions.updateCurrentUserAbout(
-      SessionStore.currentUser(),
-      this.state.newAbout
-    );
+    ClientActions.updateCurrentUserAbout(this.state.newAbout);
 
     var newState = {};
 
@@ -113,11 +111,11 @@ var ProfileAboutTab = React.createClass({
       'I spend a lot of time thinking about',
       'On a typical Friday night I am',
       'You should message me if'
-     ];
-     var result = [];
-     var i = 0;
+    ];
+    var result = [];
+    var i = 0;
 
-    if (this.state.currentUserAbout.id) {
+    if (this.state.currentUserAbout.hasOwnProperty('six_things')) {
       for (var property in aboutDetail) {
         if (aboutDetail.hasOwnProperty(property) && property !== 'id') {
           if (this.state.editArray.indexOf(i) !== -1) {
@@ -151,25 +149,31 @@ var ProfileAboutTab = React.createClass({
   },
 
   render: function() {
-    return (
-      <div id='about-tab'>
-        <div id='right-column'>
-          <div id='looking-for'>
-            <h1>I'm looking for</h1>
+    if (this.state.currentUserAbout) {
+      return (
+        <div id='about-tab'>
+          <div id='right-column'>
+            <div id='looking-for'>
+              <h1>I'm looking for</h1>
 
+            </div>
+
+            <div id='details'>
+              <h1>My details</h1>
+
+            </div>
           </div>
 
-          <div id='details'>
-            <h1>My details</h1>
-
-          </div>
+          <ul id='about-list'>
+            {this.renderEachSection()}
+          </ul>
         </div>
-
-        <ul id='about-list'>
-          {this.renderEachSection()}
-        </ul>
-      </div>
-    );
+      );
+    }  else {
+      return (
+        <div />
+      );
+    }
   }
 
 });

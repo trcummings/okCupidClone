@@ -6,6 +6,7 @@ var ClientActions = require('../../actions/clientActions');
 
 var LikeToggle = React.createClass({
   getInitialState: function () {
+
     return({
       liked: HelperUtil.doesCurrentUserLikeThisUser(this.props.liker, this.props.likee),
       buttonActive: true

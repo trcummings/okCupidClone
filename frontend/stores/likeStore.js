@@ -3,7 +3,7 @@
 // var LikeConstants = require('../constants/likeConstants');
 // var SessionStore = require('./sessionStore');
 //
-// var _
+// var _likedUsers;
 //
 // var LikeStore = new Store(AppDispatcher);
 //

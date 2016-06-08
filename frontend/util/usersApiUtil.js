@@ -4,7 +4,7 @@ var ServerActions = require('./../actions/serverActions');
 var UsersApiUtil = {
   signup: function (user, callback) {
     $.ajax({
-      url: '/api/users',
+      url: '/api/user',
       type: 'POST',
       dataType: 'json',
       contentType: 'application/json',
@@ -15,9 +15,9 @@ var UsersApiUtil = {
       },
       error: function (xhr) {
         debugger;
-        // console.log('UserApiUtil#createAccount error');
-        // var errors = xhr.responseJSON;
-        // ErrorActions.setErrors("signup", errors);
+        console.log('UserApiUtil#createAccount error');
+        var errors = xhr.responseJSON;
+        ErrorActions.setErrors("signup", errors);
       }
     });
   },
@@ -29,13 +29,13 @@ var UsersApiUtil = {
       dataType: 'json',
       success: function (users) {
         ServerActions.receiveAllPossibleMatches(users);
-      },
-      error: function (xhr) {
-        debugger;
-        // console.log('UserApiUtil#createAccount error');
-        // var errors = xhr.responseJSON;
-        // ErrorActions.setErrors("signup", errors);
       }
+      // error: function (xhr) {
+      //   debugger;
+      //   console.log('UserApiUtil#createAccount error');
+      //   var errors = xhr.responseJSON;
+      //   ErrorActions.setErrors("signup", errors);
+      // }
     });
   },
 
@@ -47,75 +47,93 @@ var UsersApiUtil = {
       success: function (user) {
         // debugger;
         ServerActions.receiveSingleUser(user);
-      },
-      error: function (xhr) {
-        debugger;
-        // console.log('UserApiUtil#createAccount error');
-        // var errors = xhr.responseJSON;
-        // ErrorActions.setErrors("signup", errors);
       }
+      // error: function (xhr) {
+      //   debugger;
+      //   // console.log('UserApiUtil#createAccount error');
+      //   // var errors = xhr.responseJSON;
+      //   // ErrorActions.setErrors("signup", errors);
+      // }
     });
   },
 
   updateUser: function (user) {
     $.ajax({
-      url: '/api/users/' + id,
+      url: '/api/user',
       type: 'PATCH',
       dataType: 'json',
+      contentType: 'application/json',
+      data: JSON.stringify({ user: user }),
       success: function (user) {
-        ServerActions.receiveSingleUser(user);
+        ServerActions.receiveCurrentUser(user);
       },
       error: function (xhr) {
         debugger;
-        // console.log('UserApiUtil#createAccount error');
-        // var errors = xhr.responseJSON;
-        // ErrorActions.setErrors("signup", errors);
+        console.log('UserApiUtil#updateUser error');
+        var errors = xhr.responseJSON;
+        ErrorActions.setErrors("updateUser", errors);
       }
     });
   },
 
-  getCurrentUserAbout: function (currentUser) {
+  getCurrentUserAbout: function () {
     $.ajax({
-      url: '/api/user_abouts/' + currentUser.id,
+      url: '/api/user/about',
       type: 'GET',
       dataType: 'json',
       success: function (userAbout) {
         ServerActions.receiveCurrentUserAbout(userAbout);
-      },
-      error: function (xhr) {
-        debugger;
-        // console.log('UserApiUtil#createAccount error');
-        // var errors = xhr.responseJSON;
-        // ErrorActions.setErrors("signup", errors);
       }
+      // error: function (xhr) {
+      //   debugger;
+      //   // console.log('UserApiUtil#createAccount error');
+      //   // var errors = xhr.responseJSON;
+      //   // ErrorActions.setErrors("signup", errors);
+      // }
     });
   },
 
-  updateCurrentUserAbout: function (currentUser, aboutData) {
+  getOtherUserAbout: function (username) {
     $.ajax({
-      url: '/api/user_abouts/' + currentUser.id,
+      url: '/api/users/' + username + '/about',
+      type: 'GET',
+      dataType: 'json',
+      success: function (userAbout) {
+        ServerActions.receiveOtherUserAbout(userAbout);
+      }
+      // error: function (xhr) {
+      //   debugger;
+      //   // console.log('UserApiUtil#createAccount error');
+      //   // var errors = xhr.responseJSON;
+      //   // ErrorActions.setErrors("signup", errors);
+      // }
+    });
+  },
+
+  updateCurrentUserAbout: function (aboutData) {
+    $.ajax({
+      url: '/api/user/about',
       type: 'PATCH',
       dataType: 'json',
       data: { about: aboutData },
       success: function (userAbout) {
         ServerActions.receiveCurrentUserAbout(userAbout);
-      },
-      error: function (xhr) {
-        debugger;
-        // console.log('UserApiUtil#createAccount error');
-        // var errors = xhr.responseJSON;
-        // ErrorActions.setErrors("signup", errors);
       }
+      // error: function (xhr) {
+      //   debugger;
+      //   // console.log('UserApiUtil#createAccount error');
+      //   // var errors = xhr.responseJSON;
+      //   // ErrorActions.setErrors("signup", errors);
+      // }
     });
   },
 
   likeUser: function (otherUser, callback) {
-
     $.ajax({
       url: '/api/likes/',
       type: 'POST',
       dataType: 'json',
-      data: { user_id: otherUser.id },
+      data: { username: otherUser.username },
       success: function (like) {
         ServerActions.addUserToLikes(otherUser);
         callback();
@@ -130,9 +148,8 @@ var UsersApiUtil = {
   },
 
   unlikeUser: function (otherUser, callback) {
-
     $.ajax({
-      url: '/api/likes/' + otherUser.id,
+      url: '/api/likes/' + otherUser.username,
       type: 'DELETE',
       dataType: 'json',
       success: function (like) {
@@ -147,6 +164,9 @@ var UsersApiUtil = {
       }
     });
   },
+
+
+//// IN PROGRESS
 
   answerQuestion: function (answer, callback) {
     if (answer.importance === 'very') {
@@ -167,6 +187,23 @@ var UsersApiUtil = {
       success: function (answer) {
         ServerActions.answerQuestion(answer);
         callback();
+      },
+      error: function (xhr) {
+        debugger;
+        // console.log('UserApiUtil#createAccount error');
+        // var errors = xhr.responseJSON;
+        // ErrorActions.setErrors("signup", errors);
+      }
+    });
+  },
+
+  getAllAnswers: function () {
+    $.ajax({
+      url: '/api/user/answers/',
+      type: 'GET',
+      dataType: 'json',
+      success: function (answers) {
+        ServerActions.receiveAllAnswers(answers);
       },
       error: function (xhr) {
         debugger;
