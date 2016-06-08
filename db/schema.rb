@@ -11,10 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160607152500) do
+ActiveRecord::Schema.define(version: 20160607232414) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answers", force: :cascade do |t|
+    t.integer  "user_id",        null: false
+    t.integer  "question_id",    null: false
+    t.string   "chosen_ids",     null: false, array: true
+    t.string   "acceptable_ids", null: false, array: true
+    t.integer  "importance",     null: false
+    t.text     "explanation"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
+  add_index "answers", ["user_id"], name: "index_answers_on_user_id", using: :btree
 
   create_table "likes", force: :cascade do |t|
     t.integer  "liker_id",   null: false

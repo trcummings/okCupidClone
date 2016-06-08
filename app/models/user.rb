@@ -71,9 +71,23 @@ class User < ActiveRecord::Base
     dependent: :destroy
   )
 
+
+  has_many(
+    :answers,
+    class_name: 'Answer',
+    foreign_key: :user_id,
+    primary_key: :id
+  )
+
   def to_param
     username
   end
+
+  def mutual_likes
+    self.likers - self.likees
+  end
+
+  # photo relevant methods
 
   def undefault_other_photos(photo_id)
     self.photos.each do |photo|
@@ -97,14 +111,9 @@ class User < ActiveRecord::Base
     def_photo_url
   end
 
-  # has_many(
-  #   :people_this_user_sent_a_message_to
-  #
-  # )
-  #
-  # has_many(
-  #   :people_who_have_sent_this_user_a_message
-  # )
+
+
+  # session relevant methods
 
   def self.find_by_credentials(name_field, password, type)
     if type == 'username'

@@ -15,3 +15,11 @@ end
 if @user.likees
   json.likees @user.likees
 end
+
+if @user.answers
+  json.answers @user.answers
+end
+
+if @user.mutual_likes
+  json.mutualLikes @user.mutual_likes
+end

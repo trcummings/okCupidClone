@@ -149,28 +149,32 @@ var UsersApiUtil = {
   },
 
   answerQuestion: function (answer, callback) {
-    debugger;
+    if (answer.importance === 'very') {
+      answer.importance = 250;
+    } else if (answer.importance === 'moderate') {
+      answer.importance = 10;
+    } if (answer.importance === 'not-very') {
+      answer.importance = 1;
+    } if (answer.importance === 'irrelevant') {
+      answer.importance = 0;
+    }
 
-    callback();
-
-    debugger;
-    // put in once i have answer model & route
-    // $.ajax({
-    //   url: '/api/answers/' + otherUser.id,
-    //   type: 'POST',
-    //   dataType: 'json',
-    //   data: { answer: answer },
-    //   success: function (answer) {
-    //     ServerActions.answerQuestion(answer);
-    //     callback();
-    //   },
-    //   error: function (xhr) {
-    //     debugger;
-    //     // console.log('UserApiUtil#createAccount error');
-    //     // var errors = xhr.responseJSON;
-    //     // ErrorActions.setErrors("signup", errors);
-    //   }
-    // });
+    $.ajax({
+      url: '/api/answers/',
+      type: 'POST',
+      dataType: 'json',
+      data: { answer: answer },
+      success: function (answer) {
+        ServerActions.answerQuestion(answer);
+        callback();
+      },
+      error: function (xhr) {
+        debugger;
+        // console.log('UserApiUtil#createAccount error');
+        // var errors = xhr.responseJSON;
+        // ErrorActions.setErrors("signup", errors);
+      }
+    });
   }
 };
 
