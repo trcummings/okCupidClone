@@ -27,11 +27,4 @@ class Like < ActiveRecord::Base
     foreign_key: :likee_id,
     primary_key: :id
   )
-
-  def to_param
-    likee_id
-  end
-
-  def self.mutual_like?(id1, id2)
-  end
 end

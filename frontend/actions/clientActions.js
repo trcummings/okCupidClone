@@ -5,6 +5,9 @@ var PhotosApiUtil = require('../util/photosApiUtil');
 var MessageApiUtil = require('../util/messageApiUtil');
 
 var ClientActions = {
+
+  //////AUTH
+
   loginWithUsername: function (user, callback) {
     SessionApiUtil.loginWithUsername(user, callback);
   },
@@ -25,44 +28,36 @@ var ClientActions = {
     UserAuthApiUtil.incrementAuthState();
   },
 
+  // in usersApiUtil but that's weird
   signup: function (user, callback) {
     UsersApiUtil.signup(user, callback);
   },
 
+
+  ///// usersApiUtil
+
   fetchAllPossibleMatches: function () {
     UsersApiUtil.fetchAllPossibleMatches();
-  },
-
-  uploadImage: function (photo) {
-    PhotosApiUtil.uploadImage(photo);
-  },
-
-  getCurrentUserPhotos: function () {
-    PhotosApiUtil.getCurrentUserPhotos();
-  },
-
-  sendMessage: function () {
-    MessageApiUtil.sendMessage();
   },
 
   fetchSingleUser: function (username) {
     UsersApiUtil.fetchSingleUser(username);
   },
 
-  getOtherUserPics: function (userId) {
-    PhotosApiUtil.getOtherUserPics(userId);
-  },
-
   updateUser: function (user) {
     UsersApiUtil.updateUser(user);
   },
 
-  getCurrentUserAbout: function (currentUser) {
-    UsersApiUtil.getCurrentUserAbout(currentUser);
+  getCurrentUserAbout: function () {
+    UsersApiUtil.getCurrentUserAbout();
   },
 
-  updateCurrentUserAbout: function (currentUser, aboutData) {
-    UsersApiUtil.updateCurrentUserAbout(currentUser, aboutData);
+  updateCurrentUserAbout: function (aboutData) {
+    UsersApiUtil.updateCurrentUserAbout(aboutData);
+  },
+
+  getOtherUserAbout: function (username) {
+    UsersApiUtil.getOtherUserAbout(username);
   },
 
   likeUser: function (otherUser, callback) {
@@ -73,9 +68,40 @@ var ClientActions = {
     UsersApiUtil.unlikeUser(otherUser, callback);
   },
 
+  ///unfinished
+
   answerQuestion: function (answer, callback) {
     UsersApiUtil.answerQuestion(answer, callback);
-  }
+  },
+
+  getAllAnswers: function () {
+    UsersApiUtil.getAllAnswers();
+  },
+
+
+
+  /// photosApiUtil
+
+  uploadImage: function (photo) {
+    PhotosApiUtil.uploadImage(photo);
+  },
+
+  getCurrentUserPhotos: function () {
+    PhotosApiUtil.getCurrentUserPhotos();
+  },
+
+
+  getOtherUserPics: function (username) {
+    PhotosApiUtil.getOtherUserPics(username);
+  },
+
+
+  /// some shit for messages idk
+
+  sendMessage: function () {
+    MessageApiUtil.sendMessage();
+  },
+
 };
 
 module.exports = ClientActions;

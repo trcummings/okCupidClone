@@ -15,6 +15,10 @@ var FinalSignUpForm = React.createClass({
     });
   },
 
+  componentDidMount: function () {
+
+  },
+
   handleSubmit: function () {
     var profile = AuthInfoStore.returnFinalizedProfile();
     ClientActions.signup(profile, function () {

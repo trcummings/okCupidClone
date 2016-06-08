@@ -59,7 +59,6 @@ var MatchesIndexItem = React.createClass({
   },
 
   render: function() {
-    // debugger;
     var user = this.props.user;
 
     return (

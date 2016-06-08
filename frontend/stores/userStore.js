@@ -10,11 +10,18 @@ var UserStore = new Store(AppDispatcher);
 
 UserStore.allUsers = function () {
   var currentUser = SessionStore.currentUser();
+  var cUserIdx;
 
   if (currentUser.username) {
-    var cUserIdx = _users.indexOf(currentUser);
+    _users.forEach(function (user, index) {
+      if (user.username === currentUser.username) {
+        cUserIdx = index;
+      }
+    });
+
     _users.splice(cUserIdx, 1);
   }
+
   // NOT INCL. THE CURRENT USER
   return _users;
 };
@@ -35,6 +42,10 @@ UserStore.__onDispatch = function (payload) {
       break;
     case UserConstants.RECEIVE_SINGLE_USER:
       _viewedUser = payload.user;
+      this.__emitChange();
+      break;
+    case UserConstants.RECEIVE_OTHER_USER_ABOUT:
+      _viewedUser['about'] = payload.userAbout;
       this.__emitChange();
       break;
     }

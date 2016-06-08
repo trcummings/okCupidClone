@@ -1,6 +1,10 @@
 var React = require('react');
 
 var FeedIndex = React.createClass({
+  componentDidMount: function () {
+
+  },
+  
   render: function () {
     return (
       <div>

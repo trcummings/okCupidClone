@@ -11,6 +11,10 @@ var FirstSignUpForm = React.createClass({
     });
   },
 
+  componentDidMount: function () {
+
+  },
+
   handleSubmit: function (event) {
     event.preventDefault();
 

@@ -47,6 +47,12 @@ var ServerActions = {
     });
   },
 
+  receiveOtherUserAbout: function (userAbout) {
+    AppDispatcher.dispatch({
+      actionType: UserConstants.RECEIVE_OTHER_USER_ABOUT,
+      userAbout: userAbout
+    });
+  },
 
   addUserToLikes: function (otherUser) {
     AppDispatcher.dispatch({
@@ -67,6 +73,13 @@ var ServerActions = {
     AppDispatcher.dispatch({
       actionType: SessionConstants.ADD_NEW_ANSWER_TO_USER,
       answer: answer
+    });
+  },
+
+  receiveAllAnswers: function (answers) {
+    AppDispatcher.dispatch({
+      actionType: SessionConstants.ALL_ANSWERS,
+      answers: answers
     });
   }
 };

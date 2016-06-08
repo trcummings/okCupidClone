@@ -24,6 +24,10 @@ var SecondSignUpForm = React.createClass({
     });
   },
 
+  componentDidMount: function () {
+
+  },
+
   componentWillUnmount: function () {
     this.listener.remove();
   },

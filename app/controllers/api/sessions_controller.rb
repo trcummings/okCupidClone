@@ -18,7 +18,7 @@ class Api::SessionsController < ApplicationController
 
     unless @user.nil?
       log_in!(@user)
-      render "/api/users/show"
+      render "/api/user/show"
     else
       render json: { base: ["Your info was incorrect. Try again."] }, status: 401
     end
@@ -27,7 +27,7 @@ class Api::SessionsController < ApplicationController
   def show
     if current_user
       @user = current_user
-      render "/api/users/show"
+      render "/api/user/show"
     else
       render json: {}
     end

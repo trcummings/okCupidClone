@@ -28,7 +28,7 @@ var MatchesIndex = React.createClass({
 
   render: function () {
     var matches = this.state.allMatches;
-    // console.log("INDEX RENDER");
+
     return (
       <div id='match-index'>
         <div id='match-monolith'>

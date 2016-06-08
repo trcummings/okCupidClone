@@ -14,13 +14,28 @@
 #
 
 class Answer < ActiveRecord::Base
-  validates :user_id, :question_id, :chosen_ids, :acceptable_ids, :importance, presence: true
+  validates :user_id, :question_id, :chosen_ids,
+            :acceptable_ids, :importance, presence: true
+
   validates :question_id, uniqueness: { scope: :user_id }
 
   belongs_to(
     :user,
     class_name: 'User',
     foreign_key: :user_id,
+    primary_key: :id
+  )
+
+  has_many(
+    :question_choices,
+    through: :question,
+    source: :question_choices
+  )
+
+  belongs_to(
+    :question,
+    class_name: "Question",
+    foreign_key: :question_id,
     primary_key: :id
   )
 end

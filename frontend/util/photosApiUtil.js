@@ -4,7 +4,7 @@ var ServerActions = require('../actions/serverActions'),
 var PhotosApiUtil = {
   uploadImage: function (photo) {
     $.ajax({
-      url: '/api/user_photos',
+      url: '/api/user/photos',
       method: 'POST',
       dataType: 'json',
       data: {
@@ -26,7 +26,7 @@ var PhotosApiUtil = {
 
   getCurrentUserPhotos: function () {
     $.ajax({
-      url: '/api/user_photos',
+      url: '/api/user/photos',
       method: 'GET',
       dataType: 'json',
       success: function (images) {
@@ -40,9 +40,9 @@ var PhotosApiUtil = {
     });
   },
 
-  getOtherUserPics: function (userId) {
+  getOtherUserPics: function (username) {
     $.ajax({
-      url: '/api/user_photos/' + userId,
+      url: '/api/users/' + username + '/photos',
       method: 'GET',
       dataType: 'json',
       success: function (images) {

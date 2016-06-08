@@ -18,4 +18,11 @@ class QuestionChoice < ActiveRecord::Base
     foreign_key: :question_id,
     primary_key: :id
   )
+
+  has_many(
+    :question_choices,
+    class_name: 'QuestionChoice',
+    foreign_key: :question_id,
+    primary_key: :id
+  )
 end

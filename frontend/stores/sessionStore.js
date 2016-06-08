@@ -10,7 +10,7 @@ SessionStore.currentUserHasBeenFetched = function () {
 };
 
 SessionStore.isUserLoggedIn = function () {
-  return !!_current_user.id;
+  return !!_current_user.username;
 };
 
 SessionStore.currentUser = function () {
@@ -43,6 +43,10 @@ SessionStore.__onDispatch = function (payload) {
       break;
     case SessionConstants.ADD_NEW_ANSWER_TO_USER:
       _current_user.answers.push(payload.answer);
+      this.__emitChange();
+      break;
+    case SessionConstants.ALL_ANSWERS:
+      _current_user.answers = payload.answers;
       this.__emitChange();
       break;
   }
