@@ -100,6 +100,20 @@ class User < ActiveRecord::Base
     result
   end
 
+  def age
+    date_of_birth = self.birth_date
+    time_now = Time.now.utc.to_date
+    year_diff = time_now.year - date_of_birth.year
+
+    if (time_now.month > date_of_birth.month) ||
+       (time_now.month == date_of_birth.month &&
+        time_now.day >= date_of_birth.day)
+      year_diff
+    else
+      year_diff - 1
+    end
+  end
+
   # photo relevant methods
 
   def undefault_other_photos(photo_id)
@@ -140,19 +154,23 @@ class User < ActiveRecord::Base
         my_total += mine.importance
         their_total += theirs.importance
 
-        if ids_checker(mine.acceptable_ids, their.chosen_ids)
+        if ids_checker(mine.acceptable_ids, theirs.chosen_ids)
           my_running_total += mine.importance
         end
 
-        if ids_checker(their.acceptable_ids, mine.chosen_ids)
-          their_running_total += their.importance
+        if ids_checker(theirs.acceptable_ids, mine.chosen_ids)
+          their_running_total += theirs.importance
         end
+      end
+
+      if my_total == 0 || their_total == 0
+        return 0
       end
 
       my_ratio = my_running_total.to_f / my_total
       their_ratio = their_running_total.to_f / their_total
 
-      sqrt(my_ratio * their_ratio)
+      Math.sqrt(my_ratio * their_ratio) * 100
     else
       nil
     end

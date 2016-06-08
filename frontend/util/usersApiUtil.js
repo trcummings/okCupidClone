@@ -65,6 +65,7 @@ var UsersApiUtil = {
       contentType: 'application/json',
       data: JSON.stringify({ user: user }),
       success: function (user) {
+        debugger;
         ServerActions.receiveCurrentUser(user);
       },
       error: function (xhr) {
@@ -170,11 +171,11 @@ var UsersApiUtil = {
 
   answerQuestion: function (answer, callback) {
     if (answer.importance === 'very') {
-      answer.importance = 250;
+      answer.importance = 100;
     } else if (answer.importance === 'moderate') {
-      answer.importance = 10;
+      answer.importance = 50;
     } if (answer.importance === 'not-very') {
-      answer.importance = 1;
+      answer.importance = 10;
     } if (answer.importance === 'irrelevant') {
       answer.importance = 0;
     }

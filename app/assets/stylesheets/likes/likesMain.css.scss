@@ -102,6 +102,51 @@
       background: #FFF;
       font-family: 'Open Sans',sans-serif;
       border-radius: 2px;
+      cursor: pointer;
+    }
+
+    div {
+      position: relative;
+      overflow: hidden;
+
+      width: 125px;
+      height: 120px;
+      z-index: 3;
+
+      img {
+        left: -33%;
+        position: absolute;
+        height: 120px;
+        width: auto;
+      }
+
+      h4 {
+        height: auto;
+        padding-top: 19px;
+        line-height: 21px;
+        position:absolute;
+        right: -60px;
+        z-index: 5;
+      }
+
+      h5 {
+        height: auto;
+        padding-top: 19px;
+        line-height: 21px;
+        position:absolute;
+        right: -50px;
+        z-index: 5;
+      }
+
+      p {
+        height: auto;
+        padding-top: 19px;
+        line-height: 21px;
+        position:absolute;
+        right: -60px;
+        z-index: 5;
+      }
+
     }
   }
 

@@ -2,6 +2,7 @@ var React = require('react');
 var PropTypes = React.PropTypes;
 var HelperUtil = require('../../util/helperUtil');
 var ClientActions = require('../../actions/clientActions');
+var SessionStore = require('../../stores/sessionStore');
 
 var QuestionItem = React.createClass({
 
@@ -21,6 +22,18 @@ var QuestionItem = React.createClass({
       importance: '',
       explanation: ''
     });
+  },
+
+  componentDidMount: function () {
+    this.answersListener = SessionStore.addListener(function (){
+      this.forceUpdate();
+    }.bind(this));
+
+    ClientActions.getAllAnswers();
+  },
+
+  componentWillUnmount: function () {
+    this.answersListener.remove();
   },
 
   handleAnswerClick: function (event) {
