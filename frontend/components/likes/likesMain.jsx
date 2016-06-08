@@ -23,6 +23,10 @@ var Tabs = ({
 });
 
 var LikesMain = React.createClass({
+  contextTypes: {
+    router: React.PropTypes.object.isRequired
+  },
+
   getInitialState: function () {
     return {
       selectedTab: 0,
@@ -89,7 +93,7 @@ var LikesMain = React.createClass({
   },
 
   renderUserItem: function (user) {
-    
+
     // var likeStar;
     // var userLikedText;
     //
@@ -108,16 +112,20 @@ var LikesMain = React.createClass({
     // <i className="fa fa-star" aria-hidden="true"></i>
     // <span>hgghhhh</span>
 
-    debugger;
-
     return (
-      <div>
-        <img src={user.photo_url} />
+      <div 
+        onClick={this.handleUserItemClick.bind(null, user.username)}
+      >
+        <img src={user.default_photo_url} />
         <span>{user.username}</span>
         <span>{HelperUtil.returnAge(user.birth_date)}</span>
         <span>{user.location}</span>
       </div>
     );
+  },
+
+  handleUserItemClick: function (username) {
+    this.context.router.push('/profile/' + username);
   },
 
   setSelectedTabToZero: function () {
