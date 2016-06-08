@@ -42,6 +42,7 @@ SessionStore.__onDispatch = function (payload) {
       this.__emitChange();
       break;
     case SessionConstants.ADD_NEW_ANSWER_TO_USER:
+      debugger;
       _current_user.answers.push(payload.answer);
       this.__emitChange();
       break;

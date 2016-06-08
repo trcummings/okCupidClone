@@ -16,11 +16,11 @@ By the end of app/Academy week 9, this app will meet the following criteria for 
 - [ ] guest/demo login
 - [ ] Smooth, bug-free navigation
 - [ ] Adequate seed data to demonstrate the site's features
-- [ ] Question answering
+- [x] Question answering
 - [x] Editable user profile with pictures and personal information
 - [x] Ability to view and 'like' other profiles
 - [ ] Dynamic notifications of profile views and likes
-- [ ] A match percentage between each user, algorithmically determined
+- [x] A match percentage between each user, algorithmically determined
 - [ ] A websocket based messenger platform, for users to communicate
 - [ ] A user search feature, allowing filtration based on certain qualities
 - [ ] Hosting on Heroku
@@ -39,8 +39,8 @@ progress. Put an x between the brackets for a checkmark: [x] -->
 - [ ] including as a Guest/Demo User (MVP)
 - [x] Edit Profile About, Profile Description (MVP)
 - [x] View Other Profiles (MVP)
-- [ ] Answer Questions (MVP)
-- [ ] View Match Percentages Between Users (MVP)
+- [x] Answer Questions (MVP)
+- [x] View Match Percentages Between Users (MVP)
 - [ ] Add and Remove Profile Pictures (MVP)
 - [ ] Message Between Users (MVP)
 - [ ] Receive Notifications Upon Other Users Viewing Their Profiles (expected feature, but not MVP)
@@ -118,8 +118,8 @@ user interface.
 
 - [x] create `Question` model
 - [ ] create jbuilder question and answer views
-- [ ] implement Answer components, with API interaction on `Profile` and `MatchDetail`
-- [ ] add match percentages to all `MatchDetailItem`s
+- [x] implement Answer components, with API interaction on `Profile` and `MatchDetail`
+- [x] add match percentages to all `MatchDetailItem`s
 
 ### Phase 6: Start Styling (0.5 days)
 

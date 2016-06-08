@@ -77,6 +77,8 @@ q1 = Question.create!(
     choice_string: 'The sight of garbage fills me with dark intents and vile fluids'
   )
 
+
+
 q2 = Question.create!(
   content: "Fedoras on men?",
   multi_select: true
@@ -100,4 +102,30 @@ q2 = Question.create!(
   QuestionChoice.create!(
     question_id: q2.id,
     choice_string: "I don't judge people by their decision to wear a fucking hat"
+  )
+
+
+q3 = Question.create!(
+  content: "In a certain light, wouldn't nuclear war be pretty sweet?",
+  multi_select: true
+)
+
+  QuestionChoice.create!(
+    question_id: q3.id,
+    choice_string: "Nah tho"
+  )
+
+  QuestionChoice.create!(
+    question_id: q3.id,
+    choice_string: "I'm in if I can still get WiFi"
+  )
+
+  QuestionChoice.create!(
+    question_id: q3.id,
+    choice_string: "A little bit...I've always fancied a bit of water barony and indiscriminate murder"
+  )
+
+  QuestionChoice.create!(
+    question_id: q3.id,
+    choice_string: "I AM A BARBARIAN GOD. I AM THE BLOOD WHICH ENDS ALL BLOOD."
   )

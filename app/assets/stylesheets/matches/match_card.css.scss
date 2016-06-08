@@ -73,6 +73,16 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+
+      li {
+        margin-top: 5px;
+        display: block;
+      }
+
+      .match-card-percent {
+        margin-top: 20px;
+        font-weight: bolder;
+      }
     }
 
   }
@@ -94,6 +104,9 @@
 
 
 #match-card:hover {
+
+
+
   #like-toggle {
     opacity: 1;
   }
@@ -104,8 +117,15 @@
     height: inherit;
   }
 
+
   #match-info-container {
     top: 55%;
+
+    .match-card-percent {
+      opacity: 0;
+      display: none;
+    }
+
   }
 }
 

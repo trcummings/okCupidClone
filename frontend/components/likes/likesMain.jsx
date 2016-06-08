@@ -113,13 +113,14 @@ var LikesMain = React.createClass({
     // <span>hgghhhh</span>
 
     return (
-      <div 
+      <div className='group'
         onClick={this.handleUserItemClick.bind(null, user.username)}
       >
         <img src={user.default_photo_url} />
-        <span>{user.username}</span>
-        <span>{HelperUtil.returnAge(user.birth_date)}</span>
-        <span>{user.location}</span>
+        <h4>{user.username}</h4>
+
+        <h5>{HelperUtil.returnAge(user.birth_date)}</h5>
+        <p>{user.location}</p>
       </div>
     );
   },

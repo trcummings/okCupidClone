@@ -55,6 +55,7 @@ var ProfileQuestionsTab = React.createClass({
 
   renderAnswerItems: function (answer) {
     var result = [];
+    var answerChoices = answer.question_choices;
 
     if (answer.answerChoices) {
       answer.answerChoices.forEach(function (choice, index) {

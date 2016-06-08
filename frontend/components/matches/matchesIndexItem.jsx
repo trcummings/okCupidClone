@@ -60,6 +60,10 @@ var MatchesIndexItem = React.createClass({
 
   render: function() {
     var user = this.props.user;
+    var matchPercent = parseInt(user.matchPercentage);
+    if (isNaN(matchPercent)) {
+      matchPercent = 0;
+    }
 
     return (
       <div
@@ -79,6 +83,9 @@ var MatchesIndexItem = React.createClass({
             </li>
             <li>
               {user.location}
+            </li>
+            <li className='match-card-percent'>
+              {matchPercent + ' % Match'}
             </li>
           </ul>
 
