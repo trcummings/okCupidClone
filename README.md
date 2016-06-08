@@ -116,7 +116,7 @@ user interface.
 
 **Objective:** User can answer questions on their profile page, see the questions other users have answered, answer those questions on the other users' profile page, and see their match percentage with those users
 
-- [ ] create `Question` model
+- [x] create `Question` model
 - [ ] create jbuilder question and answer views
 - [ ] implement Answer components, with API interaction on `Profile` and `MatchDetail`
 - [ ] add match percentages to all `MatchDetailItem`s

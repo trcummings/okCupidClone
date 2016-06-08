@@ -11,8 +11,7 @@ var Tabs = ({
     return (<WhoLikesYou />);
   },
   1:function () {
-    return (<div>shatty tatty</div>);
-    // return (<MutualLikes />);
+    return (<MutualLikes />);
   },
   2:function () {
     return (<WhoYouLike />);

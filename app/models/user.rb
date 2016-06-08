@@ -84,7 +84,20 @@ class User < ActiveRecord::Base
   end
 
   def mutual_likes
-    self.likers - self.likees
+    likers = self.likers
+    likees = self.likees
+
+    result = []
+
+    likers.each do |liker|
+      likees.each do |likee|
+        if liker == likee
+          result.push(liker)
+        end
+      end
+    end
+
+    result
   end
 
   # photo relevant methods
