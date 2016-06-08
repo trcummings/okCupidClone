@@ -45,9 +45,15 @@ class Api::UsersController < ApplicationController
     render json: current_user.birth_date
   end
 
-  # def update_user
-  #
-  # end
+  def update_user
+    @user = current_user
+    @user.birth_date = params[:user][:birth_date]
+    if @user.update(user_params)
+      render '/api/user/show'
+    else
+      render json: { base: ["Sumthin wrong"] }, status: 401
+    end
+  end
 
 
   #### ABOUTS

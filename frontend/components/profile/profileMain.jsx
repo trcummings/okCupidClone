@@ -40,11 +40,17 @@ var ProfileMain = React.createClass({
       this.setState({ userPhotos: PhotoStore.returnCurrentUserPhotos() });
     }.bind(this));
 
+    this.userListener = SessionStore.addListener(function () {
+      this.forceUpdate();
+    }.bind(this));
+
     ClientActions.getCurrentUserPhotos();
+    ClientActions.getBirthday();
   },
 
   componentWillUnmount: function () {
     this.photoListener.remove();
+    this.userListener.remove();
   },
 
   selectTab: function (event) {

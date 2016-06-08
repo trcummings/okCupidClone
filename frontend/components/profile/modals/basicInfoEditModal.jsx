@@ -18,7 +18,7 @@ var modalStyle = {
     position: 'relative',
     width: '214px',
     height: '378px',
-    top: '40px',
+    top: '80px',
     marginBottom: '60px',
     marginLeft: '-155px',
     fontSize: '13px',

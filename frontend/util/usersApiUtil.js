@@ -57,7 +57,7 @@ var UsersApiUtil = {
     });
   },
 
-  updateUser: function (user) {
+  updateUser: function (user, callback) {
     $.ajax({
       url: '/api/user',
       type: 'PATCH',
@@ -65,8 +65,8 @@ var UsersApiUtil = {
       contentType: 'application/json',
       data: JSON.stringify({ user: user }),
       success: function (user) {
-        debugger;
-        ServerActions.receiveCurrentUser(user);
+        SessionActions.receiveCurrentUser(user);
+        callback();
       },
       error: function (xhr) {
         debugger;

@@ -90,7 +90,6 @@ var ProfileQuestionsTab = React.createClass({
 
   toggleExplanationForm: function (event) {
     event.preventDefault();
-    debugger;
     if (this.renderExpForm) {
       this.renderExpForm = false;
     } else {
@@ -100,7 +99,7 @@ var ProfileQuestionsTab = React.createClass({
 
   explanationForm: function (answer) {
     var explanation;
-    if (answer.explanation) {
+    if (answer) {
       explanation = answer.explanation;
     }
 

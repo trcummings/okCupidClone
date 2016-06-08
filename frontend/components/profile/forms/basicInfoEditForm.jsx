@@ -12,7 +12,8 @@ var BasicInfoEditForm = React.createClass({
       country: currentUser.country,
       gender: currentUser.gender,
       location: currentUser.location,
-      renderZipForm: false
+      renderZipForm: false,
+      errorText: ''
     });
   },
 
@@ -38,14 +39,42 @@ var BasicInfoEditForm = React.createClass({
   },
 
   handleZipChange: function (event) {
-    //
+    var zipStr = event.target.value.toString();
+    var response;
+
+    if (zipStr.length === 5) {
+      ClientActions.lookUpZipCodeForModal(event.target.value, function (response) {
+        response = JSON.parse(response);
+
+        if (!response.places) {
+          this.setState({ errorText: 'Not a readable zip code!' });
+        } else if (response.places[0]) {
+          response = response.places[0];
+
+          this.setState(
+            { location: response['place name'] +
+              ', ' + response['state abbreviation'],
+              errorText: "Aah, " + response['place name'] +
+                ', ' + response['state abbreviation'] + "! Nice."
+            }
+          );
+        } else {
+          this.setState({ errorText: 'Not a readable zip code!' });
+        }
+      }.bind(this));
+    }
   },
 
   handleSubmit: function (event) {
     event.preventDefault();
 
-    console.log("tried to submipbt");
-    // ClientActions.updateUser(this.state);
+    ClientActions.updateUser(this.state, function () {
+      this.setState({ renderZipForm: false });
+      this.props.closeModal();
+    }.bind(this));
+
+
+    /// BIRTH DATE UPDATE STILL NOT WORKING
   },
 
   handleCancel: function (event) {
@@ -214,6 +243,7 @@ var BasicInfoEditForm = React.createClass({
 
           {this.zipFormRender()}
 
+          <p>{this.state.errorText}</p>
 
           <button
             id='continue_button'
