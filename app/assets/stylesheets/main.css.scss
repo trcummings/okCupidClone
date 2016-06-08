@@ -1,5 +1,21 @@
 #content {
   background: #104da1;
+
+  .main-header {
+    height: 66px;
+  }
+
+  .main-div {
+    background: #104da1;
+    position: absolute;
+    top: 66px;
+    width: 100%;
+    left:0px;
+    right:0px;
+    bottom:0px;
+    overflow-y:scroll;
+  }
+
 }
 
 .fa.fa-pencil {

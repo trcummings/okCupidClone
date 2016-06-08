@@ -81,6 +81,13 @@ var ServerActions = {
       actionType: SessionConstants.ALL_ANSWERS,
       answers: answers
     });
+  },
+
+  receiveBirthday: function (birth_date) {
+    AppDispatcher.dispatch({
+      actionType: SessionConstants.BIRTHDAY,
+      birth_date: birth_date
+    });
   }
 };
 

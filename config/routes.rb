@@ -8,6 +8,8 @@ Rails.application.routes.draw do
       # patch :update, to: 'user#update_user' #### #not yet
       # delete to: 'user#destroy_user'
 
+      get '/birthdate', to: 'users#get_birthdate'
+
       get '/about', to: 'users#get_about' ####
       patch '/about', to: 'users#update_about' ####
 

@@ -213,6 +213,16 @@ var UsersApiUtil = {
         // ErrorActions.setErrors("signup", errors);
       }
     });
+  },
+
+  getBirthday: function () {
+    $.ajax({
+      url: 'api/user/birthdate',
+      method: 'GET',
+      success: function (birth_date) {
+        ServerActions.receiveBirthday(birth_date);
+      }
+    });
   }
 };
 

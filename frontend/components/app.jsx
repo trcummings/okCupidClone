@@ -37,8 +37,10 @@ var App = React.createClass({
       return (
         <div>
           <Header />
-          {this.props.children}
-          <Footer />
+          <div className='main-div'>
+            {this.props.children}
+            <Footer />
+          </div>
         </div>
       );
     } else {

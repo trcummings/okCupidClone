@@ -11,26 +11,6 @@ var MatchesIndexItem = React.createClass({
     router: React.PropTypes.object.isRequired
   },
 
-  // getInitialState: function () {
-  //   return {
-  //     profilePhoto: PhotoStore.otherUserDefaultProfilePic()
-  //   };
-  // },
-
-  // componentDidMount: function () {
-  //   this.photoListener = PhotoStore.addListener(function () {
-  //     this.setState({
-  //       profilePhoto: PhotoStore.otherUserDefaultProfilePic()
-  //   });
-  //   }.bind(this));
-  //
-  //   ClientActions.getOtherUserPics(this.props.user.id);
-  // },
-
-  // componentWillUnmount: function () {
-  //   this.photoListener.remove();
-  // },
-
   renderMatchDetail: function (event) {
     if (event.target.id !== 'like-toggle' &&
         event.target.id !== 'toggle-button' &&
@@ -41,9 +21,7 @@ var MatchesIndexItem = React.createClass({
   },
 
   renderProfilePhoto: function () {
-    // debugger;
     var user = this.props.user;
-    // var profilePhoto = this.state.profilePhoto;
 
     if (user.default_photo_url) {
       return (
@@ -60,7 +38,7 @@ var MatchesIndexItem = React.createClass({
 
   render: function() {
     var user = this.props.user;
-    var matchPercent = parseInt(user.matchPercentage);
+    var matchPercent = parseInt(user.match_percentage);
     if (isNaN(matchPercent)) {
       matchPercent = 0;
     }
@@ -79,7 +57,7 @@ var MatchesIndexItem = React.createClass({
           <h1 id='match-username'>{user.username}</h1>
           <ul id='match-info'>
             <li>
-              {HelperUtil.returnAge(user.birth_date)}
+              {user.age}
             </li>
             <li>
               {user.location}
