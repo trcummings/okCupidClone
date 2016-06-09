@@ -13,7 +13,8 @@ var BasicInfoEditForm = React.createClass({
       gender: currentUser.gender,
       location: currentUser.location,
       renderZipForm: false,
-      errorText: ''
+      errorText: '',
+      new_birth_date: {}
     });
   },
 
@@ -68,13 +69,36 @@ var BasicInfoEditForm = React.createClass({
   handleSubmit: function (event) {
     event.preventDefault();
 
-    ClientActions.updateUser(this.state, function () {
+    var bdArray = this.state.birth_date.split('-'),
+        bMonth = bdArray[1],
+        bDay = bdArray[2],
+        bYear = bdArray[0],
+        new_birth_date = this.state.new_birth_date;
+
+    if (!new_birth_date.dd) {
+      new_birth_date['dd'] = bDay;
+    }
+
+    if (!new_birth_date.mm) {
+      new_birth_date['mm'] = bMonth;
+    }
+
+    if (!new_birth_date.yyyy) {
+      new_birth_date['yyyy'] = bYear;
+    }
+
+    var updatedUser = {
+      username: this.state.username,
+      birth_date: new_birth_date,
+      country: this.state.country,
+      gender: this.state.gender,
+      location: this.state.location,
+    };
+
+    ClientActions.updateUser(updatedUser, function () {
       this.setState({ renderZipForm: false });
       this.props.closeModal();
     }.bind(this));
-
-
-    // BIRTH DATE UPDATE STILL NOT WORKING
   },
 
   handleCancel: function (event) {
@@ -91,7 +115,7 @@ var BasicInfoEditForm = React.createClass({
     for (var property in months) {
       if (months.hasOwnProperty(property)) {
         result.push(
-          <option value={property} key={i}>{property}</option>
+          <option value={i+1} key={i}>{property}</option>
         );
         i++;
       }
@@ -114,7 +138,8 @@ var BasicInfoEditForm = React.createClass({
   },
 
   renderDayRange: function (month) {
-    var days = HelperUtil.birthdayList.months[HelperUtil.monthConvert[month]];
+    var days =
+      HelperUtil.birthdayList.months[HelperUtil.monthConvert[parseInt(month)]];
     var result = [];
 
     for (var i = 1; i < days; i++) {
@@ -172,14 +197,47 @@ var BasicInfoEditForm = React.createClass({
     }
   },
 
+  handleMonthChange: function (event) {
+    event.preventDefault();
+
+    var new_birth_date = this.state.new_birth_date;
+    new_birth_date['mm'] = event.target.value;
+
+    this.setState({
+      new_birth_date: new_birth_date
+    });
+  },
+
+  handleDayChange: function (event) {
+    event.preventDefault();
+
+    var new_birth_date = this.state.new_birth_date;
+    new_birth_date['dd'] = event.target.value;
+
+    this.setState({
+      new_birth_date: new_birth_date
+    });
+  },
+
+  handleYearChange: function (event) {
+    event.preventDefault();
+
+    var new_birth_date = this.state.new_birth_date;
+    new_birth_date['yyyy'] = event.target.value;
+
+    this.setState({
+      new_birth_date: new_birth_date
+    });
+  },
+
   render: function() {
     var currentUser = SessionStore.currentUser();
 
     if (this.state.birth_date) {
 
       var bdArray = this.state.birth_date.split('-'),
-          bMonth = bdArray[1];
-          bDay = bdArray[2];
+          bMonth = bdArray[1],
+          bDay = bdArray[2],
           bYear = bdArray[0];
 
       return (
@@ -213,14 +271,16 @@ var BasicInfoEditForm = React.createClass({
             My Birthday
             <select
               className='dropdown'
-              defaultValue={HelperUtil.monthConvert[bMonth]}
+              defaultValue={parseInt(bMonth)}
+              onChange={this.handleMonthChange}
             >
-              {this.renderMonthList(bMonth)}
+              {this.renderMonthList(parseInt(bMonth))}
             </select>
 
             <select
               className='dropdown'
               defaultValue={parseInt(bDay)}
+              onChange={this.handleDayChange}
             >
               {this.renderDayRange(bMonth)}
             </select>
@@ -228,6 +288,7 @@ var BasicInfoEditForm = React.createClass({
             <select
               className='dropdown'
               defaultValue={parseInt(bYear)}
+              onChange={this.handleYearChange}
             >
               {this.renderYearRange()}
             </select>

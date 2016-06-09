@@ -484,27 +484,36 @@ var QuestionItem = React.createClass({
 
           </section>
         );
-      } else {
-        // the random question
-        return (
-          <section id='question-item'>
-            <h1>{question.content}</h1>
+      } else if (!this.state.questionFormRendered) {
+        if (questionBundle.question === 'no more questions') {
+          return (
+            <section id='question-item'>
+              <h1>No more questions to answer</h1>
+              <p>Look at you go!</p>
+            </section>
+          );
+        } else {
+          // the random question
+          return (
+            <section id='question-item'>
+              <h1>{question.content}</h1>
 
-            <button
-              className='answer-button'
-              onClick={this.handleAnswerClick}
-            >
-              Answer
-            </button>
+              <button
+                className='answer-button'
+                onClick={this.handleAnswerClick}
+                >
+                Answer
+              </button>
 
-            <button
-              className='skip-button'
-              onClick={this.handleSkipQuestion}
-            >
-              Skip Question
-            </button>
-          </section>
-        );
+              <button
+                className='skip-button'
+                onClick={this.handleSkipQuestion}
+                >
+                Skip Question
+              </button>
+            </section>
+          );
+        }
       }
     } else {
       return (<div />);

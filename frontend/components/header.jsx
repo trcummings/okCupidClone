@@ -31,6 +31,10 @@ var Header = React.createClass({
     this.context.router.push("/likes");
   },
 
+  handleVisitorsClick: function () {
+    alert("doesnt' do anything yet!");
+  },
+
   toggleDropDown: function (type) {
     if (this.state[type]) {
       this.state[type] = false;
@@ -68,7 +72,7 @@ var Header = React.createClass({
 
         <div id='nav-right'>
           <ul className='nav-links nav-item group'>
-            <li className='glyph' >
+            <li className='glyph' onClick={this.handleVisitorsClick} >
               <i className="fa fa-users fa-2" aria-hidden="true"></i>
               <p id='visitors-glyph'>
                 <i className="fa fa-caret-up" aria-hidden="true"></i>
