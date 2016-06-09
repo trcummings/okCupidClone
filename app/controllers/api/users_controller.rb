@@ -62,21 +62,21 @@ class Api::UsersController < ApplicationController
   def get_about
     @user_about = UserAbout.find_by(user_id: current_user.id)
 
-    render '/api/user/about/show'
+    render '/api/user_abouts/show'
   end
 
   def update_about
     @user_about = UserAbout.find_by(user_id: current_user.id)
     @user_about.update(about_params)
 
-    render '/api/user/about/show'
+    render '/api/user_abouts/show'
   end
 
   def other_user_about
     @user = User.find_by(username: params[:username])
     @user_about = UserAbout.find_by(user_id: @user.id)
 
-    render '/api/users/about/show'
+    render '/api/user_abouts/show'
   end
 
 
@@ -86,7 +86,7 @@ class Api::UsersController < ApplicationController
     @user = User.find(current_user.id)
     @answers = @user.answers
 
-    render 'api/user/answers'
+    render 'api/answers/index'
   end
 
   # def delete_all_answers

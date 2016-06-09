@@ -1,3 +1,3 @@
 json.array! photos do |photo|
-  json.extract! photo, :photo_url, :description, :is_default
+  json.partial! 'api/user_photos/photo', photo: photo
 end
