@@ -98,6 +98,7 @@ var QuestionItem = React.createClass({
   handleSkipQuestion: function (event) {
     event.preventDefault();
 
+    alert("doesn't work yet!");
   },
 
   handleExplanationEntry: function (event) {

@@ -36,7 +36,7 @@ var SignInForm = React.createClass({
     var loginType = HelperUtil.parseNameField(this.state.nameField);
     var callback = function () {
       this.props.closeModal();
-      this.context.router.push("/home");
+      this.context.router.push("/matches");
     }.bind(this);
 
     if (loginType === 'username') {

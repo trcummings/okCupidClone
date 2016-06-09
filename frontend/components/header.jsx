@@ -47,14 +47,14 @@ var Header = React.createClass({
     if (currentUser.photos[0]) {
       thumbnailImage = currentUser.photos[0].photo_url;
     } else {
-      thumbnailImage = '';
+      thumbnailImage = window.anon;
     }
 
     return (
       <nav id='navigation' className='main-header'>
         <div id='nav-left'>
           <h1 className='nav-logo'>
-            <a href="#/home">
+            <a href="#/matches">
               <img id='logo' src={window.logo} />
             </a>
           </h1>

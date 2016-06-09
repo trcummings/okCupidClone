@@ -94,7 +94,12 @@ var LikesMain = React.createClass({
   },
 
   renderUserItem: function (user) {
-
+    var thumbnailImage;
+    if (user.default_photo_url) {
+      thumbnailImage = user.default_photo_url;
+    } else {
+      thumbnailImage = window.anon;
+    }
     // var likeStar;
     // var userLikedText;
     //
@@ -114,14 +119,20 @@ var LikesMain = React.createClass({
     // <span>hgghhhh</span>
 
     return (
-      <div className='group'
+      <div className='user-item group'
         onClick={this.handleUserItemClick.bind(null, user.username)}
       >
-        <img src={user.default_photo_url} />
-        <h4>{user.username}</h4>
 
-        <h5>{user.age}</h5>
-        <p>{user.location}</p>
+        <section className='user-item-thumbnail'>
+          <img src={thumbnailImage} />
+        </section>
+
+        <section className='user-item-details'>
+          <h4>{user.username}</h4>
+
+          <h5>{user.age}</h5>
+          <p>{user.location}</p>
+        </section>
       </div>
     );
   },
