@@ -1,16 +1,58 @@
 var React = require('react');
+var Modal = require('react-modal');
 var PropTypes = React.PropTypes;
 var HelperUtil = require('../../util/helperUtil');
 var SessionStore = require('../../stores/sessionStore');
 var ClientActions = require('../../actions/clientActions');
 
+var modalStyle = {
+  overlay : {
+    position          : 'fixed',
+    top               : 0,
+    left              : 0,
+    right             : 0,
+    bottom            : 0,
+    backgroundColor   : 'rgba(0, 0, 0, 0.60)',
+    zIndex: 1000000
+  },
+  content : {
+    zIndex: 1000001,
+    align: 'center',
+    display: 'block',
+    position: 'relative',
+    width: '214px',
+    height: '378px',
+    top: '180px',
+    marginBottom: '60px',
+    marginLeft: '-155px',
+    fontSize: '13px',
+    textAlign: 'center',
+    left: '50%',
+    padding: '28px 48px 40px',
+    background                 : '#fff',
+    overflow                   : 'auto',
+    WebkitOverflowScrolling    : 'touch',
+    borderRadius               : '8px',
+    outline                    : 'none',
+  }
+};
+
 var LikeToggle = React.createClass({
   getInitialState: function () {
-
+    Modal.setAppElement(document.body);
     return({
       liked: HelperUtil.doesCurrentUserLikeThisUser(this.props.liker, this.props.likee),
-      buttonActive: true
+      buttonActive: true,
+      modalOpen: false
     });
+  },
+
+  closeModal: function() {
+    this.setState({ modalOpen: false });
+  },
+
+  openModal: function () {
+    this.setState({ modalOpen: true });
   },
 
   toggleLike: function (event) {
@@ -31,16 +73,20 @@ var LikeToggle = React.createClass({
     } else {
       ClientActions.likeUser(this.props.likee, function () {
         this.setState({ buttonActive: true });
+
+        if (this.props.liker.mutual_likes.indexOf(this.props.likee) !== -1) {
+          this.openModal();
+        }
+
       }.bind(this));
       this.setState({
         liked: true,
         buttonActive: false
-       });
+      });
     }
   },
 
   render: function () {
-
     if (this.state.liked) {
       return (
         <button
@@ -52,6 +98,15 @@ var LikeToggle = React.createClass({
 
           <i className='fa fa-star' aira-hidden='hidden'></i>
           Liked
+
+          <Modal
+            isOpen={this.state.modalOpen}
+            onRequestClose={this.closeModal}
+            ref='popup'
+            style={modalStyle}
+          >
+            <div>NyYYYYYYEEEEAAAARRRRGHHHHH</div>
+          </Modal>
         </button>
       );
     } else {
@@ -73,6 +128,8 @@ var LikeToggle = React.createClass({
 });
 
 module.exports = LikeToggle;
+
+
 
 // getInitialState: function () {
 //   return { likeText: LikeStore.currentLikeText() };

@@ -26,7 +26,19 @@ class Question < ActiveRecord::Base
     primary_key: :id
   )
 
-  def self.random_question
-    Question.all.sample
+  def self.random_question(user_answers)
+    user_questions = []
+
+    user_answers.each do |answer|
+      user_questions.push(answer.question)
+    end
+
+    potential_questions = Question.all - user_questions
+
+    if potential_questions.length > 0
+      potential_questions.sample
+    else
+      'no more questions'
+    end
   end
 end

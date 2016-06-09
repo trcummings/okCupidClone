@@ -47,7 +47,8 @@ class Api::UsersController < ApplicationController
 
   def update_user
     @user = current_user
-    @user.birth_date = params[:user][:birth_date]
+    @user.birth_date = Date.new(*date_params)
+
     if @user.update(user_params)
       render '/api/user/show'
     else
