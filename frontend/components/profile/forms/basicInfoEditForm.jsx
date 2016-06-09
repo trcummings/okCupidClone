@@ -94,7 +94,7 @@ var BasicInfoEditForm = React.createClass({
           <option value={property} key={i}>{property}</option>
         );
         i++;
-      }''
+      }
     }
 
     return result;
