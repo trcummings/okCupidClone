@@ -106,34 +106,46 @@ var ProfileMain = React.createClass({
   render: function () {
     var currentUserPhotos = PhotoStore.returnCurrentUserPhotos();
     var currentUser = SessionStore.currentUser();
+    var defaultPhotoSrc = window.anon;
 
-    // var pane = this.props.panes[this.state.selectedTab];
+    var photoFunction = function (currentUserPhotos, currentUser) {
+      if (currentUserPhotos.length === 0) {
+        return (
+          <img
+            className='first-user-photo'
+            src={defaultPhotoSrc}
+            alt={'Photo of ' + currentUser.username }
+            />
+        );
+      } else {
+        return(
+          currentUserPhotos.map(function (photo, index) {
+            var className;
+            var imgSrc;
+            if (index === 0) {
+              className = 'first-user-photo';
+            } else {
+              className = 'other-user-photo';
+            }
+            return (
+              <img
+                key={index}
+                className={className}
+                src={photo.photo_url}
+                alt={'Photo of ' + currentUser.username }
+              />
+            );
+          })
+        );
+      }
+    };
 
     if (currentUser) {
-
       return (
         <div id='profile-main' className='group'>
           <div id='tabbed-heading'>
             <div id='profile-thumbs' className='group'>
-              {
-                currentUserPhotos.map(function (photo, index) {
-                  var className;
-                  var imgSrc;
-                  if (index === 0) {
-                    className = 'first-user-photo';
-                  } else {
-                    className = 'other-user-photo';
-                  }
-                  return (
-                    <img
-                      key={index}
-                      className={className}
-                      src={photo.photo_url}
-                      alt={'Photo of ' + currentUser.username }
-                      />
-                  );
-                })
-              }
+              {photoFunction(currentUserPhotos, currentUser)}
               <button
                 id='add-photo-button'
                 onClick={this.handlePhotoAddClick}>Add Photo</button>

@@ -22,7 +22,7 @@ var FinalSignUpForm = React.createClass({
   handleSubmit: function () {
     var profile = AuthInfoStore.returnFinalizedProfile();
     ClientActions.signup(profile, function () {
-      this.context.router.push("/home");
+      this.context.router.push("/matches");
     }.bind(this));
   },
 

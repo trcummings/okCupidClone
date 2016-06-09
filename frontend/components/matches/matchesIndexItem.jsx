@@ -22,18 +22,20 @@ var MatchesIndexItem = React.createClass({
 
   renderProfilePhoto: function () {
     var user = this.props.user;
+    var profilePhoto;
 
     if (user.default_photo_url) {
-      return (
-        <img
-          src={user.default_photo_url}
-          alt={'Photo of ' + user.username}
-          />
-      );
+      profilePhoto = user.default_photo_url;
     } else {
-      return (<div />);
+      profilePhoto = window.anon;
     }
 
+    return (
+      <img
+        src={profilePhoto}
+        alt={'Photo of ' + user.username}
+        />
+    );
   },
 
   render: function() {

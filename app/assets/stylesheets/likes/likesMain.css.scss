@@ -105,46 +105,45 @@
       cursor: pointer;
     }
 
-    div {
+    .user-item-thumbnail {
       position: relative;
       overflow: hidden;
+      float: left;
+      display: block;
 
       width: 125px;
       height: 120px;
       z-index: 3;
 
       img {
-        left: -33%;
         position: absolute;
-        height: 120px;
-        width: auto;
+        left: 0;
+        height: 125px;
+        width: 125px;
       }
+    }
+
+    .user-item-details {
+      padding-top: 19px;
+      padding-left: 15px;
+      padding-bottom: 15px;
+      line-height: 21px;
+      display: block;
+      float: left;
 
       h4 {
-        height: auto;
-        padding-top: 19px;
-        line-height: 21px;
-        position:absolute;
-        right: -60px;
-        z-index: 5;
+        padding: 0px;
+        margin: 0px;
       }
 
       h5 {
-        height: auto;
-        padding-top: 19px;
-        line-height: 21px;
-        position:absolute;
-        right: -50px;
-        z-index: 5;
+        padding: 0px;
+        margin: 0px;
       }
 
       p {
-        height: auto;
-        padding-top: 19px;
-        line-height: 21px;
-        position:absolute;
-        right: -60px;
-        z-index: 5;
+        padding: 0px;
+        margin: 0px;
       }
 
     }
@@ -154,7 +153,6 @@
     width: 280px;
     position: absolute;
     right: 30px;
-    // height: 65px;
     top: 150px;
     background-color: #ffe8c3;
     color: #ef860d;

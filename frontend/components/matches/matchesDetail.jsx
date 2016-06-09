@@ -5,6 +5,7 @@ var UserStore = require('../../stores/userStore');
 var LikeToggle = require('../widgetButtons/likeToggle');
 var PhotoStore = require('../../stores/photoStore');
 var SessionStore = require('../../stores/sessionStore');
+var MessageButton = require('../messages/messageButton');
 
 var MatchDetail = React.createClass({
   getInitialState: function () {
@@ -71,8 +72,13 @@ var MatchDetail = React.createClass({
   },
 
   render: function() {
+    var profilePhoto;
     var thisUser = this.state.viewedUser;
-    var profilePhoto = thisUser.default_photo_url;
+    if (thisUser.default_photo_url) {
+      profilePhoto = thisUser.default_photo_url;
+    } else {
+      profilePhoto = window.anon;
+    }
 
     if (thisUser.username) {
       return (
@@ -102,7 +108,7 @@ var MatchDetail = React.createClass({
                 <LikeToggle
                   likee={thisUser}
                   liker={SessionStore.currentUser()} />
-                <button id='message-button'>Message</button>
+                <MessageButton />
               </article>
             </div>
           </article>

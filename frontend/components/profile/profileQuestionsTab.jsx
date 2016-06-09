@@ -6,8 +6,8 @@ var ClientActions = require('../../actions/clientActions');
 
 var ProfileQuestionsTab = React.createClass({
   getInitialState: function () {
-    var answers = SessionStore.currentUser();
-    answers = answers.answers;
+    var currentUser = SessionStore.currentUser();
+    var answers = currentUser.answers;
 
     return (
       { answers: answers }
@@ -57,8 +57,8 @@ var ProfileQuestionsTab = React.createClass({
     var result = [];
     var answerChoices = answer.question_choices;
 
-    if (answer.answerChoices) {
-      answer.answerChoices.forEach(function (choice, index) {
+    if (answerChoices) {
+      answerChoices.forEach(function (choice, index) {
         var selectorString = '';
 
         if (answer.importance === 0) {
@@ -90,6 +90,7 @@ var ProfileQuestionsTab = React.createClass({
 
   toggleExplanationForm: function (event) {
     event.preventDefault();
+
     if (this.renderExpForm) {
       this.renderExpForm = false;
     } else {
