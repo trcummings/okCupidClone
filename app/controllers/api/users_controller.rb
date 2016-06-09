@@ -113,7 +113,7 @@ class Api::UsersController < ApplicationController
     if @photo.save
       current_user.undefault_other_photos(@photo.id)
 
-      render 'api/user/photos'
+      render 'api/user_photos/show'
     else
       render json: { base: ["Sumthin wrong"] }, status: 401
     end
@@ -124,7 +124,7 @@ class Api::UsersController < ApplicationController
     @user = User.find_by(id: current_user.id)
     @photos = @user.photos
 
-    render 'api/user/photos'
+    render 'api/user_photos/index'
   end
 
 
@@ -132,7 +132,7 @@ class Api::UsersController < ApplicationController
     @user = User.find_by(username: params[:username])
     @photos = @user.photos
 
-    render 'api/users/photos/show'
+    render 'api/user_photos/index'
   end
 
   private
