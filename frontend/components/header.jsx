@@ -42,7 +42,13 @@ var Header = React.createClass({
 
   render: function () {
     var currentUser = SessionStore.currentUser();
-    var thumbnailImage = currentUser.photos[0].photo_url;
+    var thumbnailImage;
+
+    if (currentUser.photos[0]) {
+      thumbnailImage = currentUser.photos[0].photo_url;
+    } else {
+      thumbnailImage = '';
+    }
 
     return (
       <nav id='navigation' className='main-header'>

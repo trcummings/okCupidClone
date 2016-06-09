@@ -76,11 +76,12 @@ var LikesMain = React.createClass({
 
   renderUserList: function () {
     var currentUser = SessionStore.currentUser();
+    var tabData = this.getTabData();
 
     return (
       <ul>
       {
-        currentUser.mutual_likes.map(function (user, index) {
+        (currentUser[tabData.group]).map(function (user, index) {
           return (
             <li className='likelist-user' key={index}>
               {this.renderUserItem(user)}
@@ -99,7 +100,7 @@ var LikesMain = React.createClass({
     //
     // debugger;
     //
-    // if (currentUser.mutualLikes) {
+    // if (currentUser.mutual_likes) {
     //   likeStar = (
     //     <div className='circle-in-star'>
     //       <i className="fa fa-star" aria-hidden="true"></i>
@@ -145,7 +146,7 @@ var LikesMain = React.createClass({
     var currentUser = this.state.currentUser;
     var personText = ' people like you';
 
-    if (currentUser[tabData.group].length === 1) {
+    if (currentUser.likers.length === 1) {
       personText = ' person likes you';
     }
 
@@ -160,7 +161,7 @@ var LikesMain = React.createClass({
           onClick={this.setSelectedTabToZero}
         >
           <i className='fa fa-star fa-2' aria-hidden='true'></i>
-          <h2>{currentUser[tabData.group].length + personText}</h2>
+          <h2>{currentUser.likers.length + personText}</h2>
           <i className="fa fa-arrow-right fa-2" aria-hidden="true"></i>
         </section>
 
