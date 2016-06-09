@@ -2,13 +2,13 @@
 
 [Heroku link][heroku] **NB:** This should be a link to your production site
 
-[heroku]: http://www.perfectpair.herokuapp.com
+[heroku]: www.perfect-pair.me
 
 ## Minimum Viable Product
 
 Are you a singleton and ready to mingle a ton?
 
-PerfectPair will be a full-stack web app clone of dating platform OKcupid, with the cutesy gimmick of being code-language and programmer culture-centric. Its backend will sit on Ruby on Rails, with a PostgreSQL database, and a dynamic frontend, frameworked via React.js using Flux architecture.
+PerfectPair will be a full-stack web app clone of dating platform OKcupid. Its backend will sit proud with a slouch via Ruby on Rails, with a PostgreSQL database, and a dynamic frontend, frameworked via React.js using Flux architecture.
 
 By the end of app/Academy week 9, this app will meet the following criteria for minimum viable functionality:
 
@@ -23,7 +23,7 @@ By the end of app/Academy week 9, this app will meet the following criteria for 
 - [x] A match percentage between each user, algorithmically determined
 - [ ] A websocket based messenger platform, for users to communicate
 - [ ] A user search feature, allowing filtration based on certain qualities
-- [ ] Hosting on Heroku
+- [x] Hosting on Heroku
 - [ ] CSS styling that looks exactly like okCupid, except with a shittier logo, and a barely visible superimposition of Richard Stallman's face haunting the background (maybe not).
 - [ ] A production README, replacing this dogshit README
 

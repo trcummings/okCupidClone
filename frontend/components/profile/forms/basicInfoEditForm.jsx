@@ -74,7 +74,7 @@ var BasicInfoEditForm = React.createClass({
     }.bind(this));
 
 
-    /// BIRTH DATE UPDATE STILL NOT WORKING
+    // BIRTH DATE UPDATE STILL NOT WORKING
   },
 
   handleCancel: function (event) {
@@ -94,7 +94,7 @@ var BasicInfoEditForm = React.createClass({
           <option value={property} key={i}>{property}</option>
         );
         i++;
-      }
+      }''
     }
 
     return result;
