@@ -1,1 +1,1 @@
-json.array! @photos, :photo_url, :is_default, :description
+json.partial! 'api/user_photos/photo', photo: @photo
