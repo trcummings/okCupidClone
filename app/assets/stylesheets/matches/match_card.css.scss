@@ -19,13 +19,9 @@
 
   img {
     position: absolute;
-    width: inherit;
-    height: inherit;
     top: -20px;
-
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    height: 270px;
+    object-fit: cover;
 
     -webkit-transition: top .25s ease;
     -moz-transition: top .25s ease;
@@ -113,8 +109,6 @@
 
   img {
     top: 0px;
-    width: inherit;
-    height: inherit;
   }
 
 

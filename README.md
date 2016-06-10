@@ -24,7 +24,7 @@ By the end of app/Academy week 9, this app will meet the following criteria for 
 - [ ] A websocket based messenger platform, for users to communicate
 - [ ] A user search feature, allowing filtration based on certain qualities
 - [x] Hosting on Heroku
-- [ ] CSS styling that looks exactly like okCupid, except with a shittier logo, and a barely visible superimposition of Richard Stallman's face haunting the background (maybe not).
+- [x] CSS styling that looks exactly like okCupid, except with a shittier logo, and a barely visible superimposition of Richard Stallman's face haunting the background (maybe not).
 - [ ] A production README, replacing this dogshit README
 
 ## Product Goals and Priorities
@@ -41,7 +41,7 @@ progress. Put an x between the brackets for a checkmark: [x] -->
 - [x] View Other Profiles (MVP)
 - [x] Answer Questions (MVP)
 - [x] View Match Percentages Between Users (MVP)
-- [ ] Add and Remove Profile Pictures (MVP)
+- [ ] Add and Change Profile Pictures (MVP)
 - [ ] Message Between Users (MVP)
 - [ ] Receive Notifications Upon Other Users Viewing Their Profiles (expected feature, but not MVP)
 - [ ] Filter Users by 'Looking For' and 'Description' (expected feature, but not MVP)
@@ -110,14 +110,14 @@ user interface.
 **Objective:** User can view other profiles, by navigating through the `HeaderNav`
 
 - [x] setup the MatchesIndex component, and flesh out each profile view
-- [ ] create mutual like modal, pops up on `LikeToggle` when two users like each-other
+- [x] create mutual like modal, pops up on `LikeToggle` when two users like each-other
 
 ### Phase 5: Questions, Answers, Match Percentages (2 Days)
 
 **Objective:** User can answer questions on their profile page, see the questions other users have answered, answer those questions on the other users' profile page, and see their match percentage with those users
 
 - [x] create `Question` model
-- [ ] create jbuilder question and answer views
+- [x] create jbuilder question and answer views
 - [x] implement Answer components, with API interaction on `Profile` and `MatchDetail`
 - [x] add match percentages to all `MatchDetailItem`s
 

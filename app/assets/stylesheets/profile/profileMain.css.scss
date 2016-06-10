@@ -81,7 +81,7 @@
       float: left;
       width: 210px;
       height: 195px;
-      border: 1px solid black;
+      border: 1px solid #f3f5f9;
       border-radius: 5px;
       overflow: hidden;
 
@@ -92,8 +92,9 @@
       transition: opacity .25s ease;
 
       > img {
-        width: inherit;
         opacity: 0;
+        height: 195px;
+        object-fit: cover;
       }
 
       .first-user-photo {

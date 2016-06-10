@@ -1,5 +1,4 @@
 #questions-tab {
-
   #question-item {
     position: relative;
     width: auto;
@@ -47,7 +46,7 @@
       }
     }
 
-    .question-footer {
+    .question-options {
       position: absolute;
       bottom: 15px;
       display: block;
@@ -61,15 +60,8 @@
       opacity: 0;
       color: #949aa6;
 
-
       .fa.fa-pencil {
         color: #949aa6;
-
-
-      }
-
-      .fa.fa-pencil:after {
-
       }
 
       .explain-button {
@@ -103,13 +95,9 @@
       .re-answer-button:hover {
         color: #3260c7;
       }
-
     }
 
-
-
     #answer-item {
-
       .answered {
         color: #00d280;
       }
@@ -147,13 +135,15 @@
       li {
         padding: 10px;
       }
-
     }
 
+    .explain-form {
+      opacity: 1;
+    }
   }
 
   #question-item:hover {
-    .question-footer {
+    .question-options {
       opacity: 1;
     }
   }
@@ -197,8 +187,6 @@
     text-align: center;
     text-transform: none;
     overflow: hidden;
-    // border-radius: 2px;
-    // border: 1px solid #ccd0d9;
   }
 
   .cancel-button {
@@ -229,10 +217,10 @@
     border: 1px solid #ccd0d9;
     border-radius: 2px;
     padding: 20px;
+    color: #5e6573;
   }
 
   ul {
-
     padding-bottom: 30px;
 
     .choice-button {
@@ -342,7 +330,4 @@
       }
     }
   }
-
-
-
 }

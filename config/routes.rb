@@ -18,9 +18,7 @@ Rails.application.routes.draw do
       # delete '/photos/:id', to: 'user#delete_photo' #not yet
 
       get '/answers', to: 'users#get_all_answers'
-      # post '/answers', to: 'user#answer_question' # not yet
       # delete :answers, to: 'user#delete_all_answers' #not yet
-      # patch '/answer/:id', to: 'user#update_answer' #not yet
     end
 
     # all other users
@@ -29,27 +27,17 @@ Rails.application.routes.draw do
     get '/users/:username/photos', to: 'users#other_user_photos'
     get '/users/:username/about', to: 'users#other_user_about'
 
-
     # get :answers, only: [:index], to: 'users#other_user_answers' # not yet
-    # end
 
     resource :session, only: [:create, :show, :destroy]
 
     get '/questions/random', to: 'questions#random' ###
-
-
-    # resources :users, only: [:create, :destroy, :index, :update]
+    resources :answers, only: [:create, :update], param: :question_id
 
     resources :likes, only: [:create]
     resources :likes, only: [:destroy], param: :username
 
-    # resources :user_photos, only: [:create, :index, :destroy]
-    # resources :user_photos, only: :show, param: :user_id
     # resources :messages, only: [:create, :chat_history]
 
-    # resources :user_abouts, only: [:show, :update], param: :user_id
-
-
-    resources :answers, only: [:create, :update]
   end
 end

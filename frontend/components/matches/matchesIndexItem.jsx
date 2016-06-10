@@ -50,7 +50,7 @@ var MatchesIndexItem = React.createClass({
         id='match-card'
         className='group'
         onClick={this.renderMatchDetail}>
-        <div id='match-pic'>
+        <div id='match-pic scaling-image'>
           {this.renderProfilePhoto()}
         </div>
 

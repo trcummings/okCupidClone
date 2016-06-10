@@ -20,13 +20,37 @@ var QuestionItem = React.createClass({
       selectedAnswer: [],
       selectedDesire: [],
       importance: '',
-      explanation: ''
+      explanation: '',
+      updatingQuestion: false
     });
   },
 
+  componentWillReceiveProps: function (nextProps) {
+    if (nextProps.question) {
+      question = nextProps.question;
+
+      this.setState({
+        questionBundle: {
+          question: nextProps.question,
+          question_choices: nextProps.question.question_choices
+         },
+        questionFormRendered: true,
+        selectedAnswer: [],
+        selectedDesire: [],
+        importance: '',
+        explanation: question.explanation,
+        updatingQuestion: true
+      });
+    }
+  },
+
   componentDidMount: function () {
-    this.answersListener = SessionStore.addListener(function (){
-      this.forceUpdate();
+    this.answersListener = SessionStore.addListener(function () {
+      HelperUtil.getRandomQuestion(function (questionBundle) {
+        this.setState({
+          questionBundle: questionBundle
+        });
+      }.bind(this));
     }.bind(this));
 
     ClientActions.getAllAnswers();
@@ -54,7 +78,7 @@ var QuestionItem = React.createClass({
     ) {
       var givenAnswers = this.state.selectedAnswer;
       var desiredAnswers = this.state.selectedDesire;
-      var questionChoices = this.state.questionBundle.questionChoices;
+      var questionChoices = this.state.questionBundle.question_choices;
       var givenArray = [];
       var desiredArray = [];
 
@@ -68,7 +92,7 @@ var QuestionItem = React.createClass({
         }
       });
 
-      ClientActions.answerQuestion({
+      var submitInput = [{
         chosen_ids: givenArray,
         acceptable_ids: desiredArray,
         importance: this.state.importance,
@@ -82,7 +106,14 @@ var QuestionItem = React.createClass({
           importance: '',
           explanation: ''
         });
-      }.bind(this));
+      }.bind(this)];
+
+      if (this.state.updatingQuestion) {
+        submitInput[0].question_id = this.state.questionBundle.question.question_id;
+        ClientActions.updateAnswer(submitInput[0], submitInput[1]);
+      } else {
+        ClientActions.answerQuestion(submitInput[0], submitInput[1]);
+      }
     }
   },
 
@@ -98,7 +129,12 @@ var QuestionItem = React.createClass({
   handleSkipQuestion: function (event) {
     event.preventDefault();
 
-    alert("doesn't work yet!");
+    HelperUtil.getRandomQuestion(function (questionBundle) {
+      this.setState({
+        questionBundle: questionBundle
+      });
+    }.bind(this));
+    this.forceUpdate();
   },
 
   handleExplanationEntry: function (event) {
@@ -113,7 +149,7 @@ var QuestionItem = React.createClass({
     event.preventDefault();
 
     var questionBundle = this.state.questionBundle;
-    var questionChoices = questionBundle.questionChoices;
+    var questionChoices = questionBundle.question_choices;
     var selectedAnswer = this.state.selectedAnswer;
     var selectIndex = selectedAnswer.indexOf(event.currentTarget.value);
 
@@ -136,7 +172,7 @@ var QuestionItem = React.createClass({
     event.preventDefault();
 
     var questionBundle = this.state.questionBundle;
-    var questionChoices = questionBundle.questionChoices;
+    var questionChoices = questionBundle.question_choices;
     var selectedDesire = this.state.selectedDesire;
     var selectIndex = selectedDesire.indexOf(event.currentTarget.value);
 
@@ -308,7 +344,7 @@ var QuestionItem = React.createClass({
 
   renderDesiredChoicesList: function () {
     var questionBundle = this.state.questionBundle;
-    var questionChoices = questionBundle.questionChoices;
+    var questionChoices = questionBundle.question_choices;
     var selectedAnswer = this.state.selectedDesire;
     var result = [];
     var buttonType = <i className="fa fa-square-o" aria-hidden="true"></i>;
@@ -376,12 +412,9 @@ var QuestionItem = React.createClass({
     return result;
   },
 
-
-
-
   renderAnswerChoiceList: function () {
     var questionBundle = this.state.questionBundle;
-    var questionChoices = questionBundle.questionChoices;
+    var questionChoices = questionBundle.question_choices;
     var selectedAnswer = this.state.selectedAnswer;
     var result = [];
     var buttonType;
@@ -434,13 +467,15 @@ var QuestionItem = React.createClass({
 
     if (questionBundle) {
       var question = questionBundle.question;
-      var questionChoices = questionBundle.questionChoices;
+
+      var questionChoices = questionBundle.question_choices;
 
       if (this.state.questionFormRendered) {
+
         // the form for answering the question
         return (
           <section id='question-item'>
-            <h2>{question.content}</h2>
+            <h2>{questionBundle.question.content}</h2>
 
             <ul>
               {this.renderAnswerChoiceList()}
@@ -458,6 +493,7 @@ var QuestionItem = React.createClass({
             <textarea
               placeholder='Explain your answer (optional)'
               onChange={this.handleExplanationEntry}
+              defaultValue={this.state.explanation}
             >
             </textarea>
 
@@ -496,7 +532,7 @@ var QuestionItem = React.createClass({
           // the random question
           return (
             <section id='question-item'>
-              <h1>{question.content}</h1>
+              <h1>{questionBundle.question.content}</h1>
 
               <button
                 className='answer-button'

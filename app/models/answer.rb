@@ -38,4 +38,8 @@ class Answer < ActiveRecord::Base
     foreign_key: :question_id,
     primary_key: :id
   )
+
+  def to_param
+    :question_id
+  end
 end

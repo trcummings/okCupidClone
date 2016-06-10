@@ -5,7 +5,6 @@ var PhotosApiUtil = require('../util/photosApiUtil');
 var MessageApiUtil = require('../util/messageApiUtil');
 
 var ClientActions = {
-
   //////AUTH
 
   loginWithUsername: function (user, callback) {
@@ -86,7 +85,9 @@ var ClientActions = {
     UsersApiUtil.getAllAnswers();
   },
 
-
+  updateAnswer: function (answer, callback) {
+    UsersApiUtil.updateAnswer(answer, callback);
+  },
 
   /// photosApiUtil
 
