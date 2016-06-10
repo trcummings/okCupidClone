@@ -71,7 +71,7 @@ var MessageBox = React.createClass({
   closeWindow: function (event) {
     event.preventDefault();
 
-    alert("doesn't do anything yet!");
+    ClientActions.closeConvo(this.props.convo.conversation_name);
   },
 
   handleTextChange: function (event) {

@@ -111,6 +111,20 @@ var ServerActions = {
       actionType: MessageConstants.RECEIVE_MESSAGE,
       message: message
     });
+  },
+
+  closeConversation: function (convo_name) {
+    AppDispatcher.dispatch({
+      actionType: MessageConstants.CLOSE_CONVO,
+      convo_name: convo_name
+    });
+  },
+
+  receiveAllConversations: function (conversations) {
+    AppDispatcher.dispatch({
+      actionType: MessageConstants.RECEIVE_ALL_CONVOS,
+      conversations: conversations
+    });
   }
 };
 

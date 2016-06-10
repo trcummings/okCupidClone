@@ -106,13 +106,20 @@ var ClientActions = {
 
 
   /// some shit for messages idk
+  getAllConvos: function () {
+    MessageApiUtil.fetchAllConversations();
+  },
 
   createNewConversation: function (targetUser) {
     MessageApiUtil.createNewConversation(targetUser);
   },
 
-  openConversation: function (targetUser) {
-    MessageApiUtil.openConversation(targetUser);
+  openConversation: function (targetUsername) {
+    MessageApiUtil.openConversation(targetUsername);
+  },
+
+  closeConvo: function (convo_name) {
+    MessageApiUtil.closeConversation(convo_name);
   },
 
   sendMessage: function (message, receiver_id) {
