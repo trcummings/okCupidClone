@@ -33,5 +33,4 @@ class Api::ConversationsController < ApplicationController
   #   else
   #     render json: { base: ["No conversation found!"] }, status: 401
   #   end
-  end
 end
