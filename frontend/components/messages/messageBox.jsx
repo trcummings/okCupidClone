@@ -3,11 +3,11 @@ var PropTypes = React.PropTypes;
 var MessageStore = require('../../stores/messageStore');
 var SessionStore = require('../../stores/sessionStore');
 var ClientActions = require('../../actions/clientActions');
-// should have the other user passed in as a prop
-// this.props.otheruser
-// channel is going to be what the two users get on to
 
 var MessageBox = React.createClass({
+  getInitialState: function () {
+    return({ currentMsg: '' });
+  },
   // getInitialState: function () {
   //   var currentUser = SessionStore.currentUser();
   //   var convoName = this.props.convo.conversation_name.split(' ');
@@ -82,8 +82,27 @@ var MessageBox = React.createClass({
 
   sendMessage: function () {
     event.preventDefault();
+    var currentUser = SessionStore.currentUser();
+    var sender;
+    var receiver;
 
-    ClientActions.sendMessage(this.state.currentMsg, this.props.convo.receiver_id);
+    if (this.props.convo.sender === currentUser.username) {
+      sender = this.props.convo.receiver;
+      receiver = currentUser.username;
+    } else if (this.props.convo.receiver === currentUser.username) {
+      sender = currentUser.username;
+      receiver = this.props.convo.sender;
+    }
+
+    ClientActions.sendMessage(
+      this.state.currentMsg,
+      [sender, receiver],
+      function () {
+        this.setState({ currentMsg: '' });
+      }.bind(this)
+    );
+
+
   },
 
   render: function () {
@@ -112,6 +131,7 @@ var MessageBox = React.createClass({
             onChange={this.handleTextChange}
             type='text'
             className='new-message-box'
+            value={this.state.currentMsg}
           />
 
           <button

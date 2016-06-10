@@ -122,8 +122,8 @@ var ClientActions = {
     MessageApiUtil.closeConversation(convo_name);
   },
 
-  sendMessage: function (message, receiver_id) {
-    MessageApiUtil.sendMessage(message, receiver_id);
+  sendMessage: function (message, userBundle, callback) {
+    MessageApiUtil.sendMessage(message, userBundle, callback);
   },
 
 };

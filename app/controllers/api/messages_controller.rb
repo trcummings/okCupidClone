@@ -1,8 +1,14 @@
 class Api::MessagesController < ApplicationController
   def create
-    @message = Message.new(message_params)
-    @message.sender_id = current_user.id
-    conversation = User.get_convo(current_user.id, message_params[:receiver_id])
+    sender = User.find_by(username: message_params[:sender])
+    receiver = User.find_by(username: message_params[:receiver])
+
+    @message = Message.new()
+    @message.sender_id = sender.id
+    @message.receiver_id = receiver.id
+    @message.content = message_params[:content]
+    conversation =
+      User.get_convo(sender.id, receiver.id)
     @message.conversation_id = conversation.id
 
     if @message.save
@@ -24,6 +30,6 @@ class Api::MessagesController < ApplicationController
 
   private
   def message_params
-    params.require(:message).permit(:sender_id, :receiver_id, :content)
+    params.require(:message).permit(:sender, :receiver, :content)
   end
 end

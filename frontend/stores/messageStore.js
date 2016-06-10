@@ -71,7 +71,17 @@ MessageStore.__onDispatch = function (payload) {
       break;
     case MessageConstants.RECEIVE_MESSAGE:
       _conversations.forEach(function (convo, index) {
-        if (convo.conversation_name === payload.message.conversation.conversation_name) {
+        if (convo.conversation_name ===
+            payload.message.conversation.conversation_name
+        ) {
+          _conversations[index].messages.push(payload.message);
+        }
+      });
+
+      _activeConvos.forEach(function (convo, index) {
+        if (convo.conversation_name ===
+            payload.message.conversation.conversation_name
+        ) {
           _conversations[index].messages.push(payload.message);
         }
       });

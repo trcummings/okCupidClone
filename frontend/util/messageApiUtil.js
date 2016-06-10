@@ -35,14 +35,19 @@ var UsersApiUtil = {
     });
   },
 
-  sendMessage: function (message, receiver_id) {
-    var new_message = { content: message, receiver_id: receiver_id };
+  sendMessage: function (message, userBundle, callback) {
+    var new_message = {
+      content: message,
+      sender: userBundle[0],
+      receiver: userBundle[1]
+    };
     $.ajax({
       url: '/api/messages',
       type: 'POST',
       dataType: 'json',
       data: { message: new_message },
       success: function (message) {
+        callback();
         ServerActions.receiveMessage(message);
       },
     });
