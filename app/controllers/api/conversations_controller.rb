@@ -1,6 +1,10 @@
 class Api::ConversationsController < ApplicationController
   def index
-    @convos = Conversation.all.where(sender_id: current_user.id)
+    @convos =
+      Conversation.where(
+        'sender_id = ? OR receiver_id = ?',
+        current_user.id, current_user.id
+      )
 
     render 'api/conversations/index'
   end

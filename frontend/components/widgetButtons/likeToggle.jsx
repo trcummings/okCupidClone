@@ -113,10 +113,12 @@ var LikeToggle = React.createClass({
     var myPic;
     var theirPic;
 
-    if (this.props.liker.photos[0].photo_url === '') {
-      myPic = window.anon;
-    } else {
-      myPic = this.props.liker.photos[0].photo_url;
+    if (this.props.liker.photos[0]) {
+      if (this.props.liker.photos[0].photo_url === '') {
+        myPic = window.anon;
+      } else {
+        myPic = this.props.liker.photos[0].photo_url;
+      }
     }
 
     if (this.props.likee.default_photo_url === '') {

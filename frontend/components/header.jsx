@@ -4,6 +4,7 @@ var HeaderMessagesDropDown = require('./headerMessagesDropDown');
 var SessionStore = require('../stores/sessionStore');
 var MessageStore = require('../stores/messageStore');
 var MessageBox = require('./messages/messageBox');
+var ClientActions = require('../actions/clientActions');
 
 var Header = React.createClass({
   contextTypes: {
@@ -12,11 +13,13 @@ var Header = React.createClass({
 
   getInitialState: function () {
     convos = MessageStore.activeConvos();
+    allConvos = MessageStore.allConversations();
 
     return ({
       profileDropDown: false,
       messagesDropDown: false,
-      activeConvos: convos
+      activeConvos: convos,
+      allConvos: allConvos
      });
   },
 
@@ -25,12 +28,19 @@ var Header = React.createClass({
 
     this.messageListener = MessageStore.addListener(function () {
       activeConvos = MessageStore.activeConvos();
-      this.setState({ activeConvos: activeConvos });
+      allConvos = MessageStore.allConversations();
+
+      this.setState({
+         activeConvos: activeConvos,
+         allConvos: allConvos
+       });
     }.bind(this));
+
+    ClientActions.getAllConvos();
   },
 
   componentWillUnmount: function () {
-    this.messageListner.remove();
+    this.messageListener.remove();
   },
 
   renderDropDown: function (type) {
@@ -38,7 +48,7 @@ var Header = React.createClass({
       if (type === 'profileDropDown') {
         return (<HeaderProfileDropDown />);
       } else if (type === 'messagesDropDown') {
-        return (<HeaderMessagesDropDown />);
+        return (<HeaderMessagesDropDown allConvos={this.state.allConvos}/>);
       }
     } else {
       return (<div />);
@@ -67,12 +77,17 @@ var Header = React.createClass({
       return (
         this.state.activeConvos.map(function (convo, index) {
           return (
-            <MessageBox key={index} convo={convo}/>
+            <MessageBox
+              key={index}
+              convo={convo}
+              closeCallback={function () {
+                this.forceUpdate();
+              }.bind(this)}
+            />
           );
-        })
+        }.bind(this))
       );
     } else {
-      console.log(this.state.activeConvos);
       return (<div />);
     }
   },

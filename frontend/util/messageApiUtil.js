@@ -13,9 +13,20 @@ var UsersApiUtil = {
     });
   },
 
+  fetchAllConversations: function () {
+    $.ajax({
+      url: '/api/conversations/',
+      type: 'GET',
+      dataType: 'json',
+      success: function (conversations) {
+        ServerActions.receiveAllConversations(conversations);
+      },
+    });
+  },
+
   openConversation: function (targetUser) {
     $.ajax({
-      url: '/api/user/conversations/' + targetUser.username,
+      url: '/api/user/conversations/' + targetUser,
       type: 'GET',
       dataType: 'json',
       success: function (conversation) {
@@ -35,6 +46,10 @@ var UsersApiUtil = {
         ServerActions.receiveMessage(message);
       },
     });
+  },
+
+  closeConversation: function (convo_name) {
+    ServerActions.closeConversation(convo_name);
   }
 };
 
