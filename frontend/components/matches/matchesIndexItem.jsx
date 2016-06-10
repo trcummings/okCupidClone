@@ -54,7 +54,7 @@ var MatchesIndexItem = React.createClass({
           {this.renderProfilePhoto()}
         </div>
 
-        <div id='match-info-container' className= 'group'>
+        <div id='match-info-container' className='group'>
 
           <h1 id='match-username'>{user.username}</h1>
           <ul id='match-info'>

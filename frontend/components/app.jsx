@@ -18,6 +18,10 @@ var App = React.createClass({
     this.listener = SessionStore.addListener(function () {
       this.checkForCurrentUser();
     }.bind(this));
+
+    if (this.state.currentUser) {
+      this.context.router.push('/matches');
+    }
   },
 
   componentWillUnmount: function () {
@@ -39,8 +43,8 @@ var App = React.createClass({
           <Header />
           <div className='main-div'>
             {this.props.children}
-            <Footer />
           </div>
+          <Footer />
         </div>
       );
     } else {

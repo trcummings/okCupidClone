@@ -2,6 +2,8 @@ var React = require('react');
 var HeaderProfileDropDown = require('./headerProfileDropDown');
 var HeaderMessagesDropDown = require('./headerMessagesDropDown');
 var SessionStore = require('../stores/sessionStore');
+var MessageStore = require('../stores/messageStore');
+var MessageBox = require('./messages/messageBox');
 
 var Header = React.createClass({
   contextTypes: {
@@ -9,10 +11,26 @@ var Header = React.createClass({
   },
 
   getInitialState: function () {
+    convos = MessageStore.activeConvos();
+
     return ({
       profileDropDown: false,
-      messagesDropDown: false
+      messagesDropDown: false,
+      activeConvos: convos
      });
+  },
+
+  componentDidMount: function () {
+    var activeConvos;
+
+    this.messageListener = MessageStore.addListener(function () {
+      activeConvos = MessageStore.activeConvos();
+      this.setState({ activeConvos: activeConvos });
+    }.bind(this));
+  },
+
+  componentWillUnmount: function () {
+    this.messageListner.remove();
   },
 
   renderDropDown: function (type) {
@@ -42,6 +60,21 @@ var Header = React.createClass({
       this.state[type] = true;
     }
     this.setState(this.state);
+  },
+
+  renderMessageBoxes: function () {
+    if (this.state.activeConvos.length > 0) {
+      return (
+        this.state.activeConvos.map(function (convo, index) {
+          return (
+            <MessageBox key={index} convo={convo}/>
+          );
+        })
+      );
+    } else {
+      console.log(this.state.activeConvos);
+      return (<div />);
+    }
   },
 
   render: function () {
@@ -113,6 +146,10 @@ var Header = React.createClass({
             </li>
           </ul>
         </div>
+
+        <section className='message-boxes'>
+          {this.renderMessageBoxes()}
+        </section>
 
       </nav>
     );

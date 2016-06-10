@@ -107,8 +107,16 @@ var ClientActions = {
 
   /// some shit for messages idk
 
-  sendMessage: function () {
-    MessageApiUtil.sendMessage();
+  createNewConversation: function (targetUser) {
+    MessageApiUtil.createNewConversation(targetUser);
+  },
+
+  openConversation: function (targetUser) {
+    MessageApiUtil.openConversation(targetUser);
+  },
+
+  sendMessage: function (message, receiver_id) {
+    MessageApiUtil.sendMessage(message, receiver_id);
   },
 
 };

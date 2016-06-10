@@ -37,7 +37,11 @@ Rails.application.routes.draw do
     resources :likes, only: [:create]
     resources :likes, only: [:destroy], param: :username
 
-    # resources :messages, only: [:create, :chat_history]
+    resources :conversations, only: [:create, :index]
+    get '/user/conversations/:username', to: 'users#get_conversation'
+
+    resources :messages, only: [:create]
+
 
   end
 end

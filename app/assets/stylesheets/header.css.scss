@@ -162,6 +162,11 @@
         border-radius: 50%;
         height: 42px;
         width: 42px;
+
+        img {
+          height: 50px;
+          object-fit: cover;
+        }
       }
     }
 
@@ -204,6 +209,24 @@
         display: block;
         color: #104da1;
 
+      }
+
+      .inbox-link {
+        text-align: center;
+        background-color: #1F64C3;
+        color: white;
+        cursor: default;
+        // cursor: pointer;
+      }
+
+      .inbox-link:hover {
+        // background-color: #104da1;
+        color: white;
+      }
+
+      .messages-list {
+        max-height: 300px;
+        overflow-y: scroll;
       }
 
     }
