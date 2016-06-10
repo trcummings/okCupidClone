@@ -92,6 +92,22 @@ class User < ActiveRecord::Base
     primary_key: :id
   )
 
+  def self.find_or_create_from_auth_hash(auth_hash)
+    user = User.find_by(twitter_uid: auth_hash[:uid])
+    if user.nil?
+      email = auth_hash[:info][:email] || ""
+      user = User.create!(
+        twitter_uid: auth_hash[:uid],
+        full_name: auth_hash[:info][:name],
+        email: email
+      )
+    end
+
+    user
+  end
+
+
+
   def conversations
     conversations = Conversation.where(sender_id: self.id) +
                     Conversation.where(receiver_id: self.id)

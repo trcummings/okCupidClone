@@ -42,6 +42,7 @@ Rails.application.routes.draw do
 
     resources :messages, only: [:create]
 
+     get 'auth/:provider/callback', to: 'api/sessions#github_create'
 
   end
 end

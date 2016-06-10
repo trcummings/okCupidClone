@@ -30,10 +30,10 @@ var BasicInfoEditForm = React.createClass({
   componentWillUnmount: function () {
     this.birthdayListener.remove();
   },
-
-  handleUsernameChange: function (event) {
-    this.setState({ username: event.target.value });
-  },
+  //
+  // handleUsernameChange: function (event) {
+  //   this.setState({ username: event.target.value });
+  // },
 
   handleGenderChange: function (event) {
     this.setState({ gender: event.target.value });
@@ -245,17 +245,17 @@ var BasicInfoEditForm = React.createClass({
           <p className='edit-form-title'>
             Your Basic Information
           </p>
-
+          {/*}
           <label>
             Username
 
             <input
               type='text'
-              onChange={this.handleUsernameChange}
-              placeholder={currentUser.username}
+              onChange=this.handleUsernameChange
+              placeholder=currentUser.username
             />
           </label>
-
+          */}
           <label onBlur={this.handleGenderChange}>
             I am a
             <select

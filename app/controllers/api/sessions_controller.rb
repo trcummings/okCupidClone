@@ -24,6 +24,12 @@ class Api::SessionsController < ApplicationController
     end
   end
 
+  def github_create
+    @user = User.find_or_create_from_auth_hash(auth_hash)
+    login(@user)
+    redirect_to '/'
+  end
+
   def show
     if current_user
       @user = current_user
@@ -36,5 +42,10 @@ class Api::SessionsController < ApplicationController
   def destroy
     log_out!
     render json: {}
+  end
+
+  private
+  def auth_hash
+    request.env['omniauth.auth']
   end
 end
