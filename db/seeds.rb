@@ -58,8 +58,39 @@ UserPhoto.create!(
   public_id: 'hggh'
 )
 
+#### GUEST ACCOUNT
 
+ok_computer = User.create!(
+  username: 'OkComputer',
+  password: 'guestuser',
+  email: 'fakemail@fake.com',
+  birth_date: Date.new(1985, 9, 5),
+  country: 'America',
+  zip_code: 11221,
+  location: 'Brooklyn, NY',
+  gender: 'Man',
+  orientation: 'Straight'
+)
 
+UserAbout.create!(
+  user_id: ok_computer.id,
+  self_summary: 'im just a fun guy that loves to laugh, go on adventures, just gonna look at your profile for pictures of dogs tbh, i was the second shooter on the grassy knoll',
+  doing_with_life: 'i dunno lol',
+  really_good_at: ';)',
+  six_things: '',
+  thinking_about: '',
+  typical_friday: '',
+  message_me_if: ''
+)
+
+UserPhoto.create!(
+  photo_url: 'http://cdn.computerhope.com/hacker.jpg',
+  user_id: ok_computer.id,
+  is_default: true,
+  public_id: 'ayylmao'
+)
+
+#########
 
 
 q1 = Question.create!(
