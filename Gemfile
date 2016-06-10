@@ -26,6 +26,10 @@ gem 'bcrypt'
 
 gem 'figaro'
 
+gem 'omniauth'
+
+gem 'omniauth-github'
+
 gem 'pusher'
 
 gem 'cloudinary'
@@ -53,5 +57,7 @@ group :development do
 end
 
 group :production do
+  gem 'omniauth'
+  gem 'omniauth-github'
   gem 'rails_12factor'
 end

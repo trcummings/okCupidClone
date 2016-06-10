@@ -52,7 +52,6 @@ var App = React.createClass({
         <div>
           <AuthMain />
           <footer id='auth-main-footer'>
-
           </footer>
         </div>
       );
