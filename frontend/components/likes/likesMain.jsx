@@ -132,6 +132,7 @@ var LikesMain = React.createClass({
 
           <h5>{user.age}</h5>
           <p>{user.location}</p>
+          <p>{parseInt(user.match_percentage) + '% match'}</p>
         </section>
       </div>
     );

@@ -11,14 +11,21 @@
   outline: 0;
 
   ul {
-    float: left
+    display: block;
+    float: left;
   }
 
   ul > li {
-    float: right;
+    margin-left: 30px;
+    float: left;
   }
 
-  p {
+  .footer-copyright {
     float: right;
+    display: block;
+  }
+
+  a:hover {
+    color: #192642;
   }
 }

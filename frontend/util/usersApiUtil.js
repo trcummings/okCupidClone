@@ -190,10 +190,9 @@ var UsersApiUtil = {
         callback();
       },
       error: function (xhr) {
-        debugger;
-        // console.log('UserApiUtil#createAccount error');
-        // var errors = xhr.responseJSON;
-        // ErrorActions.setErrors("signup", errors);
+        console.log('UserApiUtil#answerQuestion error');
+        var errors = xhr.responseJSON;
+        ErrorActions.setErrors("answer", errors);
       }
     });
   },
@@ -207,10 +206,37 @@ var UsersApiUtil = {
         ServerActions.receiveAllAnswers(answers);
       },
       error: function (xhr) {
-        debugger;
-        // console.log('UserApiUtil#createAccount error');
-        // var errors = xhr.responseJSON;
-        // ErrorActions.setErrors("signup", errors);
+        console.log('UserApiUtil#getAllAnswers error');
+        var errors = xhr.responseJSON;
+        ErrorActions.setErrors("answer", errors);
+      }
+    });
+  },
+
+  updateAnswer: function (answer, callback) {
+    if (answer.importance === 'very') {
+      answer.importance = 100;
+    } else if (answer.importance === 'moderate') {
+      answer.importance = 50;
+    } if (answer.importance === 'not-very') {
+      answer.importance = 10;
+    } if (answer.importance === 'irrelevant') {
+      answer.importance = 0;
+    }
+    
+    $.ajax({
+      url: '/api/answers/' + answer.question_id,
+      type: 'PATCH',
+      dataType: 'json',
+      data: { answer: answer },
+      success: function (answer) {
+        ServerActions.updateAnswer(answer);
+        callback();
+      },
+      error: function (xhr) {
+        console.log('UserApiUtil#updateAnswer error');
+        var errors = xhr.responseJSON;
+        ErrorActions.setErrors("answer", errors);
       }
     });
   },

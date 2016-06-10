@@ -76,6 +76,13 @@ var ServerActions = {
     });
   },
 
+  updateAnswer: function (answer) {
+    AppDispatcher.dispatch({
+      actionType: SessionConstants.UPDATE_ANSWER,
+      answer: answer
+    });
+  },
+
   receiveAllAnswers: function (answers) {
     AppDispatcher.dispatch({
       actionType: SessionConstants.ALL_ANSWERS,

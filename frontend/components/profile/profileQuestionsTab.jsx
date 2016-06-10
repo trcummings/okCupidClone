@@ -8,10 +8,13 @@ var ProfileQuestionsTab = React.createClass({
   getInitialState: function () {
     var currentUser = SessionStore.currentUser();
     var answers = currentUser.answers;
+    this.renderExpForm = [];
 
-    return (
-      { answers: answers }
-    );
+    return ({
+      answers: answers,
+      explanation: {},
+      questionProp: null
+    });
   },
 
   componentDidMount: function () {
@@ -27,6 +30,8 @@ var ProfileQuestionsTab = React.createClass({
 
   componentWillUnmount: function () {
     this.answerListener.remove();
+    this.renderExpForm = [];
+    this.setState({ questionProp: null });
   },
 
   renderAnswers: function () {
@@ -42,7 +47,7 @@ var ProfileQuestionsTab = React.createClass({
             <ul id='answer-item'>
               {this.renderAnswerItems(answer)}
             </ul>
-            {this.renderQuestionFooter(answer)}
+            {this.renderQuestionFooter(answer, index)}
           </li>
         );
       }.bind(this));
@@ -62,7 +67,7 @@ var ProfileQuestionsTab = React.createClass({
         var selectorString = '';
 
         if (answer.importance === 0) {
-          selectorString = 'irrelevant';
+          selectorString = 'indifferent';
         } else if (answer.acceptable_ids.indexOf(choice.id.toString()) === -1) {
           selectorString = 'unacceptable';
         } else if (
@@ -82,109 +87,158 @@ var ProfileQuestionsTab = React.createClass({
       });
 
       return result;
-
     } else {
       return (<div />);
     }
   },
 
-  toggleExplanationForm: function (event) {
-    event.preventDefault();
 
-    if (this.renderExpForm) {
-      this.renderExpForm = false;
-    } else {
-      this.renderExpForm = true;
-    }
+
+  handleExplanationUpdate: function (index, event) {
+    event.preventDefault();
+    var new_explan = this.state.explanation;
+
+    new_explan[index] = event.target.value;
+
+    this.setState({ explanation: new_explan });
   },
 
-  explanationForm: function (answer) {
+  handleExplanationSubmit: function (index, answer, event) {
+    event.preventDefault();
+    var new_explan = this.state.explanation;
+
+    this.renderExpForm.forEach(function (index) {
+      var expFormIndex = this.renderExpForm.indexOf(index);
+      if (new_explan[index]) {
+        ClientActions.updateAnswer(
+          {
+            question_id: answer.question_choices[0].question_id,
+            importance: answer.importance,
+            explanation: new_explan[index],
+            chosen_ids: answer.chosen_ids,
+            acceptable_ids: answer.acceptable_ids
+          },
+          function () {
+            this.renderExpForm.splice(expFormIndex, 1);
+            new_explan[index] = null;
+            this.setState({ explanation: new_explan });
+          }.bind(this) ///callback
+        );
+      }
+    }.bind(this));
+  },
+
+  handleExplanationCancel: function (index, event) {
+    event.preventDefault();
+    var expFormIndex = this.renderExpForm.indexOf(index);
+    var new_explan = this.state.explanation;
+    this.renderExpForm.splice(expFormIndex, 1);
+
+    new_explan[index] = null;
+    this.setState({ explanation: new_explan });
+  },
+
+  toggleExplanationForm: function (index, event) {
+    event.preventDefault();
+    var expFormIndex = this.renderExpForm.indexOf(index);
+
+    if (expFormIndex === -1) {
+      this.renderExpForm.push(index);
+    } else {
+      this.renderExpForm.splice(expFormIndex, 1);
+    }
+    this.forceUpdate();
+  },
+
+  explanationForm: function (answer, index) {
     var explanation;
+    var buttonText;
+
     if (answer) {
       explanation = answer.explanation;
+      buttonText = 'Edit explanation';
+    } else {
+      buttonText = 'Add explanation';
     }
 
-    if (this.renderExpForm) {
+    if (this.renderExpForm.indexOf(index) !== -1) {
       return (
-        <form>
+        <form className='explain-form'>
           <textarea
-            value={explanation}
-            onChange={this.handleExplanationUpdate}
+            defaultValue={explanation}
+            onChange={this.handleExplanationUpdate.bind(null, index)}
           >
           </textarea>
-        <button onClick={this.handleExplanationSubmit}>Submit</button>
-        <button onClick={this.handleExplanationCancel}>Cancel</button>
+
+          <button
+            className='answer-button'
+            onClick={this.handleExplanationSubmit.bind(null, index, answer)}
+          >
+            Submit
+          </button>
+
+          <button
+            className='cancel-button'
+            onClick={this.handleExplanationCancel.bind(null, index)}
+          >
+            Cancel
+          </button>
         </form>
       );
     } else {
       return (
-        <div />
+        <section className='question-options'>
+          <button className='explain-button'
+            onClick={this.toggleExplanationForm.bind(null, index)}
+          >
+            <i className="fa fa-pencil" aria-hidden="true">
+            </i>
+            {buttonText}
+          </button>
+          <button
+            className='re-answer-button'
+            onClick={this.reAnswerQuestion.bind(null, answer)}
+          >
+            Re-answer
+          </button>
+        </section>
       );
     }
   },
 
-  handleExplanationUpdate: function (event) {
-    event.preventDefault();
-
-    this.setState({ explanation: event.target.value });
-  },
-
-  handleExplanationSubmit: function (event) {
-    event.preventDefault();
-
-    ///
-  },
-
-  handleExplanationCancel: function (event) {
-    event.preventDefault();
-
-    this.renderExpForm = false;
-    this.setState({ explanation: '' });
-  },
-
-  renderQuestionFooter: function (answer) {
+  renderQuestionFooter: function (answer, index) {
     if (answer.explanation) {
       return (
         <div>
-        <article className='explanation'>
-          <h3>Your explanation</h3>
-          <p>{answer.explanation}</p>
-        </article>
-        <section className='question-footer'>
-          <button className='explain-button' onClick={this.toggleExplanationForm}>
-            <i className="fa fa-pencil" aria-hidden="true">
-            </i>
-            Edit explanation
-            {this.explanationForm(answer)}
-          </button>
-          <button className='re-answer-button'>
-            Re-answer
-          </button>
-        </section>
-      </div>
+          <article className='explanation'>
+            <h3>Your explanation</h3>
+            <p>{answer.explanation}</p>
+          </article>
+          {this.explanationForm(answer, index)}
+        </div>
       );
     } else {
       return (
-        <section className='question-footer'>
-          <button className='explain-button' onClick={this.toggleExplanationForm}>
-            <i className="fa fa-pencil" aria-hidden="true">
-            </i>
-            Add an explanation
-            {this.explanationForm()}
-          </button>
-          <button className='re-answer-button'>
-            Re-answer
-          </button>
-        </section>
+        <div>
+          {this.explanationForm(answer, index)}
+        </div>
       );
     }
 
   },
 
-  render: function() {
+  reAnswerQuestion: function (answer, event) {
+    event.preventDefault();
+
+    this.setState(
+      { questionProp: answer }
+    );
+  },
+
+  render: function () {
     return (
       <div id='questions-tab'>
-        <QuestionItem />
+        <QuestionItem question={this.state.questionProp}/>
 
         <section id='answered-questions'>
           <h2>Show Answers</h2>

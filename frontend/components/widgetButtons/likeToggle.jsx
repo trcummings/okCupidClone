@@ -74,7 +74,14 @@ var LikeToggle = React.createClass({
       ClientActions.likeUser(this.props.likee, function () {
         this.setState({ buttonActive: true });
 
-        if (this.props.liker.mutual_likes.indexOf(this.props.likee) !== -1) {
+        var isMutualLike = false;
+        this.props.liker.mutual_likes.forEach(function (user, index) {
+          if (user.username === this.props.likee.username) {
+            isMutualLike = true;
+          }
+        }.bind(this));
+
+        if (isMutualLike) {
           this.openModal();
         }
 

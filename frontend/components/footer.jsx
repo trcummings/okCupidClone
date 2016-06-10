@@ -8,12 +8,22 @@ var Footer = React.createClass({
       <footer id='profile-footer' className='group'>
         <ul className='footer-links'>
           <li>
-            I AM A FOOTER
+            <a href='https://github.com/trcummings'>
+              Creator's Github
+            </a>
+          </li>
+          <li>
+            <a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'>
+              Free Bitcoin
+            </a>
           </li>
         </ul>
 
         <p className='footer-copyright'>
-          PerfectPair 2016 
+          <a href='#/matches'>
+            <i className="fa fa-creative-commons" aria-hidden="true"></i>
+            PerfectPair 2016
+          </a>
         </p>
       </footer>
     );
