@@ -1,3 +1,4 @@
 module.exports = {
-
+  RECEIVE_CONVO: 'RECEIVE_CONVO',
+  RECEIVE_MESSAGE: 'RECEIVE_MESSAGE'
 };

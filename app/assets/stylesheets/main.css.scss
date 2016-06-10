@@ -3,6 +3,7 @@
 
   .main-header {
     height: 66px;
+
   }
 
   .main-div {
@@ -12,8 +13,27 @@
     width: 100%;
     left:0px;
     right:0px;
+    // top: 130px;
     bottom:0px;
     overflow-y:scroll;
+
+  }
+
+  #profile-footer {
+
+
+    section {
+      background: #104da1;
+      position: absolute;
+
+      width: 100%;
+      left:0px;
+      right:0px;
+      top: 100%;
+      bottom:0px;
+
+      z-index: 90000;
+    }
   }
 
 }
@@ -30,12 +50,84 @@ textarea {
   resize: none;
 }
 
-div#cloudinary-widget.widget.slider.multiple_enabled.active.opened {
+.like-modal {
+  font-family: 'Open Sans',sans-serif;
+  font-weight: normal;
+  color: #5e6573;
+  font-size: 15px;
 
-}
+  h1 {
+    font-size: 22px;
+    margin-top: 30px;
+  }
 
-.scaling-image {
-  position: relative;
-  width: 100%;
-  min-width: 100%;
+  .mut-like-pics {
+    padding-left: 100px;
+  }
+
+  .mut-like-pic {
+    float: left;
+    height: 150px;
+    width: 150px;
+    padding: 20px;
+
+    img {
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      cursor: pointer;
+    }
+  }
+
+  h3 {
+    display: block;
+    float: left;
+    padding-left: 80px;
+  }
+
+  .message-them-buttons {
+    padding-right: 160px;
+
+    .message-them {
+      color: white;
+      display: block;
+      position: relative;
+      border: none;
+      padding: 0;
+      vertical-align: top;
+      float: right;
+      cursor: pointer;
+      height: 46px;
+      margin-right: 40px;
+      background: #4c7bd9;
+      width: 132px;
+      font-size: 16px;
+      line-height: 44px;
+      border-radius: 4px;
+      box-shadow: 0 0 0 transparent;
+    }
+
+    .not-now {
+      color: white;
+      display: block;
+      position: relative;
+      border: none;
+      padding: 0;
+      vertical-align: top;
+      float: right;
+      cursor: pointer;
+      height: 46px;
+      margin-right: 8px;
+      margin-right: 0;
+      background: #4c7bd9;
+      width: 132px;
+      font-size: 16px;
+      line-height: 44px;
+      border-radius: 4px;
+      box-shadow: 0 0 0 transparent;
+    }
+  }
+
+
+
 }

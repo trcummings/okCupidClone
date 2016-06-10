@@ -23,3 +23,7 @@ end
 json.answers do
   json.partial! 'api/answers/answers', answers: @user.answers
 end
+
+json.conversations do
+  json.partial! 'api/conversations/conversations', convos: @user.conversations
+end

@@ -1,31 +1,47 @@
 #profile-footer {
-  padding: 44px 0 40px;
-  color: #4c7bd9;
-  font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
-  font-size: 16px;
-  line-height: 28px;
-  width: 900px;
-  margin: auto;
-  display: block;
-  border: 0;
-  outline: 0;
+  background: #104da1;
+  section {
+    padding: 40px 0 44px;
+    color: #4c7bd9;
+    font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    line-height: 28px;
 
-  ul {
     display: block;
-    float: left;
+    border: 0;
+    outline: 0;
+    width: 900px;
+    margin: auto;
+
+
+    ul {
+      display: block;
+      float: left;
+    }
+
+    ul > li {
+      margin-left: 30px;
+      float: left;
+    }
+
+    .footer-copyright {
+      float: right;
+      display: block;
+    }
+
+    a:hover {
+      color: #192642;
+    }
+
+
   }
 
-  ul > li {
-    margin-left: 30px;
-    float: left;
-  }
-
-  .footer-copyright {
-    float: right;
-    display: block;
-  }
-
-  a:hover {
-    color: #192642;
-  }
+  // div {
+  //   background: #104da1;
+  //   height: 60px;
+  //   bottom: -100%;
+  //   display: block;
+  //   width: 100%;
+  //   position: absolute;
+  // }
 }

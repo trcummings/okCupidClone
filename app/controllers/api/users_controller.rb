@@ -119,7 +119,6 @@ class Api::UsersController < ApplicationController
     end
   end
 
-
   def all_photos
     @user = User.find_by(id: current_user.id)
     @photos = @user.photos
@@ -134,6 +133,23 @@ class Api::UsersController < ApplicationController
 
     render 'api/user_photos/index'
   end
+
+
+  def get_conversation
+    receiver = User.find_by(username: params[:username])
+    @convo = User.get_convo(current_user.id, receiver.id)
+    # debugger
+
+    if @convo.valid?
+      render 'api/conversations/show'
+    else
+      render json: { base: ["No conversation found!"] }, status: 401
+    end
+  end
+
+
+
+
 
   private
   def user_params

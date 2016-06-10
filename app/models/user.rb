@@ -78,6 +78,27 @@ class User < ActiveRecord::Base
     primary_key: :id
   )
 
+  has_many(
+    :sent_messages,
+    class_name: 'Message',
+    foreign_key: :sender_id,
+    primary_key: :id
+  )
+
+  has_many(
+    :received_messages,
+    class_name: 'Message',
+    foreign_key: :receiver_id,
+    primary_key: :id
+  )
+
+  def conversations
+    conversations = Conversation.where(sender_id: self.id) +
+                    Conversation.where(receiver_id: self.id)
+
+    conversations
+  end
+
   def to_param
     username
   end
@@ -203,6 +224,13 @@ class User < ActiveRecord::Base
     mini_result.length > 0
   end
 
+
+  def self.get_convo(id1, id2)
+    convo = Conversation.where('sender_id = ? AND receiver_id = ?', id1, id2) +
+            Conversation.where('sender_id = ? AND receiver_id = ?', id2, id1)
+
+    convo.first
+  end
 
   # session relevant methods
 

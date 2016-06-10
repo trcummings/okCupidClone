@@ -3,6 +3,7 @@ var AppDispatcher = require('../dispatcher/dispatcher');
 var PhotoConstants = require('../constants/photoConstants');
 var AboutConstants = require('../constants/aboutConstants');
 var SessionConstants = require('../constants/sessionConstants');
+var MessageConstants = require('../constants/messageConstants');
 
 var ServerActions = {
   receiveAllPossibleMatches: function (users) {
@@ -94,6 +95,21 @@ var ServerActions = {
     AppDispatcher.dispatch({
       actionType: SessionConstants.BIRTHDAY,
       birth_date: birth_date
+    });
+  },
+
+
+  receiveConversation: function (conversation) {
+    AppDispatcher.dispatch({
+      actionType: MessageConstants.RECEIVE_CONVO,
+      conversation: conversation
+    });
+  },
+
+  receiveMessage: function (message) {
+    AppDispatcher.dispatch({
+      actionType: MessageConstants.RECEIVE_MESSAGE,
+      message: message
     });
   }
 };

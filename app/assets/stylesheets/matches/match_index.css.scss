@@ -2,10 +2,12 @@
   background: #fafbfd;
   border-radius: 0;
   padding-bottom: 0;
+  max-height: 10000px;
 
   #match-monolith {
     width: 1000px;
     min-height: 900px;
+    height: auto;
     margin-left: auto;
     margin-right: auto;
 

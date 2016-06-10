@@ -4,6 +4,7 @@ var PropTypes = React.PropTypes;
 var HelperUtil = require('../../util/helperUtil');
 var SessionStore = require('../../stores/sessionStore');
 var ClientActions = require('../../actions/clientActions');
+var MessageButton = require('../messages/messageButton');
 
 var modalStyle = {
   overlay : {
@@ -20,15 +21,14 @@ var modalStyle = {
     align: 'center',
     display: 'block',
     position: 'relative',
-    width: '214px',
-    height: '378px',
+    width: '600px',
+    height: '360px',
     top: '180px',
-    marginBottom: '60px',
-    marginLeft: '-155px',
     fontSize: '13px',
     textAlign: 'center',
+    marginBottom: '60px',
+    marginLeft: '-355px',
     left: '50%',
-    padding: '28px 48px 40px',
     background                 : '#fff',
     overflow                   : 'auto',
     WebkitOverflowScrolling    : 'touch',
@@ -38,6 +38,10 @@ var modalStyle = {
 };
 
 var LikeToggle = React.createClass({
+  contextTypes: {
+    router: React.PropTypes.object.isRequired
+  },
+
   getInitialState: function () {
     Modal.setAppElement(document.body);
     return({
@@ -93,7 +97,34 @@ var LikeToggle = React.createClass({
     }
   },
 
+  handleClickOnThem: function (event) {
+    event.preventDefault();
+    this.closeModal();
+    this.context.router.push('/profile/' + this.props.likee.username);
+  },
+
+  handleClickOnYou: function () {
+    event.preventDefault();
+    this.closeModal();
+    this.context.router.push('/profile');
+  },
+
   render: function () {
+    var myPic;
+    var theirPic;
+
+    if (this.props.liker.photos[0].photo_url === '') {
+      myPic = window.anon;
+    } else {
+      myPic = this.props.liker.photos[0].photo_url;
+    }
+
+    if (this.props.likee.default_photo_url === '') {
+      theirPic = window.anon;
+    } else {
+      theirPic = this.props.likee.default_photo_url;
+    }
+
     if (this.state.liked) {
       return (
         <button
@@ -112,7 +143,40 @@ var LikeToggle = React.createClass({
             ref='popup'
             style={modalStyle}
           >
-            <div>NyYYYYYYEEEEAAAARRRRGHHHHH</div>
+            <div className='like-modal'>
+
+              <h1>You like eachother!</h1>
+
+              <section className='mut-like-pics'>
+                <section className='mut-like-pic'>
+                  <img
+                    onClick={this.handleClickOnThem}
+                    src={theirPic} />
+                </section>
+
+                <section className='mut-like-pic'>
+                  <img
+                    onClick={this.handleClickOnYou}
+                    src={myPic} />
+                </section>
+              </section>
+
+              <h3>Now is the perfect time to send eachother a message</h3>
+              <section className='message-them-buttons group'>
+
+
+                <button className='not-now'
+                  onClick={this.closeModal}
+                >
+                  Not Now
+                </button>
+
+                <div className='message-them'>
+                  <MessageButton targetUser={this.props.likee}/>
+                </div>
+              </section>
+
+            </div>
           </Modal>
         </button>
       );
@@ -135,36 +199,3 @@ var LikeToggle = React.createClass({
 });
 
 module.exports = LikeToggle;
-
-
-
-// getInitialState: function () {
-//   return { likeText: LikeStore.currentLikeText() };
-// },
-//
-// componentDidMount: function () {
-//   this.likeListener = LikeStore.addListener(function () {
-//     this.setState({ likeText: LikeStore.currentLikeText() });
-//   }.bind(this));
-//
-//   ClientActions.checkIfLikedUser(this.props.targetUser);
-// },
-//
-// toggleLike: function (event) {
-//   event.preventDefault();
-//
-//   ClientActions.toggleLikeUser(this.props.targetUser);
-// },
-//
-// render: function () {
-//   return (
-//     <button
-//       id='like-toggle'
-//       className={LikeStore.doesCurrentUserLikeThisUser()}
-//       onClick={this.toggleLike}
-//     >
-//       <i class="fa fa-star" aria-hidden="true"></i>
-//       {LikeStore.currentLikeText()}
-//     </button>
-//   );
-// }
