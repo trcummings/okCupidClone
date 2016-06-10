@@ -13,16 +13,15 @@ PerfectPair will be a full-stack web app clone of dating platform OKcupid. Its b
 By the end of app/Academy week 9, this app will meet the following criteria for minimum viable functionality:
 
 - [x] New account creation, login, and
-- [ ] guest/demo login
-- [ ] Smooth, bug-free navigation
+- [x] guest/demo login
+- [x] Smooth, bug-free navigation
 - [ ] Adequate seed data to demonstrate the site's features
 - [x] Question answering
 - [x] Editable user profile with pictures and personal information
 - [x] Ability to view and 'like' other profiles
-- [ ] Dynamic notifications of profile views and likes
+- [x] Dynamic notifications of mutual likes
 - [x] A match percentage between each user, algorithmically determined
 - [ ] A websocket based messenger platform, for users to communicate
-- [ ] A user search feature, allowing filtration based on certain qualities
 - [x] Hosting on Heroku
 - [x] CSS styling that looks exactly like okCupid, except with a shittier logo, and a barely visible superimposition of Richard Stallman's face haunting the background (maybe not).
 - [ ] A production README, replacing this dogshit README
@@ -36,13 +35,13 @@ progress. Put an x between the brackets for a checkmark: [x] -->
 
 - [x] Create an account (MVP)
 - [x] Log in / Log out (MVP)
-- [ ] including as a Guest/Demo User (MVP)
+- [x] including as a Guest/Demo User (MVP)
 - [x] Edit Profile About, Profile Description (MVP)
 - [x] View Other Profiles (MVP)
 - [x] Answer Questions (MVP)
 - [x] View Match Percentages Between Users (MVP)
 - [ ] Add and Change Profile Pictures (MVP)
-- [ ] Message Between Users (MVP)
+- [x] Message Between Users (MVP)
 - [ ] Receive Notifications Upon Other Users Viewing Their Profiles (expected feature, but not MVP)
 - [ ] Filter Users by 'Looking For' and 'Description' (expected feature, but not MVP)
 - [ ] OAuth connection
@@ -86,10 +85,9 @@ the API.
 - [ ] create `ProfileDetails` model
 - [ ] create `ProfileLookingFor` model
 - [x] create `Like` model
-- [ ] create `Visit` model
 - [x] create `UserPhoto` model
 - [x] seed the database with a small amount of test data
-- [ ] CRUD API for Profile, Like, Visit (`ProfilesController`, `LikesController` , `VisitsController`)
+- [x] CRUD API for Profile, Like (`ProfilesController`, `LikesController`)
 - [x] jBuilder views for profiles
 - [x] setup Webpack & Flux scaffold
 - [x] setup `APIUtil` to interact with the API
@@ -125,21 +123,14 @@ user interface.
 
 **Objective:** Existing pages (including singup/signin) will look good.
 
-- [ ] create a basic style guide
 - [x] position elements on the page
 - [x] add basic colors & styles
-
-### Phase 7: Feed (1 Day)
-
-**Objective:** User can navigate to a feed index, and see the most current updates, as well as view a selection of matches, and answer a random question on the Feed page
-
-- [ ] make `Feed` and all its components
 
 ### Phase 8: Messages (2 days)
 
 **Objective:** Users can send messages to one-another
 
-- [ ] create `ChatLog` model
+- [x] create `ChatLog` model
 - build out API, Flux loop, and components for:
 - Use CSS to style new views
 

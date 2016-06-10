@@ -47,6 +47,10 @@ var AuthMain = React.createClass({
     });
   },
 
+  contextTypes: {
+    router: React.PropTypes.object.isRequired
+  },
+
   componentDidMount: function () {
     this.listener = AuthInfoStore.addListener(function () {
       this.setState({ formNumber: AuthInfoStore.currentAuthState() });
@@ -81,6 +85,18 @@ var AuthMain = React.createClass({
     }
   },
 
+  signInGuest: function () {
+    ClientActions.loginWithUsername(
+      {
+        username: 'OkComputer',
+        password: 'guestuser'
+      },
+      function () {
+        this.context.router.push("/matches");
+      }.bind(this)
+    );
+  },
+
   render: function () {
     return (
       <div id='signup_bg'>
@@ -93,6 +109,14 @@ var AuthMain = React.createClass({
               onClick={this.openModal}
               >
               Sign in
+            </button>
+
+            <button
+              id="open_sign_in_button"
+              class="flatbutton clear dark-bg"
+              onClick={this.signInGuest}
+              >
+              Guest
             </button>
           </div>
 
