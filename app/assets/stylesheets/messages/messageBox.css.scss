@@ -1,8 +1,7 @@
-#chat-window {
+.chat-window {
   right: 30px;
   position: absolute;
-  top: 900%;
-  /* bottom: -100%; */
+  bottom: 30px;
   overflow: hidden;
   float: right;
   width: 440px;
@@ -16,30 +15,56 @@
   z-index: 5;
 
 
+
   .chatlog-box {
-    height: 219px;
+    min-height: 150px;
+    max-height: 200px;
+    margin: 20px;
     box-sizing: content-box;
-    position: absolute;
+    border: 1px solid #ccd0d9;
     z-index: 6;
-    width: 440px;
-    height: 207px;
-    top: 63px;
-    overflow-y: auto;
+    width: 400px;
+    overflow-y: scroll;
     display: block;
+
+    .msg-item {
+      display: block;
+      width: 390px;
+      float: left;
+
+      .current-user-message {
+        max-width: 150px;
+
+        float: right;
+        overflow-wrap: break-word;
+
+      }
+
+      .other-user-message {
+        max-width: 150px;
+
+        float: left;
+        overflow-wrap: break-word;
+
+       }
+
+    }
+
+
+
   }
 
   .new-message-box {
-    min-height: 60px;
-    max-height: 126px;
+    max-height: 60px;
+    overflow-y: scroll;
+    width: 320px;
     padding: 11px 8px 8px 13px;
     font-size: 14px;
     line-height: 21px;
-    width: 100%;
-    margin: 0;
     background: #FFF;
     border: 1px solid #ccd0d9;
     color: #5e6573;
-    margin: 0 10px 10px 0;
+    margin: 0 20px 10px 20px;
     border-radius: 2px;
 
 
@@ -62,5 +87,6 @@
     padding: 0;
     vertical-align: top;
   }
+
 
 }

@@ -74,7 +74,7 @@ MessageStore.__onDispatch = function (payload) {
         if (convo.conversation_name ===
             payload.message.conversation.conversation_name
         ) {
-          _conversations[index].messages.push(payload.message);
+          convo.messages.push(payload.message);
         }
       });
 
@@ -82,9 +82,10 @@ MessageStore.__onDispatch = function (payload) {
         if (convo.conversation_name ===
             payload.message.conversation.conversation_name
         ) {
-          _conversations[index].messages.push(payload.message);
+          convo.messages.push(payload.message);
         }
       });
+
       this.__emitChange();
       break;
     case MessageConstants.CLOSE_CONVO:

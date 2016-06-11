@@ -1,4 +1,10 @@
-json.extract! convo, :conversation_name, :receiver_id, :messages
+json.conversation_name convo.conversation_name
+
+ json.messages convo.messages do |msg|
+   json.content msg.content
+   json.sender msg.sender.username
+   json.receiver msg.receiver.username
+ end
 
 json.sender convo.sender.username
 json.receiver convo.receiver.username

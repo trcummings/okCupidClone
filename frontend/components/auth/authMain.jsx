@@ -97,19 +97,6 @@ var AuthMain = React.createClass({
     );
   },
 
-  githubSignIn: function () {
-    // ClientActions.loginWithUsername(
-    //   {
-    //     username: 'OkComputer',
-    //     password: 'guestuser'
-    //   },
-    //   function () {
-    //     this.context.router.push("/matches");
-    //   }.bind(this)
-    // );
-    alert('not today, friend');
-  },
-
   render: function () {
     return (
       <div id='signup_bg'>
@@ -130,16 +117,6 @@ var AuthMain = React.createClass({
               onClick={this.signInGuest}
               >
               Guest
-            </button>
-
-            <button
-              id="open_sign_in_button"
-              class="flatbutton clear dark-bg"
-              onClick={this.githubSignIn}
-              >
-              Sign in with
-              {' '}
-              <i className="fa fa-github" aria-hidden="true"></i>
             </button>
           </div>
 
