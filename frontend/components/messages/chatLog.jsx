@@ -6,7 +6,6 @@ var SessionStore = require('../../stores/sessionStore');
 var ChatLog = React.createClass({
   componentDidMount: function () {
     var node = ReactDOM.findDOMNode(this);
-    // debugger;
     node.scrollTop = node.scrollHeight;
   },
 
