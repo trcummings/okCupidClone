@@ -1,3 +1,4 @@
+/* globals Pusher */
 var React = require('react');
 var PropTypes = React.PropTypes;
 var MessageStore = require('../../stores/messageStore');
@@ -11,29 +12,24 @@ var MessageBox = React.createClass({
   },
 
   componentDidMount: function () {
-    // this.chatListener = MessageStore.addListener(function () {
-    //   var convo = MessageStore.activeConvos();
-    //   convo.forEach(function (conversation, index) {
-    //     if (conversation.conversation_name === this.props.convo.conversation_name) {
-    //       this.setState({ convo: conversation });
-    //     }
-    //   }.bind(this));
-    // }.bind(this));
+    this.pusher = new Pusher('3d1017ad258d309a7dff', {
+      encrypted: true
+    });
 
-    // var pusher = new Pusher('3d1017ad258d309a7dff', {
-    //   encrypted: true
-    // });
-    //
-    // var channel = pusher.subscribe(this.props.conversation_name);
-    // channel.bind('my_event', function(data) {
-      // push message data to store
-      // callback;
-    // });
+    var channel = this.pusher.subscribe(this.props.convo.conversation_name);
+    channel.bind('message_sent', function(data) {
+      ClientActions.getAllConvos();
+    });
+  },
+
+  componentWillUnmount: function () {
+    this.pusher.unsubscribe(this.props.convo.conversation_name);
   },
 
   closeWindow: function (event) {
     event.preventDefault();
 
+    this.pusher.unsubscribe(this.props.convo.conversation_name);
     ClientActions.closeConvo(this.props.convo.conversation_name);
   },
 

@@ -7,20 +7,19 @@ class Api::MessagesController < ApplicationController
     @message.sender_id = sender.id
     @message.receiver_id = receiver.id
     @message.content = message_params[:content]
-    conversation =
+    convo =
       User.get_convo(sender.id, receiver.id)
-    @message.conversation_id = conversation.id
+    @message.conversation_id = convo.id
 
     if @message.save
-      # Pusher.trigger(
-      #   'conversation_between' + current_user.username +
-      #   "and" + receiver.username,
-      #   'message_sent',
-      #   {
-      #     message: params[:message][:content]
-      #   }
-      # )
-      # render json: message
+      Pusher.trigger(
+        convo.conversation_name,
+        'message_sent',
+        {
+          message: message_params[:content]
+        }
+      )
+      render json: message
 
       render 'api/messages/show'
     else

@@ -16,7 +16,7 @@ class Api::ConversationsController < ApplicationController
     @convo = Conversation.new(
         sender_id: current_user.id,
         receiver_id: receiver.id,
-        conversation_name: current_user.username + " " + params[:other_user][:username]
+        conversation_name: 'private-' + current_user.username + "_" + params[:other_user][:username]
       )
 
     if @convo.save
