@@ -32,7 +32,23 @@ var SignInForm = React.createClass({
     this.errorListener.remove();
   },
 
-  handleSubmit: function () {
+  githubSignIn: function (event) {
+    event.preventDefault();
+    // ClientActions.loginWithUsername(
+    //   {
+    //     username: 'OkComputer',
+    //     password: 'guestuser'
+    //   },
+    //   function () {
+    //     this.context.router.push("/matches");
+    //   }.bind(this)
+    // );
+    alert('not today, friend');
+  },
+
+  handleSubmit: function (event) {
+    event.preventDefault();
+    
     var loginType = HelperUtil.parseNameField(this.state.nameField);
     var callback = function () {
       this.props.closeModal();
@@ -106,6 +122,16 @@ var SignInForm = React.createClass({
         </ul>
 
         <button id='continue_button' type='submit'>Sign in</button>
+
+        <button
+          id="open_sign_in_button"
+          class="flatbutton clear dark-bg"
+          onClick={this.githubSignIn}
+          >
+          Sign in with
+          {' '}
+          <i className="fa fa-github" aria-hidden="true"></i>
+        </button>
       </form>
     );
   }

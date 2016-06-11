@@ -2,8 +2,6 @@ var React = require('react');
 var HeaderProfileDropDown = require('./headerProfileDropDown');
 var HeaderMessagesDropDown = require('./headerMessagesDropDown');
 var SessionStore = require('../stores/sessionStore');
-var MessageStore = require('../stores/messageStore');
-var MessageBox = require('./messages/messageBox');
 var ClientActions = require('../actions/clientActions');
 
 var Header = React.createClass({
@@ -12,35 +10,11 @@ var Header = React.createClass({
   },
 
   getInitialState: function () {
-    convos = MessageStore.activeConvos();
-    allConvos = MessageStore.allConversations();
 
     return ({
       profileDropDown: false,
-      messagesDropDown: false,
-      activeConvos: convos,
-      allConvos: allConvos
+      messagesDropDown: false
      });
-  },
-
-  componentDidMount: function () {
-    var activeConvos;
-
-    this.messageListener = MessageStore.addListener(function () {
-      activeConvos = MessageStore.activeConvos();
-      allConvos = MessageStore.allConversations();
-
-      this.setState({
-         activeConvos: activeConvos,
-         allConvos: allConvos
-       });
-    }.bind(this));
-
-    ClientActions.getAllConvos();
-  },
-
-  componentWillUnmount: function () {
-    this.messageListener.remove();
   },
 
   renderDropDown: function (type) {
@@ -48,7 +22,7 @@ var Header = React.createClass({
       if (type === 'profileDropDown') {
         return (<HeaderProfileDropDown />);
       } else if (type === 'messagesDropDown') {
-        return (<HeaderMessagesDropDown allConvos={this.state.allConvos}/>);
+        return (<HeaderMessagesDropDown />);
       }
     } else {
       return (<div />);
@@ -70,26 +44,6 @@ var Header = React.createClass({
       this.state[type] = true;
     }
     this.setState(this.state);
-  },
-
-  renderMessageBoxes: function () {
-    if (this.state.activeConvos.length > 0) {
-      return (
-        this.state.activeConvos.map(function (convo, index) {
-          return (
-            <MessageBox
-              key={index}
-              convo={convo}
-              closeCallback={function () {
-                this.forceUpdate();
-              }.bind(this)}
-            />
-          );
-        }.bind(this))
-      );
-    } else {
-      return (<div />);
-    }
   },
 
   render: function () {
@@ -161,14 +115,14 @@ var Header = React.createClass({
             </li>
           </ul>
         </div>
-
-        <section className='message-boxes'>
-          {this.renderMessageBoxes()}
-        </section>
-
       </nav>
     );
   }
 });
 
 module.exports = Header;
+
+
+// <section className='message-boxes'>
+//   {this.renderMessageBoxes()}
+// </section>

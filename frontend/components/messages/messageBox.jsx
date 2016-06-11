@@ -3,19 +3,12 @@ var PropTypes = React.PropTypes;
 var MessageStore = require('../../stores/messageStore');
 var SessionStore = require('../../stores/sessionStore');
 var ClientActions = require('../../actions/clientActions');
+var ChatLog = require('./chatLog');
 
 var MessageBox = React.createClass({
   getInitialState: function () {
     return({ currentMsg: '' });
   },
-  // getInitialState: function () {
-  //   var currentUser = SessionStore.currentUser();
-  //   var convoName = this.props.convo.conversation_name.split(' ');
-  //   var targetIdx = convoName.indexOf(currentUser.username);
-  //   convoName.splice(targetIdx, 1);
-  //
-  //   return ({ otherUsername: convoName[0] });
-  // },
 
   // componentDidMount: function () {
   //   this.chatListener = MessageStore.addListener(function () {
@@ -38,35 +31,41 @@ var MessageBox = React.createClass({
   //   // });
   // },
 
-  buildChatLog: function (convo) {
-    var currentUser = SessionStore.currentUser();
-    var receiver = convo.receiver;
-    var result = [];
-
-    convo.messages.forEach(function (message, index) {
-      if (receiver.username !== currentUser.username) {
-        result.push(
-          <li
-            key={index}
-            className='current-user-message'
-          >
-            {message.content}
-          </li>
-        );
-      } else {
-        result.push(
-          <li
-            key={index}
-            className='other-user-message'
-          >
-            {message.content}
-          </li>
-        );
-      }
-    }.bind(this));
-
-    return result;
-  },
+  // buildChatLog: function (convo) {
+  //   var currentUser = SessionStore.currentUser();
+  //   var result = [];
+  //
+  //   convo.messages.forEach(function (message, index) {
+  //     if (index === convo.messages.length) {
+  //       ReactDOM.findDOMNode(this).scrollTop = 0;
+  //     }
+  //     if (message.sender === currentUser.username) {
+  //       result.push(
+  //         <li
+  //           key={index}
+  //           className='msg-item'
+  //         >
+  //           <p className='current-user-message'>
+  //             {message.content}
+  //           </p>
+  //         </li>
+  //       );
+  //     } else {
+  //       result.push(
+  //         <li
+  //           key={index}
+  //           className='msg-item'
+  //         >
+  //           <p className='other-user-message'>
+  //             {message.content}
+  //           </p>
+  //         </li>
+  //       );
+  //     }
+  //   }.bind(this));
+  //
+  //   return result;
+  // },
 
   closeWindow: function (event) {
     event.preventDefault();
@@ -82,50 +81,38 @@ var MessageBox = React.createClass({
 
   sendMessage: function () {
     event.preventDefault();
+
     var currentUser = SessionStore.currentUser();
-    var sender;
     var receiver;
 
     if (this.props.convo.sender === currentUser.username) {
-      sender = this.props.convo.receiver;
-      receiver = currentUser.username;
+      receiver = this.props.convo.receiver;
     } else if (this.props.convo.receiver === currentUser.username) {
-      sender = currentUser.username;
       receiver = this.props.convo.sender;
     }
 
     ClientActions.sendMessage(
       this.state.currentMsg,
-      [sender, receiver],
+      [currentUser.username, receiver],
       function () {
         this.setState({ currentMsg: '' });
       }.bind(this)
     );
-
-
   },
 
   render: function () {
     var convo = this.props.convo;
-    var currentUser = SessionStore.currentUser();
-
-    var usernames = this.props.convo.conversation_name.split(' ');
-    var targetIdx = usernames.indexOf(currentUser.username);
-    usernames.splice(targetIdx, 1);
-    var otherUsername = usernames[0];
 
     if (convo) {
       return (
-        <div id='chat-window'>
+        <div className='chat-window'>
           <button onClick={this.closeWindow}>X</button>
 
           <h1>
-            {'Conversation between ' + currentUser.username + ' and ' + otherUsername}
+            {'Conversation between ' + convo.sender + ' and ' + convo.receiver}
           </h1>
 
-          <ul id='chatlog-box'>
-            {this.buildChatLog(convo)}
-          </ul>
+          <ChatLog messages={convo.messages} />
 
           <input
             onChange={this.handleTextChange}
@@ -145,10 +132,7 @@ var MessageBox = React.createClass({
     } else {
       return (<div />);
     }
-
-
   }
-
 });
 
 module.exports = MessageBox;

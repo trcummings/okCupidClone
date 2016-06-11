@@ -8,6 +8,22 @@ var HeaderMessagesDropDown = React.createClass({
     router: React.PropTypes.object.isRequired
   },
 
+  getInitialState: function () {
+    return({ allConvos: MessageStore.allConversations() });
+  },
+
+  componentDidMount: function () {
+    this.messageListener = MessageStore.addListener(function () {
+      this.setState({ allConvos: MessageStore.allConversations() });
+    }.bind(this));
+
+    ClientActions.getAllConvos();
+  },
+
+  componentWillUnmount: function () {
+    this.messageListener.remove();
+  },
+
   openMsgWindow: function (receiver, event) {
     event.preventDefault();
 
@@ -18,35 +34,45 @@ var HeaderMessagesDropDown = React.createClass({
     var result = [];
     var receiver;
 
-    allConvos.map(function (convo, index) {
-      if (currentUser.username === convo.sender) {
-        receiver = convo.receiver;
-      } else {
-        receiver = convo.sender;
-      }
-
-      result.push (
+    if (allConvos.length === 0) {
+      return (
         <li
-          key={index}
-          onClick={this.openMsgWindow.bind(this, receiver)}
+          className='no-messages'
         >
-          {receiver}
+          No Messages
         </li>
       );
-    }.bind(this));
+    } else {
+      allConvos.map(function (convo, index) {
+        if (currentUser.username === convo.sender) {
+          receiver = convo.receiver;
+        } else {
+          receiver = convo.sender;
+        }
 
-    return result;
+        result.push (
+          <li
+            key={index}
+            onClick={this.openMsgWindow.bind(this, receiver)}
+          >
+            {receiver}
+          </li>
+        );
+      }.bind(this));
+
+      return result;
+    }
   },
 
   render: function () {
-    var currentUser = SessionStore.currentUser();
-    var allConvos = this.props.allConvos;
-    var context = this;
-
     return (
       <section className='header-profile-options'>
       <ul className='messages-list'>
-        { this.renderConvoList(allConvos, currentUser) }
+        { this.renderConvoList(
+            this.state.allConvos,
+            SessionStore.currentUser()
+          )
+        }
       </ul>
       <li className='inbox-link'>
         Inbox
@@ -54,7 +80,6 @@ var HeaderMessagesDropDown = React.createClass({
     </section>
     );
   }
-
 });
 
 module.exports = HeaderMessagesDropDown;
