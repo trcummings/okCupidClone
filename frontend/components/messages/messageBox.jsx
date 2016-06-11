@@ -10,62 +10,26 @@ var MessageBox = React.createClass({
     return({ currentMsg: '' });
   },
 
-  // componentDidMount: function () {
-  //   this.chatListener = MessageStore.addListener(function () {
-  //     var convo = MessageStore.activeConvos();
-  //     convo.forEach(function (conversation, index) {
-  //       if (conversation.conversation_name === this.props.convo.conversation_name) {
-  //         this.setState({ convo: conversation });
-  //       }
-  //     }.bind(this));
-  //   }.bind(this));
-  //
-  //   // var pusher = new Pusher('3d1017ad258d309a7dff', {
-  //   //   encrypted: true
-  //   // });
-  //   //
-  //   // var channel = pusher.subscribe(this.props.conversation_name);
-  //   // channel.bind('my_event', function(data) {
-  //     // push message data to store
-  //     // callback;
-  //   // });
-  // },
+  componentDidMount: function () {
+    // this.chatListener = MessageStore.addListener(function () {
+    //   var convo = MessageStore.activeConvos();
+    //   convo.forEach(function (conversation, index) {
+    //     if (conversation.conversation_name === this.props.convo.conversation_name) {
+    //       this.setState({ convo: conversation });
+    //     }
+    //   }.bind(this));
+    // }.bind(this));
 
-  // buildChatLog: function (convo) {
-  //   var currentUser = SessionStore.currentUser();
-  //   var result = [];
-  //
-  //   convo.messages.forEach(function (message, index) {
-  //     if (index === convo.messages.length) {
-  //       ReactDOM.findDOMNode(this).scrollTop = 0;
-  //     }
-  //     if (message.sender === currentUser.username) {
-  //       result.push(
-  //         <li
-  //           key={index}
-  //           className='msg-item'
-  //         >
-  //           <p className='current-user-message'>
-  //             {message.content}
-  //           </p>
-  //         </li>
-  //       );
-  //     } else {
-  //       result.push(
-  //         <li
-  //           key={index}
-  //           className='msg-item'
-  //         >
-  //           <p className='other-user-message'>
-  //             {message.content}
-  //           </p>
-  //         </li>
-  //       );
-  //     }
-  //   }.bind(this));
-  //
-  //   return result;
-  // },
+    // var pusher = new Pusher('3d1017ad258d309a7dff', {
+    //   encrypted: true
+    // });
+    //
+    // var channel = pusher.subscribe(this.props.conversation_name);
+    // channel.bind('my_event', function(data) {
+      // push message data to store
+      // callback;
+    // });
+  },
 
   closeWindow: function (event) {
     event.preventDefault();

@@ -4,6 +4,12 @@ var PropTypes = React.PropTypes;
 var SessionStore = require('../../stores/sessionStore');
 
 var ChatLog = React.createClass({
+  componentDidMount: function () {
+    var node = ReactDOM.findDOMNode(this);
+    // debugger;
+    node.scrollTop = node.scrollHeight;
+  },
+
   componentWillUpdate: function() {
     var node = ReactDOM.findDOMNode(this);
     this.shouldScrollBottom = node.scrollTop + node.offsetHeight === node.scrollHeight;
