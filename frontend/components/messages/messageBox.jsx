@@ -41,7 +41,6 @@ var MessageBox = React.createClass({
   closeWindow: function (event) {
     event.preventDefault();
 
-    this.pusher.unsubscribe(this.props.convo.conversation_name);
     ClientActions.closeConvo(this.props.convo.conversation_name);
   },
 
