@@ -20,7 +20,6 @@ var MessageButton = React.createClass({
     });
 
     if (allRecipients.indexOf(this.props.targetUser.username) !== -1) {
-      // debugger;
       ClientActions.openConversation(this.props.targetUser);
     } else {
       ClientActions.createNewConversation(this.props.targetUser);

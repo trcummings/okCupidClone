@@ -61,10 +61,12 @@ var LikeToggle = React.createClass({
 
   toggleLike: function (event) {
     var liker = this.props.liker;
+    var likee = this.props.likee;
     event.preventDefault();
 
     if (this.state.liked) {
-      ClientActions.unlikeUser(this.props.likee, function () {
+
+      ClientActions.unlikeUser(likee, function () {
           this.setState({ buttonActive: true });
         }.bind(this)
       );
@@ -75,18 +77,32 @@ var LikeToggle = React.createClass({
        });
 
     } else {
-      ClientActions.likeUser(this.props.likee, function () {
+      ClientActions.likeUser(likee, function () {
         this.setState({ buttonActive: true });
 
+        var firstTimeLiking = true;
         var isMutualLike = false;
-        this.props.liker.mutual_likes.forEach(function (user, index) {
-          if (user.username === this.props.likee.username) {
+
+        liker.mutual_likes.forEach(function (user, index) {
+          if (user.username === likee.username) {
             isMutualLike = true;
           }
         }.bind(this));
 
         if (isMutualLike) {
-          this.openModal();
+          // first checks the user's conversations for the other user
+          liker.conversations.forEach(function (convo) {
+            if (convo.sender === likee.username ||
+                convo.receiver === likee.username
+            ) {
+              firstTimeLiking = false;
+            }
+          });
+
+          if (firstTimeLiking) {
+            ClientActions.createNewConversation(likee);
+            this.openModal();
+          }
         }
 
       }.bind(this));

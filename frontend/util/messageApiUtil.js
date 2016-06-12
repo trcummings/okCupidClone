@@ -52,7 +52,7 @@ var UsersApiUtil = {
       },
     });
   },
-
+  
   closeConversation: function (convo_name) {
     ServerActions.closeConversation(convo_name);
   }

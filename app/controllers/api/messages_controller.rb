@@ -15,12 +15,8 @@ class Api::MessagesController < ApplicationController
       Pusher.trigger(
         convo.conversation_name,
         'message_sent',
-        {
-          message: message_params[:content]
-        }
+        { }
       )
-      render json: message
-
       render 'api/messages/show'
     else
       render json: { base: ["Message Failed To Send"] }, status: 401

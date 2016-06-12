@@ -16,25 +16,15 @@ class Api::ConversationsController < ApplicationController
     @convo = Conversation.new(
         sender_id: current_user.id,
         receiver_id: receiver.id,
-        conversation_name: 'private-' + current_user.username + "_" + params[:other_user][:username]
+        conversation_name: current_user.username + "_" + params[:other_user][:username]
       )
 
     if @convo.save
+      Pusher.trigger(@convo.conversation_name, 'convo_created', {})
+
       render 'api/conversations/show'
     else
       render json: { base: ["Sumthin wrong"] }, status: 401
     end
   end
-
-  # def show
-  #   receiver = User.find_by(username: params[:username])
-  #   @convo = Conversation
-  #     .where(sender_id: [current_user.id, receiver.id])
-  #     .where(receiver_id: [receiver.id, current_user.id])
-  #
-  #   if @convo
-  #     render 'api/conversations/show'
-  #   else
-  #     render json: { base: ["No conversation found!"] }, status: 401
-  #   end
 end
