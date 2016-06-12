@@ -21,7 +21,7 @@ By the end of app/Academy week 9, this app will meet the following criteria for 
 - [x] Ability to view and 'like' other profiles
 - [x] Dynamic notifications of mutual likes
 - [x] A match percentage between each user, algorithmically determined
-- [ ] A websocket based messenger platform, for users to communicate
+- [x] A websocket based messenger platform, for users to communicate
 - [x] Hosting on Heroku
 - [x] CSS styling that looks exactly like okCupid, except with a shittier logo, and a barely visible superimposition of Richard Stallman's face haunting the background (maybe not).
 - [ ] A production README, replacing this dogshit README

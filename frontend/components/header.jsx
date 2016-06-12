@@ -10,12 +10,31 @@ var Header = React.createClass({
   },
 
   getInitialState: function () {
-
     return ({
       profileDropDown: false,
       messagesDropDown: false
      });
   },
+  //
+  // componentDidMount: function () {
+  //   this.pusher = new Pusher('3d1017ad258d309a7dff', {
+  //     encrypted: true
+  //   });
+  //
+  //
+  //   var channel = this.pusher.subscribe(liker.username + '_' + likee.username);
+  //   channel.bind('convo_created', function(data) {
+  //     ClientActions.getAllConvos();
+  //   });
+  //
+  //   ClientActions.getAllConvos();
+  // },
+  //
+  // componentWillUnmount: function () {
+  //   this.messageListener.remove();
+  //   this.
+  // },
+
 
   renderDropDown: function (type) {
     if (this.state[type]) {

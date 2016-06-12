@@ -36,6 +36,7 @@ MessageStore.addConvo = function (payloadConvo) {
         payloadConvo.conversation_name
     ) {
       inConvos = true;
+      _conversations[index] = payloadConvo;
     }
   });
 
@@ -44,6 +45,7 @@ MessageStore.addConvo = function (payloadConvo) {
         payloadConvo.conversation_name
     ) {
       inActvConvos = true;
+      _activeConvos[index] = payloadConvo;
     }
   });
 

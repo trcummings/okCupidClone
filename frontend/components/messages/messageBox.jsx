@@ -4,27 +4,39 @@ var PropTypes = React.PropTypes;
 var MessageStore = require('../../stores/messageStore');
 var SessionStore = require('../../stores/sessionStore');
 var ClientActions = require('../../actions/clientActions');
+var ServerActions = require('../../actions/serverActions');
 var ChatLog = require('./chatLog');
 
 var MessageBox = React.createClass({
   getInitialState: function () {
-    return({ currentMsg: '' });
+    var currentUser = SessionStore.currentUser();
+    var receiver;
+
+    if (this.props.convo.sender === currentUser.username) {
+      receiver = this.props.convo.receiver;
+    } else if (this.props.convo.receiver === currentUser.username) {
+      receiver = this.props.convo.sender;
+    }
+
+    return({ currentMsg: '', receiver: receiver });
   },
 
-  componentDidMount: function () {
-    this.pusher = new Pusher('3d1017ad258d309a7dff', {
-      encrypted: true
-    });
-
-    var channel = this.pusher.subscribe(this.props.convo.conversation_name);
-    channel.bind('message_sent', function(data) {
-      ClientActions.getAllConvos();
-    });
-  },
-
-  componentWillUnmount: function () {
-    this.pusher.unsubscribe(this.props.convo.conversation_name);
-  },
+  // componentDidMount: function () {
+  //   this.pusher = new Pusher('3d1017ad258d309a7dff', {
+  //     encrypted: true
+  //   });
+  //
+  //   var channel = this.pusher.subscribe(this.props.convo.conversation_name);
+  //   channel.bind('message_sent', function(data) {
+  //     debugger;
+  //     // ServerActions.receiveMessage(data)
+  //     // this.forceUpdate();
+  //   }.bind(this));
+  // },
+  //
+  // componentWillUnmount: function () {
+  //   this.pusher.unsubscribe(this.props.convo.conversation_name);
+  // },
 
   closeWindow: function (event) {
     event.preventDefault();
@@ -41,19 +53,20 @@ var MessageBox = React.createClass({
 
   sendMessage: function () {
     event.preventDefault();
-
-    var currentUser = SessionStore.currentUser();
-    var receiver;
-
-    if (this.props.convo.sender === currentUser.username) {
-      receiver = this.props.convo.receiver;
-    } else if (this.props.convo.receiver === currentUser.username) {
-      receiver = this.props.convo.sender;
-    }
+    // var receiver;
+    //
+    // if (this.props.convo.sender === currentUser.username) {
+    //   receiver = this.props.convo.receiver;
+    // } else if (this.props.convo.receiver === currentUser.username) {
+    //   receiver = this.props.convo.sender;
+    // }
 
     ClientActions.sendMessage(
       this.state.currentMsg,
-      [currentUser.username, receiver],
+      [
+        SessionStore.currentUser().username,
+        this.state.receiver
+      ],
       function () {
         this.setState({ currentMsg: '' });
       }.bind(this)
@@ -72,7 +85,9 @@ var MessageBox = React.createClass({
             {'Conversation between ' + convo.sender + ' and ' + convo.receiver}
           </h1>
 
-          <ChatLog messages={convo.messages} />
+          <ChatLog
+            convo={convo}
+          />
 
           <input
             onChange={this.handleTextChange}
