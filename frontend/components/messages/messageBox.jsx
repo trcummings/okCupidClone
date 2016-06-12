@@ -8,6 +8,7 @@ var ServerActions = require('../../actions/serverActions');
 var ChatLog = require('./chatLog');
 
 var MessageBox = React.createClass({
+
   getInitialState: function () {
     var currentUser = SessionStore.currentUser();
     var receiver;
