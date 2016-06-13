@@ -39,7 +39,7 @@ var FirstSignUpForm = React.createClass({
           <span className="form_one_item"> I am a </span>
 
           <label className="dropdown orientation form_one_item" onBlur={this.handleOrientationChange}>
-            <select onChange={this.handleOrientationChange}>
+            <select className='dropdown-select' onChange={this.handleOrientationChange}>
               <option value="Sapiosexual">Sapiosexual</option>
               <option value="Straight">Straight</option>
               <option value="Gay">Gay</option>
@@ -47,7 +47,7 @@ var FirstSignUpForm = React.createClass({
           </label>
 
         <label className="dropdown gender form_one_item" onBlur={this.handleGenderChange}>
-            <select onChange={this.handleGenderChange}>
+            <select className='dropdown-select' onChange={this.handleGenderChange}>
               <option value="Anime Enthusiast">Anime Enthusiast</option>
               <option value="Woman">Woman</option>
               <option value="Man">Man</option>

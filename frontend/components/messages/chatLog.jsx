@@ -32,6 +32,7 @@ var ChatLog = React.createClass({
     var channel = this.pusher.subscribe(convo.conversation_name);
     channel.bind('message_sent', function(data) {
       ClientActions.openConversation(receiver);
+
     }.bind(this));
   },
 
@@ -49,6 +50,7 @@ var ChatLog = React.createClass({
 
   componentWillReceiveProps: function (nextProps) {
     var node = ReactDOM.findDOMNode(this);
+    node.scrollTop = node.scrollHeight;
     this.shouldScrollBottom = node.scrollTop + node.offsetHeight === node.scrollHeight;
     this.setState({ convo: nextProps.convo });
   },

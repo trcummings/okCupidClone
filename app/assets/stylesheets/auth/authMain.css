@@ -52,6 +52,8 @@
 }
 
 #continue_button {
+  margin-top: 10px;
+  margin-left: 5px;
   width: 120px;
   height: 42px;
   line-height: 41px;

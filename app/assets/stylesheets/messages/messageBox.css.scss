@@ -1,11 +1,19 @@
+.biggied {
+  height: 400px;
+  width: 440px;
+}
+
+.minied {
+  height: 30px;
+  width: 250px;
+}
+
 .chat-window {
   right: 30px;
   position: absolute;
-  bottom: 30px;
+  bottom: 100px;
   overflow: hidden;
   float: right;
-  width: 440px;
-  height: 430px;
   background: #fff;
   box-shadow: 0 0 0 1px rgba(0, 17, 53, 0.16), 0 0 5px 0 rgba(0, 17, 53, 0.16);
   border-top-left-radius: 2px;
@@ -14,50 +22,60 @@
   opacity: 1;
   z-index: 5;
 
-
+  .close-window-button {
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #3260c7;
+    color: #fff;
+    margin: 10px;
+  }
 
   .chatlog-box {
     min-height: 150px;
     max-height: 200px;
-    margin: 20px;
+    margin: 10px 20px 20px 20px;
     box-sizing: content-box;
     border: 1px solid #ccd0d9;
     z-index: 6;
     width: 400px;
     overflow-y: scroll;
+    overflow-x: hidden;
     display: block;
 
     .msg-item {
       display: block;
-      width: 390px;
+      width: 380px;
       float: left;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      color: #fff;
 
       .current-user-message {
-        max-width: 150px;
-
+        border-radius: 5px;
+        // margin-right: 5px;
+        background-color: #f95e92;
+        max-width: 300px;
+        padding: 10px;
         float: right;
         overflow-wrap: break-word;
-
       }
 
       .other-user-message {
-        max-width: 150px;
-
+        border-radius: 5px;
+        margin-left: 5px;
+        background-color: #104da1;
+        max-width: 300px;
+        padding: 10px;
         float: left;
         overflow-wrap: break-word;
-
        }
-
     }
-
-
-
   }
 
   .new-message-box {
     max-height: 60px;
     overflow-y: scroll;
-    width: 320px;
+    width: 310px;
     padding: 11px 8px 8px 13px;
     font-size: 14px;
     line-height: 21px;
@@ -66,8 +84,7 @@
     color: #5e6573;
     margin: 0 20px 10px 20px;
     border-radius: 2px;
-
-
+    overflow-wrap: break-word;
   }
 
   .send-message-button {
@@ -84,9 +101,18 @@
     overflow: hidden;
     border-radius: 2px;
     border: none;
-    padding: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 0;
+    padding-bottom: 0;
     vertical-align: top;
   }
+  .enter-toggle {
+    margin-left: 20px;
 
-
+    .enter-checkbox {
+      position: relative;
+      -webkit-appearance: checkbox;
+    }
+  }
 }

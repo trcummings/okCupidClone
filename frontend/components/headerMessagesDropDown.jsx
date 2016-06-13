@@ -84,7 +84,8 @@ var HeaderMessagesDropDown = React.createClass({
 
   render: function () {
     return (
-      <section className='header-profile-options'>
+      <section className='header-profile-options messages'>
+        <i className="fa fa-caret-up" aria-hidden="true"></i>
       <ul className='messages-list'>
         { this.renderConvoList(
             this.state.allConvos,
