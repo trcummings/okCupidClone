@@ -1,17 +1,29 @@
-.ReactModalPortal {
+.sign-in-form {
+  color: #fff;
+  font-size: 15px;
+  font-family: 'Open Sans',sans-serif;
+  height: 380px;
+  background: #104da1;
+  border-radius: 5px;
+  margin-bottom: 0px;
 
-  form > input {
+  h1 {
+    font-size: 22px;
+    text-align: center;
+  }
+
+  input {
     width: 187px;
     padding: 9px;
     padding-right: 16px;
     background: #FFF;
-    border: 1px solid #ccd0d9;
+    // border: 1px solid #ccd0d9;
     color: #5e6573;
-    margin: 0 10px 10px 0;
+    margin: auto;
     border-radius: 2px;
     font-size: 15px;
     line-height: 22px;
-    box-shadow: none !important;
+    box-shadow: none;
     -webkit-transition: border-color 75ms ease-in;
     -moz-transition: border-color 75ms ease-in;
     transition: border-color 75ms ease-in;

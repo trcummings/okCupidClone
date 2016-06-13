@@ -24,6 +24,7 @@
  *= require ./profile/questionTab
  *= require ./profile/pictureTab
  *= require ./profile/aboutTab
+ *= require ./profile/infoEditModal
  *= require main
  *= require ./matches/match_card
  *= require ./matches/match_index

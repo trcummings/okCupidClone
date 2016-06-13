@@ -183,7 +183,9 @@ var BasicInfoEditForm = React.createClass({
       return (
         <span>
           {this.state.location}
-          <button onClick={this.toggleZipFormRender}>edit</button>
+          <button
+            className='edit-button'
+            onClick={this.toggleZipFormRender}>edit</button>
         </span>
       );
     }
@@ -241,10 +243,10 @@ var BasicInfoEditForm = React.createClass({
           bYear = bdArray[0];
 
       return (
-        <form className=''>
-          <p className='edit-form-title'>
+        <form className='info-edit-modal'>
+          <h1 className='edit-form-title'>
             Your Basic Information
-          </p>
+          </h1>
           {/*}
           <label>
             Username
