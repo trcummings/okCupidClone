@@ -48,7 +48,7 @@ var SignInForm = React.createClass({
 
   handleSubmit: function (event) {
     event.preventDefault();
-    
+
     var loginType = HelperUtil.parseNameField(this.state.nameField);
     var callback = function () {
       this.props.closeModal();
@@ -123,18 +123,20 @@ var SignInForm = React.createClass({
 
         <button id='continue_button' type='submit'>Sign in</button>
 
-        <button
-          id="open_sign_in_button"
-          class="flatbutton clear dark-bg"
-          onClick={this.githubSignIn}
-          >
-          Sign in with
-          {' '}
-          <i className="fa fa-github" aria-hidden="true"></i>
-        </button>
+
       </form>
     );
   }
 });
 
 module.exports = SignInForm;
+
+// <button
+//   id="open_sign_in_button"
+//   class="flatbutton clear dark-bg"
+//   onClick={this.githubSignIn}
+//   >
+//   Sign in with
+//   {' '}
+//   <i className="fa fa-github" aria-hidden="true"></i>
+// </button>
