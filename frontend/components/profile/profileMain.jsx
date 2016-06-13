@@ -160,13 +160,7 @@ var ProfileMain = React.createClass({
                 About
               </li>
 
-              <li
-                value={1}
-                onClick={this.selectTab}
-                id={this.state.tabTwoSelected}
-                >
-                Photos
-              </li>
+
               <li
                 value={2}
                 onClick={this.selectTab}
@@ -199,3 +193,11 @@ var ProfileMain = React.createClass({
 });
 
 module.exports = ProfileMain;
+
+// <li
+//   value={1}
+//   onClick={this.selectTab}
+//   id={this.state.tabTwoSelected}
+//   >
+//   Photos
+// </li>

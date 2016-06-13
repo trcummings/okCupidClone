@@ -15,26 +15,6 @@ var Header = React.createClass({
       messagesDropDown: false
      });
   },
-  //
-  // componentDidMount: function () {
-  //   this.pusher = new Pusher('3d1017ad258d309a7dff', {
-  //     encrypted: true
-  //   });
-  //
-  //
-  //   var channel = this.pusher.subscribe(liker.username + '_' + likee.username);
-  //   channel.bind('convo_created', function(data) {
-  //     ClientActions.getAllConvos();
-  //   });
-  //
-  //   ClientActions.getAllConvos();
-  // },
-  //
-  // componentWillUnmount: function () {
-  //   this.messageListener.remove();
-  //   this.
-  // },
-
 
   renderDropDown: function (type) {
     if (this.state[type]) {
@@ -93,14 +73,7 @@ var Header = React.createClass({
 
         <div id='nav-right'>
           <ul className='nav-links nav-item group'>
-            <li className='glyph' onClick={this.handleVisitorsClick} >
-              <i className="fa fa-users fa-2" aria-hidden="true"></i>
-              <p id='visitors-glyph'>
-                <i className="fa fa-caret-up" aria-hidden="true"></i>
-                <span className='poptext'>Visitors</span>
-                <span className='blankbox'> </span>
-              </p>
-            </li>
+
 
             <li className='glyph' onClick={this.handleLikesClick}>
               <i className='fa fa-star fa-2' aria-hidden='true'></i>
@@ -141,7 +114,11 @@ var Header = React.createClass({
 
 module.exports = Header;
 
-
-// <section className='message-boxes'>
-//   {this.renderMessageBoxes()}
-// </section>
+// <li className='glyph' onClick={this.handleVisitorsClick} >
+//   <i className="fa fa-users fa-2" aria-hidden="true"></i>
+//   <p id='visitors-glyph'>
+//     <i className="fa fa-caret-up" aria-hidden="true"></i>
+//     <span className='poptext'>Visitors</span>
+//     <span className='blankbox'> </span>
+//   </p>
+// </li>
