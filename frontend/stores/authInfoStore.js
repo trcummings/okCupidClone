@@ -6,6 +6,9 @@ var _tentativeProfile = {};
 var _zipLocation = "";
 var _authState = 'first';
 var bdayValid = false;
+var zipCodeValid = false;
+var emailValid = false;
+var isEmailUnique = null;
 
 var AuthInfoStore = new Store(AppDispatcher);
 
@@ -65,6 +68,21 @@ AuthInfoStore.nextAuthState = function () {
   }
 };
 
+AuthInfoStore.handleZipInput = function (locationData) {
+  if (locationData['post code']) {
+    var place = locationData.places[0];
+
+    this.addInfoPiece('zip_code', locationData['post code']);
+    this.addInfoPiece(
+      'location',
+      place['place name'] + ', ' + place['state abbreviation']
+    );
+    _zipLocation = place['place name'] + ', ' + place['state abbreviation'];
+  } else {
+    _zipLocation = 'no match';
+  }
+};
+
 AuthInfoStore.__onDispatch = function (payload) {
   switch(payload.actionType) {
     case AuthInfoConstants.ADD_INFO:
@@ -72,9 +90,7 @@ AuthInfoStore.__onDispatch = function (payload) {
       this.__emitChange();
       break;
     case AuthInfoConstants.ADD_ZIP:
-      this.addInfoPiece('zip_code', payload.locationData['post code']);
-      this.addInfoPiece('location', payload.locationData.places[0]['place name']);
-      _zipLocation = payload.locationData.places[0]['place name'];
+      this.handleZipInput(payload.locationData);
       this.__emitChange();
       break;
     case AuthInfoConstants.NEXT_AUTH_STATE:
