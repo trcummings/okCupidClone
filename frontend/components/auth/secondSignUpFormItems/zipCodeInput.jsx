@@ -24,7 +24,7 @@ var ZipCodeInput = React.createClass({
     this.setState(this.state);
   },
 
-  zipCodeValidation: function (event) {
+  runValidation: function (event) {
     var zip = parseInt(event.target.value);
     var zipArray = (event.target.value).split("");
 
@@ -71,8 +71,8 @@ var ZipCodeInput = React.createClass({
 
   render: function() {
     return (
-      <label className="zip_code_label text_box_item form_two_item" onBlur={this.zipCodeValidation}>
-        Zip Code
+      <label className="zip_code_label text_box_item form_two_item" onBlur={this.runValidation}>
+        <p>Zip Code</p>
         <input
           className={this.state.zipStatus}
           type="text"

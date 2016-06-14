@@ -37,25 +37,32 @@ var SecondSignUpForm = React.createClass({
       <div className='authForm'>
         <h1> Almost There! </h1>
 
-        <form onSubmit={this.handleSubmit}>
-          <BirthdateInput className="row group"/>
+        <form
+          className='auth-2'
+          onSubmit={this.handleSubmit}>
 
-          <div className="row group">
-            <label
-              className="country form_two_item"
-              onBlur={this.handleCountryChange}
-            >
-              Country
-              <select onChange={this.handleCountryChange}>
-                <option value="America">America</option>
-                <option value="Who Cares">Somewhere Else</option>
-              </select>
-            </label>
-          </div>
+          <BirthdateInput
+            className="row group"
+          />
 
-          <ZipCodeInput className="row group"/>
+          <label
+            className="country form_two_item row group"
+            onBlur={this.handleCountryChange}
+          >
+            <p>Country</p>
+            <select onChange={this.handleCountryChange}>
+              <option value="America">America</option>
+              <option value="Who Cares">Somewhere Else</option>
+            </select>
+          </label>
 
-          <EmailInput className="row group"/>
+          <ZipCodeInput
+            className="row group"
+          />
+
+          <EmailInput
+            className="row group"
+          />
 
           <div className="row group">
             <button
