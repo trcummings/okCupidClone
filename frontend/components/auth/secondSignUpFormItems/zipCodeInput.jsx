@@ -11,6 +11,12 @@ var ZipCodeInput = React.createClass({
     });
   },
 
+  componentWillUnmount: function () {
+    if (this.authListener) {
+      this.authListener.remove();
+    }
+  },
+
   handleZipCodeChange: function (event) {
     event.preventDefault();
 
@@ -37,14 +43,22 @@ var ZipCodeInput = React.createClass({
        });
     } else if (zipArray.length === 5) {
       ClientActions.lookUpZipCode(event.target.value);
-      this.listener = AuthInfoStore.addListener(function () {
-        AuthInfoStore.zipCodeValid = true;
-        this.setState({
-          zipCodeValidityMsg: "aah, "  + AuthInfoStore.zipLocation(),
-          zipStatus: 'all-clear-field',
-          zipErrored: 'all-clear-statement'
-         });
-        // zip code match success
+      this.authListener = AuthInfoStore.addListener(function () {
+        if (AuthInfoStore.zipLocation() === 'no match') {
+          this.setState({
+            zipCodeValidityMsg: "That aint no zip code I've ever heard of.",
+            zipStatus: 'error-field',
+            zipErrored: 'error-statement'
+           });
+        } else {
+          AuthInfoStore.zipCodeValid = true;
+          this.setState({
+            zipCodeValidityMsg: "aah, "  + AuthInfoStore.zipLocation(),
+            zipStatus: 'all-clear-field',
+            zipErrored: 'all-clear-statement'
+          });
+          // zip code match success
+        }
       }.bind(this));
     } else {
       this.setState({

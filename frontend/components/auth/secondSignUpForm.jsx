@@ -9,35 +9,21 @@ var EmailInput = require('./secondSignUpFormItems/emailInput');
 
 var SecondSignUpForm = React.createClass({
   getInitialState: function () {
-    this.submitStateDisabled = false;
-
     return ({
       country: "America",
+      submitStateDisabled: false
     });
   },
 
-  componentDidMount: function () {
+  handleSubmit: function (event) {
+    event.preventDefault();
 
-  },
-
-  componentWillUnmount: function () {
-    this.listener.remove();
-  },
-
-  onStateChange: function () {
     if (AuthInfoStore.emailValid && AuthInfoStore.bdayValid && AuthInfoStore.zipCodeValid) {
-      this.submitStateDisabled = false;
-    }
-  },
-
-  handleSubmit: function () {
-    if (AuthInfoStore.emailValid && AuthInfoStore.bdayValid && AuthInfoStore.zipCodeValid) {
-      this.submitStateDisabled = false;
+      this.setState({ submitStateDisabled: false });
       AuthInfoStore.addInfoPiece('country', this.state.country);
       ClientActions.incrementAuthState();
     } else {
-      this.submitStateDisabled = true;
-      this.forceUpdate();
+      this.setState({ submitStateDisabled: true });
     }
   },
 
@@ -75,7 +61,7 @@ var SecondSignUpForm = React.createClass({
             <button
               id="continue_button"
               className="flatbutton green form_two_item"
-              disabled={this.submitStateDisabled}
+              disabled={this.state.submitStateDisabled}
               onClick={this.handleSubmit}
             >
               Next
