@@ -56,6 +56,19 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def check_email_uniqueness
+    # note to self: this is kind of unsafe. Anyone could check if someone has
+    # an email registered here, and that's not good.
+
+    user = User.find_by(email: params[:email])
+
+    if user
+      render json: true
+    else
+      render json: false
+    end
+  end
+
 
   #### ABOUTS
 

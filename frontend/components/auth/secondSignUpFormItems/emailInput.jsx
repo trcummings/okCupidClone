@@ -64,8 +64,7 @@ var EmailInput = React.createClass({
           });
         }
       } else {
-        // ClientActions.checkForUniqueEmail(this.state.email);
-        console.log('myaaaah, checking');
+        ClientActions.checkForUniqueEmail(this.state.email);
         this.setState({
           emailValidityMsg: "checking email is unique...",
           emailStatus: 'all-clear-field',
