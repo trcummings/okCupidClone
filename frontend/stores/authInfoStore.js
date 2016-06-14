@@ -5,6 +5,7 @@ var AuthInfoConstants = require('../constants/authInfoConstants');
 var _tentativeProfile = {};
 var _zipLocation = "";
 var _authState = 'first';
+var bdayValid = false;
 
 var AuthInfoStore = new Store(AppDispatcher);
 
