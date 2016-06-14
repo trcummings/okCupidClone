@@ -97,6 +97,10 @@ AuthInfoStore.__onDispatch = function (payload) {
       this.nextAuthState();
       this.__emitChange();
       break;
+    case AuthInfoConstants.IS_EMAIL_UNIQUE:
+      var isEmailUnique = payload.isEmailUnique;
+      this.__emitChange();
+      break;
     }
 };
 

@@ -31,6 +31,10 @@ var ClientActions = {
     UserAuthApiUtil.incrementAuthState();
   },
 
+  checkForUniqueEmail: function (email) {
+    UserAuthApiUtil.checkForUniqueEmail(email);
+  },
+
   // in usersApiUtil but that's weird
   signup: function (user, callback) {
     UsersApiUtil.signup(user, callback);

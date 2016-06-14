@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     get '/users/:username', to: 'users#other_user'
     get '/users/:username/photos', to: 'users#other_user_photos'
     get '/users/:username/about', to: 'users#other_user_about'
+    get '/users/emails/:email', to: 'users#check_email_uniqueness'
 
     # get :answers, only: [:index], to: 'users#other_user_answers' # not yet
 

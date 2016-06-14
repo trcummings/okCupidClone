@@ -15,6 +15,13 @@ var SignUpActions = {
     AppDispatcher.dispatch({
       actionType: AuthInfoConstants.NEXT_AUTH_STATE
     });
+  },
+
+  receiveEmailIsUnique: function (emailIsUnique) {
+    AppDispatcher.dispatch({
+      actionType: AuthInfoConstants.IS_EMAIL_UNIQUE,
+      emailIsUnique: emailIsUnique
+    });
   }
 };
 

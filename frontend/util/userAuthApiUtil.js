@@ -27,6 +27,22 @@ UserAuthApiUtil = {
 
   incrementAuthState: function () {
     SignUpActions.incrementAuthState();
+  },
+
+  checkForUniqueEmail: function (email) {
+    $.ajax({
+      url: '/api/users/emails/' + email,
+      type: 'GET',
+      dataType: 'json',
+      contentType: 'application/json',
+      success: function (emailIsUnique) {
+        SignUpActions.receiveEmailIsUnique(emailIsUnique);
+      },
+      error: function (xhr) {
+        console.log('userAuthApiUtil#checkforUniqueEmail error');
+        var errors = xhr.responseJSON;
+      }
+    });
   }
 };
 
