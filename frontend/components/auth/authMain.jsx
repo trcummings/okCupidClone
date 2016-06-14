@@ -104,16 +104,14 @@ var AuthMain = React.createClass({
           <div className="header_login">
             <span> Have an account? </span>
             <button
-              id="open_sign_in_button"
-              class="flatbutton clear dark-bg"
+              className="flatbutton"
               onClick={this.openModal}
               >
               Sign in
             </button>
 
             <button
-              id="open_sign_in_button"
-              class="flatbutton clear dark-bg"
+              className="flatbutton"
               onClick={this.signInGuest}
               >
               Guest

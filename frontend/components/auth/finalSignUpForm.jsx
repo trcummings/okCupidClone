@@ -15,10 +15,6 @@ var FinalSignUpForm = React.createClass({
     });
   },
 
-  componentDidMount: function () {
-
-  },
-
   handleSubmit: function () {
     var profile = AuthInfoStore.returnFinalizedProfile();
     ClientActions.signup(profile, function () {
@@ -80,8 +76,7 @@ var FinalSignUpForm = React.createClass({
 
           <div className="row group">
             <button
-              id="continue_button"
-              className="flatbutton green form_three_item"
+              className="flatbutton form_three_item"
               type='submit'
             >
               Done!

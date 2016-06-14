@@ -59,8 +59,7 @@ var SecondSignUpForm = React.createClass({
 
           <div className="row group">
             <button
-              id="continue_button"
-              className="flatbutton green form_two_item"
+              className="flatbutton form_two_item"
               disabled={this.state.submitStateDisabled}
               onClick={this.handleSubmit}
             >

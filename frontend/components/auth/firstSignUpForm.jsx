@@ -56,8 +56,7 @@ var FirstSignUpForm = React.createClass({
 
         <button
           type='submit'
-          id="continue_button"
-          className="flatbutton green form_one_item"
+          className="flatbutton form_one_item"
         >Continue</button>
         </form>
       </div>

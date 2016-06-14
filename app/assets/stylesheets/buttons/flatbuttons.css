@@ -1,0 +1,18 @@
+.flatbutton {
+  margin-top: 10px;
+  margin-left: 5px;
+  width: 120px;
+  height: 42px;
+  line-height: 41px;
+  font-size: 15px;
+  white-space: nowrap;
+  color: #fff;
+  text-align: center;
+  text-transform: none;
+  overflow: hidden;
+  border: 1px solid #4879c1;
+}
+
+.flatbutton:hover {
+  background-color: #9dbaf2;
+}
