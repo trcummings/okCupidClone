@@ -26,7 +26,7 @@ var BirthdateInput = React.createClass({
     });
   },
 
-  birthdateValidation: function () {
+  runValidation: function () {
     var birth_date = this.state.birth_date;
 
     if (
@@ -83,9 +83,9 @@ var BirthdateInput = React.createClass({
       <label
         className="birthdate_label text_box_item form_two_item"
         ref='birthdate_label'
-        onBlur={this.birthdateValidation}
+        onBlur={this.runValidation}
       >
-        Birthdate
+        <p>Birthdate</p>
 
         <input
           className={this.state.bdStatus}

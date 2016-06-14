@@ -44,7 +44,7 @@ var EmailInput = React.createClass({
     this.setState({ dupEmail: event.target.value });
   },
 
-  emailValidation: function () {
+  runValidation: function () {
     if (this.state.email) {
       if (this.state.uniqueEmailVerified) {
         if (this.state.email === this.state.dupEmail) {
@@ -82,23 +82,24 @@ var EmailInput = React.createClass({
 
   render: function() {
     return (
-      <label className="text_box_item form_two_item" onBlur={this.emailValidation}>
-        Email
+      <label className="text_box_item form_two_item email_input" onBlur={this.runValidation}>
+        <p>Email</p>
         <input
           className={this.state.emailStatus}
           type="text" onChange={this.handleEmailChange}
           placeholder="eg. example@url.com"
         />
+
+        <span className={"email-validity-msg " + this.state.emailErrored}>
+          {this.state.emailValidityMsg}
+        </span>
+
         <input
           className={this.state.emailStatus}
           type="text"
           onChange={this.handleDupEmailChange}
           placeholder="Confirmation email"
-          />
-
-        <span className={"email-validity-msg " + this.state.emailErrored}>
-          {this.state.emailValidityMsg}
-        </span>
+        />
       </label>
     );
   }
