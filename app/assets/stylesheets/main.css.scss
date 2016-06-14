@@ -3,7 +3,6 @@
 
   .main-header {
     height: 66px;
-
   }
 
   .main-div {
@@ -13,25 +12,19 @@
     width: 100%;
     left:0px;
     right:0px;
-    // top: 130px;
     bottom:0px;
     overflow-y:scroll;
-
   }
 
   #profile-footer {
-
-
     section {
       background: #104da1;
       position: absolute;
-
       width: 100%;
       left:0px;
       right:0px;
       top: 100%;
       bottom:0px;
-
       z-index: 90000;
     }
   }
@@ -127,6 +120,4 @@ textarea {
       box-shadow: 0 0 0 transparent;
     }
   }
-
-
 }

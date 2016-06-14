@@ -12,6 +12,7 @@
  *
  *= require_self
  *= require reset
+ *= require ./buttons/flatbuttons
  *= require ./auth/authMain
  *= require ./auth/formOne
  *= require ./auth/formTwo
