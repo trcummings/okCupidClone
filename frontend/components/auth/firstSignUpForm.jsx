@@ -6,8 +6,8 @@ var AuthInfoStore = require('../../stores/authInfoStore');
 var FirstSignUpForm = React.createClass({
   getInitialState: function () {
     return ({
-      orientation: 'Sapiosexual',
-      gender: 'Anime Enthusiast'
+      orientation: 'Straight',
+      gender: 'Woman'
     });
   },
 
@@ -40,17 +40,21 @@ var FirstSignUpForm = React.createClass({
 
           <label className="dropdown orientation form_one_item" onBlur={this.handleOrientationChange}>
             <select className='dropdown-select' onChange={this.handleOrientationChange}>
-              <option value="Sapiosexual">Sapiosexual</option>
               <option value="Straight">Straight</option>
               <option value="Gay">Gay</option>
+              <option value="Bisexual">Bisexual</option>
+              <option value="Woman Preferring">Woman Preferring</option>
+              <option value="Man Preferring">Man Preferring</option>
+              <option value="Sapiosexual">Sapiosexual</option>
             </select>
           </label>
 
         <label className="dropdown gender form_one_item" onBlur={this.handleGenderChange}>
             <select className='dropdown-select' onChange={this.handleGenderChange}>
-              <option value="Anime Enthusiast">Anime Enthusiast</option>
               <option value="Woman">Woman</option>
               <option value="Man">Man</option>
+              <option value="NonBinary">NonBinary</option>
+              <option value="Anime Enthusiast">Anime Enthusiast</option>
             </select>
           </label>
 
