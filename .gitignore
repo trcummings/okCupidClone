@@ -19,3 +19,4 @@ bundle.*
 
 .DS_Store
 .byebug_history
+/docs

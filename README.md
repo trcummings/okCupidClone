@@ -1,19 +1,18 @@
 # PerfectPair
 
-[Heroku link][heroku] **NB:** This should be a link to your production site
+![logo](https://github.com/trcummings/PerfectPair/app/assets/images/perfectpair-withshadow.png)
+
+[Heroku link][heroku] PerfectPair
 
 [heroku]: www.perfect-pair.me
 
-## Minimum Viable Product
 
 Are you a singleton and ready to mingle a ton?
 
-PerfectPair will be a full-stack web app clone of dating platform OKcupid. Its backend will sit proud with a slouch via Ruby on Rails, with a PostgreSQL database, and a dynamic frontend, frameworked via React.js using Flux architecture.
+PerfectPair is a full-stack web app clone of dating platform OKcupid. It features a Ruby on Rails, a PostgreSQL database, and a dynamic frontend, frameworked via React.js using Flux architecture.
 
 
 ## Features & Implementation
-
- **NB**: don't copy and paste any of this.  Many folks will implement similar features, and many employers will see the READMEs of a lot of a/A grads.  You must write in a way that distinguishes your README from that of other students', but use this as a guide for what topics to cover.  
 
 ### Single-Page Interface
 
@@ -41,7 +40,6 @@ Apart from the initial Auth, all pages on PerfectPair are reactive content deliv
   On the database side, the questions are joined on a question choices table, referring to the answers through a series of foreign keys. the importance and answered choices are queried based on all the questions that both you and the other user have answered!
 
   The question display is almost absurdly complex. On one single `ProfileQuestionsTab`, you can answer questions, skip a question you don't want to answer, re-answer a question, add/edit an explanation, and have it all change instantaneously!
-
 
 
 ## Future Directions for the Project

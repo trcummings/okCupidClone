@@ -35,6 +35,35 @@ UserPhoto.create!(
 )
 
 
+
+
+girl = User.create!(
+  username: 'bigcheesys',
+  password: 'password',
+  email: 'fakegirlmail@mail.urge',
+  birth_date: Date.new(1988, 04, 10),
+  country: 'America',
+  zip_code: 11221,
+  location: 'Brooklyn, NY',
+  gender: 'Woman',
+  orientation: 'Gay'
+)
+
+UserAbout.create!(
+  user_id: girl.id
+)
+
+UserPhoto.create!(
+  photo_url: 'http://media.vogue.com/r/h_480,w_480/2015/02/10/llamas-and-haircuts-llama-justin-bieber.jpg',
+  user_id: girl.id,
+  is_default: true,
+  public_id: 'hghghghgh'
+)
+
+
+
+
+
 kojima = User.create!(
   username: 'bigboss69',
   password: 'password',
@@ -127,12 +156,12 @@ q2 = Question.create!(
 
   QuestionChoice.create!(
     question_id: q2.id,
-    choice_string: "I've seen hell, and uh, that's hell, buddy"
+    choice_string: "No me gusta"
   )
 
   QuestionChoice.create!(
     question_id: q2.id,
-    choice_string: "I don't judge people by their decision to wear a fucking hat"
+    choice_string: "I don't judge people by their decision to wear a hat"
   )
 
 
@@ -159,4 +188,85 @@ q3 = Question.create!(
   QuestionChoice.create!(
     question_id: q3.id,
     choice_string: "I AM A BARBARIAN GOD. I AM THE BLOOD WHICH ENDS ALL BLOOD."
+  )
+
+
+
+q4 = Question.create!(
+  content: "Tabs or spaces?",
+  multi_select: false
+)
+
+  QuestionChoice.create!(
+    question_id: q4.id,
+    choice_string: "Tabs"
+  )
+
+  QuestionChoice.create!(
+    question_id: q4.id,
+    choice_string: "Spaces"
+  )
+
+  QuestionChoice.create!(
+    question_id: q4.id,
+    choice_string: "I dunno lol"
+  )
+
+
+
+q5 = Question.create!(
+  content: "What's your ideal date?",
+  multi_select: true
+)
+
+  QuestionChoice.create!(
+    question_id: q5.id,
+    choice_string: "A walk in the park"
+  )
+
+  QuestionChoice.create!(
+    question_id: q5.id,
+    choice_string: "Cigarette under the bridge"
+  )
+
+  QuestionChoice.create!(
+    question_id: q5.id,
+    choice_string: "A dinner in paris"
+  )
+
+  QuestionChoice.create!(
+    question_id: q5.id,
+    choice_string: "Cage match to the death"
+  )
+
+  QuestionChoice.create!(
+    question_id: q5.id,
+    choice_string: "Good luck trying to get me to leave the house, sucker!"
+  )
+
+
+
+q6 = Question.create!(
+  content: "Horror movies, yes or no?",
+  multi_select: false
+)
+
+  QuestionChoice.create!(
+    question_id: q6.id,
+    choice_string: "YES"
+  )
+
+  QuestionChoice.create!(
+    question_id: q6.id,
+    choice_string: "But I'm ascare :("
+  )
+
+  QuestionChoice.create!(
+    question_id: q6.id,
+    choice_string: "The bad question is coming...from INSIDE THE APP"
+  )
+
+  QuestionChoice.create!(
+    question_id: q6.id,
+    choice_string: "I'm thoroughly indifferent"
   )
