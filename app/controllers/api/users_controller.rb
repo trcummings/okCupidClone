@@ -69,6 +69,16 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def check_username_uniqueness
+    user = User.find_by(username: params[:username])
+
+    if user
+      render json: true
+    else
+      render json: false
+    end
+  end
+
 
   #### ABOUTS
 

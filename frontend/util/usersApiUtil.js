@@ -14,7 +14,6 @@ var UsersApiUtil = {
         callback();
       },
       error: function (xhr) {
-        debugger;
         console.log('UserApiUtil#createAccount error');
         var errors = xhr.responseJSON;
         ErrorActions.setErrors("signup", errors);
@@ -140,8 +139,6 @@ var UsersApiUtil = {
         callback();
       },
       error: function (xhr) {
-        debugger;
-        // console.log('UserApiUtil#createAccount error');
         // var errors = xhr.responseJSON;
         // ErrorActions.setErrors("signup", errors);
       }
@@ -158,8 +155,6 @@ var UsersApiUtil = {
         callback();
       },
       error: function (xhr) {
-        debugger;
-        // console.log('UserApiUtil#createAccount error');
         // var errors = xhr.responseJSON;
         // ErrorActions.setErrors("signup", errors);
       }
@@ -223,7 +218,7 @@ var UsersApiUtil = {
     } if (answer.importance === 'irrelevant') {
       answer.importance = 0;
     }
-    
+
     $.ajax({
       url: '/api/answers/' + answer.question_id,
       type: 'PATCH',

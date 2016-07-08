@@ -43,6 +43,22 @@ UserAuthApiUtil = {
         var errors = xhr.responseJSON;
       }
     });
+  },
+
+  checkForUniqueUsername: function (username, callback) {
+    $.ajax({
+      url: '/api/users/' + username + '/is_unique',
+      type: 'GET',
+      dataType: 'json',
+      contentType: 'application/json',
+      success: function (result) {
+        callback(result, username);
+      },
+      error: function (xhr) {
+        console.log('userAuthApiUtil#checkforUniqueUsername error');
+        var errors = xhr.responseJSON;
+      }
+    });
   }
 };
 

@@ -2,6 +2,7 @@ var React = require('react');
 var ClientActions = require('../../actions/clientActions');
 var HelperUtil = require('../../util/helperUtil');
 var AuthInfoStore = require('../../stores/authInfoStore');
+var UsernameInput = require('./finalSignUpFormItems/usernameInput');
 
 var FinalSignUpForm = React.createClass({
   contextTypes: {
@@ -10,25 +11,21 @@ var FinalSignUpForm = React.createClass({
 
   getInitialState: function () {
     return ({
-      username: "",
       password: ""
     });
   },
 
   handleSubmit: function () {
     var profile = AuthInfoStore.returnFinalizedProfile();
-    ClientActions.signup(profile, function () {
-      this.context.router.push("/matches");
-    }.bind(this));
-  },
 
-  handleUsernameChange: function (event) {
-    if (event.target.value !== "") {
-      AuthInfoStore.addInfoPiece('username', event.target.value);
-      this.setState({ username: event.target.value });
-    } else {
-      this.setState({ usernameValidityMsg: "You need a username!"});
-    }
+    ClientActions.signup(profile, function () {
+      ClientActions.loginWithUsername({
+        username: profile.username,
+        password: profile.password
+      }, function () {
+        this.context.router.push("/matches");
+      }.bind(this));
+    }.bind(this));
   },
 
   handlePasswordChange: function (event) {
@@ -45,20 +42,7 @@ var FinalSignUpForm = React.createClass({
       <div className='authForm'>
         <h1> Last Step! </h1>
         <form onSubmit={this.handleSubmit}>
-          <div className="row group">
-            <label className="username text_box_item form_three_item" onBlur={this.handleUsernameChange}>
-              Username
-              <input
-                type="text"
-                onChange={this.handleUsernameChange}
-                placeholder="This will be public"
-                />
-            </label>
-
-            <span className="username-validity-msg">
-              {this.state.usernameValidityMsg}
-            </span>
-          </div>
+          <UsernameInput />
 
           <div className="row group">
             <label className="password text_box_item form_three_item" onBlur={this.handlePasswordChange}>
