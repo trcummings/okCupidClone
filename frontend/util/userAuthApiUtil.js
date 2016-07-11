@@ -37,10 +37,6 @@ UserAuthApiUtil = {
       contentType: 'application/json',
       success: function (emailIsUnique) {
         SignUpActions.receiveEmailIsUnique(emailIsUnique);
-      },
-      error: function (xhr) {
-        console.log('userAuthApiUtil#checkforUniqueEmail error');
-        var errors = xhr.responseJSON;
       }
     });
   },
@@ -53,10 +49,6 @@ UserAuthApiUtil = {
       contentType: 'application/json',
       success: function (result) {
         callback(result, username);
-      },
-      error: function (xhr) {
-        console.log('userAuthApiUtil#checkforUniqueUsername error');
-        var errors = xhr.responseJSON;
       }
     });
   }

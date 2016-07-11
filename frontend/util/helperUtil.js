@@ -115,12 +115,6 @@ var HelperUtil = {
       contentType: 'application/json',
       success: function (question) {
         callback(question);
-      },
-      error: function (xhr) {
-        debugger;
-        // console.log('UserApiUtil#createAccount error');
-        // var errors = xhr.responseJSON;
-        // ErrorActions.setErrors("signup", errors);
       }
     });
   }

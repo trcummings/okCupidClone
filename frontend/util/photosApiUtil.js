@@ -17,7 +17,6 @@ var PhotosApiUtil = {
         ServerActions.receiveUploadedPhoto(image);
       },
       error: function (xhr) {
-        console.log("Photo error in PhotosApiUtil#uploadImage");
         var errors = xhr.responseJSON;
 	      ErrorActions.setErrors("photo_upload", errors);
       }
@@ -33,7 +32,6 @@ var PhotosApiUtil = {
         ServerActions.receiveCurrentUserPhotos(images);
       },
       error: function (xhr) {
-        console.log("Photo error in PhotosApiUtil#getCurrentUserPhotos");
         var errors = xhr.responseJSON;
 	      ErrorActions.setErrors("photo_get", errors);
       }
@@ -49,7 +47,6 @@ var PhotosApiUtil = {
         ServerActions.receiveOtherUserPics(images);
       },
       error: function (xhr) {
-        console.log("Photo error in PhotosApiUtil#getOtherUserPics");
         var errors = xhr.responseJSON;
         ErrorActions.setErrors("photo_get", errors);
       }

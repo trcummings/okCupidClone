@@ -15,16 +15,12 @@ var FinalSignUpForm = React.createClass({
     });
   },
 
-  handleSubmit: function () {
+  handleSubmit: function (event) {
+    event.preventDefault()
     var profile = AuthInfoStore.returnFinalizedProfile();
 
     ClientActions.signup(profile, function () {
-      ClientActions.loginWithUsername({
-        username: profile.username,
-        password: profile.password
-      }, function () {
-        this.context.router.push("/matches");
-      }.bind(this));
+      this.context.router.push("/matches");
     }.bind(this));
   },
 
