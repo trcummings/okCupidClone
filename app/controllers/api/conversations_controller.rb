@@ -1,5 +1,3 @@
-require 'byebug'
-
 class Api::ConversationsController < ApplicationController
   def index
     @convos = current_user.conversations
