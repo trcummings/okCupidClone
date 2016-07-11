@@ -29,6 +29,10 @@ class User < ActiveRecord::Base
 
   after_initialize :ensure_session_token
 
+  # DO THIS FOR MORE ASSOCS
+  # has_one :latest_post, -> { order(created_at: :desc).limit(1) }, class_name: 'Post'
+
+
   has_many(
     :people_this_user_liked,
     class_name: "Like",
@@ -109,10 +113,12 @@ class User < ActiveRecord::Base
 
 
   def conversations
-    conversations = Conversation.where(sender_id: self.id) +
-                    Conversation.where(receiver_id: self.id)
-
-    conversations
+    Conversation
+      .includes(:messages, :sender, :receiver)
+      .where(sender_id: self.id) +
+     Conversation
+      .includes(:messages, :sender, :receiver)
+      .where(receiver_id: self.id)
   end
 
   def to_param
