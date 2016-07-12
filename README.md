@@ -2,7 +2,7 @@
 
 ![PerfectPair][logo]
 
-[logo]: https://github.com/trcummings/PerfectPair/app/assets/images/perfectpair-withshadow.png "Perfect Pair Logo"
+[logo]: https://github.com/trcummings/PerfectPair/blob/master/app/assets/images/perfectpair-withshadow.png "Perfect Pair Logo"
 
 Are you a singleton and ready to mingle a ton?
 
