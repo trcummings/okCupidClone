@@ -6,15 +6,13 @@
 
 Are you a singleton and ready to mingle a ton?
 
-PerfectPair is a full-stack web app clone of dating platform OKcupid. It features a Ruby on Rails, a PostgreSQL database, and a dynamic frontend, frameworked via React.js using Flux architecture.
+PerfectPair is a full-stack web app clone of dating platform OKcupid. It features a Ruby on Rails, a PostgreSQL database, and a dynamic frontend via React.js and Flux architecture.
 
 * [Live Here!][heroku]
 * [My Linkedin][linkedin]
 * [My Portfolio Page][portfolio]
 
-[heroku]: www.perfect-pair.me
-[linkedin]: www.linkedin.com/in/thomsencummings
-[portfolio]: www.thomsencummings.com
+[heroku]: https://www.perfect-pair.me
 
 ## Features & Implementation
 
