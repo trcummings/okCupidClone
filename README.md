@@ -1,6 +1,8 @@
 # PerfectPair
 
-[[https://github.com/trcummings/PerfectPair/app/assets/images/perfectpair-withshadow.png]]
+![PerfectPair][logo]
+
+[logo]: https://github.com/trcummings/PerfectPair/app/assets/images/perfectpair-withshadow.png "Perfect Pair Logo"
 
 Are you a singleton and ready to mingle a ton?
 
