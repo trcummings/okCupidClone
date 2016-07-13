@@ -100,23 +100,6 @@ var LikesMain = React.createClass({
     } else {
       thumbnailImage = window.anon;
     }
-    // var likeStar;
-    // var userLikedText;
-    //
-    // debugger;
-    //
-    // if (currentUser.mutual_likes) {
-    //   likeStar = (
-    //     <div className='circle-in-star'>
-    //       <i className="fa fa-star" aria-hidden="true"></i>
-    //       <i className="fa fa-circle-thin" aria-hidden="true"></i>
-    //     </div>
-    //   );
-    // } else {
-    //   likeStar = (<div />);
-    // }
-    // <i className="fa fa-star" aria-hidden="true"></i>
-    // <span>hgghhhh</span>
 
     return (
       <div className='user-item group'

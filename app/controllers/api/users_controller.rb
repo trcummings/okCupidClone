@@ -161,7 +161,6 @@ class Api::UsersController < ApplicationController
   def get_conversation
     receiver = User.find_by(username: params[:username])
     @convo = User.get_convo(current_user.id, receiver.id)
-    # debugger
 
     if @convo.valid?
       render 'api/conversations/show'

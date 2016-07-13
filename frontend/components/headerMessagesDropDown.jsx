@@ -17,29 +17,11 @@ var HeaderMessagesDropDown = React.createClass({
       this.setState({ allConvos: MessageStore.allConversations() });
     }.bind(this));
 
-    // this.pushers = {};
-    // var channel;
-
-    // this.state.allConvos.forEach(function (convo, index) {
-    //   this.pushers[index] = new Pusher('3d1017ad258d309a7dff', {
-    //     encrypted: true
-    //   });
-    //
-    //   channel = this.pushers[index].subscribe(convo.conversation_name);
-    //   channel.bind('message_sent', function(data) {
-    //     debugger;
-    //     ClientActions.getConversation(convo.conversation_name);
-    //   });
-    // })
-
     ClientActions.getAllConvos();
   },
 
   componentWillUnmount: function () {
     this.messageListener.remove();
-    // this.state.allConvos.forEach(function (convo, index) {
-    //   this.pushers[index].unsubscribe(convo.conversation_name)
-    // });
   },
 
   openMsgWindow: function (receiver, event) {

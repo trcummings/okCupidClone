@@ -29,12 +29,6 @@ var UsersApiUtil = {
       success: function (users) {
         ServerActions.receiveAllPossibleMatches(users);
       }
-      // error: function (xhr) {
-      //   debugger;
-      //   console.log('UserApiUtil#createAccount error');
-      //   var errors = xhr.responseJSON;
-      //   ErrorActions.setErrors("signup", errors);
-      // }
     });
   },
 
@@ -44,15 +38,8 @@ var UsersApiUtil = {
       type: 'GET',
       dataType: 'json',
       success: function (user) {
-        // debugger;
         ServerActions.receiveSingleUser(user);
       }
-      // error: function (xhr) {
-      //   debugger;
-      //   // console.log('UserApiUtil#createAccount error');
-      //   // var errors = xhr.responseJSON;
-      //   // ErrorActions.setErrors("signup", errors);
-      // }
     });
   },
 
@@ -68,8 +55,6 @@ var UsersApiUtil = {
         callback();
       },
       error: function (xhr) {
-        debugger;
-        console.log('UserApiUtil#updateUser error');
         var errors = xhr.responseJSON;
         ErrorActions.setErrors("updateUser", errors);
       }
@@ -84,12 +69,6 @@ var UsersApiUtil = {
       success: function (userAbout) {
         ServerActions.receiveCurrentUserAbout(userAbout);
       }
-      // error: function (xhr) {
-      //   debugger;
-      //   // console.log('UserApiUtil#createAccount error');
-      //   // var errors = xhr.responseJSON;
-      //   // ErrorActions.setErrors("signup", errors);
-      // }
     });
   },
 
@@ -101,12 +80,6 @@ var UsersApiUtil = {
       success: function (userAbout) {
         ServerActions.receiveOtherUserAbout(userAbout);
       }
-      // error: function (xhr) {
-      //   debugger;
-      //   // console.log('UserApiUtil#createAccount error');
-      //   // var errors = xhr.responseJSON;
-      //   // ErrorActions.setErrors("signup", errors);
-      // }
     });
   },
 
@@ -119,12 +92,6 @@ var UsersApiUtil = {
       success: function (userAbout) {
         ServerActions.receiveCurrentUserAbout(userAbout);
       }
-      // error: function (xhr) {
-      //   debugger;
-      //   // console.log('UserApiUtil#createAccount error');
-      //   // var errors = xhr.responseJSON;
-      //   // ErrorActions.setErrors("signup", errors);
-      // }
     });
   },
 
@@ -138,10 +105,6 @@ var UsersApiUtil = {
         ServerActions.addUserToLikes(otherUser);
         callback();
       },
-      error: function (xhr) {
-        // var errors = xhr.responseJSON;
-        // ErrorActions.setErrors("signup", errors);
-      }
     });
   },
 
@@ -154,10 +117,6 @@ var UsersApiUtil = {
         ServerActions.removeUserFromLikes(otherUser);
         callback();
       },
-      error: function (xhr) {
-        // var errors = xhr.responseJSON;
-        // ErrorActions.setErrors("signup", errors);
-      }
     });
   },
 
