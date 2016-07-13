@@ -83,8 +83,6 @@ var ClientActions = {
     UsersApiUtil.unlikeUser(otherUser, callback);
   },
 
-  ///unfinished
-
   answerQuestion: function (answer, callback) {
     UsersApiUtil.answerQuestion(answer, callback);
   },
@@ -113,7 +111,7 @@ var ClientActions = {
   },
 
 
-  /// some shit for messages idk
+  /// messages Actions
   getAllConvos: function () {
     MessageApiUtil.fetchAllConversations();
   },

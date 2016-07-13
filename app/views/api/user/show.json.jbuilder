@@ -21,7 +21,7 @@ json.mutual_likes do
 end
 
 json.answers do
-  json.partial! 'api/answers/answers', answers: @user.answers
+  json.partial! 'api/answers/answers', answers: @user.answers.includes(:question, :question_choices)
 end
 
 json.conversations do

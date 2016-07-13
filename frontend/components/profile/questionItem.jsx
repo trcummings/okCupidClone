@@ -52,8 +52,6 @@ var QuestionItem = React.createClass({
         });
       }.bind(this));
     }.bind(this));
-
-    ClientActions.getAllAnswers();
   },
 
   componentWillUnmount: function () {

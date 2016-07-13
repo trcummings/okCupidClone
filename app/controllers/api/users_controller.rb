@@ -107,7 +107,7 @@ class Api::UsersController < ApplicationController
 
   def get_all_answers
     @user = User.find(current_user.id)
-    @answers = @user.answers
+    @answers = @user.answers.includes(:question, :question_choices)
 
     render 'api/answers/index'
   end

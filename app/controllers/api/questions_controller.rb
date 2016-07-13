@@ -1,6 +1,7 @@
 class Api::QuestionsController < ApplicationController
   def random
-    @question = Question.random_question(current_user.answers)
+    user_answers = current_user.answers.includes(:question)
+    @question = Question.random_question(user_answers)
     render 'api/questions/show'
   end
 end

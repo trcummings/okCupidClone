@@ -182,7 +182,7 @@ class User < ActiveRecord::Base
 
   # calculate match percentage w/current user
   def match_percentage(other_username)
-    other_user = User.find_by(username: other_username)
+    other_user = User.includes(:answers).find_by(username: other_username)
     my_total = 0
     my_running_total = 0
     their_total = 0

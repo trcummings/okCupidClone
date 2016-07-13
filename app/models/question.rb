@@ -33,7 +33,7 @@ class Question < ActiveRecord::Base
       user_questions.push(answer.question)
     end
 
-    potential_questions = Question.all - user_questions
+    potential_questions = Question.includes(:question_choices).all - user_questions
 
     if potential_questions.length > 0
       potential_questions.sample
