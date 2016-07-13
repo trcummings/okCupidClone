@@ -193,11 +193,3 @@ var ProfileMain = React.createClass({
 });
 
 module.exports = ProfileMain;
-
-// <li
-//   value={1}
-//   onClick={this.selectTab}
-//   id={this.state.tabTwoSelected}
-//   >
-//   Photos
-// </li>

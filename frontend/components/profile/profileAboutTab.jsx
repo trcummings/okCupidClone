@@ -170,14 +170,4 @@ var ProfileAboutTab = React.createClass({
 
 });
 
-// <div id='looking-for'>
-//   <h1>I'm looking for</h1>
-//
-// </div>
-//
-// <div id='details'>
-//   <h1>My details</h1>
-//
-// </div>
-
 module.exports = ProfileAboutTab;

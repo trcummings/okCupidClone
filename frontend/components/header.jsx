@@ -113,12 +113,3 @@ var Header = React.createClass({
 });
 
 module.exports = Header;
-
-// <li className='glyph' onClick={this.handleVisitorsClick} >
-//   <i className="fa fa-users fa-2" aria-hidden="true"></i>
-//   <p id='visitors-glyph'>
-//     <i className="fa fa-caret-up" aria-hidden="true"></i>
-//     <span className='poptext'>Visitors</span>
-//     <span className='blankbox'> </span>
-//   </p>
-// </li>

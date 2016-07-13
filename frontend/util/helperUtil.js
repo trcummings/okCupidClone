@@ -118,9 +118,6 @@ var HelperUtil = {
       }
     });
   }
-
 };
-
-// <option value="Anime Enthusiast">Anime Enthusiast</option>
 
 module.exports = HelperUtil;

@@ -1,7 +1,6 @@
 var Store = require('flux/utils').Store;
 var AppDispatcher = require('../dispatcher/dispatcher');
 var PhotoConstants = require('../constants/photoConstants');
-// var SessionStore = require('./sessionStore');
 
 var _currentUserPhotos = [];
 var _otherUserPhotos = [];

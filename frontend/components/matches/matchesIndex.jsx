@@ -54,14 +54,3 @@ var MatchesIndex = React.createClass({
 });
 
 module.exports = MatchesIndex;
-
-// <label
-//   id='sort-by-dropdown'
-//   onBlur={this.handleSortByChange}>
-//   <span>Sort by </span>
-//   <select onChange={this.handleSortByChange}>
-//     <option value="Special Blend">Special Blend</option>
-//     <option value="Match Percentage">Match Percentage</option>
-//     <option value="How Many Mouths and Feets">How Many Mouths and Feets</option>
-//   </select>
-// </label>

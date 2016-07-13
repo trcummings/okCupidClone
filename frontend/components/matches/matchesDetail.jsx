@@ -130,18 +130,4 @@ var MatchDetail = React.createClass({
 
 });
 
-// {
-//   currentUserPhotos.map(function (photo, index) {
-//     return (
-//       <img
-//         key={index}
-//         className={'user-photo'}
-//         src={photo.photo_url}
-//         alt={'Photo of ' + currentUser.username }
-//       />
-//     );
-//   })
-// }
-
-
 module.exports = MatchDetail;
