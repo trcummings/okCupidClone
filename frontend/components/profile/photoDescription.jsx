@@ -46,7 +46,7 @@ var PhotoDescription = React.createClass({
   renderDescription: function () {
     result = [];
 
-    if (this.props.description) {
+    if (this.props.photo.description) {
       result.push(<p key={0}>{this.props.photo.description}</p>);
       result.push(<button key={1} onClick={this.toggleEditing}>edit description</button>);
     } else {
@@ -65,7 +65,7 @@ var PhotoDescription = React.createClass({
             <input
               type='text'
               onChange={this.handleDescriptionChange}
-              defaultValue={this.props.description}
+              defaultValue={this.props.photo.description}
               />
             <button onClick={this.handleSave}>Save</button>
             <button onClick={this.handleCancel}>Cancel</button>

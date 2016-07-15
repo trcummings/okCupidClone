@@ -10,6 +10,16 @@ var ProfilePicturesTab = React.createClass({
     });
   },
 
+  componentDidMount: function () {
+    this.photoListener = PhotoStore.addListener(function () {
+      this.setState({ userPhotos: PhotoStore.returnCurrentUserPhotos() });
+    }.bind(this));
+  },
+
+  componentWillUnmount: function () {
+    this.photoListener.remove();
+  },
+
   renderPhotos: function () {
     return this.state.photos.map(function (photo, index) {
       return (

@@ -17,8 +17,8 @@ PhotoStore.addPhotoToCurrentUserPhotos = function (image) {
 
 PhotoStore.updateDescription = function (image) {
   _currentUserPhotos.forEach(function (photo, index) {
-    if (photo.photo_id === image.photo.photo_id) {
-      photo.description = image.photo.description;
+    if (photo.photo_id === image.photo_id) {
+      photo.description = image.description;
     }
   });
 };
