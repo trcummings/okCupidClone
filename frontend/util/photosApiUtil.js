@@ -2,19 +2,17 @@ var ServerActions = require('../actions/serverActions'),
     ErrorActions = require('../actions/errorActions');
 
 var PhotosApiUtil = {
-  uploadImage: function (photo) {
+  uploadImage: function (photo, callback) {
     $.ajax({
       url: '/api/user/photos',
       method: 'POST',
+      processData: false,
+      contentType: false,
       dataType: 'json',
-      data: {
-        user_photo: {
-          photo_url: photo.url,
-          public_id: photo.public_id
-        }
-      },
+      data: photo,
       success: function (image) {
         ServerActions.receiveUploadedPhoto(image);
+        callback();
       },
       error: function (xhr) {
         var errors = xhr.responseJSON;

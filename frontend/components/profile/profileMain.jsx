@@ -91,16 +91,20 @@ var ProfileMain = React.createClass({
     return Tabs[this.state.selectedTab]();
   },
 
-  handlePhotoAddClick: function (event) {
-    event.preventDefault();
+  addPhotoToForm: function (event) {
+    var reader = new FileReader();
+    var file = event.target.files[0];
+    var formData = new FormData();
 
-    cloudinary.openUploadWidget(
-      window.cloudinary_options,
-      function (error, images) {
-        if (images) {
-          ClientActions.uploadImage(images[0]);
-        }
-    });
+
+    reader.onloadend = function () {
+      ClientActions.uploadImage(formData, this.resetForm);
+    }.bind(this);
+
+    if (file) {
+      reader.readAsDataURL(file);
+      formData.append("photo[image]", file);
+    }
   },
 
   render: function () {
@@ -146,9 +150,15 @@ var ProfileMain = React.createClass({
           <div id='tabbed-heading'>
             <div id='profile-thumbs' className='group'>
               {photoFunction(currentUserPhotos, currentUser)}
-              <button
-                id='add-photo-button'
-                onClick={this.handlePhotoAddClick}>Add Photo</button>
+              <form id='add-photo-button'>
+                <label>
+                  Add Photo
+                  <input
+                    type='file'
+                    name='user_photo[image_url]'
+                    onChange={this.addPhotoToForm} />
+                </label>
+              </form>
             </div>
 
             <ul className='page-tabs'>
@@ -158,6 +168,14 @@ var ProfileMain = React.createClass({
                 id={this.state.tabOneSelected}
                 >
                 About
+              </li>
+
+              <li
+                value={1}
+                onClick={this.selectTab}
+                id={this.state.tabTwoSelected}
+                >
+                Photos
               </li>
 
 

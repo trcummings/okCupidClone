@@ -172,7 +172,7 @@ class User < ActiveRecord::Base
     if self.photos.length > 0
       self.photos.each do |photo|
         if photo.is_default
-          def_photo_url = photo.photo_url
+          def_photo_url = photo.image.url
         end
       end
     end

@@ -97,8 +97,8 @@ var ClientActions = {
 
   /// photosApiUtil
 
-  uploadImage: function (photo) {
-    PhotosApiUtil.uploadImage(photo);
+  uploadImage: function (photo, callback) {
+    PhotosApiUtil.uploadImage(photo, callback);
   },
 
   getCurrentUserPhotos: function () {

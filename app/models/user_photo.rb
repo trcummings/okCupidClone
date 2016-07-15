@@ -2,18 +2,23 @@
 #
 # Table name: user_photos
 #
-#  id          :integer          not null, primary key
-#  user_id     :integer          not null
-#  photo_url   :string           not null
-#  description :string
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  is_default  :boolean          default(TRUE)
-#  public_id   :string           not null
+#  id                 :integer          not null, primary key
+#  user_id            :integer          not null
+#  description        :string
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  is_default         :boolean          default(TRUE)
+#  image_file_name    :string
+#  image_content_type :string
+#  image_file_size    :integer
+#  image_updated_at   :datetime
 #
 
 class UserPhoto < ActiveRecord::Base
-  validates :user_id, :photo_url, :public_id, presence: true
+  has_attached_file :image, default_url: "assets/images/anon.png"
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+
+  validates :user_id, presence: true
 
   belongs_to(
     :user,

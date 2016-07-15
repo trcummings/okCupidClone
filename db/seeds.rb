@@ -1,11 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
 User.destroy_all
 UserAbout.destroy_all
 Question.destroy_all
@@ -27,16 +19,6 @@ UserAbout.create!(
   user_id: thomsen.id
 )
 
-UserPhoto.create!(
-  photo_url: 'http://s3-us-west-2.amazonaws.com/aa-progress-tracker/students/avatars/000/001/198/medium/Thomsen_Cummings.jpg?1460493868',
-  user_id: thomsen.id,
-  is_default: true,
-  public_id: 'ghhh'
-)
-
-
-
-
 girl = User.create!(
   username: 'bigcheesys',
   password: 'password',
@@ -53,17 +35,6 @@ UserAbout.create!(
   user_id: girl.id
 )
 
-UserPhoto.create!(
-  photo_url: 'http://media.vogue.com/r/h_480,w_480/2015/02/10/llamas-and-haircuts-llama-justin-bieber.jpg',
-  user_id: girl.id,
-  is_default: true,
-  public_id: 'hghghghgh'
-)
-
-
-
-
-
 kojima = User.create!(
   username: 'bigboss69',
   password: 'password',
@@ -78,13 +49,6 @@ kojima = User.create!(
 
 UserAbout.create!(
   user_id: kojima.id
-)
-
-UserPhoto.create!(
-  photo_url: 'http://vrworld.com/wp-content/uploads/2015/03/Hideo-Kojima.jpg',
-  user_id: kojima.id,
-  is_default: true,
-  public_id: 'hggh'
 )
 
 #### GUEST ACCOUNT
@@ -110,13 +74,6 @@ UserAbout.create!(
   thinking_about: '',
   typical_friday: '',
   message_me_if: ''
-)
-
-UserPhoto.create!(
-  photo_url: 'http://cdn.computerhope.com/hacker.jpg',
-  user_id: ok_computer.id,
-  is_default: true,
-  public_id: 'ayylmao'
 )
 
 #########

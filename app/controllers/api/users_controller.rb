@@ -127,13 +127,11 @@ class Api::UsersController < ApplicationController
   #### PHOTOS
 
   def add_photo
-    @photo = UserPhoto.new(
-      user_id: current_user.id,
-      photo_url: photo_params[:photo_url],
-      public_id: photo_params[:public_id]
-    )
+    @photo = UserPhoto.new(user_id: current_user.id)
 
     if @photo.save
+      @photo.image = photo_params[:image]
+      @photo.save!
       current_user.undefault_other_photos(@photo.id)
 
       render 'api/user_photos/show'
@@ -210,7 +208,7 @@ class Api::UsersController < ApplicationController
   end
 
   def photo_params
-    params.require(:user_photo).permit(:photo_url, :description, :public_id)
+    params.require(:photo).permit(:image)
   end
 
   def other_user_photo_params
