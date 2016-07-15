@@ -27,6 +27,13 @@ var ServerActions = {
     });
   },
 
+  receiveUpdatedPhotoDescription: function (image) {
+    AppDispatcher.dispatch({
+      actionType: PhotoConstants.UPDATE_DESCRIPTION,
+      image: image
+    })
+  },
+
   receiveSingleUser: function (user) {
     AppDispatcher.dispatch({
       actionType: UserConstants.RECEIVE_SINGLE_USER,

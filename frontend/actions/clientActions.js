@@ -105,6 +105,9 @@ var ClientActions = {
     PhotosApiUtil.getCurrentUserPhotos();
   },
 
+  updatePhotoDescription: function (options) {
+    PhotosApiUtil.updatePhotoDescription(options);
+  },
 
   getOtherUserPics: function (username) {
     PhotosApiUtil.getOtherUserPics(username);

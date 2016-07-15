@@ -21,6 +21,25 @@ var PhotosApiUtil = {
     });
   },
 
+  updatePhotoDescription: function (options) {
+    $.ajax({
+      url: '/api/user/photos',
+      method: 'PATCH',
+      dataType: 'json',
+      data: { photo: {
+        photo_id: options.photo.photo_id,
+        description: options.newDescription
+      } },
+      success: function (image) {
+        ServerActions.receiveUpdatedPhotoDescription(image);
+      },
+      error: function (xhr) {
+        var errors = xhr.responseJSON;
+	      ErrorActions.setErrors("photo_update", errors);
+      }
+    });
+  },
+
   getCurrentUserPhotos: function () {
     $.ajax({
       url: '/api/user/photos',

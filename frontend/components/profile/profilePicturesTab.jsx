@@ -1,6 +1,7 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
 var PhotoStore = require('../../stores/photoStore');
+var PhotoDescription = require('./photoDescription');
 
 var ProfilePicturesTab = React.createClass({
   getInitialState: function () {
@@ -14,7 +15,7 @@ var ProfilePicturesTab = React.createClass({
       return (
         <li key={index}>
           <img src={photo.photo_url} />
-          <p>{photo.description}</p>
+          <PhotoDescription photo={photo} />
         </li>
       );
     });

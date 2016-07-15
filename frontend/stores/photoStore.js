@@ -15,6 +15,14 @@ PhotoStore.addPhotoToCurrentUserPhotos = function (image) {
   _currentUserPhotos.push(image);
 };
 
+PhotoStore.updateDescription = function (image) {
+  _currentUserPhotos.forEach(function (photo, index) {
+    if (photo.photo_id === image.photo.photo_id) {
+      photo.description = image.photo.description;
+    }
+  });
+};
+
 PhotoStore.otherUserDefaultProfilePic = function () {
   var desiredPhoto = {};
 
@@ -47,6 +55,10 @@ PhotoStore.__onDispatch = function (payload) {
       break;
     case PhotoConstants.OTHER_USER_PHOTOS:
       _otherUserPhotos = payload.images;
+      this.__emitChange();
+      break;
+    case PhotoConstants.UPDATE_DESCRIPTION:
+      this.updateDescription(payload.image);
       this.__emitChange();
       break;
     }

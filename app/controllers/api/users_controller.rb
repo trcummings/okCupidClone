@@ -147,6 +147,16 @@ class Api::UsersController < ApplicationController
     render 'api/user_photos/index'
   end
 
+  def update_photo_description
+    @photo = UserPhoto.find_by(id: photo_params[:photo_id])
+    @photo.description = photo_params[:description]
+
+    if @photo.save
+      render 'api/user_photos/show'
+    else
+      render json: { base: ["Sumthin wrong"] }, status: 401
+    end
+  end
 
   def other_user_photos
     @user = User.find_by(username: params[:username])
@@ -208,7 +218,7 @@ class Api::UsersController < ApplicationController
   end
 
   def photo_params
-    params.require(:photo).permit(:image)
+    params.require(:photo).permit(:image, :photo_id, :description)
   end
 
   def other_user_photo_params

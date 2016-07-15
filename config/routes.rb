@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
       get '/photos', to: 'users#all_photos' ####
       post '/photos', to: 'users#add_photo' ####
+      patch '/photos', to: 'users#update_photo_description' ####
       # delete '/photos/:id', to: 'user#delete_photo' #not yet
 
       get '/answers', to: 'users#get_all_answers'
