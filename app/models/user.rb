@@ -168,9 +168,10 @@ class User < ActiveRecord::Base
 
   def default_photo_url
     def_photo_url = ''
+    my_photos = User.includes(:photos).find(self.id).photos
 
-    if self.photos.length > 0
-      self.photos.each do |photo|
+    if my_photos.length > 0
+      my_photos.each do |photo|
         if photo.is_default
           def_photo_url = photo.image.url
         end

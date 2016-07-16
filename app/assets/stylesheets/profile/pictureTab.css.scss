@@ -1,7 +1,76 @@
 #pictures-tab {
   min-height: 800px;
+  color: #5e6573;
 
+  section {
+    margin-bottom: 10px;
 
+    button {
+      position: relative;
+      float: right;
+    }
 
-  
+    button:hover {
+      color: #474d59;
+    }
+  }
+
+  p {
+    font-style: italic;
+    padding: 5px;
+    display: inline;
+  }
+
+  form {
+    padding: 10px;
+    
+    textarea {
+      display: block;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        width: 400px;
+        min-height: 70px;
+        border: 1px solid #ccd0d9;
+        border-radius: 2px;
+        padding: 20px;
+        color: #5e6573;
+    }
+
+    .save-button {
+      width: 120px;
+      height: 42px;
+      line-height: 41px;
+      font-size: 15px;
+      white-space: nowrap;
+      color: #fff;
+      text-align: center;
+      text-transform: none;
+      overflow: hidden;
+      border-radius: 2px;
+      background-color: #3260c7;
+    }
+
+    .save-button:hover {
+      background-color: #9dbaf2;
+    }
+
+    .cancel-button:hover {
+      background-color: #9dbaf2;
+    }
+
+    .cancel-button {
+      margin-left: 10px;
+      width: 120px;
+      height: 42px;
+      line-height: 41px;
+      font-size: 15px;
+      white-space: nowrap;
+      text-align: center;
+      text-transform: none;
+      overflow: hidden;
+      border-radius: 2px;
+      border: 1px solid #ccc;
+      background-color: #fff;
+    }
+  }
 }

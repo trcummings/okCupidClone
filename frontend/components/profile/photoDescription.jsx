@@ -59,16 +59,15 @@ var PhotoDescription = React.createClass({
   render: function () {
     if (this.state.editing) {
       return (
-        <form>
+        <form >
           <label>
             Description
-            <input
-              type='text'
+            <textarea
               onChange={this.handleDescriptionChange}
               defaultValue={this.props.photo.description}
               />
-            <button onClick={this.handleSave}>Save</button>
-            <button onClick={this.handleCancel}>Cancel</button>
+            <button className='save-button' onClick={this.handleSave}>Save</button>
+            <button className='cancel-button' onClick={this.handleCancel}>Cancel</button>
           </label>
         </form>
       );

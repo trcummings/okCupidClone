@@ -6,13 +6,58 @@ var LikeToggle = require('../widgetButtons/likeToggle');
 var PhotoStore = require('../../stores/photoStore');
 var SessionStore = require('../../stores/sessionStore');
 var MessageButton = require('../messages/messageButton');
+var Modal = require("react-modal");
+
+
+var modalStyle = {
+  overlay : {
+    position          : 'fixed',
+    top               : 0,
+    left              : 0,
+    right             : 0,
+    bottom            : 0,
+    backgroundColor   : 'rgba(0, 0, 0, 0.60)',
+    zIndex            : 1000000
+  },
+  content : {
+    align: 'center',
+    display: 'block',
+    position: 'relative',
+    width: '270px',
+    height: '400px',
+    top: '80px',
+    marginBottom: '60px',
+    marginLeft: '-155px',
+    fontSize: '13px',
+    textAlign: 'center',
+    left: '50%',
+    padding: '10px',
+    background                 : '#fff',
+    overflow                   : 'auto',
+    WebkitOverflowScrolling    : 'touch',
+    borderRadius               : '8px',
+    outline                    : 'none',
+  }
+}
+
 
 var MatchDetail = React.createClass({
   getInitialState: function () {
+    Modal.setAppElement(document.body);
+
     return {
       viewedUser: UserStore.viewedUser(),
-      theirPhotos: PhotoStore.otherUserAllPhotos()
+      theirPhotos: PhotoStore.otherUserAllPhotos(),
+      modalOpen: false
     };
+  },
+
+  closeModal: function() {
+    this.setState({ modalOpen: false });
+  },
+
+  openModal: function () {
+    this.setState({ modalOpen: true });
   },
 
   componentDidMount: function () {
@@ -87,10 +132,20 @@ var MatchDetail = React.createClass({
             <div id='viewed-user-content' className='group'>
               <div id='viewed-user-thumbs'>
                 <img
+                  onClick={this.openModal}
                   src={profilePhoto}
                   alt={'A picture of' + thisUser.username}
                 />
               </div>
+
+              <Modal
+                isOpen={this.state.modalOpen}
+                onRequestClose={this.closeModal}
+                style={modalStyle}
+                ref='popup'
+              >
+                lmao brah u had said 2 me?
+              </Modal>
 
               <div id='basic-information'>
                 <h1 id='user-name'>{thisUser.username}</h1>
