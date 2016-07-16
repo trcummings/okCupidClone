@@ -7,6 +7,7 @@ var PhotoStore = require('../../stores/photoStore');
 var SessionStore = require('../../stores/sessionStore');
 var MessageButton = require('../messages/messageButton');
 var Modal = require("react-modal");
+var MatchPhotoModal = require('./matchPhotoModal');
 
 
 var modalStyle = {
@@ -32,11 +33,9 @@ var modalStyle = {
     textAlign: 'center',
     left: '50%',
     padding: '10px',
-    background                 : '#fff',
     overflow                   : 'auto',
     WebkitOverflowScrolling    : 'touch',
-    borderRadius               : '8px',
-    outline                    : 'none',
+    outline                    : 'none'
   }
 }
 
@@ -144,7 +143,7 @@ var MatchDetail = React.createClass({
                 style={modalStyle}
                 ref='popup'
               >
-                lmao brah u had said 2 me?
+                <MatchPhotoModal photos={this.state.theirPhotos}/>
               </Modal>
 
               <div id='basic-information'>
