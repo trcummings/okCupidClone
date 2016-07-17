@@ -23,7 +23,7 @@
 
   form {
     padding: 10px;
-    
+
     textarea {
       display: block;
         margin-top: 20px;
@@ -65,12 +65,54 @@
       line-height: 41px;
       font-size: 15px;
       white-space: nowrap;
-      text-align: center;
       text-transform: none;
       overflow: hidden;
       border-radius: 2px;
       border: 1px solid #ccc;
       background-color: #fff;
     }
+  }
+}
+
+#pictures-modal {
+  position: relative;
+
+  p {
+    padding-top: 10px;
+    font-family: 'Open Sans';
+    font-size: 16px;
+    font-style: italic;
+  }
+
+  div {
+    position: absolute;
+    font-size: 6em;
+    top: 200px;
+
+    .left {
+      min-width: 250px;
+      float: left;
+      right: 100%;
+      display: none;
+      text-align: left;
+    }
+
+    .right {
+      min-width: 250px;
+      float: right;
+      right: 0px;
+      display: none;
+      text-align: right;
+    }
+  }
+}
+
+#pictures-modal:hover {
+  .left {
+    display: inline;
+  }
+
+  .right {
+    display: inline;
   }
 }

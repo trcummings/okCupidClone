@@ -24,15 +24,14 @@ var modalStyle = {
     align: 'center',
     display: 'block',
     position: 'relative',
-    width: '270px',
-    height: '400px',
+    width: '500px',
     top: '80px',
-    marginBottom: '60px',
-    marginLeft: '-155px',
-    fontSize: '13px',
+    backgroundColor: 'rgba(0, 0, 0, 0)',
+    color: '#fff',
+    fontSize: '14px',
+    border: '0px solid #fff',
     textAlign: 'center',
-    left: '50%',
-    padding: '10px',
+    margin: 'auto',
     overflow                   : 'auto',
     WebkitOverflowScrolling    : 'touch',
     outline                    : 'none'
@@ -56,7 +55,9 @@ var MatchDetail = React.createClass({
   },
 
   openModal: function () {
-    this.setState({ modalOpen: true });
+    if (this.state.theirPhotos.length > 0) {
+      this.setState({ modalOpen: true });
+    }
   },
 
   componentDidMount: function () {
