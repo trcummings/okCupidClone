@@ -44,6 +44,20 @@ var QuestionItem = React.createClass({
     }
   },
 
+  isDisabled: function () {
+    if (
+      this.state.importance !== '' &&
+      this.state.selectedAnswer.length > 0 &&
+      this.state.selectedDesire.length > 0
+    ) {
+      return ' not-disabled ';
+    } else {
+      return ' disabled ';
+    }
+
+    this.forceUpdate();
+  },
+
   componentDidMount: function () {
     this.answersListener = SessionStore.addListener(function () {
       HelperUtil.getRandomQuestion(function (questionBundle) {
@@ -496,7 +510,7 @@ var QuestionItem = React.createClass({
             </textarea>
 
             <button
-              className='answer-button'
+              className={'answer-button' + this.isDisabled()}
               onClick={this.handleSubmit}
             >
               Submit
