@@ -73,6 +73,47 @@
       text-align: center;
     }
   }
+
+  li {
+    position: relative;
+    color: #5e6573;
+    margin-bottom: 30px;
+    margin-top: 10px;
+
+    .photo-delete {
+      position: absolute;
+      top: 0;
+      right: 10px;
+      font-size: 3em;
+      display: none;
+    }
+
+    .photo-default {
+      position: absolute;
+      right: 10px;
+      top: 60px;
+      display: none;
+    }
+
+    .photo-default:hover {
+      color: #474d59;
+    }
+
+    .photo-delete:hover {
+      color: #474d59;
+    }
+  }
+
+  li:hover {
+    .photo-delete {
+      display: inline;
+    }
+
+    .photo-default {
+      display: inline;
+    }
+  }
+
 }
 
 #pictures-modal {

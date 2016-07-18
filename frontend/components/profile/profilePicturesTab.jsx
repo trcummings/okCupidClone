@@ -20,15 +20,31 @@ var ProfilePicturesTab = React.createClass({
     this.photoListener.remove();
   },
 
+  removePhoto: function (photo, event) {
+    event.preventDefault();
+
+    alert('tried to delete photo');
+  },
+
+  makePhotoDefault: function (photo, event) {
+    event.preventDefault();
+
+    alert('tried to default photo');
+  },
+
   renderPhotos: function () {
     return this.state.photos.map(function (photo, index) {
       return (
         <li key={index}>
           <img src={photo.photo_url} />
+          <button className='photo-delete' onClick={this.removePhoto.bind(this, photo)}>
+            <i className="fa fa-times" aria-hidden="true"></i>
+          </button>
+          <button className='photo-default' onClick={this.makePhotoDefault.bind(this, photo)}>Make Default</button>
           <PhotoDescription photo={photo} />
         </li>
       );
-    });
+    }.bind(this));
   },
 
   render: function () {
