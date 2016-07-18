@@ -19,41 +19,161 @@ UserAbout.create!(
   user_id: thomsen.id
 )
 
-girl = User.create!(
-  username: 'bigcheesys',
-  password: 'password',
-  email: 'fakegirlmail@mail.urge',
-  birth_date: Date.new(1988, 04, 10),
+
+
+margaret_hamilton = User.create!(
+  username: 'UnApollogetic11',
+  password: 'moonlandingwasfaked',
+  email: 'hamilton@nasa.gov',
+  birth_date: Date.new(1902, 09, 12),
   country: 'America',
-  zip_code: 11221,
-  location: 'Brooklyn, NY',
+  zip_code: 06068,
+  location: 'Salisbury, CT',
   gender: 'Woman',
-  orientation: 'Gay'
+  orientation: 'Straight'
 )
 
 UserAbout.create!(
-  user_id: girl.id
+  user_id: margaret_hamilton.id,
+  self_summary: 'Please, no messages about the moon landing.',
+  doing_with_life: 'Practicing squats to lift these code books.',
+  really_good_at: 'Getting people to land on the moon.',
+  thinking_about: "I really hope I didn't lose a bookmark, have you seen the size of the code books I wrote?",
+  typical_friday: 'Thinking about fault tolerance. I coined the term "Software Engineer", you know.',
+  message_me_if: 'You can lift these code books!'
 )
 
-kojima = User.create!(
-  username: 'bigboss69',
+
+
+
+richard_stallman = User.create!(
+  username: 'install_gentoo',
   password: 'password',
-  email: 'kojima@gmail.com',
-  birth_date: Date.new(1963, 8, 24),
+  email: 'rms@mit.edu',
+  birth_date: Date.new(1953, 16, 03),
   country: 'America',
-  zip_code: 11221,
-  location: 'Brooklyn, NY',
+  zip_code: 10001,
+  location: 'Manhattan, NY',
+  gender: 'Man',
+  orientation: 'Sapiosexual'
+)
+
+UserAbout.create!(
+  user_id: richard_stallman.id,
+  self_summary: "Normally I wouldn't use proprietary software like this",
+  doing_with_life: "GNU stands for GNU's not Unix",
+  really_good_at: 'Acing Math 55',
+  thinking_about: 'Free Software',
+  typical_friday: "Telling people not to call it Linux, alright? I'm calling you out, Torvalds",
+  message_me_if: 'You will not mention that time I ate a piece of my foot during a live MIT lecture'
+)
+
+
+
+
+anna_patterson = User.create!(
+  username: 'CuillinIt',
+  password: 'secretgoogle',
+  email: 'anna@google.com',
+  birth_date: Date.new(1978, 04, 10),
+  country: 'America',
+  zip_code: 94027,
+  location: 'San Fransisco, CA',
+  gender: 'Woman',
+  orientation: 'Straight'
+)
+
+UserAbout.create!(
+  user_id: anna_patterson.id,
+  self_summary: 'I live in a garage',
+  doing_with_life: 'Living in a garage',
+  really_good_at: 'Living in a garage',
+  thinking_about: 'Not living in a garage.',
+  typical_friday: "I don't really live in a garage",
+  message_me_if: 'You use Bing. JUST KIDDING.'
+)
+
+
+
+
+brendan_eich = User.create!(
+  username: 'Eichconoclast',
+  password: 'chromesux',
+  email: 'brendan@mozilla.com',
+  birth_date: Date.new(1961, 8, 24),
+  country: 'America',
+  zip_code: 15201,
+  location: 'Pittsburgh, PA',
   gender: 'Man',
   orientation: 'Straight'
 )
 
 UserAbout.create!(
-  user_id: kojima.id
+  user_id: brendan_eich.id,
+  self_summary: "",
+  doing_with_life: '',
+  really_good_at: 'Making new languages in a week;',
+  thinking_about: 'Segfaults;',
+  typical_friday: '',
+  message_me_if: "You're a rustacean, or you still use firefox;"
 )
+
+
+
+
+
+mats = User.create!(
+  username: 'matz',
+  password: 'rubyonrails',
+  email: 'matz@rubylanguage.org',
+  birth_date: Date.new(1965, 04, 14),
+  country: 'Japan',
+  zip_code: 10001,
+  location: 'Osaka Prefecture, Japan',
+  gender: 'Man',
+  orientation: 'Straight'
+)
+
+UserAbout.create!(
+  user_id: mats.id,
+  self_summary: 'i do not speak english very good',
+  doing_with_life: '',
+  really_good_at: '',
+  six_things: '',
+  thinking_about: '',
+  typical_friday: '',
+  message_me_if: ''
+)
+
+
+
+
+peter_theil = User.create!(
+  username: 'TheilfInTheNight',
+  password: 'cryptonomicon',
+  email: 'theil@paypal.com',
+  birth_date: Date.new(1967, 11, 10),
+  country: 'America',
+  zip_code: 94027,
+  location: 'San Fransisco, CA',
+  gender: 'Man',
+  orientation: 'Gay'
+)
+
+UserAbout.create!(
+  user_id: peter_theil.id,
+  self_summary: 'Gettin paid, pal',
+  doing_with_life: 'Seriously too rich',
+  really_good_at: 'Swimming in piles of my own money. The coins, uh, they hurt. It is not very comfortable.',
+  thinking_about: 'I could buy you',
+  typical_friday: 'I just hate...I hate college so much.',
+  message_me_if: 'You also plan on living 120 years'
+)
+
 
 #### GUEST ACCOUNT
 
-ok_computer = User.create!(
+guestyMcGuestface = User.create!(
   username: 'OkComputer',
   password: 'guestuser',
   email: 'fakemail@fake.com',
@@ -226,4 +346,73 @@ q6 = Question.create!(
   QuestionChoice.create!(
     question_id: q6.id,
     choice_string: "I'm thoroughly indifferent"
+  )
+
+
+q7 = Question.create!(
+  content: "Situaton: You're a VC, you want to fund the next big thing. What is it? (asking for a friend)",
+  multi_select: false
+)
+
+  QuestionChoice.create!(
+    question_id: q7.id,
+    choice_string: 'Biotech'
+  )
+
+  QuestionChoice.create!(
+    question_id: q7.id,
+    choice_string: 'Safe General AI'
+  )
+
+  QuestionChoice.create!(
+    question_id: q7.id,
+    choice_string: 'Drones'
+  )
+
+  QuestionChoice.create!(
+    question_id: q7.id,
+    choice_string: 'The Cloud'
+  )
+
+  QuestionChoice.create!(
+    question_id: q7.id,
+    choice_string: 'The sight of money makes me irrationally angry, so whatever the Effective Altruists are workin on these days.'
+  )
+
+
+
+
+q8 = Question.create!(
+  content: "Favorite algorithm?",
+  multi_select: false
+)
+
+  QuestionChoice.create!(
+    question_id: q8.id,
+    choice_string: 'Merge Sort'
+  )
+
+  QuestionChoice.create!(
+    question_id: q8.id,
+    choice_string: 'Quick Sort'
+  )
+
+  QuestionChoice.create!(
+    question_id: q8.id,
+    choice_string: 'Radix Sort'
+  )
+
+  QuestionChoice.create!(
+    question_id: q8.id,
+    choice_string: 'Bubble Sort'
+  )
+
+  QuestionChoice.create!(
+    question_id: q8.id,
+    choice_string: 'Other (list below)'
+  )
+
+  QuestionChoice.create!(
+    question_id: q8.id,
+    choice_string: "Could we get some algorithms that...aren't sorting algorithms in here?"
   )

@@ -34,7 +34,7 @@ var FirstSignUpForm = React.createClass({
   render: function () {
     return (
       <div className='authForm group'>
-        <h1> 'Join' the 'Best' 'Free' 'Dating' site on 'Earth' </h1>
+        <h1> Meet your Perfect Pair! </h1>
         <form className="form_one group" onSubmit={this.handleSubmit}>
           <span className="form_one_item"> I am a </span>
 
