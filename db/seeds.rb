@@ -25,9 +25,9 @@ margaret_hamilton = User.create!(
   username: 'UnApollogetic11',
   password: 'moonlandingwasfaked',
   email: 'hamilton@nasa.gov',
-  birth_date: Date.new(1902, 09, 12),
+  birth_date: Date.new(1902, 12, 9),
   country: 'America',
-  zip_code: 06068,
+  zip_code: '06068'.to_i,
   location: 'Salisbury, CT',
   gender: 'Woman',
   orientation: 'Straight'
@@ -50,7 +50,7 @@ richard_stallman = User.create!(
   username: 'install_gentoo',
   password: 'password',
   email: 'rms@mit.edu',
-  birth_date: Date.new(1953, 16, 03),
+  birth_date: Date.new(1953, 3, 16),
   country: 'America',
   zip_code: 10001,
   location: 'Manhattan, NY',
@@ -75,7 +75,7 @@ anna_patterson = User.create!(
   username: 'CuillinIt',
   password: 'secretgoogle',
   email: 'anna@google.com',
-  birth_date: Date.new(1978, 04, 10),
+  birth_date: Date.new(1978, 1, 4),
   country: 'America',
   zip_code: 94027,
   location: 'San Fransisco, CA',
@@ -126,7 +126,7 @@ mats = User.create!(
   username: 'matz',
   password: 'rubyonrails',
   email: 'matz@rubylanguage.org',
-  birth_date: Date.new(1965, 04, 14),
+  birth_date: Date.new(1965, 4, 14),
   country: 'Japan',
   zip_code: 10001,
   location: 'Osaka Prefecture, Japan',
@@ -152,7 +152,7 @@ peter_theil = User.create!(
   username: 'TheilfInTheNight',
   password: 'cryptonomicon',
   email: 'theil@paypal.com',
-  birth_date: Date.new(1967, 11, 10),
+  birth_date: Date.new(1967, 11, 1),
   country: 'America',
   zip_code: 94027,
   location: 'San Fransisco, CA',
@@ -174,7 +174,7 @@ UserAbout.create!(
 #### GUEST ACCOUNT
 
 guestyMcGuestface = User.create!(
-  username: 'OkComputer',
+  username: 'guestyMcGuestFace',
   password: 'guestuser',
   email: 'fakemail@fake.com',
   birth_date: Date.new(1985, 9, 5),
@@ -186,7 +186,7 @@ guestyMcGuestface = User.create!(
 )
 
 UserAbout.create!(
-  user_id: ok_computer.id,
+  user_id: guestyMcGuestface.id,
   self_summary: 'im just a fun guy that loves to laugh, go on adventures, just gonna look at your profile for pictures of dogs tbh, i was the second shooter on the grassy knoll',
   doing_with_life: 'i dunno lol',
   really_good_at: ';)',

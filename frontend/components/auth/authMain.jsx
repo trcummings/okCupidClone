@@ -88,7 +88,7 @@ var AuthMain = React.createClass({
   signInGuest: function () {
     ClientActions.loginWithUsername(
       {
-        username: 'OkComputer',
+        username: 'guestyMcGuestFace',
         password: 'guestuser'
       },
       function () {
