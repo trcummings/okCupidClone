@@ -123,23 +123,11 @@ var ProfileMain = React.createClass({
         );
       } else {
         return(
-          currentUserPhotos.map(function (photo, index) {
-            var className;
-            var imgSrc;
-            if (index === 0) {
-              className = 'first-user-photo';
-            } else {
-              className = 'other-user-photo';
-            }
-            return (
-              <img
-                key={index}
-                className={className}
-                src={photo.photo_url}
-                alt={'Photo of ' + currentUser.username }
-              />
-            );
-          })
+          <img
+            className='first-user-photo'
+            src={PhotoStore.returnDefaultProfilePic().photo_url}
+            alt={'Photo of ' + currentUser.username }
+          />
         );
       }
     };

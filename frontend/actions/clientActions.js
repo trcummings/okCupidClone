@@ -113,6 +113,14 @@ var ClientActions = {
     PhotosApiUtil.getOtherUserPics(username);
   },
 
+  deletePhoto: function (photo) {
+    PhotosApiUtil.deletePhoto(photo);
+  },
+
+  defaultPhoto: function (photo) {
+    PhotosApiUtil.defaultPhoto(photo);
+  },
+
 
   /// messages Actions
   getAllConvos: function () {

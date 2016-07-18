@@ -2,7 +2,7 @@ var ServerActions = require('../actions/serverActions'),
     ErrorActions = require('../actions/errorActions');
 
 var PhotosApiUtil = {
-  uploadImage: function (photo, callback) {
+  uploadImage: function (photo) {
     $.ajax({
       url: '/api/user/photos',
       method: 'POST',
@@ -12,11 +12,26 @@ var PhotosApiUtil = {
       data: photo,
       success: function (image) {
         ServerActions.receiveUploadedPhoto(image);
-        callback();
       },
       error: function (xhr) {
         var errors = xhr.responseJSON;
 	      ErrorActions.setErrors("photo_upload", errors);
+      }
+    });
+  },
+
+  defaultPhoto: function (photo) {
+    $.ajax({
+      url: '/api/user/photos/' + photo.photo_id,
+      method: 'GET',
+      dataType: 'json',
+      data: photo,
+      success: function (image_id) {
+        ServerActions.receiveDefaultedPhotoId(image_id);
+      },
+      error: function (xhr) {
+        var errors = xhr.responseJSON;
+	      ErrorActions.setErrors("photo_default", errors);
       }
     });
   },
@@ -66,6 +81,21 @@ var PhotosApiUtil = {
       error: function (xhr) {
         var errors = xhr.responseJSON;
         ErrorActions.setErrors("photo_get", errors);
+      }
+    });
+  },
+
+  deletePhoto: function (photo) {
+    $.ajax({
+      url: '/api/user/photos/' + photo.photo_id,
+      method: 'DELETE',
+      dataType: 'json',
+      success: function (image) {
+        ServerActions.receiveRemovedPhoto(image);
+      },
+      error: function (xhr) {
+        var errors = xhr.responseJSON;
+        ErrorActions.setErrors("photo_delete", errors);
       }
     });
   }

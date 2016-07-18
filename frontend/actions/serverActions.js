@@ -20,6 +20,13 @@ var ServerActions = {
     });
   },
 
+  receiveRemovedPhoto: function (image) {
+    AppDispatcher.dispatch({
+      actionType: PhotoConstants.REMOVE_PHOTO,
+      image: image
+    });
+  },
+
   receiveCurrentUserPhotos: function (images) {
     AppDispatcher.dispatch({
       actionType: PhotoConstants.CURRENT_USER_PHOTOS,
@@ -33,6 +40,14 @@ var ServerActions = {
       image: image
     })
   },
+
+  receiveDefaultedPhotoId: function (photoId) {
+    AppDispatcher.dispatch({
+      actionType: PhotoConstants.SET_NEW_DEFAULT,
+      photoId: photoId
+    })
+  },
+
 
   receiveSingleUser: function (user) {
     AppDispatcher.dispatch({

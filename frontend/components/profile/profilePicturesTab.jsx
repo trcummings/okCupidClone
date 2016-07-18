@@ -2,6 +2,7 @@ var React = require('react');
 var PropTypes = React.PropTypes;
 var PhotoStore = require('../../stores/photoStore');
 var PhotoDescription = require('./photoDescription');
+var ClientActions = require('../../actions/clientActions');
 
 var ProfilePicturesTab = React.createClass({
   getInitialState: function () {
@@ -23,13 +24,13 @@ var ProfilePicturesTab = React.createClass({
   removePhoto: function (photo, event) {
     event.preventDefault();
 
-    alert('tried to delete photo');
+    ClientActions.deletePhoto(photo);
   },
 
   makePhotoDefault: function (photo, event) {
     event.preventDefault();
 
-    alert('tried to default photo');
+    ClientActions.defaultPhoto(photo);
   },
 
   renderPhotos: function () {

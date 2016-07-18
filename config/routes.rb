@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root to: 'static_pages#root'
 
+  #### == working
   namespace :api, defaults: { format: :json } do
     resource :user, only: [ ] do
       get '/', to: 'users#get_user' ####
@@ -16,7 +17,8 @@ Rails.application.routes.draw do
       get '/photos', to: 'users#all_photos' ####
       post '/photos', to: 'users#add_photo' ####
       patch '/photos', to: 'users#update_photo_description' ####
-      # delete '/photos/:id', to: 'user#delete_photo' #not yet
+      delete '/photos/:photo_id', to: 'users#delete_photo' ####
+      get '/photos/:photo_id', to: 'users#default_photo' ####
 
       get '/answers', to: 'users#get_all_answers'
       # delete :answers, to: 'user#delete_all_answers' #not yet

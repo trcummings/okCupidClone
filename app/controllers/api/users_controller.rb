@@ -165,6 +165,30 @@ class Api::UsersController < ApplicationController
     render 'api/user_photos/index'
   end
 
+  def delete_photo
+    @photo = UserPhoto.find(params[:photo_id])
+
+    if @photo.is_default
+      @photo.destroy
+      current_user.photos.first.is_default = true
+    else
+      @photo.destroy
+    end
+
+    render 'api/user_photos/show'
+  end
+
+  def default_photo
+    UserPhoto.find(params[:photo_id]).is_default = true
+    current_user.undefault_other_photos(params[:photo_id])
+
+    render json: params[:photo_id]
+  end
+
+
+
+  ## Messages
+
 
   def get_conversation
     receiver = User.find_by(username: params[:username])

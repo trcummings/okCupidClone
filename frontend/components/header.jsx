@@ -2,6 +2,7 @@ var React = require('react');
 var HeaderProfileDropDown = require('./headerProfileDropDown');
 var HeaderMessagesDropDown = require('./headerMessagesDropDown');
 var SessionStore = require('../stores/sessionStore');
+var PhotoStore = require('../stores/photoStore');
 var ClientActions = require('../actions/clientActions');
 
 var Header = React.createClass({
@@ -49,8 +50,8 @@ var Header = React.createClass({
     var currentUser = SessionStore.currentUser();
     var thumbnailImage;
 
-    if (currentUser.photos[0]) {
-      thumbnailImage = currentUser.photos[0].photo_url;
+    if (currentUser.photos.length > 0) {
+      thumbnailImage = PhotoStore.returnDefaultProfilePic().photo_url;
     } else {
       thumbnailImage = window.anon;
     }

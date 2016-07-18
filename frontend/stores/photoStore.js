@@ -15,6 +15,18 @@ PhotoStore.addPhotoToCurrentUserPhotos = function (image) {
   _currentUserPhotos.push(image);
 };
 
+PhotoStore.returnDefaultProfilePic = function () {
+  var result = {};
+
+  _currentUserPhotos.forEach(function (photo, index) {
+    if (photo.is_default) {
+      result = photo;
+    }
+  });
+
+  return result;
+};
+
 PhotoStore.updateDescription = function (image) {
   _currentUserPhotos.forEach(function (photo, index) {
     if (photo.photo_id === image.photo_id) {
@@ -22,6 +34,14 @@ PhotoStore.updateDescription = function (image) {
     }
   });
 };
+
+PhotoStore.removePhoto = function (image) {
+  _currentUserPhotos.forEach(function (photo, index) {
+    if (photo.photo_id === image.photo_id) {
+      _currentUserPhotos.splice(index, 1);
+    }
+  });
+}
 
 PhotoStore.otherUserDefaultProfilePic = function () {
   var desiredPhoto = {};
@@ -39,9 +59,20 @@ PhotoStore.otherUserDefaultProfilePic = function () {
   return desiredPhoto;
 };
 
+
 PhotoStore.otherUserAllPhotos = function () {
   return _otherUserPhotos;
 };
+
+PhotoStore.setNewDefault = function (photoId) {
+  _currentUserPhotos.forEach(function (photo, index) {
+    if (photo.photo_id === photoId) {
+      photo.is_default = true;
+    } else {
+      photo.is_default = false;
+    }
+  });
+}
 
 PhotoStore.__onDispatch = function (payload) {
   switch(payload.actionType) {
@@ -59,6 +90,14 @@ PhotoStore.__onDispatch = function (payload) {
       break;
     case PhotoConstants.UPDATE_DESCRIPTION:
       this.updateDescription(payload.image);
+      this.__emitChange();
+      break;
+    case PhotoConstants.REMOVE_PHOTO:
+      this.removePhoto(payload.image);
+      this.__emitChange();
+      break;
+    case PhotoConstants.SET_NEW_DEFAULT:
+      this.setNewDefault(payload.photoId);
       this.__emitChange();
       break;
     }
