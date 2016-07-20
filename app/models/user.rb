@@ -158,11 +158,9 @@ class User < ActiveRecord::Base
 
   # photo relevant methods
 
-  def undefault_other_photos(photo_id)
+  def undefault_other_photos
     self.photos.each do |photo|
-      unless photo.id == photo_id
-        photo.set_is_default_to_false
-      end
+      photo.set_is_default_to_false
     end
   end
 

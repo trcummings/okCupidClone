@@ -28,7 +28,7 @@ var ProfileMain = React.createClass({
   getInitialState: function () {
     return {
       selectedTab: 0,
-      userPhotos: PhotoStore.returnCurrentUserPhotos(),
+      userPhotos: PhotoStore.returnDefaultProfilePic(),
       tabOneSelected: 'selectedTab',
       tabTwoSelected: '',
       tabThreeSelected: ''
@@ -37,7 +37,7 @@ var ProfileMain = React.createClass({
 
   componentDidMount: function () {
     this.photoListener = PhotoStore.addListener(function () {
-      this.setState({ userPhotos: PhotoStore.returnCurrentUserPhotos() });
+      this.setState({ userPhotos: PhotoStore.returnDefaultProfilePic().photo_url });
     }.bind(this));
 
     this.userListener = SessionStore.addListener(function () {
@@ -108,7 +108,7 @@ var ProfileMain = React.createClass({
   },
 
   render: function () {
-    var currentUserPhotos = PhotoStore.returnCurrentUserPhotos();
+    var currentUserPhotos = PhotoStore.returnDefaultProfilePic();
     var currentUser = SessionStore.currentUser();
     var defaultPhotoSrc = window.anon;
 

@@ -33,6 +33,7 @@ class UserPhoto < ActiveRecord::Base
 
   def set_is_default_to_false
     self.is_default = false
+    self.save!
   end
 
 end

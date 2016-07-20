@@ -75,9 +75,6 @@ var HeaderMessagesDropDown = React.createClass({
           )
         }
       </ul>
-      <li className='inbox-link'>
-        Inbox
-      </li>
     </section>
     );
   }

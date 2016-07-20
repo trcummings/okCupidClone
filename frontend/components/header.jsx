@@ -13,8 +13,21 @@ var Header = React.createClass({
   getInitialState: function () {
     return ({
       profileDropDown: false,
-      messagesDropDown: false
+      messagesDropDown: false,
+      thumbnailImage: PhotoStore.returnDefaultProfilePic().photo_url
      });
+  },
+
+  componentDidMount: function () {
+    ClientActions.getCurrentUserPhotos();
+
+    this.photoListener = PhotoStore.addListener(function () {
+      this.setState({ thumbnailImage: PhotoStore.returnDefaultProfilePic().photo_url })
+    }.bind(this));
+  },
+
+  componentWillUnmount: function () {
+    this.photoListener.remove();
   },
 
   renderDropDown: function (type) {
@@ -85,24 +98,34 @@ var Header = React.createClass({
               </p>
             </li>
 
-            <li id='messages-drop-down glyph'>
+            <li className='glyph' id='messages-drop-down'>
               <button
                 onClick={this.toggleDropDown.bind(this, 'messagesDropDown')}
                 >
 
                 <i className="fa fa-comment fa-2" aria-hidden="true"></i>
+                <p id='messages-glyph'>
+                  <i className="fa fa-caret-up" aria-hidden="true"></i>
+                  <span className='poptext'>Messages</span>
+                  <span className='blankbox'> </span>
+                </p>
               </button>
               {this.renderDropDown('messagesDropDown')}
             </li>
 
-            <li id='profile-drop-down'>
+            <li className='glyph' id='profile-drop-down'>
               <button
                 onClick={this.toggleDropDown.bind(this, 'profileDropDown')}
                 >
                 <img
                   id='user-thumbnail'
-                  src={thumbnailImage}
+                  src={this.state.thumbnailImage}
                 />
+                <p id='options-glyph' className='glyph'>
+                  <i className="fa fa-caret-up" aria-hidden="true"></i>
+                  <span className='poptext'>Options</span>
+                  <span className='blankbox'> </span>
+                </p>
               </button>
               {this.renderDropDown('profileDropDown')}
             </li>

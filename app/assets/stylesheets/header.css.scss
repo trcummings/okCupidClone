@@ -152,6 +152,70 @@
           z-index: 99;
         }
       }
+
+      #messages-glyph {
+        padding: 0px;
+        top: 60px;
+        display: block;
+        color: white;
+        height: 10px;
+        right: 49px;
+
+        i {
+          top: -35px;
+          position: absolute;
+          color: black;
+          font-size: 2em;
+        }
+
+        .poptext {
+          top: -25px;
+          padding: 10px;
+          right: -55px;
+          position: absolute;
+          z-index: 100;
+        }
+
+        .blankbox {
+          background-color: black;
+          position: absolute;
+          padding: 10px 50px 20px 40px;
+          right: -55px;
+          z-index: 99;
+        }
+      }
+
+      #options-glyph {
+        padding: 0px;
+        top: 60px;
+        display: block;
+        color: white;
+        height: 10px;
+        right: 53px;
+
+        i {
+          top: -35px;
+          position: absolute;
+          color: black;
+          font-size: 2em;
+        }
+
+        .poptext {
+          top: -25px;
+          padding: 10px;
+          right: -48px;
+          position: absolute;
+          z-index: 100;
+        }
+
+        .blankbox {
+          background-color: black;
+          position: absolute;
+          padding: 10px 40px 20px 40px;
+          right: -50px;
+          z-index: 99;
+        }
+      }
     }
 
     #profile-drop-down {
@@ -208,28 +272,29 @@
 
       }
 
-      .inbox-link {
-        text-align: center;
-        background-color: #1F64C3;
-        color: white;
-        cursor: default;
-        // cursor: pointer;
-      }
-
-      .inbox-link:hover {
-        // background-color: #104da1;
-        color: white;
-      }
+      // .inbox-link {
+      //   text-align: center;
+      //   background-color: #1F64C3;
+      //   color: white;
+      //   cursor: default;
+      //   // cursor: pointer;
+      // }
+      //
+      // .inbox-link:hover {
+      //   // background-color: #104da1;
+      //   color: white;
+      // }
 
       .messages-list {
         max-height: 300px;
         overflow-y: scroll;
+        text-align: center;
       }
 
     }
 
     .messages {
-      right: 112px;
+      // right: 112px;
     }
   }
 }

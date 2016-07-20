@@ -179,8 +179,10 @@ class Api::UsersController < ApplicationController
   end
 
   def default_photo
-    UserPhoto.find(params[:photo_id]).is_default = true
-    current_user.undefault_other_photos(params[:photo_id])
+    photo = UserPhoto.find(params[:photo_id])
+    current_user.undefault_other_photos
+    photo.is_default = true
+    photo.save!
 
     render json: params[:photo_id]
   end
