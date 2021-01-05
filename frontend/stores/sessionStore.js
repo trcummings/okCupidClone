@@ -1,10 +1,10 @@
-var Store = require('flux/utils').Store;
-var AppDispatcher = require('../dispatcher/dispatcher');
+var Store = require("flux/utils").Store;
+var AppDispatcher = require("../dispatcher/dispatcher");
 var _current_user = {};
-var _birthday = '';
+var _birthday = "";
 var _currentUserHasBeenFetched = false;
 var SessionStore = new Store(AppDispatcher);
-var SessionConstants = require('../constants/sessionConstants');
+var SessionConstants = require("../constants/sessionConstants");
 
 SessionStore.currentUserHasBeenFetched = function () {
   return _currentUserHasBeenFetched;
@@ -61,7 +61,7 @@ SessionStore.addToLikes = function (otherUser) {
 };
 
 SessionStore.__onDispatch = function (payload) {
-  switch(payload.actionType) {
+  switch (payload.actionType) {
     case SessionConstants.LOG_OUT:
       _currentUserHasBeenFetched = false;
       _current_user = {};

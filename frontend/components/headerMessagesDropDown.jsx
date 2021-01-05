@@ -1,21 +1,23 @@
-var React = require('react');
-var ClientActions = require('../actions/clientActions');
-var SessionStore = require('../stores/sessionStore');
-var MessageStore = require('../stores/messageStore');
+var React = require("react");
+var ClientActions = require("../actions/clientActions");
+var SessionStore = require("../stores/sessionStore");
+var MessageStore = require("../stores/messageStore");
 
 var HeaderMessagesDropDown = React.createClass({
   contextTypes: {
-    router: React.PropTypes.object.isRequired
+    router: React.PropTypes.object.isRequired,
   },
 
   getInitialState: function () {
-    return({ allConvos: MessageStore.allConversations() });
+    return { allConvos: MessageStore.allConversations() };
   },
 
   componentDidMount: function () {
-    this.messageListener = MessageStore.addListener(function () {
-      this.setState({ allConvos: MessageStore.allConversations() });
-    }.bind(this));
+    this.messageListener = MessageStore.addListener(
+      function () {
+        this.setState({ allConvos: MessageStore.allConversations() });
+      }.bind(this)
+    );
 
     ClientActions.getAllConvos();
   },
@@ -35,30 +37,23 @@ var HeaderMessagesDropDown = React.createClass({
     var receiver;
 
     if (allConvos.length === 0) {
-      return (
-        <li
-          className='no-messages'
-        >
-          No Messages
-        </li>
-      );
+      return <li className="no-messages">No Messages</li>;
     } else {
-      allConvos.map(function (convo, index) {
-        if (currentUser.username === convo.sender) {
-          receiver = convo.receiver;
-        } else {
-          receiver = convo.sender;
-        }
+      allConvos.map(
+        function (convo, index) {
+          if (currentUser.username === convo.sender) {
+            receiver = convo.receiver;
+          } else {
+            receiver = convo.sender;
+          }
 
-        result.push (
-          <li
-            key={index}
-            onClick={this.openMsgWindow.bind(this, receiver)}
-          >
-            {receiver}
-          </li>
-        );
-      }.bind(this));
+          result.push(
+            <li key={index} onClick={this.openMsgWindow.bind(this, receiver)}>
+              {receiver}
+            </li>
+          );
+        }.bind(this)
+      );
 
       return result;
     }
@@ -66,18 +61,17 @@ var HeaderMessagesDropDown = React.createClass({
 
   render: function () {
     return (
-      <section className='header-profile-options messages'>
+      <section className="header-profile-options messages">
         <i className="fa fa-caret-up" aria-hidden="true"></i>
-      <ul className='messages-list'>
-        { this.renderConvoList(
+        <ul className="messages-list">
+          {this.renderConvoList(
             this.state.allConvos,
             SessionStore.currentUser()
-          )
-        }
-      </ul>
-    </section>
+          )}
+        </ul>
+      </section>
     );
-  }
+  },
 });
 
 module.exports = HeaderMessagesDropDown;

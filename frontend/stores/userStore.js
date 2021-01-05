@@ -1,7 +1,7 @@
-var Store = require('flux/utils').Store;
-var AppDispatcher = require('../dispatcher/dispatcher');
-var UserConstants = require('../constants/userConstants');
-var SessionStore = require('./sessionStore');
+var Store = require("flux/utils").Store;
+var AppDispatcher = require("../dispatcher/dispatcher");
+var UserConstants = require("../constants/userConstants");
+var SessionStore = require("./sessionStore");
 
 var _users = [];
 var _viewedUser = {};
@@ -35,7 +35,7 @@ UserStore.viewedUser = function () {
 };
 
 UserStore.__onDispatch = function (payload) {
-  switch(payload.actionType) {
+  switch (payload.actionType) {
     case UserConstants.GET_ALL_POSSIBLE_MATCHES:
       this.addUsersToStore(payload.users);
       this.__emitChange();
@@ -45,10 +45,10 @@ UserStore.__onDispatch = function (payload) {
       this.__emitChange();
       break;
     case UserConstants.RECEIVE_OTHER_USER_ABOUT:
-      _viewedUser['about'] = payload.userAbout;
+      _viewedUser["about"] = payload.userAbout;
       this.__emitChange();
       break;
-    }
+  }
 };
 
 module.exports = UserStore;

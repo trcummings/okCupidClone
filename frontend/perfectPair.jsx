@@ -1,29 +1,19 @@
-var React = require('react'),
-    ReactDOM = require('react-dom'),
-    Router = require('react-router').Router,
-    Route = require('react-router').Route,
-    IndexRoute = require('react-router').IndexRoute,
-    hashHistory = require('react-router').hashHistory,
-    App = require('./components/app'),
-    SessionStore = require('./stores/sessionStore'),
-    SessionApiUtil = require('./util/sessionApiUtil'),
-    ProfileMain = require('./components/profile/profileMain'),
-    FeedIndex = require('./components/feed/feedIndex'),
-    MatchesIndex = require('./components/matches/matchesIndex'),
-    MatchesDetail = require('./components/matches/matchesDetail'),
-    LikesMain = require('./components/likes/likesMain');
+const React = require("react");
+const ReactDOM = require("react-dom");
+const Router = require("react-router").Router;
+const Route = require("react-router").Route;
+const IndexRoute = require("react-router").IndexRoute;
+const hashHistory = require("react-router").hashHistory;
 
-var Router = (
-  <Router history={hashHistory}>
-    <Route path='/' component={App}>
-      <Route path='/profile' component={ProfileMain} onEnter={ _ensureLoggedIn }/>
-      <Route path='/home' component={FeedIndex} onEnter={ _ensureLoggedIn }/>
-      <Route path='/matches' component={MatchesIndex} onEnter={ _ensureLoggedIn } />
-      <Route path='/profile/:username' component={MatchesDetail} onEnter={ _ensureLoggedIn }/>
-      <Route path='/likes' component={LikesMain} onEnter={ _ensureLoggedIn }/>
-    </Route>
-  </Router>
-);
+const App = require("./components/app");
+const ProfileMain = require("./components/profile/profileMain");
+const FeedIndex = require("./components/feed/feedIndex");
+const MatchesIndex = require("./components/matches/matchesIndex");
+const MatchesDetail = require("./components/matches/matchesDetail");
+const LikesMain = require("./components/likes/likesMain");
+
+const SessionStore = require("./stores/sessionStore");
+const SessionApiUtil = require("./util/sessionApiUtil");
 
 function _ensureLoggedIn(nextState, replace, asyncDoneCallback) {
   if (SessionStore.currentUserHasBeenFetched()) {
@@ -34,13 +24,38 @@ function _ensureLoggedIn(nextState, replace, asyncDoneCallback) {
 
   function redirectIfNotLoggedIn() {
     if (!SessionStore.isUserLoggedIn()) {
-      replace('/');
+      replace("/");
     }
+
     asyncDoneCallback();
   }
 }
 
-document.addEventListener('DOMContentLoaded', function(){
-  var root = document.getElementById('content');
-  ReactDOM.render(Router, root);
+document.addEventListener("DOMContentLoaded", function () {
+  var root = document.getElementById("content");
+
+  ReactDOM.render(
+    <Router history={hashHistory}>
+      <Route path="/" component={App}>
+        <Route
+          path="/profile"
+          component={ProfileMain}
+          onEnter={_ensureLoggedIn}
+        />
+        <Route path="/home" component={FeedIndex} onEnter={_ensureLoggedIn} />
+        <Route
+          path="/matches"
+          component={MatchesIndex}
+          onEnter={_ensureLoggedIn}
+        />
+        <Route
+          path="/profile/:username"
+          component={MatchesDetail}
+          onEnter={_ensureLoggedIn}
+        />
+        <Route path="/likes" component={LikesMain} onEnter={_ensureLoggedIn} />
+      </Route>
+    </Router>,
+    root
+  );
 });

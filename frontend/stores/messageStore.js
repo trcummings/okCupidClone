@@ -1,8 +1,7 @@
-var Store = require('flux/utils').Store;
-var AppDispatcher = require('../dispatcher/dispatcher');
+var Store = require("flux/utils").Store;
+var AppDispatcher = require("../dispatcher/dispatcher");
 var MessageStore = new Store(AppDispatcher);
-var MessageConstants = require('../constants/messageConstants');
-
+var MessageConstants = require("../constants/messageConstants");
 
 _conversations = [];
 var _activeConvos = [];
@@ -32,18 +31,14 @@ MessageStore.addConvo = function (payloadConvo) {
   var inActvConvos = false;
 
   _conversations.forEach(function (convo, index) {
-    if (convo.conversation_name ===
-        payloadConvo.conversation_name
-    ) {
+    if (convo.conversation_name === payloadConvo.conversation_name) {
       inConvos = true;
       _conversations[index] = payloadConvo;
     }
   });
 
   _activeConvos.forEach(function (convo, index) {
-    if (convo.conversation_name ===
-        payloadConvo.conversation_name
-    ) {
+    if (convo.conversation_name === payloadConvo.conversation_name) {
       inActvConvos = true;
       _activeConvos[index] = payloadConvo;
     }
@@ -58,7 +53,7 @@ MessageStore.addConvo = function (payloadConvo) {
 };
 
 MessageStore.__onDispatch = function (payload) {
-  switch(payload.actionType) {
+  switch (payload.actionType) {
     case MessageConstants.RECEIVE_ALL_CONVOS:
       _conversations = payload.conversations;
       this.__emitChange();
@@ -73,16 +68,18 @@ MessageStore.__onDispatch = function (payload) {
       break;
     case MessageConstants.RECEIVE_MESSAGE:
       _conversations.forEach(function (convo, index) {
-        if (convo.conversation_name ===
-            payload.message.conversation.conversation_name
+        if (
+          convo.conversation_name ===
+          payload.message.conversation.conversation_name
         ) {
           convo.messages.push(payload.message);
         }
       });
 
       _activeConvos.forEach(function (convo, index) {
-        if (convo.conversation_name ===
-            payload.message.conversation.conversation_name
+        if (
+          convo.conversation_name ===
+          payload.message.conversation.conversation_name
         ) {
           convo.messages.push(payload.message);
         }

@@ -1,10 +1,10 @@
-var Store = require('flux/utils').Store;
-var AppDispatcher = require('../dispatcher/dispatcher');
-var AuthInfoConstants = require('../constants/authInfoConstants');
+var Store = require("flux/utils").Store;
+var AppDispatcher = require("../dispatcher/dispatcher");
+var AuthInfoConstants = require("../constants/authInfoConstants");
 
 var _tentativeProfile = {};
 var _zipLocation = "";
-var _authState = 'first';
+var _authState = "first";
 var bdayValid = false;
 var zipCodeValid = false;
 var emailValid = false;
@@ -24,21 +24,21 @@ AuthInfoStore.returnFinalizedProfile = function () {
   return _tentativeProfile;
 };
 
-AuthInfoStore.birthdateIsValid = function(birth_date) {
-  var returnString = '';
+AuthInfoStore.birthdateIsValid = function (birth_date) {
+  var returnString = "";
   var dateArray = [
     parseInt(birth_date.yyyy),
     parseInt(birth_date.mm),
-    parseInt(birth_date.dd)
+    parseInt(birth_date.dd),
   ];
 
   dateArray.forEach(function (date) {
     if (isNaN(date)) {
-      returnString = 'indecipherable';
+      returnString = "indecipherable";
     }
   });
 
-  if (returnString === 'indecipherable') {
+  if (returnString === "indecipherable") {
     return returnString;
   }
 
@@ -48,9 +48,9 @@ AuthInfoStore.birthdateIsValid = function(birth_date) {
   var ageDiff = Math.abs(dateToday.getFullYear() - userDate.getFullYear());
 
   if (ageDiff < 18) {
-    returnString = 'tooYoung';
-  } else if (ageDiff > 99){
-    returnString = 'tooOld';
+    returnString = "tooYoung";
+  } else if (ageDiff > 99) {
+    returnString = "tooOld";
   }
 
   return returnString;
@@ -61,30 +61,30 @@ AuthInfoStore.currentAuthState = function () {
 };
 
 AuthInfoStore.nextAuthState = function () {
-  if (_authState === 'first') {
-    _authState = 'second';
-  } else if (_authState === 'second') {
-    _authState = 'final';
+  if (_authState === "first") {
+    _authState = "second";
+  } else if (_authState === "second") {
+    _authState = "final";
   }
 };
 
 AuthInfoStore.handleZipInput = function (locationData) {
-  if (locationData['post code']) {
+  if (locationData["post code"]) {
     var place = locationData.places[0];
 
-    this.addInfoPiece('zip_code', locationData['post code']);
+    this.addInfoPiece("zip_code", locationData["post code"]);
     this.addInfoPiece(
-      'location',
-      place['place name'] + ', ' + place['state abbreviation']
+      "location",
+      place["place name"] + ", " + place["state abbreviation"]
     );
-    _zipLocation = place['place name'] + ', ' + place['state abbreviation'];
+    _zipLocation = place["place name"] + ", " + place["state abbreviation"];
   } else {
-    _zipLocation = 'no match';
+    _zipLocation = "no match";
   }
 };
 
 AuthInfoStore.__onDispatch = function (payload) {
-  switch(payload.actionType) {
+  switch (payload.actionType) {
     case AuthInfoConstants.ADD_INFO:
       this.addInfoPiece(payload.type, payload.info);
       this.__emitChange();
@@ -101,11 +101,10 @@ AuthInfoStore.__onDispatch = function (payload) {
       var isEmailUnique = payload.isEmailUnique;
       this.__emitChange();
       break;
-    }
+  }
 };
 
 module.exports = AuthInfoStore;
-
 
 //// notes:
 // if a piece of info is invalid, give that html item a selector of "invalid"

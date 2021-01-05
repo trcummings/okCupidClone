@@ -1,13 +1,13 @@
-var React = require('react');
-var AuthMain = require('./auth/authMain');
-var SessionStore = require('../stores/sessionStore');
-var ClientActions = require('../actions/clientActions');
-var Header = require('./header');
-var Footer = require('./footer');
+var React = require("react");
+var AuthMain = require("./auth/authMain");
+var SessionStore = require("../stores/sessionStore");
+var ClientActions = require("../actions/clientActions");
+var Header = require("./header");
+var Footer = require("./footer");
 
 var App = React.createClass({
   contextTypes: {
-    router: React.PropTypes.object.isRequired
+    router: React.PropTypes.object.isRequired,
   },
 
   getInitialState: function () {
@@ -15,12 +15,14 @@ var App = React.createClass({
   },
 
   componentDidMount: function () {
-    this.listener = SessionStore.addListener(function () {
-      this.checkForCurrentUser();
-    }.bind(this));
+    this.listener = SessionStore.addListener(
+      function () {
+        this.checkForCurrentUser();
+      }.bind(this)
+    );
 
     if (this.state.currentUser) {
-      this.context.router.push('/matches');
+      this.context.router.push("/matches");
     }
   },
 
@@ -41,9 +43,7 @@ var App = React.createClass({
       return (
         <div>
           <Header />
-          <div className='main-div'>
-            {this.props.children}
-          </div>
+          <div className="main-div">{this.props.children}</div>
           <Footer />
         </div>
       );
@@ -51,8 +51,7 @@ var App = React.createClass({
       return (
         <div>
           <AuthMain />
-          <footer id='auth-main-footer'>
-          </footer>
+          <footer id="auth-main-footer"></footer>
         </div>
       );
     }
@@ -61,18 +60,16 @@ var App = React.createClass({
   handleClick: function (event) {
     event.preventDefault();
 
-    ClientActions.logout(function () {
-      this.context.router.push("/");
-    }.bind(this));
+    ClientActions.logout(
+      function () {
+        this.context.router.push("/");
+      }.bind(this)
+    );
   },
 
   render: function () {
-    return (
-      <div>
-        {this.welcome()}
-      </div>
-    );
-  }
+    return <div>{this.welcome()}</div>;
+  },
 });
 
 module.exports = App;

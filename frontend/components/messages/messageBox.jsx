@@ -1,14 +1,13 @@
 /* globals Pusher */
-var React = require('react');
+var React = require("react");
 var PropTypes = React.PropTypes;
-var MessageStore = require('../../stores/messageStore');
-var SessionStore = require('../../stores/sessionStore');
-var ClientActions = require('../../actions/clientActions');
-var ServerActions = require('../../actions/serverActions');
-var ChatLog = require('./chatLog');
+var MessageStore = require("../../stores/messageStore");
+var SessionStore = require("../../stores/sessionStore");
+var ClientActions = require("../../actions/clientActions");
+var ServerActions = require("../../actions/serverActions");
+var ChatLog = require("./chatLog");
 
 var MessageBox = React.createClass({
-
   getInitialState: function () {
     var currentUser = SessionStore.currentUser();
     var receiver;
@@ -19,12 +18,12 @@ var MessageBox = React.createClass({
       receiver = this.props.convo.sender;
     }
 
-    return({
-      currentMsg: '',
+    return {
+      currentMsg: "",
       receiver: receiver,
       isOpen: true,
-      enterToSend: true
-     });
+      enterToSend: true,
+    };
   },
 
   closeWindow: function (event) {
@@ -36,13 +35,13 @@ var MessageBox = React.createClass({
   minimizeWindow: function (event) {
     event.preventDefault();
 
-    this.setState({ isOpen: false })
+    this.setState({ isOpen: false });
   },
 
   maximizeWindow: function (event) {
     event.preventDefault();
 
-    this.setState({ isOpen: true })
+    this.setState({ isOpen: true });
   },
 
   handleTextChange: function (event) {
@@ -64,19 +63,16 @@ var MessageBox = React.createClass({
   sendMessage: function () {
     ClientActions.sendMessage(
       this.state.currentMsg,
-      [
-        SessionStore.currentUser().username,
-        this.state.receiver
-      ],
+      [SessionStore.currentUser().username, this.state.receiver],
       function () {
-        this.setState({ currentMsg: '' });
+        this.setState({ currentMsg: "" });
       }.bind(this)
     );
   },
 
   handleEnter: function (event) {
     if (this.state.enterToSend) {
-      if (event.nativeEvent.keyCode === 13 && event.target.value !== '') {
+      if (event.nativeEvent.keyCode === 13 && event.target.value !== "") {
         this.sendMessage();
       }
     }
@@ -84,7 +80,7 @@ var MessageBox = React.createClass({
 
   render: function () {
     var convo = this.props.convo;
-    var otherName = this.props.convo.conversation_name.split('_');
+    var otherName = this.props.convo.conversation_name.split("_");
     var nameIndex = otherName.indexOf(SessionStore.currentUser().username);
     otherName.splice(nameIndex, 1);
     otherName = otherName[0];
@@ -92,68 +88,52 @@ var MessageBox = React.createClass({
     if (convo) {
       if (this.state.isOpen) {
         return (
-          <div className='chat-window biggied'>
-
-            <button
-              className='close-window-button'
-              onClick={this.closeWindow}
-            >
-            X
+          <div className="chat-window biggied">
+            <button className="close-window-button" onClick={this.closeWindow}>
+              X
             </button>
 
             <button onClick={this.minimizeWindow}>
-              <h1>
-                {'Conversation with ' + otherName}
-              </h1>
+              <h1>{"Conversation with " + otherName}</h1>
             </button>
 
-
-
-            <ChatLog
-              convo={convo}
-            />
+            <ChatLog convo={convo} />
 
             <input
               onChange={this.handleTextChange}
-              type='text'
+              type="text"
               onKeyPress={this.handleEnter}
-              className='new-message-box'
+              className="new-message-box"
               value={this.state.currentMsg}
             />
 
-            <button
-              onClick={this.sendMessage}
-              className='send-message-button'
-            >
+            <button onClick={this.sendMessage} className="send-message-button">
               Send
             </button>
 
-            <label className='enter-toggle'>
-              Enter to send {' '}
+            <label className="enter-toggle">
+              Enter to send{" "}
               <input
-                className='enter-checkbox'
-                type='checkbox'
+                className="enter-checkbox"
+                type="checkbox"
                 onChange={this.toggleEnterToSend}
                 defaultChecked={this.state.enterToSend}
               />
             </label>
-
           </div>
         );
       } else {
         return (
-          <div className='chat-window minied'>
+          <div className="chat-window minied">
             <button onClick={this.closeWindow}>X</button>
             <button onClick={this.maximizeWindow}>{otherName}</button>
           </div>
         );
       }
     } else {
-      return (
-        <div />
-      );
+      return <div />;
     }
-  }
+  },
 });
 
 module.exports = MessageBox;

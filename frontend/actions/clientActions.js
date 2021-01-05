@@ -1,8 +1,8 @@
-var SessionApiUtil = require('../util/sessionApiUtil');
-var UserAuthApiUtil = require('../util/userAuthApiUtil');
-var UsersApiUtil = require('../util/usersApiUtil');
-var PhotosApiUtil = require('../util/photosApiUtil');
-var MessageApiUtil = require('../util/messageApiUtil');
+var SessionApiUtil = require("../util/sessionApiUtil");
+var UserAuthApiUtil = require("../util/userAuthApiUtil");
+var UsersApiUtil = require("../util/usersApiUtil");
+var PhotosApiUtil = require("../util/photosApiUtil");
+var MessageApiUtil = require("../util/messageApiUtil");
 
 var ClientActions = {
   //////AUTH
@@ -43,7 +43,6 @@ var ClientActions = {
   signup: function (user, callback) {
     UsersApiUtil.signup(user, callback);
   },
-
 
   ///// usersApiUtil
 
@@ -121,7 +120,6 @@ var ClientActions = {
     PhotosApiUtil.defaultPhoto(photo);
   },
 
-
   /// messages Actions
   getAllConvos: function () {
     MessageApiUtil.fetchAllConversations();
@@ -142,7 +140,6 @@ var ClientActions = {
   sendMessage: function (message, userBundle, callback) {
     MessageApiUtil.sendMessage(message, userBundle, callback);
   },
-
 };
 
 module.exports = ClientActions;

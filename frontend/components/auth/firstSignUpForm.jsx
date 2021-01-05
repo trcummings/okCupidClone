@@ -1,25 +1,23 @@
-var React = require('react');
-var ClientActions = require('../../actions/clientActions');
-var HelperUtil = require('../../util/helperUtil');
-var AuthInfoStore = require('../../stores/authInfoStore');
+var React = require("react");
+var ClientActions = require("../../actions/clientActions");
+var HelperUtil = require("../../util/helperUtil");
+var AuthInfoStore = require("../../stores/authInfoStore");
 
 var FirstSignUpForm = React.createClass({
   getInitialState: function () {
-    return ({
-      orientation: 'Straight',
-      gender: 'Woman'
-    });
+    return {
+      orientation: "Straight",
+      gender: "Woman",
+    };
   },
 
-  componentDidMount: function () {
-
-  },
+  componentDidMount: function () {},
 
   handleSubmit: function (event) {
     event.preventDefault();
 
-    AuthInfoStore.addInfoPiece('orientation', this.state.orientation);
-    AuthInfoStore.addInfoPiece('gender', this.state.gender);
+    AuthInfoStore.addInfoPiece("orientation", this.state.orientation);
+    AuthInfoStore.addInfoPiece("gender", this.state.gender);
     ClientActions.incrementAuthState();
   },
 
@@ -33,13 +31,19 @@ var FirstSignUpForm = React.createClass({
 
   render: function () {
     return (
-      <div className='authForm group'>
+      <div className="authForm group">
         <h1> Meet your Perfect Pair! </h1>
         <form className="form_one group" onSubmit={this.handleSubmit}>
           <span className="form_one_item"> I am a </span>
 
-          <label className="dropdown orientation form_one_item" onBlur={this.handleOrientationChange}>
-            <select className='dropdown-select' onChange={this.handleOrientationChange}>
+          <label
+            className="dropdown orientation form_one_item"
+            onBlur={this.handleOrientationChange}
+          >
+            <select
+              className="dropdown-select"
+              onChange={this.handleOrientationChange}
+            >
               <option value="Straight">Straight</option>
               <option value="Gay">Gay</option>
               <option value="Bisexual">Bisexual</option>
@@ -49,8 +53,14 @@ var FirstSignUpForm = React.createClass({
             </select>
           </label>
 
-        <label className="dropdown gender form_one_item" onBlur={this.handleGenderChange}>
-            <select className='dropdown-select' onChange={this.handleGenderChange}>
+          <label
+            className="dropdown gender form_one_item"
+            onBlur={this.handleGenderChange}
+          >
+            <select
+              className="dropdown-select"
+              onChange={this.handleGenderChange}
+            >
               <option value="Woman">Woman</option>
               <option value="Man">Man</option>
               <option value="NonBinary">NonBinary</option>
@@ -58,14 +68,13 @@ var FirstSignUpForm = React.createClass({
             </select>
           </label>
 
-        <button
-          type='submit'
-          className="flatbutton form_one_item"
-        >Continue</button>
+          <button type="submit" className="flatbutton form_one_item">
+            Continue
+          </button>
         </form>
       </div>
     );
-  }
+  },
 });
 
 module.exports = FirstSignUpForm;

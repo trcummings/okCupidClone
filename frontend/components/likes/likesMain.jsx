@@ -1,39 +1,42 @@
-var React = require('react');
+var React = require("react");
 var PropTypes = React.PropTypes;
-var SessionStore = require('../../stores/sessionStore');
-var ClientActions = require('../../actions/clientActions');
-var HelperUtil = require('../../util/helperUtil');
+var SessionStore = require("../../stores/sessionStore");
+var ClientActions = require("../../actions/clientActions");
+var HelperUtil = require("../../util/helperUtil");
 
-var Tabs = ({
+var Tabs = {
   0: {
-    aboutText: 'About Who Likes You',
-    aboutBody: "These are people who like you on PerfectPair’s site. Maybe they could like you in real life too!",
-    group: 'likers'
+    aboutText: "About Who Likes You",
+    aboutBody:
+      "These are people who like you on PerfectPair’s site. Maybe they could like you in real life too!",
+    group: "likers",
   },
   1: {
-    aboutText: 'About Mutual Likes',
-    aboutBody: "These people like you back but you're sitting here reading this, and NOT messaging them? C'mon!",
-    group: 'mutual_likes'
+    aboutText: "About Mutual Likes",
+    aboutBody:
+      "These people like you back but you're sitting here reading this, and NOT messaging them? C'mon!",
+    group: "mutual_likes",
   },
   2: {
-    aboutText: 'About Who You Like',
-    aboutBody: "These are people you’ve liked on PerfectPair’s site. Be bold, send them a message, or don't. Not my problem!",
-    group: 'likees'
-  }
-});
+    aboutText: "About Who You Like",
+    aboutBody:
+      "These are people you’ve liked on PerfectPair’s site. Be bold, send them a message, or don't. Not my problem!",
+    group: "likees",
+  },
+};
 
 var LikesMain = React.createClass({
   contextTypes: {
-    router: React.PropTypes.object.isRequired
+    router: React.PropTypes.object.isRequired,
   },
 
   getInitialState: function () {
     return {
       selectedTab: 0,
-      tabOneSelected: 'selectedTab',
-      tabTwoSelected: '',
-      tabThreeSelected: '',
-      currentUser: SessionStore.currentUser()
+      tabOneSelected: "selectedTab",
+      tabTwoSelected: "",
+      tabThreeSelected: "",
+      currentUser: SessionStore.currentUser(),
     };
   },
 
@@ -41,32 +44,26 @@ var LikesMain = React.createClass({
     event.preventDefault();
 
     if (event.target.value === 0) {
-      this.setState(
-        {
-          selectedTab: event.target.value,
-          tabOneSelected: 'selectedTab',
-          tabTwoSelected: '',
-          tabThreeSelected: ''
-        }
-      );
+      this.setState({
+        selectedTab: event.target.value,
+        tabOneSelected: "selectedTab",
+        tabTwoSelected: "",
+        tabThreeSelected: "",
+      });
     } else if (event.target.value === 1) {
-      this.setState(
-        {
-          selectedTab: event.target.value,
-          tabOneSelected: '',
-          tabTwoSelected: 'selectedTab',
-          tabThreeSelected: ''
-        }
-      );
+      this.setState({
+        selectedTab: event.target.value,
+        tabOneSelected: "",
+        tabTwoSelected: "selectedTab",
+        tabThreeSelected: "",
+      });
     } else if (event.target.value === 2) {
-      this.setState(
-        {
-          selectedTab: event.target.value,
-          tabOneSelected: '',
-          tabTwoSelected: '',
-          tabThreeSelected: 'selectedTab'
-        }
-      );
+      this.setState({
+        selectedTab: event.target.value,
+        tabOneSelected: "",
+        tabTwoSelected: "",
+        tabThreeSelected: "selectedTab",
+      });
     }
   },
 
@@ -80,15 +77,15 @@ var LikesMain = React.createClass({
 
     return (
       <ul>
-      {
-        (currentUser[tabData.group]).map(function (user, index) {
-          return (
-            <li className='likelist-user' key={index}>
-              {this.renderUserItem(user)}
-            </li>
-          );
-        }.bind(this))
-      }
+        {currentUser[tabData.group].map(
+          function (user, index) {
+            return (
+              <li className="likelist-user" key={index}>
+                {this.renderUserItem(user)}
+              </li>
+            );
+          }.bind(this)
+        )}
       </ul>
     );
   },
@@ -102,65 +99,61 @@ var LikesMain = React.createClass({
     }
 
     return (
-      <div className='user-item group'
+      <div
+        className="user-item group"
         onClick={this.handleUserItemClick.bind(null, user.username)}
       >
-
-        <section className='user-item-thumbnail'>
+        <section className="user-item-thumbnail">
           <img src={thumbnailImage} />
         </section>
 
-        <section className='user-item-details'>
+        <section className="user-item-details">
           <h4>{user.username}</h4>
 
           <h5>{user.age}</h5>
           <p>{user.location}</p>
-          <p>{parseInt(user.match_percentage) + '% match'}</p>
+          <p>{parseInt(user.match_percentage) + "% match"}</p>
         </section>
       </div>
     );
   },
 
   handleUserItemClick: function (username) {
-    this.context.router.push('/profile/' + username);
+    this.context.router.push("/profile/" + username);
   },
 
   setSelectedTabToZero: function () {
-    this.setState(
-      {
-        selectedTab: 0,
-        tabOneSelected: 'selectedTab',
-        tabTwoSelected: '',
-        tabThreeSelected: ''
-      }
-    );
+    this.setState({
+      selectedTab: 0,
+      tabOneSelected: "selectedTab",
+      tabTwoSelected: "",
+      tabThreeSelected: "",
+    });
   },
 
   renderGeneralTab: function () {
     var tabData = this.getTabData();
     var currentUser = this.state.currentUser;
-    var personText = ' people like you';
+    var personText = " people like you";
 
     if (currentUser.likers.length === 1) {
-      personText = ' person likes you';
+      personText = " person likes you";
     }
 
     return (
-      <div className='user-list-box'>
-        <ul className='user-list-section-left'>
-          {this.renderUserList()}
-        </ul>
+      <div className="user-list-box">
+        <ul className="user-list-section-left">{this.renderUserList()}</ul>
 
         <section
-          className='user-list-like-count'
+          className="user-list-like-count"
           onClick={this.setSelectedTabToZero}
         >
-          <i className='fa fa-star fa-2' aria-hidden='true'></i>
+          <i className="fa fa-star fa-2" aria-hidden="true"></i>
           <h2>{currentUser.likers.length + personText}</h2>
           <i className="fa fa-arrow-right fa-2" aria-hidden="true"></i>
         </section>
 
-        <section className='user-list-about'>
+        <section className="user-list-about">
           <h1>{tabData.aboutText}</h1>
           <p>{tabData.aboutBody}</p>
         </section>
@@ -170,16 +163,16 @@ var LikesMain = React.createClass({
 
   render: function () {
     return (
-      <div id='likes-main' className='group'>
-        <section id='likes-header' className='group'>
+      <div id="likes-main" className="group">
+        <section id="likes-header" className="group">
           <h1>Likes</h1>
 
-          <ul className='page-tabs'>
+          <ul className="page-tabs">
             <li
               value={0}
               onClick={this.selectTab}
               id={this.state.tabOneSelected}
-              >
+            >
               Who Likes You
             </li>
 
@@ -187,28 +180,25 @@ var LikesMain = React.createClass({
               value={1}
               onClick={this.selectTab}
               id={this.state.tabTwoSelected}
-              >
+            >
               Mutual Likes
             </li>
             <li
               value={2}
               onClick={this.selectTab}
               id={this.state.tabThreeSelected}
-              >
+            >
               Who You Like
             </li>
           </ul>
         </section>
 
-        <div className='likes-monolith'>
-          <div id='main-column'>
-            {this.renderGeneralTab()}
-          </div>
+        <div className="likes-monolith">
+          <div id="main-column">{this.renderGeneralTab()}</div>
         </div>
       </div>
     );
-  }
-
+  },
 });
 
 module.exports = LikesMain;

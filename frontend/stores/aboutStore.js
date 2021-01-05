@@ -1,6 +1,6 @@
-var Store = require('flux/utils').Store;
-var AppDispatcher = require('../dispatcher/dispatcher');
-var AboutConstants = require('../constants/aboutConstants');
+var Store = require("flux/utils").Store;
+var AppDispatcher = require("../dispatcher/dispatcher");
+var AboutConstants = require("../constants/aboutConstants");
 // var SessionStore = require('./sessionStore');
 
 var _currentUserAbout = {};
@@ -11,12 +11,12 @@ AboutStore.currentUserAbout = function () {
 };
 
 AboutStore.__onDispatch = function (payload) {
-  switch(payload.actionType) {
+  switch (payload.actionType) {
     case AboutConstants.CURRENT_USER_ABOUT:
       _currentUserAbout = payload.userAbout;
       this.__emitChange();
       break;
-    }
+  }
 };
 
 module.exports = AboutStore;

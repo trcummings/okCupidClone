@@ -1,11 +1,11 @@
-var ServerActions = require('./../actions/serverActions');
+var ServerActions = require("./../actions/serverActions");
 
 var UsersApiUtil = {
   createNewConversation: function (targetUser) {
     $.ajax({
-      url: '/api/conversations',
-      type: 'POST',
-      dataType: 'json',
+      url: "/api/conversations",
+      type: "POST",
+      dataType: "json",
       data: { other_user: targetUser },
       success: function (conversation) {
         ServerActions.receiveConversation(conversation);
@@ -15,9 +15,9 @@ var UsersApiUtil = {
 
   fetchAllConversations: function () {
     $.ajax({
-      url: '/api/conversations/',
-      type: 'GET',
-      dataType: 'json',
+      url: "/api/conversations/",
+      type: "GET",
+      dataType: "json",
       success: function (conversations) {
         ServerActions.receiveAllConversations(conversations);
       },
@@ -26,9 +26,9 @@ var UsersApiUtil = {
 
   openConversation: function (targetUser) {
     $.ajax({
-      url: '/api/user/conversations/' + targetUser,
-      type: 'GET',
-      dataType: 'json',
+      url: "/api/user/conversations/" + targetUser,
+      type: "GET",
+      dataType: "json",
       success: function (conversation) {
         ServerActions.receiveConversation(conversation);
       },
@@ -39,12 +39,12 @@ var UsersApiUtil = {
     var new_message = {
       content: message,
       sender: userBundle[0],
-      receiver: userBundle[1]
+      receiver: userBundle[1],
     };
     $.ajax({
-      url: '/api/messages',
-      type: 'POST',
-      dataType: 'json',
+      url: "/api/messages",
+      type: "POST",
+      dataType: "json",
       data: { message: new_message },
       success: function (message) {
         callback();
@@ -52,10 +52,10 @@ var UsersApiUtil = {
       },
     });
   },
-  
+
   closeConversation: function (convo_name) {
     ServerActions.closeConversation(convo_name);
-  }
+  },
 };
 
 module.exports = UsersApiUtil;

@@ -1,18 +1,18 @@
-var React = require('react');
+var React = require("react");
 var PropTypes = React.PropTypes;
-var AuthInfoStore = require('../../../stores/authInfoStore');
+var AuthInfoStore = require("../../../stores/authInfoStore");
 
 var BirthdateInput = React.createClass({
   getInitialState: function () {
-    return ({
+    return {
       birth_date: {
         mm: "",
         dd: "",
-        yyyy: ""
+        yyyy: "",
       },
       bdErrored: "",
-      bdStatus: ""
-    });
+      bdStatus: "",
+    };
   },
 
   handleDateChange: function (type, event) {
@@ -22,7 +22,7 @@ var BirthdateInput = React.createClass({
     birth_date[type] = event.target.value;
 
     this.setState({
-      birth_date: birth_date
+      birth_date: birth_date,
     });
   },
 
@@ -36,75 +36,78 @@ var BirthdateInput = React.createClass({
     ) {
       this.setState({
         bdayValidityMsg: "You need to enter a birth date!",
-        bdStatus: 'error-field',
-        bdErrored: 'error-statement'
-       });
+        bdStatus: "error-field",
+        bdErrored: "error-statement",
+      });
       AuthInfoStore.bdayValid = false;
     } else if (
       birth_date.mm.length > 0 &&
       birth_date.dd.length > 0 &&
       birth_date.yyyy.length > 0
     ) {
-      if (AuthInfoStore.birthdateIsValid(birth_date) === 'tooYoung') {
+      if (AuthInfoStore.birthdateIsValid(birth_date) === "tooYoung") {
         this.setState({
-          bdayValidityMsg: "Too young to use this site! Go play a nintendo or beep boop on the Google",
-          bdStatus: 'error-field',
-          bdErrored: 'error-statement'
-         });
+          bdayValidityMsg:
+            "Too young to use this site! Go play a nintendo or beep boop on the Google",
+          bdStatus: "error-field",
+          bdErrored: "error-statement",
+        });
         AuthInfoStore.bdayValid = false;
-      } else if (AuthInfoStore.birthdateIsValid(birth_date) === 'tooOld') {
+      } else if (AuthInfoStore.birthdateIsValid(birth_date) === "tooOld") {
         this.setState({
           bdayValidityMsg: "This seems...off",
-          bdStatus: 'error-field',
-          bdErrored: 'error-statement'
-         });
+          bdStatus: "error-field",
+          bdErrored: "error-statement",
+        });
         AuthInfoStore.bdayValid = false;
-      } else if (AuthInfoStore.birthdateIsValid(birth_date) === 'indecipherable') {
+      } else if (
+        AuthInfoStore.birthdateIsValid(birth_date) === "indecipherable"
+      ) {
         this.setState({
           bdayValidityMsg: "Uh, are those ...numbers?",
-          bdStatus: 'error-field',
-          bdErrored: 'error-statement'
-         });
+          bdStatus: "error-field",
+          bdErrored: "error-statement",
+        });
         AuthInfoStore.bdayValid = false;
       } else {
         this.setState({
           bdayValidityMsg: "",
-          bdStatus: 'all-clear-field',
-          bdErrored: 'all-clear-statement'
-         });
+          bdStatus: "all-clear-field",
+          bdErrored: "all-clear-statement",
+        });
         AuthInfoStore.bdayValid = true;
-        AuthInfoStore.addInfoPiece('birth_date', birth_date);
+        AuthInfoStore.addInfoPiece("birth_date", birth_date);
       }
     }
   },
 
-  render: function() {
+  render: function () {
     return (
       <label
         className="birthdate_label text_box_item form_two_item"
-        ref='birthdate_label'
+        ref="birthdate_label"
         onBlur={this.runValidation}
       >
         <p>Birthdate</p>
 
         <input
           className={this.state.bdStatus}
-          type='text'
-          onChange={this.handleDateChange.bind(this, 'mm')}
+          type="text"
+          onChange={this.handleDateChange.bind(this, "mm")}
           placeholder="MM"
         />
 
         <input
           className={this.state.bdStatus}
-          type='text'
-          onChange={this.handleDateChange.bind(this, 'dd')}
+          type="text"
+          onChange={this.handleDateChange.bind(this, "dd")}
           placeholder="DD"
         />
 
         <input
           className={this.state.bdStatus}
-          type='text'
-          onChange={this.handleDateChange.bind(this, 'yyyy')}
+          type="text"
+          onChange={this.handleDateChange.bind(this, "yyyy")}
           placeholder="YYYY"
         />
 
@@ -113,8 +116,7 @@ var BirthdateInput = React.createClass({
         </span>
       </label>
     );
-  }
-
+  },
 });
 
 module.exports = BirthdateInput;

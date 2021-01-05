@@ -1,48 +1,54 @@
-var React = require('react');
-var ClientActions = require('../../actions/clientActions');
-var SessionStore = require('../../stores/sessionStore');
-var HelperUtil = require('../../util/helperUtil');
-var BasicInfoEditModal = require('./modals/basicInfoEditModal');
-var ProfileAboutTab = require('./profileAboutTab');
-var ProfileQuestionsTab = require('./profileQuestionsTab');
-var ProfilePicturesTab = require('./profilePicturesTab');
-var PhotoStore = require('../../stores/photoStore');
+var React = require("react");
+var ClientActions = require("../../actions/clientActions");
+var SessionStore = require("../../stores/sessionStore");
+var HelperUtil = require("../../util/helperUtil");
+var BasicInfoEditModal = require("./modals/basicInfoEditModal");
+var ProfileAboutTab = require("./profileAboutTab");
+var ProfileQuestionsTab = require("./profileQuestionsTab");
+var ProfilePicturesTab = require("./profilePicturesTab");
+var PhotoStore = require("../../stores/photoStore");
 
-var Tabs = ({
+var Tabs = {
   0: function () {
-    return (<ProfileAboutTab />);
+    return <ProfileAboutTab />;
   },
-  1:function () {
-    return (<ProfilePicturesTab />);
+  1: function () {
+    return <ProfilePicturesTab />;
   },
-  2:function () {
-    return (<ProfileQuestionsTab />);
+  2: function () {
+    return <ProfileQuestionsTab />;
   },
-});
+};
 
 var ProfileMain = React.createClass({
   contextTypes: {
-    router: React.PropTypes.object.isRequired
+    router: React.PropTypes.object.isRequired,
   },
 
   getInitialState: function () {
     return {
       selectedTab: 0,
       userPhotos: PhotoStore.returnDefaultProfilePic(),
-      tabOneSelected: 'selectedTab',
-      tabTwoSelected: '',
-      tabThreeSelected: ''
+      tabOneSelected: "selectedTab",
+      tabTwoSelected: "",
+      tabThreeSelected: "",
     };
   },
 
   componentDidMount: function () {
-    this.photoListener = PhotoStore.addListener(function () {
-      this.setState({ userPhotos: PhotoStore.returnDefaultProfilePic().photo_url });
-    }.bind(this));
+    this.photoListener = PhotoStore.addListener(
+      function () {
+        this.setState({
+          userPhotos: PhotoStore.returnDefaultProfilePic().photo_url,
+        });
+      }.bind(this)
+    );
 
-    this.userListener = SessionStore.addListener(function () {
-      this.forceUpdate();
-    }.bind(this));
+    this.userListener = SessionStore.addListener(
+      function () {
+        this.forceUpdate();
+      }.bind(this)
+    );
 
     ClientActions.getCurrentUserPhotos();
     ClientActions.getBirthday();
@@ -57,34 +63,27 @@ var ProfileMain = React.createClass({
     event.preventDefault();
 
     if (event.target.value === 0) {
-      this.setState(
-        {
-          selectedTab: event.target.value,
-          tabOneSelected: 'selectedTab',
-          tabTwoSelected: '',
-          tabThreeSelected: ''
-        }
-      );
+      this.setState({
+        selectedTab: event.target.value,
+        tabOneSelected: "selectedTab",
+        tabTwoSelected: "",
+        tabThreeSelected: "",
+      });
     } else if (event.target.value === 1) {
-      this.setState(
-        {
-          selectedTab: event.target.value,
-          tabOneSelected: '',
-          tabTwoSelected: 'selectedTab',
-          tabThreeSelected: ''
-        }
-      );
+      this.setState({
+        selectedTab: event.target.value,
+        tabOneSelected: "",
+        tabTwoSelected: "selectedTab",
+        tabThreeSelected: "",
+      });
     } else if (event.target.value === 2) {
-      this.setState(
-        {
-          selectedTab: event.target.value,
-          tabOneSelected: '',
-          tabTwoSelected: '',
-          tabThreeSelected: 'selectedTab'
-        }
-      );
+      this.setState({
+        selectedTab: event.target.value,
+        tabOneSelected: "",
+        tabTwoSelected: "",
+        tabThreeSelected: "selectedTab",
+      });
     }
-
   },
 
   renderTab: function () {
@@ -95,7 +94,6 @@ var ProfileMain = React.createClass({
     var reader = new FileReader();
     var file = event.target.files[0];
     var formData = new FormData();
-
 
     reader.onloadend = function () {
       ClientActions.uploadImage(formData, this.resetForm);
@@ -116,17 +114,17 @@ var ProfileMain = React.createClass({
       if (currentUserPhotos.length === 0) {
         return (
           <img
-            className='first-user-photo'
+            className="first-user-photo"
             src={defaultPhotoSrc}
-            alt={'Photo of ' + currentUser.username }
-            />
+            alt={"Photo of " + currentUser.username}
+          />
         );
       } else {
-        return(
+        return (
           <img
-            className='first-user-photo'
+            className="first-user-photo"
             src={PhotoStore.returnDefaultProfilePic().photo_url}
-            alt={'Photo of ' + currentUser.username }
+            alt={"Photo of " + currentUser.username}
           />
         );
       }
@@ -134,27 +132,28 @@ var ProfileMain = React.createClass({
 
     if (currentUser) {
       return (
-        <div id='profile-main' className='group'>
-          <div id='tabbed-heading'>
-            <div id='profile-thumbs' className='group'>
+        <div id="profile-main" className="group">
+          <div id="tabbed-heading">
+            <div id="profile-thumbs" className="group">
               {photoFunction(currentUserPhotos, currentUser)}
-              <form id='add-photo-button'>
+              <form id="add-photo-button">
                 <label>
                   Add Photo
                   <input
-                    type='file'
-                    name='user_photo[image_url]'
-                    onChange={this.addPhotoToForm} />
+                    type="file"
+                    name="user_photo[image_url]"
+                    onChange={this.addPhotoToForm}
+                  />
                 </label>
               </form>
             </div>
 
-            <ul className='page-tabs'>
+            <ul className="page-tabs">
               <li
                 value={0}
                 onClick={this.selectTab}
                 id={this.state.tabOneSelected}
-                >
+              >
                 About
               </li>
 
@@ -162,40 +161,31 @@ var ProfileMain = React.createClass({
                 value={1}
                 onClick={this.selectTab}
                 id={this.state.tabTwoSelected}
-                >
+              >
                 Photos
               </li>
-
 
               <li
                 value={2}
                 onClick={this.selectTab}
                 id={this.state.tabThreeSelected}
-                >
+              >
                 Questions
               </li>
             </ul>
 
-            <BasicInfoEditModal user={currentUser}/>
+            <BasicInfoEditModal user={currentUser} />
           </div>
 
-
-          <div className='profile-monolith'>
-            <div id='main-column'>
-              {this.renderTab()}
-            </div>
+          <div className="profile-monolith">
+            <div id="main-column">{this.renderTab()}</div>
           </div>
         </div>
       );
     } else {
-      return (
-        <div>
-          scoobert doobert!
-          you shouldn't be here!
-        </div>
-      );
+      return <div>scoobert doobert! you shouldn't be here!</div>;
     }
-  }
+  },
 });
 
 module.exports = ProfileMain;

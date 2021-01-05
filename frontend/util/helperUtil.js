@@ -1,25 +1,25 @@
 var HelperUtil = {
   parseNameField: function (string) {
     var type,
-        atSignIdx = string.indexOf('@');
+      atSignIdx = string.indexOf("@");
 
     if (atSignIdx === -1) {
-      type = 'username';
+      type = "username";
     } else {
-      type = 'email';
+      type = "email";
     }
     return type;
   },
 
   returnAge: function (date) {
     var todayDate = new Date(),
-        todayYear = todayDate.getFullYear(),
-        todayMonth = todayDate.getMonth(),
-        todayDay = todayDate.getDate(),
-        dateArray = date.split("-"),
-        birthYear,
-        birthMonth,
-        birthDay;
+      todayYear = todayDate.getFullYear(),
+      todayMonth = todayDate.getMonth(),
+      todayDay = todayDate.getDate(),
+      dateArray = date.split("-"),
+      birthYear,
+      birthMonth,
+      birthDay;
 
     dateArray.push(dateArray.shift());
     birthYear = dateArray[2];
@@ -28,13 +28,11 @@ var HelperUtil = {
 
     age = todayYear - birthYear;
 
-    if (todayMonth < birthMonth - 1)
-    {
+    if (todayMonth < birthMonth - 1) {
       age--;
     }
 
-    if (birthMonth - 1 == todayMonth && todayDay < birthDay)
-    {
+    if (birthMonth - 1 == todayMonth && todayDay < birthDay) {
       age--;
     }
     return age;
@@ -52,8 +50,8 @@ var HelperUtil = {
       September: 30,
       October: 31,
       November: 30,
-      December: 31
-    }
+      December: 31,
+    },
   },
 
   dateRange: function (endNum) {
@@ -67,27 +65,22 @@ var HelperUtil = {
   },
 
   monthConvert: {
-    1: 'January',
-    2: 'February',
-    3: 'March',
-    4: 'April',
-    5: 'May',
-    6: 'June',
-    7: 'July',
-    8: 'August',
-    9: 'September',
-    10: 'October',
-    11: 'November',
-    12: 'December'
+    1: "January",
+    2: "February",
+    3: "March",
+    4: "April",
+    5: "May",
+    6: "June",
+    7: "July",
+    8: "August",
+    9: "September",
+    10: "October",
+    11: "November",
+    12: "December",
   },
 
   possibleGenders: {
-    genders: [
-    'Anime Enthusiast',
-    'Man',
-    'Woman',
-    'NonBinary'
-    ]
+    genders: ["Anime Enthusiast", "Man", "Woman", "NonBinary"],
   },
 
   doesCurrentUserLikeThisUser: function (currentUser, otherUser) {
@@ -109,15 +102,15 @@ var HelperUtil = {
 
   getRandomQuestion: function (callback) {
     $.ajax({
-      url: '/api/questions/random',
-      type: 'GET',
-      dataType: 'json',
-      contentType: 'application/json',
+      url: "/api/questions/random",
+      type: "GET",
+      dataType: "json",
+      contentType: "application/json",
       success: function (question) {
         callback(question);
-      }
+      },
     });
-  }
+  },
 };
 
 module.exports = HelperUtil;

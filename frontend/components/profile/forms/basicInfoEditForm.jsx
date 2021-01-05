@@ -1,28 +1,30 @@
-var React = require('react'),
-    SessionStore = require('../../../stores/sessionStore'),
-    HelperUtil = require('../../../util/helperUtil'),
-    ClientActions = require('../../../actions/clientActions');
+var React = require("react"),
+  SessionStore = require("../../../stores/sessionStore"),
+  HelperUtil = require("../../../util/helperUtil"),
+  ClientActions = require("../../../actions/clientActions");
 
 var BasicInfoEditForm = React.createClass({
   getInitialState: function () {
     var currentUser = SessionStore.currentUser();
-    return ({
+    return {
       username: currentUser.username,
-      birth_date: '',
+      birth_date: "",
       country: currentUser.country,
       gender: currentUser.gender,
       location: currentUser.location,
       renderZipForm: false,
-      errorText: '',
-      new_birth_date: {}
-    });
+      errorText: "",
+      new_birth_date: {},
+    };
   },
 
   componentDidMount: function () {
-    this.birthdayListener = SessionStore.addListener(function () {
-      var birth_date = SessionStore.birthDay();
-      this.setState({ birth_date: birth_date });
-    }.bind(this));
+    this.birthdayListener = SessionStore.addListener(
+      function () {
+        var birth_date = SessionStore.birthDay();
+        this.setState({ birth_date: birth_date });
+      }.bind(this)
+    );
 
     ClientActions.getBirthday();
   },
@@ -44,47 +46,53 @@ var BasicInfoEditForm = React.createClass({
     var response;
 
     if (zipStr.length === 5) {
-      ClientActions.lookUpZipCodeForModal(event.target.value, function (response) {
-        response = JSON.parse(response);
+      ClientActions.lookUpZipCodeForModal(
+        event.target.value,
+        function (response) {
+          response = JSON.parse(response);
 
-        if (!response.places) {
-          this.setState({ errorText: 'Not a readable zip code!' });
-        } else if (response.places[0]) {
-          response = response.places[0];
+          if (!response.places) {
+            this.setState({ errorText: "Not a readable zip code!" });
+          } else if (response.places[0]) {
+            response = response.places[0];
 
-          this.setState(
-            { location: response['place name'] +
-              ', ' + response['state abbreviation'],
-              errorText: "Aah, " + response['place name'] +
-                ', ' + response['state abbreviation'] + "! Nice."
-            }
-          );
-        } else {
-          this.setState({ errorText: 'Not a readable zip code!' });
-        }
-      }.bind(this));
+            this.setState({
+              location:
+                response["place name"] + ", " + response["state abbreviation"],
+              errorText:
+                "Aah, " +
+                response["place name"] +
+                ", " +
+                response["state abbreviation"] +
+                "! Nice.",
+            });
+          } else {
+            this.setState({ errorText: "Not a readable zip code!" });
+          }
+        }.bind(this)
+      );
     }
   },
 
   handleSubmit: function (event) {
     event.preventDefault();
 
-    var bdArray = this.state.birth_date.split('-'),
-        bMonth = bdArray[1],
-        bDay = bdArray[2],
-        bYear = bdArray[0],
-        new_birth_date = this.state.new_birth_date;
+    var bdArray = this.state.birth_date.split("-"),
+      bMonth = bdArray[1],
+      bDay = bdArray[2],
+      bYear = bdArray[0],
+      new_birth_date = this.state.new_birth_date;
 
     if (!new_birth_date.dd) {
-      new_birth_date['dd'] = bDay;
+      new_birth_date["dd"] = bDay;
     }
 
     if (!new_birth_date.mm) {
-      new_birth_date['mm'] = bMonth;
+      new_birth_date["mm"] = bMonth;
     }
 
     if (!new_birth_date.yyyy) {
-      new_birth_date['yyyy'] = bYear;
+      new_birth_date["yyyy"] = bYear;
     }
 
     var updatedUser = {
@@ -95,10 +103,13 @@ var BasicInfoEditForm = React.createClass({
       location: this.state.location,
     };
 
-    ClientActions.updateUser(updatedUser, function () {
-      this.setState({ renderZipForm: false });
-      this.props.closeModal();
-    }.bind(this));
+    ClientActions.updateUser(
+      updatedUser,
+      function () {
+        this.setState({ renderZipForm: false });
+        this.props.closeModal();
+      }.bind(this)
+    );
   },
 
   handleCancel: function (event) {
@@ -115,7 +126,9 @@ var BasicInfoEditForm = React.createClass({
     for (var property in months) {
       if (months.hasOwnProperty(property)) {
         result.push(
-          <option value={i+1} key={i}>{property}</option>
+          <option value={i + 1} key={i}>
+            {property}
+          </option>
         );
         i++;
       }
@@ -129,8 +142,10 @@ var BasicInfoEditForm = React.createClass({
     var result = [];
 
     genders.map(function (gender, index) {
-      result.push (
-        <option value={gender} key={index}>{gender}</option>
+      result.push(
+        <option value={gender} key={index}>
+          {gender}
+        </option>
       );
     });
 
@@ -143,8 +158,10 @@ var BasicInfoEditForm = React.createClass({
     var result = [];
 
     for (var i = 1; i < days; i++) {
-      result.push (
-        <option value={i} key={i-1}>{i}</option>
+      result.push(
+        <option value={i} key={i - 1}>
+          {i}
+        </option>
       );
     }
 
@@ -158,10 +175,11 @@ var BasicInfoEditForm = React.createClass({
     var maxYear = thisYear - 99;
     var result = [];
 
-
     for (var i = minYear; i > maxYear; i--) {
-      result.push (
-        <option value={i} key={i-1}>{i}</option>
+      result.push(
+        <option value={i} key={i - 1}>
+          {i}
+        </option>
       );
     }
 
@@ -169,23 +187,21 @@ var BasicInfoEditForm = React.createClass({
   },
 
   zipFormRender: function () {
-
     if (this.state.renderZipForm) {
       return (
         <input
-          type='text'
-          placeholder='Zip code'
+          type="text"
+          placeholder="Zip code"
           onChange={this.handleZipChange}
-          >
-        </input>
+        ></input>
       );
     } else {
       return (
         <span>
           {this.state.location}
-          <button
-            className='edit-button'
-            onClick={this.toggleZipFormRender}>edit</button>
+          <button className="edit-button" onClick={this.toggleZipFormRender}>
+            edit
+          </button>
         </span>
       );
     }
@@ -203,10 +219,10 @@ var BasicInfoEditForm = React.createClass({
     event.preventDefault();
 
     var new_birth_date = this.state.new_birth_date;
-    new_birth_date['mm'] = event.target.value;
+    new_birth_date["mm"] = event.target.value;
 
     this.setState({
-      new_birth_date: new_birth_date
+      new_birth_date: new_birth_date,
     });
   },
 
@@ -214,10 +230,10 @@ var BasicInfoEditForm = React.createClass({
     event.preventDefault();
 
     var new_birth_date = this.state.new_birth_date;
-    new_birth_date['dd'] = event.target.value;
+    new_birth_date["dd"] = event.target.value;
 
     this.setState({
-      new_birth_date: new_birth_date
+      new_birth_date: new_birth_date,
     });
   },
 
@@ -225,28 +241,25 @@ var BasicInfoEditForm = React.createClass({
     event.preventDefault();
 
     var new_birth_date = this.state.new_birth_date;
-    new_birth_date['yyyy'] = event.target.value;
+    new_birth_date["yyyy"] = event.target.value;
 
     this.setState({
-      new_birth_date: new_birth_date
+      new_birth_date: new_birth_date,
     });
   },
 
-  render: function() {
+  render: function () {
     var currentUser = SessionStore.currentUser();
 
     if (this.state.birth_date) {
-
-      var bdArray = this.state.birth_date.split('-'),
-          bMonth = bdArray[1],
-          bDay = bdArray[2],
-          bYear = bdArray[0];
+      var bdArray = this.state.birth_date.split("-"),
+        bMonth = bdArray[1],
+        bDay = bdArray[2],
+        bYear = bdArray[0];
 
       return (
-        <form className='info-edit-modal'>
-          <h1 className='edit-form-title'>
-            Your Basic Information
-          </h1>
+        <form className="info-edit-modal">
+          <h1 className="edit-form-title">Your Basic Information</h1>
           {/*}
           <label>
             Username
@@ -272,23 +285,21 @@ var BasicInfoEditForm = React.createClass({
           <label>
             My Birthday
             <select
-              className='dropdown'
+              className="dropdown"
               defaultValue={parseInt(bMonth)}
               onChange={this.handleMonthChange}
             >
               {this.renderMonthList(parseInt(bMonth))}
             </select>
-
             <select
-              className='dropdown'
+              className="dropdown"
               defaultValue={parseInt(bDay)}
               onChange={this.handleDayChange}
             >
               {this.renderDayRange(bMonth)}
             </select>
-
             <select
-              className='dropdown'
+              className="dropdown"
               defaultValue={parseInt(bYear)}
               onChange={this.handleYearChange}
             >
@@ -298,7 +309,7 @@ var BasicInfoEditForm = React.createClass({
 
           <label>
             Country
-            <select className='dropdown'>
+            <select className="dropdown">
               <option value="America">America</option>
               <option value="Somewhere Else">Somewhere Else</option>
             </select>
@@ -309,27 +320,26 @@ var BasicInfoEditForm = React.createClass({
           <p>{this.state.errorText}</p>
 
           <button
-            id='continue_button'
-            className='save-button'
+            id="continue_button"
+            className="save-button"
             onClick={this.handleSubmit}
-            >
+          >
             Save
           </button>
 
           <button
-            id='continue_button'
-            className='save-button'
+            id="continue_button"
+            className="save-button"
             onClick={this.handleCancel}
-            >
+          >
             Cancel
           </button>
         </form>
       );
     } else {
-      return (<div />);
+      return <div />;
     }
-  }
-
+  },
 });
 
 module.exports = BasicInfoEditForm;

@@ -6,7 +6,7 @@
 
 Are you a singleton and ready to mingle a ton?
 
-PerfectPair is a full-stack web app clone of dating platform OKcupid. It features a Ruby on Rails, a PostgreSQL database, and a dynamic frontend via React.js and Flux architecture.
+PerfectPair is a full-stack web app clone of dating platform OK Cupid circa 2014. It features a Ruby on Rails backend, a PostgreSQL database, and a dynamic frontend via React.js and Flux architecture.
 
 [Live Here!][heroku]
 
@@ -27,7 +27,7 @@ Apart from the initial Auth, all pages on PerfectPair are reactive content deliv
     get '/users/:username', to: 'users#other_user'
     get '/users/:username/photos', to: 'users#other_user_photos'
     get '/users/:username/about', to: 'users#other_user_about'
-  ```
+```
 
 ### Websocket Based Messaging Services
 
@@ -65,22 +65,22 @@ componentDidUpdate: function() {
 
 ### Question Answering and Matching Algorithm
 
-  While the actual calculation for determining answer similarity is kept on the backend for the sake of simplicity and discreteness, the public nature of question answering and explaining your answers, as well as the relative desirability of each answer means each user could technically get a good approximaton of how much of a match they are with someone by looking at their answers. However, nobody has time for any of that nonsense! We do it for you!
+While the actual calculation for determining answer similarity is kept on the backend for the sake of simplicity and discreteness, the public nature of question answering and explaining your answers, as well as the relative desirability of each answer means each user could technically get a good approximation of how much of a match they are with someone by looking at their answers. However, nobody has time for any of that nonsense! We do it for you!
 
-  ```Ruby
-    my_ratio = my_running_total.to_f / my_total
-    their_ratio = their_running_total.to_f / their_total
+```Ruby
+  my_ratio = my_running_total.to_f / my_total
+  their_ratio = their_running_total.to_f / their_total
 
-    Math.sqrt(my_ratio * their_ratio) * 100
-  ```
+  Math.sqrt(my_ratio * their_ratio) * 100
+```
 
-  Every time a user answers a question, they point out which answers they'd like to see, and weight the importance of those answers with a basic four-point scale, ranging from `irrelevant` to `dealbreaker`.
+Every time a user answers a question, they point out which answers they'd like to see, and weight the importance of those answers with a basic four-point scale, ranging from `irrelevant` to `dealbreaker`.
 
-  These results are stored (and easily editable on the user's profile page) and compared with each user in the displayed group of matches. Question answering provides an instant update of your match percentage with each user, meaning you can totally game your questions if you wanted to, but buddy, that's not how love works.
+These results are stored (and easily editable on the user's profile page) and compared with each user in the displayed group of matches. Question answering provides an instant update of your match percentage with each user, meaning you can totally game your questions if you wanted to, but buddy, that's not how love works.
 
-  On the database side, the questions are joined on a question choices table, referring to the answers through a series of foreign keys. the importance and answered choices are queried based on all the questions that both you and the other user have answered!
+On the database side, the questions are joined on a question choices table, referring to the answers through a series of foreign keys. the importance and answered choices are queried based on all the questions that both you and the other user have answered!
 
-  The question display is almost absurdly complex (but the code isn't hard to read!). On one single `ProfileQuestionsTab`, you can answer questions, skip a question you don't want to answer, re-answer a question, add/edit an explanation, and have it all change instantaneously!
+The question display is almost absurdly complex (but the code isn't hard to read!). On one single `ProfileQuestionsTab`, you can answer questions, skip a question you don't want to answer, re-answer a question, add/edit an explanation, and have it all change instantaneously!
 
 ## Future Directions for the Project
 

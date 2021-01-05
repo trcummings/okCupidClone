@@ -1,28 +1,30 @@
-var React = require('react');
+var React = require("react");
 var PropTypes = React.PropTypes;
-var AboutStore = require('../../stores/aboutStore');
-var ClientActions = require('../../actions/clientActions');
-var SessionStore = require('../../stores/sessionStore');
+var AboutStore = require("../../stores/aboutStore");
+var ClientActions = require("../../actions/clientActions");
+var SessionStore = require("../../stores/sessionStore");
 
 var ProfileAboutTab = React.createClass({
   getInitialState: function () {
     var currentUserAbout = AboutStore.currentUserAbout();
 
-    return ({
+    return {
       currentUserAbout: currentUserAbout,
       editArray: [],
-      newAbout: {}
-    });
+      newAbout: {},
+    };
   },
 
   componentDidMount: function () {
     this.editArray = [];
-    this.aboutListener = AboutStore.addListener(function () {
-      var currentUserAbout = AboutStore.currentUserAbout();
-      this.setState({
-        currentUserAbout: currentUserAbout
-      });
-    }.bind(this));
+    this.aboutListener = AboutStore.addListener(
+      function () {
+        var currentUserAbout = AboutStore.currentUserAbout();
+        this.setState({
+          currentUserAbout: currentUserAbout,
+        });
+      }.bind(this)
+    );
 
     ClientActions.getCurrentUserAbout();
   },
@@ -44,8 +46,8 @@ var ProfileAboutTab = React.createClass({
     newEditArray.splice(idx, 1);
 
     this.setState({
-      editArray: newEditArray
-     });
+      editArray: newEditArray,
+    });
   },
 
   submitForm: function (propertyName, i, event) {
@@ -56,7 +58,7 @@ var ProfileAboutTab = React.createClass({
     var newState = {};
 
     this.setState({
-      newAbout: newState
+      newAbout: newState,
     });
 
     var idx = this.editArray.indexOf(i);
@@ -70,30 +72,30 @@ var ProfileAboutTab = React.createClass({
     newState[propertyName] = event.target.value;
 
     this.setState({
-      newAbout: newState
+      newAbout: newState,
     });
   },
 
   editForm: function (i, property, title, propertyName) {
     return (
-      <li key={i} className='group'>
-        <p className='about-title'>{title}</p>
+      <li key={i} className="group">
+        <p className="about-title">{title}</p>
         <textarea
-          id='about-detail-edit-form'
+          id="about-detail-edit-form"
           defaultValue={property}
-          onChange={this.handleChange.bind(this, propertyName)}>
-        </textarea>
+          onChange={this.handleChange.bind(this, propertyName)}
+        ></textarea>
         <button
-          className='submit-button'
+          className="submit-button"
           onClick={this.submitForm.bind(this, propertyName, i)}
-          >
+        >
           Save
         </button>
 
         <button
-          className='cancel-button'
+          className="cancel-button"
           onClick={this.cancelForm.bind(this, i)}
-          >
+        >
           Cancel
         </button>
       </li>
@@ -103,21 +105,21 @@ var ProfileAboutTab = React.createClass({
   renderEachSection: function () {
     var aboutDetail = this.state.currentUserAbout;
     var fieldList = [
-      'My Self Summary',
-      'What I’m doing with my life',
-      'I’m really good at',
-      'Favorite books, movies, shows, music, and food',
-      'The six things I could never do without',
-      'I spend a lot of time thinking about',
-      'On a typical Friday night I am',
-      'You should message me if'
+      "My Self Summary",
+      "What I’m doing with my life",
+      "I’m really good at",
+      "Favorite books, movies, shows, music, and food",
+      "The six things I could never do without",
+      "I spend a lot of time thinking about",
+      "On a typical Friday night I am",
+      "You should message me if",
     ];
     var result = [];
     var i = 0;
 
-    if (this.state.currentUserAbout.hasOwnProperty('six_things')) {
+    if (this.state.currentUserAbout.hasOwnProperty("six_things")) {
       for (var property in aboutDetail) {
-        if (aboutDetail.hasOwnProperty(property) && property !== 'id') {
+        if (aboutDetail.hasOwnProperty(property) && property !== "id") {
           if (this.state.editArray.indexOf(i) !== -1) {
             result.push(
               this.editForm(i, aboutDetail[property], fieldList[i], property)
@@ -126,15 +128,14 @@ var ProfileAboutTab = React.createClass({
             i++;
           } else if (this.state.editArray.indexOf(i) === -1) {
             result.push(
-              <li key={i} className='group'>
-                <p className='about-title'>{fieldList[i]}</p>
+              <li key={i} className="group">
+                <p className="about-title">{fieldList[i]}</p>
                 <i
                   className="fa fa-pencil"
                   aria-hidden="true"
                   onClick={this.toggleEditForm.bind(this, i)}
-                  >
-                </i>
-                <p className='info-box'>{aboutDetail[property]}</p>
+                ></i>
+                <p className="info-box">{aboutDetail[property]}</p>
               </li>
             );
             i++;
@@ -144,30 +145,23 @@ var ProfileAboutTab = React.createClass({
 
       return result;
     } else {
-      return (<div />);
+      return <div />;
     }
   },
 
-  render: function() {
+  render: function () {
     if (this.state.currentUserAbout) {
       return (
-        <div id='about-tab'>
-          <div id='right-column'>
+        <div id="about-tab">
+          <div id="right-column"></div>
 
-          </div>
-
-          <ul id='about-list'>
-            {this.renderEachSection()}
-          </ul>
+          <ul id="about-list">{this.renderEachSection()}</ul>
         </div>
       );
-    }  else {
-      return (
-        <div />
-      );
+    } else {
+      return <div />;
     }
-  }
-
+  },
 });
 
 module.exports = ProfileAboutTab;

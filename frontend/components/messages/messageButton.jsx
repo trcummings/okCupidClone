@@ -1,18 +1,20 @@
-var React = require('react');
+var React = require("react");
 var PropTypes = React.PropTypes;
-var MessageStore = require('../../stores/messageStore');
-var ClientActions = require('../../actions/clientActions');
-var SessionStore = require('../../stores/sessionStore');
+var MessageStore = require("../../stores/messageStore");
+var ClientActions = require("../../actions/clientActions");
+var SessionStore = require("../../stores/sessionStore");
 
 var MessageButton = React.createClass({
   handleOpenMessage: function (event) {
     event.preventDefault();
 
     var currentUser = SessionStore.currentUser();
-    var chatUsers, curUsIdx, allRecipients = [];
+    var chatUsers,
+      curUsIdx,
+      allRecipients = [];
 
     currentUser.conversations.forEach(function (conversation, index) {
-      chatUsers = conversation.conversation_name.split(' ');
+      chatUsers = conversation.conversation_name.split(" ");
       curUsIdx = chatUsers.indexOf(currentUser.username);
       chatUsers.splice(curUsIdx, 1);
 
@@ -26,17 +28,13 @@ var MessageButton = React.createClass({
     }
   },
 
-  render: function() {
+  render: function () {
     return (
-      <button
-        id='message-button'
-        onClick={this.handleOpenMessage}
-      >
+      <button id="message-button" onClick={this.handleOpenMessage}>
         Message
       </button>
     );
-  }
-
+  },
 });
 
 module.exports = MessageButton;

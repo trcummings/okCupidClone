@@ -1,28 +1,29 @@
-var React = require('react');
+var React = require("react");
 var PropTypes = React.PropTypes;
-var HelperUtil = require('../../util/helperUtil');
-var ClientActions = require('../../actions/clientActions');
-var SessionStore = require('../../stores/sessionStore');
+var HelperUtil = require("../../util/helperUtil");
+var ClientActions = require("../../actions/clientActions");
+var SessionStore = require("../../stores/sessionStore");
 
 var QuestionItem = React.createClass({
-
   getInitialState: function () {
-    this.hovered = ['not-hovered', 'not-hovered', 'not-hovered'];
+    this.hovered = ["not-hovered", "not-hovered", "not-hovered"];
 
-    HelperUtil.getRandomQuestion(function (questionBundle) {
-      this.setState({
-        questionBundle: questionBundle
-      });
-    }.bind(this));
+    HelperUtil.getRandomQuestion(
+      function (questionBundle) {
+        this.setState({
+          questionBundle: questionBundle,
+        });
+      }.bind(this)
+    );
 
-    return ({
+    return {
       questionFormRendered: false,
       selectedAnswer: [],
       selectedDesire: [],
-      importance: '',
-      explanation: '',
-      updatingQuestion: false
-    });
+      importance: "",
+      explanation: "",
+      updatingQuestion: false,
+    };
   },
 
   componentWillReceiveProps: function (nextProps) {
@@ -32,40 +33,44 @@ var QuestionItem = React.createClass({
       this.setState({
         questionBundle: {
           question: nextProps.question,
-          question_choices: nextProps.question.question_choices
-         },
+          question_choices: nextProps.question.question_choices,
+        },
         questionFormRendered: true,
         selectedAnswer: [],
         selectedDesire: [],
-        importance: '',
+        importance: "",
         explanation: question.explanation,
-        updatingQuestion: true
+        updatingQuestion: true,
       });
     }
   },
 
   isDisabled: function () {
     if (
-      this.state.importance !== '' &&
+      this.state.importance !== "" &&
       this.state.selectedAnswer.length > 0 &&
       this.state.selectedDesire.length > 0
     ) {
-      return ' not-disabled ';
+      return " not-disabled ";
     } else {
-      return ' disabled ';
+      return " disabled ";
     }
 
     this.forceUpdate();
   },
 
   componentDidMount: function () {
-    this.answersListener = SessionStore.addListener(function () {
-      HelperUtil.getRandomQuestion(function (questionBundle) {
-        this.setState({
-          questionBundle: questionBundle
-        });
-      }.bind(this));
-    }.bind(this));
+    this.answersListener = SessionStore.addListener(
+      function () {
+        HelperUtil.getRandomQuestion(
+          function (questionBundle) {
+            this.setState({
+              questionBundle: questionBundle,
+            });
+          }.bind(this)
+        );
+      }.bind(this)
+    );
   },
 
   componentWillUnmount: function () {
@@ -76,7 +81,7 @@ var QuestionItem = React.createClass({
     event.preventDefault();
 
     this.setState({
-      questionFormRendered: true
+      questionFormRendered: true,
     });
   },
 
@@ -84,7 +89,7 @@ var QuestionItem = React.createClass({
     event.preventDefault();
 
     if (
-      this.state.importance !== '' &&
+      this.state.importance !== "" &&
       this.state.selectedAnswer.length > 0 &&
       this.state.selectedDesire.length > 0
     ) {
@@ -104,21 +109,24 @@ var QuestionItem = React.createClass({
         }
       });
 
-      var submitInput = [{
-        chosen_ids: givenArray,
-        acceptable_ids: desiredArray,
-        importance: this.state.importance,
-        question_id: this.state.questionBundle.question.id,
-        explanation: this.state.explanation
-      }, function () {
-        this.setState({
-          questionFormRendered: false,
-          selectedAnswer: [],
-          selectedDesire: [],
-          importance: '',
-          explanation: ''
-        });
-      }.bind(this)];
+      var submitInput = [
+        {
+          chosen_ids: givenArray,
+          acceptable_ids: desiredArray,
+          importance: this.state.importance,
+          question_id: this.state.questionBundle.question.id,
+          explanation: this.state.explanation,
+        },
+        function () {
+          this.setState({
+            questionFormRendered: false,
+            selectedAnswer: [],
+            selectedDesire: [],
+            importance: "",
+            explanation: "",
+          });
+        }.bind(this),
+      ];
 
       if (this.state.updatingQuestion) {
         submitInput[0].question_id = this.state.questionBundle.question.question_id;
@@ -134,18 +142,20 @@ var QuestionItem = React.createClass({
 
     this.setState({
       selectedAnswer: [],
-      questionFormRendered: false
+      questionFormRendered: false,
     });
   },
 
   handleSkipQuestion: function (event) {
     event.preventDefault();
 
-    HelperUtil.getRandomQuestion(function (questionBundle) {
-      this.setState({
-        questionBundle: questionBundle
-      });
-    }.bind(this));
+    HelperUtil.getRandomQuestion(
+      function (questionBundle) {
+        this.setState({
+          questionBundle: questionBundle,
+        });
+      }.bind(this)
+    );
     this.forceUpdate();
   },
 
@@ -153,7 +163,7 @@ var QuestionItem = React.createClass({
     event.preventDefault();
 
     this.setState({
-      explanation: event.target.value
+      explanation: event.target.value,
     });
   },
 
@@ -168,7 +178,7 @@ var QuestionItem = React.createClass({
     if (selectIndex !== -1) {
       selectedAnswer.splice(selectIndex, 1);
     } else {
-      if (!(questionBundle.question.multi_select)) {
+      if (!questionBundle.question.multi_select) {
         selectedAnswer = [];
       }
 
@@ -176,7 +186,7 @@ var QuestionItem = React.createClass({
     }
 
     this.setState({
-      selectedAnswer: selectedAnswer
+      selectedAnswer: selectedAnswer,
     });
   },
 
@@ -191,21 +201,21 @@ var QuestionItem = React.createClass({
     if (selectIndex !== -1) {
       // if you've deselected 'any'
       if (
-        selectedDesire[selectIndex] === 'any' ||
-        selectedDesire.indexOf('any') !== -1
+        selectedDesire[selectIndex] === "any" ||
+        selectedDesire.indexOf("any") !== -1
       ) {
         selectedDesire = [];
-        this.setState({ importance: '' });
+        this.setState({ importance: "" });
       } else {
         // else, deselect the thing you clicked
         selectedDesire.splice(selectIndex, 1);
       }
     } else {
       // if you've picked 'any'
-      if (event.currentTarget.value === 'any') {
+      if (event.currentTarget.value === "any") {
         selectedDesire = [];
 
-        this.setState({ importance: 'irrelevant' });
+        this.setState({ importance: "irrelevant" });
 
         questionChoices.forEach(function (choice) {
           selectedDesire.push(choice.choice_string);
@@ -215,26 +225,26 @@ var QuestionItem = React.createClass({
       selectedDesire.push(event.currentTarget.value);
       // if you've picked all the choices BUT 'any'
       if (
-        event.currentTarget.value !== 'any' &&
+        event.currentTarget.value !== "any" &&
         selectedDesire.length === questionChoices.length
       ) {
-        selectedDesire.push('any');
-        this.setState({ importance: 'irrelevant' });
+        selectedDesire.push("any");
+        this.setState({ importance: "irrelevant" });
       }
     }
 
     this.setState({
-      selectedDesire: selectedDesire
+      selectedDesire: selectedDesire,
     });
   },
 
   setImportance: function (level) {
-    if (level === 'not-very') {
-      this.hovered = ['selected', 'not-hovered', 'not-hovered'];
-    } else if (level === 'moderate') {
-      this.hovered = ['selected', 'selected', 'not-hovered'];
-    } else if (level === 'very') {
-      this.hovered = ['selected', 'selected', 'selected'];
+    if (level === "not-very") {
+      this.hovered = ["selected", "not-hovered", "not-hovered"];
+    } else if (level === "moderate") {
+      this.hovered = ["selected", "selected", "not-hovered"];
+    } else if (level === "very") {
+      this.hovered = ["selected", "selected", "selected"];
     }
 
     this.setState({ importance: level });
@@ -242,72 +252,62 @@ var QuestionItem = React.createClass({
 
   setHover: function (tab) {
     if (tab === 2) {
-      this.hovered = ['hovered', 'hovered', 'hovered'];
+      this.hovered = ["hovered", "hovered", "hovered"];
     } else if (tab === 1) {
-      this.hovered = ['hovered', 'hovered', 'not-hovered'];
+      this.hovered = ["hovered", "hovered", "not-hovered"];
     } else if (tab === 0) {
-      this.hovered = ['hovered', 'not-hovered', 'not-hovered'];
+      this.hovered = ["hovered", "not-hovered", "not-hovered"];
     }
     this.forceUpdate();
   },
 
   removeHover: function () {
-    this.hovered = ['not-hovered', 'not-hovered', 'not-hovered'];
+    this.hovered = ["not-hovered", "not-hovered", "not-hovered"];
     this.forceUpdate();
   },
 
   renderImportanceButtons: function () {
-    if (this.state.importance === 'irrelevant') {
+    if (this.state.importance === "irrelevant") {
       return (
-        <section className='importanceButtons'>
-          <p>
-            Irrelevant
-          </p>
+        <section className="importanceButtons">
+          <p>Irrelevant</p>
 
           <div>
-            (Because you'll accept any answer, this question is marked irrelevant)
+            (Because you'll accept any answer, this question is marked
+            irrelevant)
           </div>
         </section>
       );
-    } else if (this.state.importance === '') {
+    } else if (this.state.importance === "") {
       return (
-        <section className='importanceButtons group'>
+        <section className="importanceButtons group">
           <label
-            className='group'
+            className="group"
             onMouseEnter={this.setHover.bind(this, 0)}
             onMouseLeave={this.removeHover}
-            onClick={this.setImportance.bind(this, 'not-very')}
+            onClick={this.setImportance.bind(this, "not-very")}
           >
-            <button
-              className={'importance-button ' + this.hovered[0]}
-            >
-            </button>
+            <button className={"importance-button " + this.hovered[0]}></button>
             <p>A little bit</p>
           </label>
 
           <label
-            className='group'
+            className="group"
             onMouseEnter={this.setHover.bind(this, 1)}
             onMouseLeave={this.removeHover}
-            onClick={this.setImportance.bind(this, 'moderate')}
+            onClick={this.setImportance.bind(this, "moderate")}
           >
-            <button
-              className={'importance-button ' + this.hovered[1]}
-            >
-            </button>
+            <button className={"importance-button " + this.hovered[1]}></button>
             <p>Moderate</p>
           </label>
 
           <label
-            className='group'
+            className="group"
             onMouseEnter={this.setHover.bind(this, 2)}
             onMouseLeave={this.removeHover}
-            onClick={this.setImportance.bind(this, 'very')}
+            onClick={this.setImportance.bind(this, "very")}
           >
-            <button
-              className={'importance-button ' + this.hovered[2]}
-            >
-            </button>
+            <button className={"importance-button " + this.hovered[2]}></button>
             <p>Dealbreaker</p>
           </label>
         </section>
@@ -315,37 +315,28 @@ var QuestionItem = React.createClass({
     } else {
       /// when a value has been selected
       return (
-        <section className='importanceButtons group'>
+        <section className="importanceButtons group">
           <label
-            className='group'
-            onClick={this.setImportance.bind(this, 'not-very')}
+            className="group"
+            onClick={this.setImportance.bind(this, "not-very")}
           >
-            <button
-              className={'importance-button ' + this.hovered[0]}
-            >
-            </button>
+            <button className={"importance-button " + this.hovered[0]}></button>
             <p>A little bit</p>
           </label>
 
           <label
-            className='group'
-            onClick={this.setImportance.bind(this, 'moderate')}
+            className="group"
+            onClick={this.setImportance.bind(this, "moderate")}
           >
-            <button
-              className={'importance-button ' + this.hovered[1]}
-            >
-            </button>
+            <button className={"importance-button " + this.hovered[1]}></button>
             <p>Moderate</p>
           </label>
 
           <label
-            className='group'
-            onClick={this.setImportance.bind(this, 'very')}
+            className="group"
+            onClick={this.setImportance.bind(this, "very")}
           >
-            <button
-              className={'importance-button ' + this.hovered[2]}
-            >
-            </button>
+            <button className={"importance-button " + this.hovered[2]}></button>
             <p>Dealbreaker</p>
           </label>
         </section>
@@ -353,55 +344,59 @@ var QuestionItem = React.createClass({
     }
   },
 
-
   renderDesiredChoicesList: function () {
     var questionBundle = this.state.questionBundle;
     var questionChoices = questionBundle.question_choices;
     var selectedAnswer = this.state.selectedDesire;
     var result = [];
     var buttonType = <i className="fa fa-square-o" aria-hidden="true"></i>;
-    var selectedButtonType =
-      <i className="fa fa-check-square-o" aria-hidden="true"></i>;
+    var selectedButtonType = (
+      <i className="fa fa-check-square-o" aria-hidden="true"></i>
+    );
     var indexCounter = 0;
 
-    questionChoices.forEach(function (choice, index) {
-      if (selectedAnswer !== [] &&
-          selectedAnswer.indexOf(choice.choice_string) !== -1) {
-        result.push(
-          <button
-            key={index}
-            className='choice-button'
-            onClick={this.toggleDesiredSelect}
-            value={choice.choice_string}
-          >
-            {selectedButtonType}
-            <span>{choice.choice_string}</span>
-          </button>
-        );
-      } else {
-        result.push(
-          <button
-            key={index}
-            className='choice-button'
-            onClick={this.toggleDesiredSelect}
-            value={choice.choice_string}
-          >
-            {buttonType}
-            <span>{choice.choice_string}</span>
-          </button>
-        );
-      }
+    questionChoices.forEach(
+      function (choice, index) {
+        if (
+          selectedAnswer !== [] &&
+          selectedAnswer.indexOf(choice.choice_string) !== -1
+        ) {
+          result.push(
+            <button
+              key={index}
+              className="choice-button"
+              onClick={this.toggleDesiredSelect}
+              value={choice.choice_string}
+            >
+              {selectedButtonType}
+              <span>{choice.choice_string}</span>
+            </button>
+          );
+        } else {
+          result.push(
+            <button
+              key={index}
+              className="choice-button"
+              onClick={this.toggleDesiredSelect}
+              value={choice.choice_string}
+            >
+              {buttonType}
+              <span>{choice.choice_string}</span>
+            </button>
+          );
+        }
 
-      indexCounter = index;
-    }.bind(this));
+        indexCounter = index;
+      }.bind(this)
+    );
 
-    if (selectedAnswer.indexOf('any') !== -1) {
+    if (selectedAnswer.indexOf("any") !== -1) {
       result.push(
         <button
-          key={indexCounter+1}
-          className='choice-button'
+          key={indexCounter + 1}
+          className="choice-button"
           onClick={this.toggleDesiredSelect}
-          value='any'
+          value="any"
         >
           {selectedButtonType}
           <span>Any of the above</span>
@@ -410,10 +405,10 @@ var QuestionItem = React.createClass({
     } else {
       result.push(
         <button
-          key={indexCounter+1}
-          className='choice-button'
+          key={indexCounter + 1}
+          className="choice-button"
           onClick={this.toggleDesiredSelect}
-          value='any'
+          value="any"
         >
           {buttonType}
           <span>Any of the above</span>
@@ -434,47 +429,53 @@ var QuestionItem = React.createClass({
 
     if (questionBundle.question.multi_select) {
       buttonType = <i className="fa fa-square-o" aria-hidden="true"></i>;
-      selectedButtonType =
-        <i className="fa fa-check-square-o" aria-hidden="true"></i>;
+      selectedButtonType = (
+        <i className="fa fa-check-square-o" aria-hidden="true"></i>
+      );
     } else {
       buttonType = <i className="fa fa-circle-o" aria-hidden="true"></i>;
-        selectedButtonType =
-          <i className="fa fa-check-circle-o" aria-hidden="true"></i>;
+      selectedButtonType = (
+        <i className="fa fa-check-circle-o" aria-hidden="true"></i>
+      );
     }
 
-    questionChoices.forEach(function (choice, index) {
-      if (selectedAnswer !== [] &&
-          selectedAnswer.indexOf(choice.choice_string) !== -1) {
-        result.push(
-          <button
-            key={index}
-            className='choice-button'
-            onClick={this.toggleSelect}
-            value={choice.choice_string}
-          >
-            {selectedButtonType}
-            <span>{choice.choice_string}</span>
-          </button>
-        );
-      } else {
-        result.push(
-          <button
-            key={index}
-            className='choice-button'
-            onClick={this.toggleSelect}
-            value={choice.choice_string}
-          >
-            {buttonType}
-            <span>{choice.choice_string}</span>
-          </button>
-        );
-      }
-    }.bind(this));
+    questionChoices.forEach(
+      function (choice, index) {
+        if (
+          selectedAnswer !== [] &&
+          selectedAnswer.indexOf(choice.choice_string) !== -1
+        ) {
+          result.push(
+            <button
+              key={index}
+              className="choice-button"
+              onClick={this.toggleSelect}
+              value={choice.choice_string}
+            >
+              {selectedButtonType}
+              <span>{choice.choice_string}</span>
+            </button>
+          );
+        } else {
+          result.push(
+            <button
+              key={index}
+              className="choice-button"
+              onClick={this.toggleSelect}
+              value={choice.choice_string}
+            >
+              {buttonType}
+              <span>{choice.choice_string}</span>
+            </button>
+          );
+        }
+      }.bind(this)
+    );
 
     return result;
   },
 
-  render: function() {
+  render: function () {
     var questionBundle = this.state.questionBundle;
 
     if (questionBundle) {
@@ -483,59 +484,46 @@ var QuestionItem = React.createClass({
       var questionChoices = questionBundle.question_choices;
 
       if (this.state.questionFormRendered) {
-
         // the form for answering the question
         return (
-          <section id='question-item'>
+          <section id="question-item">
             <h2>{questionBundle.question.content}</h2>
 
-            <ul>
-              {this.renderAnswerChoiceList()}
-            </ul>
+            <ul>{this.renderAnswerChoiceList()}</ul>
 
             <h2>Answers(s) you'll accept</h2>
 
-            <ul>
-              {this.renderDesiredChoicesList()}
-            </ul>
+            <ul>{this.renderDesiredChoicesList()}</ul>
 
             <h2>Importance</h2>
             {this.renderImportanceButtons()}
 
             <textarea
-              placeholder='Explain your answer (optional)'
+              placeholder="Explain your answer (optional)"
               onChange={this.handleExplanationEntry}
               defaultValue={this.state.explanation}
-            >
-            </textarea>
+            ></textarea>
 
             <button
-              className={'answer-button' + this.isDisabled()}
+              className={"answer-button" + this.isDisabled()}
               onClick={this.handleSubmit}
             >
               Submit
             </button>
 
-            <button
-              className='cancel-button'
-              onClick={this.handleCancel}
-            >
+            <button className="cancel-button" onClick={this.handleCancel}>
               Cancel
             </button>
 
-            <button
-              className='skip-button'
-              onClick={this.handleSkipQuestion}
-            >
+            <button className="skip-button" onClick={this.handleSkipQuestion}>
               Skip Question
             </button>
-
           </section>
         );
       } else if (!this.state.questionFormRendered) {
-        if (questionBundle.question === 'no more questions') {
+        if (questionBundle.question === "no more questions") {
           return (
-            <section id='question-item'>
+            <section id="question-item">
               <h1>No more questions to answer</h1>
               <p>Look at you go!</p>
             </section>
@@ -543,20 +531,17 @@ var QuestionItem = React.createClass({
         } else {
           // the random question
           return (
-            <section id='question-item'>
+            <section id="question-item">
               <h1>{questionBundle.question.content}</h1>
 
               <button
-                className='answer-button'
+                className="answer-button"
                 onClick={this.handleAnswerClick}
-                >
+              >
                 Answer
               </button>
 
-              <button
-                className='skip-button'
-                onClick={this.handleSkipQuestion}
-                >
+              <button className="skip-button" onClick={this.handleSkipQuestion}>
                 Skip Question
               </button>
             </section>
@@ -564,10 +549,9 @@ var QuestionItem = React.createClass({
         }
       }
     } else {
-      return (<div />);
+      return <div />;
     }
-  }
-
+  },
 });
 
 module.exports = QuestionItem;

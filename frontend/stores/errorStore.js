@@ -1,6 +1,6 @@
-var Store = require('flux/utils').Store;
-var AppDispatcher = require('../dispatcher/dispatcher');
-var ErrorConstants = require('../constants/errorConstants');
+var Store = require("flux/utils").Store;
+var AppDispatcher = require("../dispatcher/dispatcher");
+var ErrorConstants = require("../constants/errorConstants");
 var ErrorStore = new Store(AppDispatcher);
 
 var _errors = {};
@@ -35,7 +35,6 @@ ErrorStore.errorsArray = function () {
 
   return result;
 };
-
 
 ErrorStore.__onDispatch = function (payload) {
   switch (payload.actionType) {

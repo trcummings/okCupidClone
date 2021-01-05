@@ -1,6 +1,6 @@
-var Store = require('flux/utils').Store;
-var AppDispatcher = require('../dispatcher/dispatcher');
-var PhotoConstants = require('../constants/photoConstants');
+var Store = require("flux/utils").Store;
+var AppDispatcher = require("../dispatcher/dispatcher");
+var PhotoConstants = require("../constants/photoConstants");
 
 var _currentUserPhotos = [];
 var _otherUserPhotos = [];
@@ -41,7 +41,7 @@ PhotoStore.removePhoto = function (image) {
       _currentUserPhotos.splice(index, 1);
     }
   });
-}
+};
 
 PhotoStore.otherUserDefaultProfilePic = function () {
   var desiredPhoto = {};
@@ -59,7 +59,6 @@ PhotoStore.otherUserDefaultProfilePic = function () {
   return desiredPhoto;
 };
 
-
 PhotoStore.otherUserAllPhotos = function () {
   return _otherUserPhotos;
 };
@@ -72,10 +71,10 @@ PhotoStore.setNewDefault = function (photoId) {
       photo.is_default = false;
     }
   });
-}
+};
 
 PhotoStore.__onDispatch = function (payload) {
-  switch(payload.actionType) {
+  switch (payload.actionType) {
     case PhotoConstants.NEW_PHOTO:
       this.addPhotoToCurrentUserPhotos(payload.image);
       this.__emitChange();
@@ -100,7 +99,7 @@ PhotoStore.__onDispatch = function (payload) {
       this.setNewDefault(payload.photoId);
       this.__emitChange();
       break;
-    }
+  }
 };
 
 module.exports = PhotoStore;

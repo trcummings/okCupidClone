@@ -1,15 +1,14 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+var React = require("react");
+var ReactDOM = require("react-dom");
 var PropTypes = React.PropTypes;
-var SessionStore = require('../../stores/sessionStore');
-var ClientActions = require('../../actions/clientActions');
-
+var SessionStore = require("../../stores/sessionStore");
+var ClientActions = require("../../actions/clientActions");
 
 var ChatLog = React.createClass({
   getInitialState: function () {
-    return ({
-      convo: this.props.convo
-    });
+    return {
+      convo: this.props.convo,
+    };
   },
 
   componentDidMount: function () {
@@ -17,8 +16,8 @@ var ChatLog = React.createClass({
     node.scrollTop = node.scrollHeight;
     var convo = this.state.convo;
 
-    this.pusher = new Pusher('3d1017ad258d309a7dff', {
-      encrypted: true
+    this.pusher = new Pusher("3d1017ad258d309a7dff", {
+      encrypted: true,
     });
 
     var receiver;
@@ -30,18 +29,21 @@ var ChatLog = React.createClass({
     }
 
     var channel = this.pusher.subscribe(convo.conversation_name);
-    channel.bind('message_sent', function(data) {
-      ClientActions.openConversation(receiver);
-
-    }.bind(this));
+    channel.bind(
+      "message_sent",
+      function (data) {
+        ClientActions.openConversation(receiver);
+      }.bind(this)
+    );
   },
 
-  componentWillUpdate: function() {
+  componentWillUpdate: function () {
     var node = ReactDOM.findDOMNode(this);
-    this.shouldScrollBottom = node.scrollTop + node.offsetHeight === node.scrollHeight;
+    this.shouldScrollBottom =
+      node.scrollTop + node.offsetHeight === node.scrollHeight;
   },
 
-  componentDidUpdate: function() {
+  componentDidUpdate: function () {
     if (this.shouldScrollBottom) {
       var node = ReactDOM.findDOMNode(this);
       node.scrollTop = node.scrollHeight;
@@ -51,7 +53,8 @@ var ChatLog = React.createClass({
   componentWillReceiveProps: function (nextProps) {
     var node = ReactDOM.findDOMNode(this);
     node.scrollTop = node.scrollHeight;
-    this.shouldScrollBottom = node.scrollTop + node.offsetHeight === node.scrollHeight;
+    this.shouldScrollBottom =
+      node.scrollTop + node.offsetHeight === node.scrollHeight;
     this.setState({ convo: nextProps.convo });
   },
 
@@ -59,46 +62,33 @@ var ChatLog = React.createClass({
     this.pusher.unsubscribe(this.state.convo.conversation_name);
   },
 
-  render: function() {
+  render: function () {
     var result = [];
     var convo = this.state.convo;
 
-    convo.messages.forEach(function (message, index) {
-      if (index === convo.messages.length) {
-        ReactDOM.findDOMNode(this).scrollTop = 0;
-      }
-      if (message.sender === SessionStore.currentUser().username) {
-        result.push(
-          <li
-            key={index}
-            className='msg-item'
-          >
-            <p className='current-user-message'>
-              {message.content}
-            </p>
-          </li>
-        );
-      } else {
-        result.push(
-          <li
-            key={index}
-            className='msg-item'
-          >
-            <p className='other-user-message'>
-              {message.content}
-            </p>
-          </li>
-        );
-      }
-    }.bind(this));
-
-    return (
-      <ul className='chatlog-box'>
-        {result}
-      </ul>
+    convo.messages.forEach(
+      function (message, index) {
+        if (index === convo.messages.length) {
+          ReactDOM.findDOMNode(this).scrollTop = 0;
+        }
+        if (message.sender === SessionStore.currentUser().username) {
+          result.push(
+            <li key={index} className="msg-item">
+              <p className="current-user-message">{message.content}</p>
+            </li>
+          );
+        } else {
+          result.push(
+            <li key={index} className="msg-item">
+              <p className="other-user-message">{message.content}</p>
+            </li>
+          );
+        }
+      }.bind(this)
     );
-  }
 
+    return <ul className="chatlog-box">{result}</ul>;
+  },
 });
 
 module.exports = ChatLog;
