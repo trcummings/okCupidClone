@@ -1,4 +1,4 @@
-class CreateConversations < ActiveRecord::Migration
+class CreateConversations < ActiveRecord::Migration[4.2]
   def change
     create_table :conversations do |t|
       t.integer :sender_id, null: false

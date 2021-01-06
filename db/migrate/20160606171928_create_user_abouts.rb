@@ -1,4 +1,4 @@
-class CreateUserAbouts < ActiveRecord::Migration
+class CreateUserAbouts < ActiveRecord::Migration[4.2]
   def change
     create_table :user_abouts do |t|
       t.integer :user_id, null: false
