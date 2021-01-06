@@ -6,7 +6,9 @@
 
 Are you a singleton and ready to mingle a ton?
 
-PerfectPair is a full-stack web app clone of dating platform OK Cupid circa 2015 that I made during my cohort at AppAcademy around the same time to fill out my web development portfolio. It features a Ruby on Rails backend, a PostgreSQL database, and a dynamic frontend via React.js and Flux architecture. It is currently offline, as many outdated packages had security errors, as well as general code rot. Because of these reasons, I made it a private repository around 2018, but after some package upgrades, version migrations, and basic touch ups to make it locally runnable again without serious security risk, I've made it public again. I'd love to discuss it's weaknesses, what I would do differently now, or other things about it during interviews.
+PerfectPair is a full-stack web app clone of dating platform OK Cupid circa 2015 that I made during my cohort at AppAcademy around the same time to fill out my web development portfolio. It features a Ruby on Rails backend, a PostgreSQL database, and a dynamic frontend via React.js and Flux architecture. 
+
+It is currently offline, as many outdated packages had security errors, as well as general code rot. Because of these reasons, I made it a private repository around 2018, but after some package upgrades, version migrations, and basic touch ups to make it locally runnable again without serious security risk, I've made it public again. I'd love to discuss it's weaknesses, what I would do differently now, or other things about it during interviews.
 
 In order to run Perfect Pair locally, you will need ruby 2.5.0. To install:
 
