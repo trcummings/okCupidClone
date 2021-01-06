@@ -36,7 +36,7 @@ gem 'cloudinary'
 
 gem 'aws-sdk', '>= 2.0'
 
-gem 'paperclip', '5.0.0.beta1'
+gem 'paperclip', '5.2.0'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
