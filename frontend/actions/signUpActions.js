@@ -25,4 +25,4 @@ var SignUpActions = {
   },
 };
 
-module.exports = SignUpActions;
+export default SignUpActions;

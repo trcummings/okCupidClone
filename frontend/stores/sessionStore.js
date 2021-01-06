@@ -1,10 +1,14 @@
-var Store = require("flux/utils").Store;
-var AppDispatcher = require("../dispatcher/dispatcher");
+import { Store } from "flux/utils";
+
+import AppDispatcher from "../dispatcher/dispatcher";
+
+var SessionConstants = require("../constants/sessionConstants");
+
 var _current_user = {};
 var _birthday = "";
 var _currentUserHasBeenFetched = false;
+
 var SessionStore = new Store(AppDispatcher);
-var SessionConstants = require("../constants/sessionConstants");
 
 SessionStore.currentUserHasBeenFetched = function () {
   return _currentUserHasBeenFetched;
@@ -103,4 +107,4 @@ SessionStore.__onDispatch = function (payload) {
   }
 };
 
-module.exports = SessionStore;
+export default SessionStore;

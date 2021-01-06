@@ -58,4 +58,4 @@ var UsersApiUtil = {
   },
 };
 
-module.exports = UsersApiUtil;
+export default UsersApiUtil;

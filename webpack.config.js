@@ -1,8 +1,9 @@
-var path = require("path");
+const path = require("path");
+const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   context: __dirname,
-  entry: "./frontend/perfectPair.jsx",
+  entry: "./frontend/PerfectPair.js",
   output: {
     path: path.join(__dirname, "app", "assets", "javascripts"),
     filename: "bundle.js",
@@ -10,19 +11,27 @@ module.exports = {
     devtoolFallbackModuleFilenameTemplate: "[resourcePath]?[hash]",
   },
   module: {
-    loaders: [
+    rules: [
       {
-        test: /\.jsx?$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: "babel",
-        query: {
-          presets: ["react"],
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
         },
+      },
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: "html-loader",
+          },
+        ],
+      },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"],
       },
     ],
   },
   devtool: "source-maps",
-  resolve: {
-    extensions: ["", ".js", ".jsx"],
-  },
 };

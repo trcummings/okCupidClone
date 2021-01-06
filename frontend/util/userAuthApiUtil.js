@@ -1,6 +1,6 @@
 var SignUpActions = require("../actions/signUpActions");
 
-UserAuthApiUtil = {
+var UserAuthApiUtil = {
   getLocationByZip: function (zipCode) {
     var client = new XMLHttpRequest();
     client.open("GET", "https://api.zippopotam.us/us/" + zipCode, true);
@@ -54,4 +54,4 @@ UserAuthApiUtil = {
   },
 };
 
-module.exports = UserAuthApiUtil;
+export default UserAuthApiUtil;

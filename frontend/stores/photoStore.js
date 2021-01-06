@@ -1,5 +1,7 @@
-var Store = require("flux/utils").Store;
-var AppDispatcher = require("../dispatcher/dispatcher");
+import { Store } from "flux/utils";
+
+import AppDispatcher from "../dispatcher/dispatcher";
+
 var PhotoConstants = require("../constants/photoConstants");
 
 var _currentUserPhotos = [];
@@ -102,4 +104,4 @@ PhotoStore.__onDispatch = function (payload) {
   }
 };
 
-module.exports = PhotoStore;
+export default PhotoStore;

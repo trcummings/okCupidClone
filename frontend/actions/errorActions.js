@@ -1,7 +1,7 @@
 var AppDispatcher = require("../dispatcher/dispatcher");
 var ErrorConstants = require("../constants/errorConstants");
 
-ErrorActions = {
+var ErrorActions = {
   setErrors: function (form, errors) {
     AppDispatcher.dispatch({
       actionType: ErrorConstants.SET_ERRORS,
@@ -17,4 +17,4 @@ ErrorActions = {
   },
 };
 
-module.exports = ErrorActions;
+export default ErrorActions;

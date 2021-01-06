@@ -1,5 +1,7 @@
-var Store = require("flux/utils").Store;
-var AppDispatcher = require("../dispatcher/dispatcher");
+import { Store } from "flux/utils";
+
+import AppDispatcher from "../dispatcher/dispatcher";
+
 var AuthInfoConstants = require("../constants/authInfoConstants");
 
 var _tentativeProfile = {};
@@ -104,7 +106,7 @@ AuthInfoStore.__onDispatch = function (payload) {
   }
 };
 
-module.exports = AuthInfoStore;
+export default AuthInfoStore;
 
 //// notes:
 // if a piece of info is invalid, give that html item a selector of "invalid"

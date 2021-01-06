@@ -1,7 +1,7 @@
-var Store = require("flux/utils").Store;
-var AppDispatcher = require("../dispatcher/dispatcher");
-var AboutConstants = require("../constants/aboutConstants");
-// var SessionStore = require('./sessionStore');
+import { Store } from "flux/utils";
+
+import AppDispatcher from "../dispatcher/dispatcher";
+import AboutConstants from "../constants/aboutConstants";
 
 var _currentUserAbout = {};
 var AboutStore = new Store(AppDispatcher);
@@ -19,4 +19,4 @@ AboutStore.__onDispatch = function (payload) {
   }
 };
 
-module.exports = AboutStore;
+export default AboutStore;

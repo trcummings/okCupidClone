@@ -1,5 +1,7 @@
-var Store = require("flux/utils").Store;
-var AppDispatcher = require("../dispatcher/dispatcher");
+import { Store } from "flux/utils";
+
+import AppDispatcher from "../dispatcher/dispatcher";
+
 var ErrorConstants = require("../constants/errorConstants");
 var ErrorStore = new Store(AppDispatcher);
 
@@ -51,4 +53,4 @@ ErrorStore.__onDispatch = function (payload) {
   }
 };
 
-module.exports = ErrorStore;
+export default ErrorStore;

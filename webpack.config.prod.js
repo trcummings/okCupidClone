@@ -2,8 +2,7 @@ var path = require("path");
 var webpack = require("webpack");
 
 module.exports = {
-  context: __dirname,
-  entry: "./frontend/perfectPair.jsx",
+  entry: "./frontend/PerfectPair.js",
   output: {
     path: path.join(__dirname, "app", "assets", "javascripts"),
     filename: "bundle.js",

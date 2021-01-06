@@ -103,4 +103,4 @@ var PhotosApiUtil = {
   },
 };
 
-module.exports = PhotosApiUtil;
+export default PhotosApiUtil;

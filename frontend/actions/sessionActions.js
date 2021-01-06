@@ -18,4 +18,4 @@ var SessionActions = {
   },
 };
 
-module.exports = SessionActions;
+export default SessionActions;

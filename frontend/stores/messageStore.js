@@ -1,10 +1,12 @@
-var Store = require("flux/utils").Store;
-var AppDispatcher = require("../dispatcher/dispatcher");
-var MessageStore = new Store(AppDispatcher);
+import { Store } from "flux/utils";
+
+import AppDispatcher from "../dispatcher/dispatcher";
+
 var MessageConstants = require("../constants/messageConstants");
 
-_conversations = [];
+var _conversations = [];
 var _activeConvos = [];
+var MessageStore = new Store(AppDispatcher);
 
 MessageStore.allConversations = function () {
   return _conversations;
@@ -94,4 +96,4 @@ MessageStore.__onDispatch = function (payload) {
   }
 };
 
-module.exports = MessageStore;
+export default MessageStore;

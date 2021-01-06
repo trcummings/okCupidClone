@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   LOG_OUT: "LOG_OUT",
   LOG_IN: "LOG_IN",
   ADD_USER_TO_LIKES: "ADD_USER_TO_LIKES",

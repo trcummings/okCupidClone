@@ -147,4 +147,4 @@ var ServerActions = {
   },
 };
 
-module.exports = ServerActions;
+export default ServerActions;

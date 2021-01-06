@@ -113,4 +113,4 @@ var HelperUtil = {
   },
 };
 
-module.exports = HelperUtil;
+export default HelperUtil;

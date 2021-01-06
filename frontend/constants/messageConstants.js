@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   RECEIVE_CONVO: "RECEIVE_CONVO",
   RECEIVE_MESSAGE: "RECEIVE_MESSAGE",
   CLOSE_CONVO: "CLOSE_CONVO",

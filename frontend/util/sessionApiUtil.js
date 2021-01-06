@@ -69,4 +69,4 @@ var SessionApiUtil = {
   },
 };
 
-module.exports = SessionApiUtil;
+export default SessionApiUtil;
