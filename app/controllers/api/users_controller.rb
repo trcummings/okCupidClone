@@ -132,7 +132,8 @@ class Api::UsersController < ApplicationController
     if @photo.save
       @photo.image = photo_params[:image]
       @photo.save!
-      current_user.undefault_other_photos(@photo.id)
+      # current_user.undefault_other_photos(@photo.id)
+      current_user.undefault_other_photos
 
       render 'api/user_photos/show'
     else
@@ -180,6 +181,7 @@ class Api::UsersController < ApplicationController
 
   def default_photo
     photo = UserPhoto.find(params[:photo_id])
+    # current_user.undefault_other_photos(photo.id)
     current_user.undefault_other_photos
     photo.is_default = true
     photo.save!
