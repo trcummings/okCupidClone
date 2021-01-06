@@ -1,4 +1,4 @@
-json.photo_url asset_path(photo.image.url(:original))
+json.photo_url url_for(photo.image)
 json.is_default photo.is_default
 json.description photo.description
 json.photo_id photo.id

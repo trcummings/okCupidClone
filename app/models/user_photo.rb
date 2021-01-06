@@ -15,8 +15,9 @@
 #
 
 class UserPhoto < ActiveRecord::Base
-  has_attached_file :image, default_url: "assets/images/anon.png"
-  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+  has_one_attached :image
+  # validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+  validates :image, content_type: ['image/png', 'image/jpg', 'image/jpeg']
 
   validates :user_id, presence: true
 
@@ -35,5 +36,4 @@ class UserPhoto < ActiveRecord::Base
     self.is_default = false
     self.save!
   end
-
 end

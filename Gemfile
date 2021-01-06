@@ -19,16 +19,15 @@ gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder'
 # bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'sdoc', group: :doc
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt'
 
 gem 'figaro'
 
-# gem 'omniauth'
-#
-# gem 'omniauth-github'
+# allow active storage to do image validations
+gem 'active_storage_validations'
 
 gem 'pusher'
 

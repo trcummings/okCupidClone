@@ -26,18 +26,19 @@ class Answer < ActiveRecord::Base
     primary_key: :id
   )
 
-  has_many(
-    :question_choices,
-    through: :question,
-    source: :question_choices
-  )
-
   belongs_to(
     :question,
     class_name: "Question",
     foreign_key: :question_id,
     primary_key: :id
   )
+
+  has_many(
+    :question_choices,
+    through: :question,
+    source: :question_choices
+  )
+
 
   def to_param
     :question_id
